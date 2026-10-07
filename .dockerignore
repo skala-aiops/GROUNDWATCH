@@ -1,0 +1,19 @@
+.git
+.env
+.env.*
+!.env.example
+.venv
+venv
+**/__pycache__
+**/*.pyc
+*.db
+*.db-*
+logs
+mlruns
+mlartifacts
+data/uploads/*.csv
+docs
+
+# Models are initialized inside the persistent Docker volume
+serving_app/models/*
+!serving_app/models/.gitkeep

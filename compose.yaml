@@ -1,0 +1,34 @@
+name: groundwatch
+services:
+  serving-app:
+    build:
+      context: .
+      dockerfile: serving_app/Dockerfile
+    ports:
+      - "${GROUNDWATCH_PORT:-8100}:8099"
+    environment:
+      MODEL_SOURCE: mlflow
+      LOADING_MODE: eager
+      MLFLOW_TRACKING_URI: sqlite:////app/runtime/mlflow.db
+      TF_NUM_INTRAOP_THREADS: "1"
+      TF_NUM_INTEROP_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      TF_CPP_MIN_LOG_LEVEL: "2"
+    volumes:
+      - tracking:/app/runtime
+      - artifacts:/app/mlruns
+      - models:/app/serving_app/models
+      - uploads:/app/data/uploads
+      - logs:/app/logs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,urllib.request; r=json.load(urllib.request.urlopen('http://localhost:8099/health',timeout=5)); assert r['model_loaded']"]
+      interval: 15s
+      timeout: 10s
+      start_period: 10m
+      retries: 4
+volumes:
+  tracking:
+  artifacts:
+  models:
+  uploads:
+  logs:
