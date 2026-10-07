@@ -1,0 +1,163 @@
+{
+  "method": "counterfactual alert count on saved real replay predictions; no retraining rerun; not false-positive rate or prevention effect",
+  "scenarios": [
+    {
+      "namespace": "f26d52070b8943649c28634388e43498",
+      "kind": "observed",
+      "labelled_count": 2250,
+      "policies": [
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 27,
+          "district_count": 12
+        },
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 27,
+          "district_count": 12
+        },
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 26,
+          "district_count": 11
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 16,
+          "district_count": 7
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 15,
+          "district_count": 6
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 15,
+          "district_count": 6
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 9,
+          "district_count": 3
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 8,
+          "district_count": 3
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 7,
+          "district_count": 3
+        }
+      ]
+    },
+    {
+      "namespace": "386386a79ba142abb650fbd7d6915acd",
+      "kind": "synthetic_level_shift",
+      "labelled_count": 2250,
+      "policies": [
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 33,
+          "district_count": 16
+        },
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 33,
+          "district_count": 16
+        },
+        {
+          "p95_multiplier": 1.25,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 32,
+          "district_count": 15
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 24,
+          "district_count": 13
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 23,
+          "district_count": 13
+        },
+        {
+          "p95_multiplier": 1.5,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 23,
+          "district_count": 13
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 1,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 15,
+          "district_count": 9
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 2,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 15,
+          "district_count": 9
+        },
+        {
+          "p95_multiplier": 2.0,
+          "consecutive_breaches": 3,
+          "cooldown_days": 21,
+          "eligible_windows": 1750,
+          "potential_alerts": 14,
+          "district_count": 9
+        }
+      ]
+    }
+  ]
+}

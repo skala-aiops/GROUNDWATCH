@@ -1,0 +1,711 @@
+{
+  "source_dataset_sha256": "f63d43d2de757ad9d0475a3fce83fe101ea5354bf4216b8201b3e9cc15d8c58e",
+  "replay_target_start": "2023-12-20",
+  "replay_target_end": "2024-03-18",
+  "replay_input_context_start": "2023-11-30",
+  "policy": "Each window20consecutiveinputdays+nextdaytarget; latest complete60dayvalidation/test blocks before commonreplay; trainonlyearlier validwindows; no gapbridging orimputation. Distinct pergu cutoffs reported.",
+  "all_25_feasible": true,
+  "districts": [
+    {
+      "district_code": "11110",
+      "historical_valid_windows": 1933,
+      "partitions": {
+        "train": {
+          "targets": 1813,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11140",
+      "historical_valid_windows": 1983,
+      "partitions": {
+        "train": {
+          "targets": 1863,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11170",
+      "historical_valid_windows": 1799,
+      "partitions": {
+        "train": {
+          "targets": 1679,
+          "first_target": "2018-09-06",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11200",
+      "historical_valid_windows": 2043,
+      "partitions": {
+        "train": {
+          "targets": 1923,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11215",
+      "historical_valid_windows": 1936,
+      "partitions": {
+        "train": {
+          "targets": 1813,
+          "first_target": "2018-01-21",
+          "last_target": "2023-06-01"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-06-02",
+          "last_target": "2023-07-31"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11230",
+      "historical_valid_windows": 1995,
+      "partitions": {
+        "train": {
+          "targets": 1875,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11260",
+      "historical_valid_windows": 1802,
+      "partitions": {
+        "train": {
+          "targets": 1682,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11290",
+      "historical_valid_windows": 2035,
+      "partitions": {
+        "train": {
+          "targets": 1915,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11305",
+      "historical_valid_windows": 1547,
+      "partitions": {
+        "train": {
+          "targets": 1399,
+          "first_target": "2019-07-11",
+          "last_target": "2023-05-30"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-05-31",
+          "last_target": "2023-07-29"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-07-30",
+          "last_target": "2023-09-27"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11320",
+      "historical_valid_windows": 1999,
+      "partitions": {
+        "train": {
+          "targets": 1879,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11350",
+      "historical_valid_windows": 1995,
+      "partitions": {
+        "train": {
+          "targets": 1845,
+          "first_target": "2018-01-21",
+          "last_target": "2023-07-01"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-07-02",
+          "last_target": "2023-08-30"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-08-31",
+          "last_target": "2023-10-29"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11380",
+      "historical_valid_windows": 2134,
+      "partitions": {
+        "train": {
+          "targets": 2014,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11410",
+      "historical_valid_windows": 1974,
+      "partitions": {
+        "train": {
+          "targets": 1854,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11440",
+      "historical_valid_windows": 2050,
+      "partitions": {
+        "train": {
+          "targets": 1930,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11470",
+      "historical_valid_windows": 1789,
+      "partitions": {
+        "train": {
+          "targets": 1628,
+          "first_target": "2018-01-21",
+          "last_target": "2023-01-30"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-01-31",
+          "last_target": "2023-03-31"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11500",
+      "historical_valid_windows": 2029,
+      "partitions": {
+        "train": {
+          "targets": 1909,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11530",
+      "historical_valid_windows": 1640,
+      "partitions": {
+        "train": {
+          "targets": 1520,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11545",
+      "historical_valid_windows": 2025,
+      "partitions": {
+        "train": {
+          "targets": 1905,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11560",
+      "historical_valid_windows": 1734,
+      "partitions": {
+        "train": {
+          "targets": 1614,
+          "first_target": "2018-01-23",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11590",
+      "historical_valid_windows": 1620,
+      "partitions": {
+        "train": {
+          "targets": 1451,
+          "first_target": "2018-01-21",
+          "last_target": "2023-06-12"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-06-13",
+          "last_target": "2023-08-11"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-08-12",
+          "last_target": "2023-10-10"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11620",
+      "historical_valid_windows": 1536,
+      "partitions": {
+        "train": {
+          "targets": 1416,
+          "first_target": "2019-06-12",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11650",
+      "historical_valid_windows": 2060,
+      "partitions": {
+        "train": {
+          "targets": 1940,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11680",
+      "historical_valid_windows": 2125,
+      "partitions": {
+        "train": {
+          "targets": 2005,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11710",
+      "historical_valid_windows": 2006,
+      "partitions": {
+        "train": {
+          "targets": 1886,
+          "first_target": "2018-01-21",
+          "last_target": "2023-08-21"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    },
+    {
+      "district_code": "11740",
+      "historical_valid_windows": 1710,
+      "partitions": {
+        "train": {
+          "targets": 1562,
+          "first_target": "2018-10-23",
+          "last_target": "2023-04-04"
+        },
+        "validation": {
+          "targets": 60,
+          "first_target": "2023-04-05",
+          "last_target": "2023-06-03"
+        },
+        "test": {
+          "targets": 60,
+          "first_target": "2023-06-04",
+          "last_target": "2023-08-02"
+        },
+        "replay": {
+          "targets": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18"
+        }
+      },
+      "validation_21_day_rolling_windows": 40,
+      "feasible": true
+    }
+  ],
+  "representatives_approved": false
+}

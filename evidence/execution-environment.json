@@ -1,0 +1,25 @@
+{
+  "verified_date": "2026-10-07",
+  "python": "3.11.17",
+  "packages": {
+    "tensorflow": "2.21.0",
+    "mlflow": "3.16.0",
+    "fastapi": "0.141.1",
+    "pydantic": "2.13.3",
+    "numpy": "2.4.4",
+    "scikit-learn": "1.9.1"
+  },
+  "primary_image": "sha256:e8799e4d0d95dde4479c154f7539938f40b933138498267e7f695370f75bd0c9",
+  "files_sha256": {
+    "data/groundwater_observations.csv": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+    "data/representatives.json": "7b308ad5ce811e634d443824787a1689f74116d65be41ba16b0ab3387df901f2",
+    "requirements.txt": "af593359a1d3ea18b41878d32a6edb4ca09c3b4dc6e4e89eb75bde9f1c77e00c",
+    "requirements-dev.txt": "5dc8edb32ecd5ae477afce488f3b9790ad865b1d83e15a0f96eb0d24e93a123b",
+    "compose.yaml": "6a844fe69ebc1389fe53b20bf6583110abb98b756ae6d7aa982750c2c1e4dd55",
+    "serving_app/groundwater_models.py": "26659368a1969d251218fb6593b1b2ffb09f9a55c0936273da6bd3eae94bcb03",
+    "serving_app/groundwater_service.py": "a326f9855d17249f7bb20abdc2f22c22216c5d2a352b3283978628f4a432aba5",
+    "scripts/verify_model_promotion.py": "f9bb60dd151b60d5effb1eb05439af8348a9859fb734bf53b2d605ea2dbd1357"
+  },
+  "clean_start_image": "sha256:ffedc3da94bf7f79facb0e891b7c371c7ab390fe62864b80f7c7c3b1c1e1c6d3",
+  "note": "Clean-start verified identical application/data/training configuration before adding the isolated synthetic verification utility; final image also includes that utility."
+}

@@ -1,0 +1,11 @@
+{
+  "project": "groundwatch-cleancheck",
+  "port": 18100,
+  "new_volumes": true,
+  "startup": "GROUNDWATCH_PORT=18100 docker compose -p groundwatch-cleancheck up --build -d",
+  "no_manual_upload_or_train": true,
+  "training_job": "1e56b78181e443d6ab6d780fb9da931b",
+  "all_25_initial_model_versions": "1",
+  "ready_count": 25,
+  "as_of": "2024-03-18"
+}
