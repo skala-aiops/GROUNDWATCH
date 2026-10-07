@@ -36,3 +36,7 @@ data/uploads/*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Models are initialized inside the persistent Docker volume
+serving_app/models/*
+!serving_app/models/.gitkeep
