@@ -1,0 +1,350 @@
+[
+    {
+        "Id": "59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b",
+        "Created": "2026-10-07T11:41:00.213542345Z",
+        "Path": "python",
+        "Args": [
+            "scripts/start_container.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 130002,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-07T11:41:00.670583928Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-10-07T11:41:20.819689299Z",
+                        "End": "2026-10-07T11:41:20.916008465Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-10-07T11:41:35.918194083Z",
+                        "End": "2026-10-07T11:41:36.021115708Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-10-07T11:41:51.022962215Z",
+                        "End": "2026-10-07T11:41:51.123153007Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-10-07T11:42:06.122558792Z",
+                        "End": "2026-10-07T11:42:06.206623292Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-10-07T11:42:21.208773007Z",
+                        "End": "2026-10-07T11:42:21.325650132Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:4fd83856ea27e426b4510ddd9ce3c193e422a890f9ae23491a3d2be92fcbdd71",
+        "ResolvConfPath": "/var/lib/docker/containers/59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b/hostname",
+        "HostsPath": "/var/lib/docker/containers/59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b/hosts",
+        "LogPath": "/var/lib/docker/containers/59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b/59f0a5b63072a717f0143a3884507f41c93a0be1aea3ed0ab1f08b43c847766b-json.log",
+        "Name": "/groundwatch-serving-app-1",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "groundwatch_logs:/app/logs:rw",
+                "groundwatch_tracking:/app/runtime:rw",
+                "groundwatch_artifacts:/app/mlruns:rw",
+                "groundwatch_models:/app/serving_app/models:rw",
+                "groundwatch_uploads:/app/data/uploads:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "groundwatch_default",
+            "PortBindings": {
+                "8099/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8100"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "groundwatch_models",
+                "Source": "/var/lib/docker/volumes/groundwatch_models/_data",
+                "Destination": "/app/serving_app/models",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "groundwatch_uploads",
+                "Source": "/var/lib/docker/volumes/groundwatch_uploads/_data",
+                "Destination": "/app/data/uploads",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "groundwatch_logs",
+                "Source": "/var/lib/docker/volumes/groundwatch_logs/_data",
+                "Destination": "/app/logs",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "groundwatch_tracking",
+                "Source": "/var/lib/docker/volumes/groundwatch_tracking/_data",
+                "Destination": "/app/runtime",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "groundwatch_artifacts",
+                "Source": "/var/lib/docker/volumes/groundwatch_artifacts/_data",
+                "Destination": "/app/mlruns",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "59f0a5b63072",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "8099/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "OMP_NUM_THREADS=1",
+                "TF_CPP_MIN_LOG_LEVEL=2",
+                "GROUNDWATCH_STATE_DIR=/app/runtime/groundwatch",
+                "GROUNDWATCH_TRAIN_EPOCHS=100",
+                "TF_NUM_INTRAOP_THREADS=1",
+                "TF_NUM_INTEROP_THREADS=1",
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D",
+                "PYTHON_VERSION=3.11.17",
+                "PYTHON_SHA256=bfb74ad39efae27cda510f134ab408e00f9992c56851cfc0b1cdb5646da11599",
+                "PYTHONUNBUFFERED=1",
+                "PIP_NO_CACHE_DIR=1"
+            ],
+            "Cmd": [
+                "python",
+                "scripts/start_container.py"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD",
+                    "python",
+                    "-c",
+                    "import json,urllib.request; r=json.load(urllib.request.urlopen('http://localhost:8099/health/live',timeout=5)); assert r['status']=='alive'"
+                ],
+                "Interval": 15000000000,
+                "Timeout": 10000000000,
+                "StartPeriod": 30000000000,
+                "Retries": 4
+            },
+            "Image": "groundwatch-serving-app",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "6ec27f780990abf688592cf4294d4a6e4bb68e4b0065be73d8457401592c52b5",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:4fd83856ea27e426b4510ddd9ce3c193e422a890f9ae23491a3d2be92fcbdd71",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "groundwatch",
+                "com.docker.compose.project.config_files": "/Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team/compose.yaml",
+                "com.docker.compose.project.working_dir": "/Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team",
+                "com.docker.compose.replace": "serving-app-1",
+                "com.docker.compose.service": "serving-app",
+                "com.docker.compose.version": "5.3.1"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "f23520b4165360fe32915a3531a3296ab19696ef542fbd4af8ecb2f9d5432f66",
+            "SandboxKey": "/var/run/docker/netns/f23520b41653",
+            "Ports": {
+                "8099/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8100"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "8100"
+                    }
+                ]
+            },
+            "Networks": {
+                "groundwatch_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "groundwatch-serving-app-1",
+                        "serving-app"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "b048dd9dda74534076d24f2c8666f0ba6ce53d49b4bb02c42752ec0e2c0ade4e",
+                    "EndpointID": "fce60b3809ea248c3fb64761bd892e53b7a801136ab2f39fe230d3cfc8250177",
+                    "Gateway": "172.21.0.1",
+                    "IPAddress": "172.21.0.2",
+                    "MacAddress": "e2:a0:27:e5:90:78",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "groundwatch-serving-app-1",
+                        "serving-app",
+                        "59f0a5b63072"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:6678ce1fc6cad92858f0abb053d458222e1473b7083026da5fb604c6e0132f2f",
+            "size": 2574,
+            "platform": {
+                "architecture": "arm64",
+                "os": "linux"
+            }
+        }
+    }
+]

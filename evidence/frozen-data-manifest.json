@@ -1,0 +1,791 @@
+{
+  "curated_path": "data/groundwater_observations.csv",
+  "curated_sha256": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+  "curated_rows": 52591,
+  "curated_bytes": 4495648,
+  "mapping_version": "groundwatch-seoul-v1",
+  "representatives_approved": true,
+  "approval_note": "User explicitly delegated public source investigation and representative selection to the implementation agent on 2026-10-07; no team meeting or manual team review is claimed.",
+  "replay_target_start": "2023-12-20",
+  "replay_target_end": "2024-03-18",
+  "window_policy": "Each20inputdays+1targetdaycontinuous; trainusesearliervalidwindows separatedbypossiblecalendar gaps, validation/testeach60consecutive targets, replay90commonconsecutive targets; no interpolation orgapbridging.",
+  "districts": [
+    {
+      "district_code": "11110",
+      "station_id": "SU-JNO-G1-0007",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-12",
+          "last_target": "2023-08-21",
+          "input_start": "2021-02-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11140",
+      "station_id": "SU-JGS-G1-0008",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11170",
+      "station_id": "SU-YSN-G1-0007",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11200",
+      "station_id": "SU-SDG-G1-0003",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11215",
+      "station_id": "SU-GJI-G1-0007",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-30",
+          "last_target": "2023-06-01",
+          "input_start": "2021-01-10"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-02",
+          "last_target": "2023-07-31",
+          "input_start": "2023-05-13"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11230",
+      "station_id": "SU-DDM-G1-0003",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11260",
+      "station_id": "SU-JNG-G1-0002",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11290",
+      "station_id": "SU-SBK-G1-0002",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-04",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-14"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11305",
+      "station_id": "SU-GBK-G1-0005",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-10",
+          "last_target": "2023-05-30",
+          "input_start": "2021-04-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-05-31",
+          "last_target": "2023-07-29",
+          "input_start": "2023-05-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-07-30",
+          "last_target": "2023-09-27",
+          "input_start": "2023-07-10"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11320",
+      "station_id": "SU-DBG-G1-0006",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-09",
+          "last_target": "2023-08-21",
+          "input_start": "2021-04-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11350",
+      "station_id": "SU-NWN-G1-0008",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-07-01",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-07-02",
+          "last_target": "2023-08-30",
+          "input_start": "2023-06-12"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-31",
+          "last_target": "2023-10-29",
+          "input_start": "2023-08-11"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11380",
+      "station_id": "SU-UPG-G1-0003",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11410",
+      "station_id": "SU-SDM-G1-0006",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-25",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-05"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11440",
+      "station_id": "SU-MPO-G1-0005",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11470",
+      "station_id": "SU-YGC-G1-0008",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-08-09",
+          "last_target": "2023-01-30",
+          "input_start": "2020-07-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-01-31",
+          "last_target": "2023-03-31",
+          "input_start": "2023-01-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11500",
+      "station_id": "SU-GSS-G1-0002",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11530",
+      "station_id": "SU-GRO-G1-0006",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-06-20",
+          "last_target": "2023-08-21",
+          "input_start": "2020-05-31"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11545",
+      "station_id": "SU-GCN-G1-0002",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-31",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11560",
+      "station_id": "SU-YDP-G1-0001",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11590",
+      "station_id": "SU-DJK-G1-0005",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-31",
+          "last_target": "2023-06-12",
+          "input_start": "2021-01-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-13",
+          "last_target": "2023-08-11",
+          "input_start": "2023-05-24"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-12",
+          "last_target": "2023-10-10",
+          "input_start": "2023-07-23"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11620",
+      "station_id": "SU-GNK-G1-0008",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11650",
+      "station_id": "SU-SCO-G1-0010",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11680",
+      "station_id": "SU-GNM-G1-0005",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11710",
+      "station_id": "SU-SPA-G1-0009",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    },
+    {
+      "district_code": "11740",
+      "station_id": "SU-GDG-G1-0019",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-11",
+          "last_target": "2023-04-04",
+          "input_start": "2021-02-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-04-05",
+          "last_target": "2023-06-03",
+          "input_start": "2023-03-16"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-06-04",
+          "last_target": "2023-08-02",
+          "input_start": "2023-05-15"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "validation_21_day_rolling_windows": 40
+    }
+  ],
+  "train_max_targets": 730,
+  "train_cap_rationale": "Before fitting, cap at730mostrecent validpasttargets toboundcompute andstalehistory while retainingabouttwoannualsamplecycles; calendarspanmayexceed730daysduetogaps. No heldouttestperformanceusedforchoice."
+}

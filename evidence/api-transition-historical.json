@@ -1,0 +1,1361 @@
+{
+  "forecasts": [
+    {
+      "district_code": "11110",
+      "district_name": "종로구",
+      "station_id": "SU-JNO-G1-0007",
+      "station_name": "홍익대대학로캠퍼스",
+      "source_station_name": "홍익대대학로캠퍼스",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-12",
+          "last_target": "2023-08-21",
+          "input_start": "2021-02-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -23.258878335356712,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.655914+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11140",
+      "district_name": "중구",
+      "station_id": "SU-JGS-G1-0008",
+      "station_name": "장충단공원",
+      "source_station_name": "장충단공원",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -0.5000454930961132,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.940984+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11170",
+      "district_name": "용산구",
+      "station_id": "SU-YSN-G1-0007",
+      "station_name": "신세기한덕",
+      "source_station_name": "신세기한덕",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -15.733209134936333,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.951854+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11200",
+      "district_name": "성동구",
+      "station_id": "SU-SDG-G1-0003",
+      "station_name": "행당초등학교",
+      "source_station_name": "행당초등학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -7.731583862006664,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.962625+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11215",
+      "district_name": "광진구",
+      "station_id": "SU-GJI-G1-0007",
+      "station_name": "신양중학교",
+      "source_station_name": "신양중학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-30",
+          "last_target": "2023-06-01",
+          "input_start": "2021-01-10"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-02",
+          "last_target": "2023-07-31",
+          "input_start": "2023-05-13"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -12.192712483406066,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.974623+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11230",
+      "district_name": "동대문구",
+      "station_id": "SU-DDM-G1-0003",
+      "station_name": "군자초등학교",
+      "source_station_name": "군자초등학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -7.920483067780734,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.985577+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11260",
+      "district_name": "중랑구",
+      "station_id": "SU-JNG-G1-0002",
+      "station_name": "경남아파트",
+      "source_station_name": "경남아파트",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -7.799712398052215,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:20.997138+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11290",
+      "district_name": "성북구",
+      "station_id": "SU-SBK-G1-0002",
+      "station_name": "국세청 우편물 자동화센터(구.동대문세무서)",
+      "source_station_name": "국세청 우편물 자동화센터(구.동대문세무서)",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-04",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-14"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -5.147293074578046,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.008075+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11305",
+      "district_name": "강북구",
+      "station_id": "SU-GBK-G1-0005",
+      "station_name": "제일경로당",
+      "source_station_name": "제일경로당",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-10",
+          "last_target": "2023-05-30",
+          "input_start": "2021-04-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-05-31",
+          "last_target": "2023-07-29",
+          "input_start": "2023-05-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-07-30",
+          "last_target": "2023-09-27",
+          "input_start": "2023-07-10"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -4.064772644042969,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.019988+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11320",
+      "district_name": "도봉구",
+      "station_id": "SU-DBG-G1-0006",
+      "station_name": "도봉산노인정",
+      "source_station_name": "도봉산노인정",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-09",
+          "last_target": "2023-08-21",
+          "input_start": "2021-04-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -15.151723018586637,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.029630+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11350",
+      "district_name": "노원구",
+      "station_id": "SU-NWN-G1-0008",
+      "station_name": "롯데캐슬아파트",
+      "source_station_name": "롯데캐슬아파트",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-07-01",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-07-02",
+          "last_target": "2023-08-30",
+          "input_start": "2023-06-12"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-31",
+          "last_target": "2023-10-29",
+          "input_start": "2023-08-11"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -8.111259504556656,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.041449+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11380",
+      "district_name": "은평구",
+      "station_id": "SU-UPG-G1-0003",
+      "station_name": "팀비전센타",
+      "source_station_name": "팀비전센타",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -10.51695217370987,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.053705+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11410",
+      "district_name": "서대문구",
+      "station_id": "SU-SDM-G1-0006",
+      "station_name": "북가좌놀이터",
+      "source_station_name": "북가좌놀이터",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-25",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-05"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -4.2672251015901566,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.065859+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11440",
+      "district_name": "마포구",
+      "station_id": "SU-MPO-G1-0005",
+      "station_name": "양화공원",
+      "source_station_name": "양화공원",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -13.878546617627144,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.077561+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11470",
+      "district_name": "양천구",
+      "station_id": "SU-YGC-G1-0008",
+      "station_name": "파리공원",
+      "source_station_name": "파리공원",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-08-09",
+          "last_target": "2023-01-30",
+          "input_start": "2020-07-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-01-31",
+          "last_target": "2023-03-31",
+          "input_start": "2023-01-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -11.584971091151237,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.089024+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11500",
+      "district_name": "강서구",
+      "station_id": "SU-GSS-G1-0002",
+      "station_name": "강서구청",
+      "source_station_name": "강서구청",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -13.659965043067933,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.101319+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11530",
+      "district_name": "구로구",
+      "station_id": "SU-GRO-G1-0006",
+      "station_name": "고척삼명아파트",
+      "source_station_name": "고척삼명아파트",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-06-20",
+          "last_target": "2023-08-21",
+          "input_start": "2020-05-31"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -5.0508410120010385,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.113233+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11545",
+      "district_name": "금천구",
+      "station_id": "SU-GCN-G1-0002",
+      "station_name": "군인아파트",
+      "source_station_name": "군인아파트",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-31",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "learning_rate": 1e-05,
+      "training_note": "초기 residual lr0.0001의 검증 RMSE0.024413이 persistence0.020936의 110% 게이트를 초과하여, 검증 지표만 근거로 학습률0.00001을 평가. 게이트·테스트·재생 구간 유지.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -11.030435877442358,
+      "unit": "gl.-m",
+      "model_version": "3",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.123778+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11560",
+      "district_name": "영등포구",
+      "station_id": "SU-YDP-G1-0001",
+      "station_name": "당산공원",
+      "source_station_name": "당산공원",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -17.238600087165835,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.135182+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11590",
+      "district_name": "동작구",
+      "station_id": "SU-DJK-G1-0005",
+      "station_name": "성남중고등학교",
+      "source_station_name": "성남중고등학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-31",
+          "last_target": "2023-06-12",
+          "input_start": "2021-01-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-13",
+          "last_target": "2023-08-11",
+          "input_start": "2023-05-24"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-12",
+          "last_target": "2023-10-10",
+          "input_start": "2023-07-23"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -4.654857403039932,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.146371+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11620",
+      "district_name": "관악구",
+      "station_id": "SU-GNK-G1-0008",
+      "station_name": "락성주유소",
+      "source_station_name": "락성주유소",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -8.942876483798024,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.156288+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11650",
+      "district_name": "서초구",
+      "station_id": "SU-SCO-G1-0010",
+      "station_name": "서울교육대학교",
+      "source_station_name": "서울교육대학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -9.470996638536452,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.165473+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11680",
+      "district_name": "강남구",
+      "station_id": "SU-GNM-G1-0005",
+      "station_name": "신구초등학교",
+      "source_station_name": "신구초등학교",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -10.49436881482601,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.176804+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11710",
+      "district_name": "송파구",
+      "station_id": "SU-SPA-G1-0009",
+      "station_name": "부리근린공원",
+      "source_station_name": "부리근린공원",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -12.679810582101345,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.188020+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    },
+    {
+      "district_code": "11740",
+      "district_name": "강동구",
+      "station_id": "SU-GDG-G1-0019",
+      "station_name": "둔촌지하수",
+      "source_station_name": "둔촌지하수",
+      "level_unit": "gl.-m",
+      "source_note": "Official Seoul public observation page queried using this exact obsvCode. Source table labels groundwater gl.-m and rainfall mm; numeric signs preserved without conversion. Each input20+target1 calendar window validated. Representative fixed by user-delegated coverage-based selection, not model accuracy.",
+      "source_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+      "id_reference": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-11",
+          "last_target": "2023-04-04",
+          "input_start": "2021-02-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-04-05",
+          "last_target": "2023-06-03",
+          "input_start": "2023-03-16"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-06-04",
+          "last_target": "2023-08-02",
+          "input_start": "2023-05-15"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      },
+      "rainfall_source_note": "Official groundwater observation page rainfall(mm) series; underlying rain gauge code not independently identified.",
+      "observed_date": "2024-03-17",
+      "forecast_date": "2024-03-18",
+      "prediction": -15.63433692932129,
+      "unit": "gl.-m",
+      "model_version": "2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "quality_status": "NORMAL",
+      "inspection_status": "NONE",
+      "mode": "historical_replay",
+      "replay_id": null,
+      "generated_at": "2026-10-07T13:00:21.199130+00:00",
+      "freshness_days": 0,
+      "reason": null,
+      "source_kind": "observed",
+      "source_dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7"
+    }
+  ],
+  "as_of": "2024-03-17",
+  "ready_count": 25,
+  "total": 25,
+  "mode": "historical_replay",
+  "replay_id": null
+}

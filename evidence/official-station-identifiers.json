@@ -1,0 +1,1527 @@
+{
+  "retrieved_at": "2026-10-07",
+  "source": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrName.do",
+  "request": "Public read-only POST schGuNm=<district_name> as used by official page",
+  "unit_source": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do",
+  "unit_evidence": "Official table header 수위 (gl.-m); 강수량 (mm)",
+  "districts": [
+    {
+      "district_code": "11110",
+      "district_name": "종로구",
+      "stations": [
+        {
+          "obsvCode": "SU-JNO-G1-0003",
+          "obsvName": "덕성여중(관측종료)"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0006",
+          "obsvName": "두산위브파빌리온"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0002",
+          "obsvName": "삼청공원"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0009",
+          "obsvName": "서울제일교회"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0004",
+          "obsvName": "정부청사별관(관측종료)"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0001",
+          "obsvName": "종묘공원"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0010",
+          "obsvName": "평창동주민센터(암반)"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0011",
+          "obsvName": "평창동주민센터(충적)"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0008",
+          "obsvName": "해맞이동산"
+        },
+        {
+          "obsvCode": "SU-JNO-G1-0007",
+          "obsvName": "홍익대대학로캠퍼스"
+        }
+      ]
+    },
+    {
+      "district_code": "11140",
+      "district_name": "중구",
+      "stations": [
+        {
+          "obsvCode": "SU-JGS-G1-0010",
+          "obsvName": "광희초등학교"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0005",
+          "obsvName": "남산한옥마을"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0001",
+          "obsvName": "덕수중학교"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0013",
+          "obsvName": "동화어린이공원(암반)"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0012",
+          "obsvName": "동화어린이공원(충적)"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0004",
+          "obsvName": "명동바닥분수"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0011",
+          "obsvName": "손기정체육공원"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0009",
+          "obsvName": "응봉근린공원"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0007",
+          "obsvName": "의주로공원"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0008",
+          "obsvName": "장충단공원"
+        },
+        {
+          "obsvCode": "SU-JGS-G1-0003",
+          "obsvName": "회현체육센터"
+        }
+      ]
+    },
+    {
+      "district_code": "11170",
+      "district_name": "용산구",
+      "stations": [
+        {
+          "obsvCode": "SU-YSN-G1-0011",
+          "obsvName": "도원사우나"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0012",
+          "obsvName": "몬드리안호텔"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0015",
+          "obsvName": "서빙고근린공원(암반)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0014",
+          "obsvName": "서빙고근린공원(충적)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0008",
+          "obsvName": "서빙고압축장(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0007",
+          "obsvName": "신세기한덕"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0010",
+          "obsvName": "용산가족공원"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0006",
+          "obsvName": "응봉공원"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0013",
+          "obsvName": "전국관광"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0009",
+          "obsvName": "전쟁기념관(2)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0001",
+          "obsvName": "전쟁기념관(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0003",
+          "obsvName": "철우아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0004",
+          "obsvName": "청파어린이공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0002",
+          "obsvName": "태성아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YSN-G1-0005",
+          "obsvName": "효창공원(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11200",
+      "district_name": "성동구",
+      "stations": [
+        {
+          "obsvCode": "SU-SDG-G1-0006",
+          "obsvName": "경찰기마대(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0001",
+          "obsvName": "매봉산비상급수시설"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0004",
+          "obsvName": "삼성아파트"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0002",
+          "obsvName": "서울숲공원"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0009",
+          "obsvName": "서울하수도과학관(암반)"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0008",
+          "obsvName": "서울하수도과학관(충적)"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0005",
+          "obsvName": "성수공고"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0007",
+          "obsvName": "응봉산공원"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0010",
+          "obsvName": "제일산업"
+        },
+        {
+          "obsvCode": "SU-SDG-G1-0003",
+          "obsvName": "행당초등학교"
+        }
+      ]
+    },
+    {
+      "district_code": "11215",
+      "district_name": "광진구",
+      "stations": [
+        {
+          "obsvCode": "SU-GJI-G1-0009",
+          "obsvName": "㈜메디젠피아(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0002",
+          "obsvName": "광장동주민센터"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0006",
+          "obsvName": "광진구청"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0012",
+          "obsvName": "뻥튀기공원"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0010",
+          "obsvName": "삼성쉐르빌"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0013",
+          "obsvName": "선일빌딩"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0007",
+          "obsvName": "신양중학교"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0003",
+          "obsvName": "신양초등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0011",
+          "obsvName": "아차산유아숲체험장"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0001",
+          "obsvName": "어린이대공원"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0008",
+          "obsvName": "어린이회관(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0004",
+          "obsvName": "자양어린이집"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0005",
+          "obsvName": "중곡아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0015",
+          "obsvName": "홍련봉공원(암반)"
+        },
+        {
+          "obsvCode": "SU-GJI-G1-0014",
+          "obsvName": "홍련봉공원(충적)"
+        }
+      ]
+    },
+    {
+      "district_code": "11230",
+      "district_name": "동대문구",
+      "stations": [
+        {
+          "obsvCode": "SU-DDM-G1-0014",
+          "obsvName": "㈜제이앤지산"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0009",
+          "obsvName": "간데메공원"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0003",
+          "obsvName": "군자초등학교"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0005",
+          "obsvName": "농촌경제연구원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0011",
+          "obsvName": "답십리래미안위브"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0004",
+          "obsvName": "서울시립대학교"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0006",
+          "obsvName": "신동아아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0008",
+          "obsvName": "용두삼성래미안아파트"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0001",
+          "obsvName": "용두초등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0002",
+          "obsvName": "장평근린공원"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0012",
+          "obsvName": "한국과학기술정보연구원"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0016",
+          "obsvName": "휘경2구역 녹지(암반)"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0015",
+          "obsvName": "휘경2구역 녹지(충적)"
+        },
+        {
+          "obsvCode": "SU-DDM-G1-0013",
+          "obsvName": "힐스포츠CT"
+        }
+      ]
+    },
+    {
+      "district_code": "11260",
+      "district_name": "중랑구",
+      "stations": [
+        {
+          "obsvCode": "SU-JNG-G1-0002",
+          "obsvName": "경남아파트"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0005",
+          "obsvName": "뉴월드빌딩"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0001",
+          "obsvName": "송계공원"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0007",
+          "obsvName": "신내3지구 완충녹지 4호(암반)"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0006",
+          "obsvName": "신내3지구 완충녹지 4호(충적)"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0004",
+          "obsvName": "신내근린공원"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0003",
+          "obsvName": "지능범죄수사대(관측종료)"
+        },
+        {
+          "obsvCode": "SU-JNG-G1-0008",
+          "obsvName": "형재빌딩"
+        }
+      ]
+    },
+    {
+      "district_code": "11290",
+      "district_name": "성북구",
+      "stations": [
+        {
+          "obsvCode": "SU-SBK-G1-0002",
+          "obsvName": "국세청 우편물 자동화센터(구.동대문세무서)"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0003",
+          "obsvName": "남대문중학교"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0008",
+          "obsvName": "북한산에코체험장"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0007",
+          "obsvName": "삼선초등학교(암반)"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0006",
+          "obsvName": "삼선초등학교(충적)"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0004",
+          "obsvName": "서울도시과학기술고등학교(1)(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0005",
+          "obsvName": "서울도시과학기술고등학교(2)"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0001",
+          "obsvName": "석관초등학교"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0010",
+          "obsvName": "성북생태체험관"
+        },
+        {
+          "obsvCode": "SU-SBK-G1-0009",
+          "obsvName": "한국가구박물관"
+        }
+      ]
+    },
+    {
+      "district_code": "11305",
+      "district_name": "강북구",
+      "stations": [
+        {
+          "obsvCode": "SU-GBK-G1-0011",
+          "obsvName": "강북도시농업체험장"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0007",
+          "obsvName": "미아주유소(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0009",
+          "obsvName": "벌말어린이공원"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0012",
+          "obsvName": "서울영어마을(암반층)"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0013",
+          "obsvName": "서울영어마을(충적층)"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0001",
+          "obsvName": "세일어린이공원"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0002",
+          "obsvName": "솔샘어린이공원"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0010",
+          "obsvName": "우이동 319"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0004",
+          "obsvName": "은모루어린이공원"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0005",
+          "obsvName": "제일경로당"
+        },
+        {
+          "obsvCode": "SU-GBK-G1-0003",
+          "obsvName": "희망어린이공원(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11320",
+      "district_name": "도봉구",
+      "stations": [
+        {
+          "obsvCode": "SU-DBG-G1-0012",
+          "obsvName": "느티나무집"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0004",
+          "obsvName": "다남사우나(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0006",
+          "obsvName": "도봉산노인정"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0008",
+          "obsvName": "도봉소방서"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0014",
+          "obsvName": "뚝딱뚝딱놀이터1호"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0009",
+          "obsvName": "방학초등학교"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0002",
+          "obsvName": "서울창포원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0003",
+          "obsvName": "요셉의집"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0013",
+          "obsvName": "원당샘공원"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0010",
+          "obsvName": "월천초등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0001",
+          "obsvName": "인강원(사회복지법인)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0007",
+          "obsvName": "장미어린이공원"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0011",
+          "obsvName": "창1동 초안산 근린공원"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0016",
+          "obsvName": "창동문화체육센터(암반층)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0015",
+          "obsvName": "창동문화체육센터(충적층)"
+        },
+        {
+          "obsvCode": "SU-DBG-G1-0005",
+          "obsvName": "초안산근린공원(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11350",
+      "district_name": "노원구",
+      "stations": [
+        {
+          "obsvCode": "SU-NWN-G1-0014",
+          "obsvName": "경춘숲공원(암반층)"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0015",
+          "obsvName": "경춘숲공원(충적층)"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0009",
+          "obsvName": "넓은마당공원"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0012",
+          "obsvName": "노원골 화장실"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0008",
+          "obsvName": "롯데캐슬아파트"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0005",
+          "obsvName": "배꽃어린이공원"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0013",
+          "obsvName": "삼육대학교"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0004",
+          "obsvName": "삿갓봉근린공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0010",
+          "obsvName": "상계근린공원"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0001",
+          "obsvName": "시립노인요양원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0016",
+          "obsvName": "영축산 유아숲체험장"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0002",
+          "obsvName": "온수근린공원"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0007",
+          "obsvName": "원터근린공원"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0011",
+          "obsvName": "중앙하이츠 아쿠아 아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-NWN-G1-0003",
+          "obsvName": "충숙근린공원"
+        }
+      ]
+    },
+    {
+      "district_code": "11380",
+      "district_name": "은평구",
+      "stations": [
+        {
+          "obsvCode": "SU-UPG-G1-0017",
+          "obsvName": "DMC 우방아파트"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0001",
+          "obsvName": "갈현초등학교"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0008",
+          "obsvName": "갈현한솔아파트"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0012",
+          "obsvName": "거북약수터"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0016",
+          "obsvName": "금암문화공원"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0005",
+          "obsvName": "대조어린이놀이터"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0009",
+          "obsvName": "미성아파트"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0011",
+          "obsvName": "산새마을"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0006",
+          "obsvName": "시니어캐슬클락시온"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0004",
+          "obsvName": "신사시티아파트"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0002",
+          "obsvName": "예일여고"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0010",
+          "obsvName": "은평구청(관측종료)"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0020",
+          "obsvName": "응암10구역 어린이공원(암반)"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0019",
+          "obsvName": "응암10구역 어린이공원(충적)"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0014",
+          "obsvName": "진관사"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0003",
+          "obsvName": "팀비전센타"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0013",
+          "obsvName": "폭포동"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0007",
+          "obsvName": "프라임인서울호텔(관측종료)"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0018",
+          "obsvName": "향림근린공원 관리소"
+        },
+        {
+          "obsvCode": "SU-UPG-G1-0015",
+          "obsvName": "향림도시농업체험원(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11410",
+      "district_name": "서대문구",
+      "stations": [
+        {
+          "obsvCode": "SU-SDM-G1-0008",
+          "obsvName": "무궁화동산"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0001",
+          "obsvName": "봉원사주차장"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0006",
+          "obsvName": "북가좌놀이터"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0010",
+          "obsvName": "신촌토끼굴앞 소공원(암반)"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0009",
+          "obsvName": "신촌토끼굴앞 소공원(충적)"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0002",
+          "obsvName": "연희파크푸르지오"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0003",
+          "obsvName": "연희팰리스빌(아)"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0004",
+          "obsvName": "인왕초교"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0007",
+          "obsvName": "임광아파트"
+        },
+        {
+          "obsvCode": "SU-SDM-G1-0005",
+          "obsvName": "태영아파트(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11440",
+      "district_name": "마포구",
+      "stations": [
+        {
+          "obsvCode": "SU-MPO-G1-0008",
+          "obsvName": "느티나무공원"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0007",
+          "obsvName": "다솜공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0010",
+          "obsvName": "래미안밤섬리베뉴Ⅱ"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0012",
+          "obsvName": "마포삼성아파트"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0018",
+          "obsvName": "문화비축기지"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0011",
+          "obsvName": "상암11단지"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0015",
+          "obsvName": "상암근린공원_암반층"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0016",
+          "obsvName": "상암근린공원_충적층"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0002",
+          "obsvName": "서교초등학교"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0001",
+          "obsvName": "성산빗물펌프장"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0017",
+          "obsvName": "성원초등학교"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0005",
+          "obsvName": "양화공원"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0006",
+          "obsvName": "옹달샘공원"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0004",
+          "obsvName": "와우공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-MPO-G1-0009",
+          "obsvName": "한마음공원(관측종료)"
+        }
+      ]
+    },
+    {
+      "district_code": "11470",
+      "district_name": "양천구",
+      "stations": [
+        {
+          "obsvCode": "SU-YGC-G1-0001",
+          "obsvName": "강서고등학교"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0003",
+          "obsvName": "보람아파트"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0014",
+          "obsvName": "사랑초요양원"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0011",
+          "obsvName": "살레시오회관(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0009",
+          "obsvName": "삼보빌딩(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0010",
+          "obsvName": "서서울호수공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0004",
+          "obsvName": "신안약수아파트"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0005",
+          "obsvName": "신월4동주민센터"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0015",
+          "obsvName": "신월근린공원(암반)"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0016",
+          "obsvName": "신월근린공원(충적)"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0006",
+          "obsvName": "신정6차현대"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0007",
+          "obsvName": "신트리공원"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0013",
+          "obsvName": "양천도시농업공원"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0012",
+          "obsvName": "원두막"
+        },
+        {
+          "obsvCode": "SU-YGC-G1-0008",
+          "obsvName": "파리공원"
+        }
+      ]
+    },
+    {
+      "district_code": "11500",
+      "district_name": "강서구",
+      "stations": [
+        {
+          "obsvCode": "SU-GSS-G1-0002",
+          "obsvName": "강서구청"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0004",
+          "obsvName": "극동상록수아파트"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0015",
+          "obsvName": "마곡소공원"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0013",
+          "obsvName": "방화빗물펌프장"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0001",
+          "obsvName": "보람아파트"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0017",
+          "obsvName": "봄날서울요양원"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0016",
+          "obsvName": "비전빌딩"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0014",
+          "obsvName": "삼표에너지가스충전소"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0011",
+          "obsvName": "신광명어린이공원"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0012",
+          "obsvName": "신광명어린이공원"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0005",
+          "obsvName": "신청고등학교(신정여상)"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0007",
+          "obsvName": "우장산힐스테이트아파트(현대홈타운)"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0006",
+          "obsvName": "코오롱하늘채(코오롱오투빌)아파트"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0010",
+          "obsvName": "하늬공원"
+        },
+        {
+          "obsvCode": "SU-GSS-G1-0008",
+          "obsvName": "형제아파트"
+        }
+      ]
+    },
+    {
+      "district_code": "11530",
+      "district_name": "구로구",
+      "stations": [
+        {
+          "obsvCode": "SU-GRO-G1-0009",
+          "obsvName": "개웅산근린공원"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0002",
+          "obsvName": "경인중학교"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0007",
+          "obsvName": "고척경남아파트"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0006",
+          "obsvName": "고척삼명아파트"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0003",
+          "obsvName": "구로구청"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0010",
+          "obsvName": "궁동종합사회복지관"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0005",
+          "obsvName": "서서울생활과학고(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0015",
+          "obsvName": "신도림119안전센터"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0014",
+          "obsvName": "신도림119안전센터"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0004",
+          "obsvName": "연지근린공원"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0001",
+          "obsvName": "영림중학교"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0008",
+          "obsvName": "잣절약수터"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0012",
+          "obsvName": "중앙전파관리소(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GRO-G1-0011",
+          "obsvName": "푸른수목원"
+        }
+      ]
+    },
+    {
+      "district_code": "11545",
+      "district_name": "금천구",
+      "stations": [
+        {
+          "obsvCode": "SU-GCN-G1-0008",
+          "obsvName": "강남순환TG옆1 (충적층)"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0009",
+          "obsvName": "강남순환TG옆2 (암반층)"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0002",
+          "obsvName": "군인아파트"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0003",
+          "obsvName": "독산초등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0005",
+          "obsvName": "두산아파트"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0001",
+          "obsvName": "안천중학교"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0007",
+          "obsvName": "정심초교입구"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0006",
+          "obsvName": "준희빈호텔(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GCN-G1-0004",
+          "obsvName": "효봉공원"
+        }
+      ]
+    },
+    {
+      "district_code": "11560",
+      "district_name": "영등포구",
+      "stations": [
+        {
+          "obsvCode": "SU-YDP-G1-0003",
+          "obsvName": "강변삼성레미안"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0001",
+          "obsvName": "당산공원"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0011",
+          "obsvName": "당산삼성래미안4차"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0007",
+          "obsvName": "도림유수지"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0002",
+          "obsvName": "문래청소년회관"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0006",
+          "obsvName": "신길유수지"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0012",
+          "obsvName": "신영빌딩"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0010",
+          "obsvName": "여의도순복음교회"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0004",
+          "obsvName": "영남중학교"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0013",
+          "obsvName": "영등포초등학교 뒤1(암반)"
+        },
+        {
+          "obsvCode": "SU-YDP-G1-0014",
+          "obsvName": "영등포초등학교 뒤2(충적)"
+        }
+      ]
+    },
+    {
+      "district_code": "11590",
+      "district_name": "동작구",
+      "stations": [
+        {
+          "obsvCode": "SU-DJK-G1-0008",
+          "obsvName": "건영섬유(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0006",
+          "obsvName": "경문고등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0010",
+          "obsvName": "까치산마을공원"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0003",
+          "obsvName": "남사초등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0007",
+          "obsvName": "대방어린이놀이터(참새어린이공원)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0009",
+          "obsvName": "동양엔파트아파트"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0001",
+          "obsvName": "동작구청"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0004",
+          "obsvName": "사당어린이놀이터"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0011",
+          "obsvName": "상도근린공원"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0012",
+          "obsvName": "상도동마을마당(1)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0013",
+          "obsvName": "상도동마을마당(2)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0002",
+          "obsvName": "서울공업고등학교(관측종료)"
+        },
+        {
+          "obsvCode": "SU-DJK-G1-0005",
+          "obsvName": "성남중고등학교"
+        }
+      ]
+    },
+    {
+      "district_code": "11620",
+      "district_name": "관악구",
+      "stations": [
+        {
+          "obsvCode": "SU-GNK-G1-0001",
+          "obsvName": "교수아파트"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0011",
+          "obsvName": "당곡고교 후문 입구"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0004",
+          "obsvName": "라이프아파트"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0008",
+          "obsvName": "락성주유소"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0002",
+          "obsvName": "삼성초등학교"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0013",
+          "obsvName": "서울대입구(암반)"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0012",
+          "obsvName": "서울대입구(충적)"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0007",
+          "obsvName": "주원빌딩"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0006",
+          "obsvName": "청룡산입구"
+        },
+        {
+          "obsvCode": "SU-GNK-G1-0009",
+          "obsvName": "현대아파트"
+        }
+      ]
+    },
+    {
+      "district_code": "11650",
+      "district_name": "서초구",
+      "stations": [
+        {
+          "obsvCode": "SU-SCO-G1-0001",
+          "obsvName": "강남원효성빌라"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0004",
+          "obsvName": "내곡동텃밭"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0005",
+          "obsvName": "반포본동주공아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0006",
+          "obsvName": "반포유수지"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0007",
+          "obsvName": "반포자이아파트"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0008",
+          "obsvName": "방배빗물펌프장(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0009",
+          "obsvName": "서문여고"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0018",
+          "obsvName": "서울고등학교"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0010",
+          "obsvName": "서울교육대학교"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0011",
+          "obsvName": "서울시데이터센터"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0012",
+          "obsvName": "서초어린이놀이터"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0002",
+          "obsvName": "안골텃밭(E)"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0013",
+          "obsvName": "양재근린공원"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0014",
+          "obsvName": "양재천근린공원"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0015",
+          "obsvName": "어린이교통안전교육장"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0020",
+          "obsvName": "우면동 777 (1 암반층)"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0021",
+          "obsvName": "우면동 777 (2 충적층)"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0017",
+          "obsvName": "잠원빗물펌프장"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0003",
+          "obsvName": "청계산기도원"
+        },
+        {
+          "obsvCode": "SU-SCO-G1-0016",
+          "obsvName": "한국외교협회"
+        }
+      ]
+    },
+    {
+      "district_code": "11680",
+      "district_name": "강남구",
+      "stations": [
+        {
+          "obsvCode": "SU-GNM-G1-0012",
+          "obsvName": "SK해운(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0011",
+          "obsvName": "YMCA(강남지회)(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0002",
+          "obsvName": "강남공무원아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0001",
+          "obsvName": "강남주공아파트(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0022",
+          "obsvName": "개포상록아파트"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0019",
+          "obsvName": "대치아이파크"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0013",
+          "obsvName": "대치유수지공원"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0018",
+          "obsvName": "동부도로사업소"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0023",
+          "obsvName": "디에이치퍼스티어아이파크"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0021",
+          "obsvName": "서울세관"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0009",
+          "obsvName": "서울의료원"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0003",
+          "obsvName": "세곡어린이공원"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0008",
+          "obsvName": "수도전기공고"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0004",
+          "obsvName": "수서초등학교"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0005",
+          "obsvName": "신구초등학교"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0006",
+          "obsvName": "압구정초등학교"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0007",
+          "obsvName": "일원동소공원"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0016",
+          "obsvName": "탄허기념박물관"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0010",
+          "obsvName": "한솔아파트"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0014",
+          "obsvName": "현대별관주차장1(충적층)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0015",
+          "obsvName": "현대별관주차장2(암반층)"
+        },
+        {
+          "obsvCode": "SU-GNM-G1-0017",
+          "obsvName": "환경센터"
+        }
+      ]
+    },
+    {
+      "district_code": "11710",
+      "district_name": "송파구",
+      "stations": [
+        {
+          "obsvCode": "SU-SPA-G1-0013",
+          "obsvName": "경찰병원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0022",
+          "obsvName": "롯데월드타워"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0008",
+          "obsvName": "마천국민임대주택단지(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0005",
+          "obsvName": "문정래미안"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0020",
+          "obsvName": "버섯분수"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0009",
+          "obsvName": "부리근린공원"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0015",
+          "obsvName": "송파참노인전문병원"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0010",
+          "obsvName": "송파파크데일2단지"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0018",
+          "obsvName": "송파헬리오시티"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0012",
+          "obsvName": "수연빌딩"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0011",
+          "obsvName": "아이코리아(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0006",
+          "obsvName": "연화근린공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0003",
+          "obsvName": "영동일고(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0014",
+          "obsvName": "올림픽파크텔(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0004",
+          "obsvName": "잠실고등학교"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0007",
+          "obsvName": "전파관리소(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0001",
+          "obsvName": "창덕여고"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0021",
+          "obsvName": "탄천 하천부지"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0002",
+          "obsvName": "태양근린공원(관측종료)"
+        },
+        {
+          "obsvCode": "SU-SPA-G1-0019",
+          "obsvName": "테니스경기장"
+        }
+      ]
+    },
+    {
+      "district_code": "11740",
+      "district_name": "강동구",
+      "stations": [
+        {
+          "obsvCode": "SU-GDG-G1-0018",
+          "obsvName": "SK한미주유소(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0003",
+          "obsvName": "강덕근린공원(능골공원)"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0023",
+          "obsvName": "강동도시농업공원"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0017",
+          "obsvName": "두레근린공원"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0019",
+          "obsvName": "둔촌지하수"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0020",
+          "obsvName": "둔촌폭포"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0006",
+          "obsvName": "롯데캐슬아파트(강동)"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0002",
+          "obsvName": "명일지에스아파트"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0001",
+          "obsvName": "삼성광나루아파트"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0021",
+          "obsvName": "성내삼성아파트"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0022",
+          "obsvName": "이마트급수전(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0014",
+          "obsvName": "천호2동자치회관(관측종료)"
+        },
+        {
+          "obsvCode": "SU-GDG-G1-0024",
+          "obsvName": "파믹스가든"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "as_of": "2024-03-18",
+  "ready_count": 25,
+  "total": 25,
+  "forecast_dates": [
+    "2024-03-19"
+  ],
+  "health_live": {
+    "status": "alive",
+    "service": "GroundWatch"
+  }
+}

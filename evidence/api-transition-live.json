@@ -1,0 +1,959 @@
+{
+  "mode": "live",
+  "target_date": "2026-10-07",
+  "input_end_date": "2026-10-06",
+  "ready_count": 0,
+  "total": 25,
+  "forecasts": [
+    {
+      "district_code": "11110",
+      "district_name": "종로구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-JNO-G1-0007",
+      "station_name": "홍익대대학로캠퍼스",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "bf76bd84132e32980dd25dea5f3f5c11552fef95c50c15943ea975020339c835",
+      "sources": {
+        "seoul": {
+          "station": "홍익대대학로캠퍼스",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11140",
+      "district_name": "중구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-JGS-G1-0008",
+      "station_name": "장충단공원",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "f52ca62844487065352ddca7670003697ba06378326bbe7e4a7467bc2fbbff05",
+      "sources": {
+        "seoul": {
+          "station": "장충단공원",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11170",
+      "district_name": "용산구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-YSN-G1-0007",
+      "station_name": "신세기한덕",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "34c5d3c9051b56fef62d554987741b1f5e92c6e280b9fb5577d7cef9e8c53165",
+      "sources": {
+        "seoul": {
+          "station": "신세기한덕",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11200",
+      "district_name": "성동구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-SDG-G1-0003",
+      "station_name": "행당초등학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "820ef884e7c81a1252241ceea1676a5bc71215c082c68d612884bdd66ad26d69",
+      "sources": {
+        "seoul": {
+          "station": "행당초등학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11215",
+      "district_name": "광진구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GJI-G1-0007",
+      "station_name": "신양중학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "a8e3d1006159a5e9d66ce8852eda352d3c0dc8362ed810caae949608b23e6475",
+      "sources": {
+        "seoul": {
+          "station": "신양중학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11230",
+      "district_name": "동대문구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-DDM-G1-0003",
+      "station_name": "군자초등학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "06707186102d7863589b2f94ce7f1d03644d0d7c1e8ccc775470cf24bec41390",
+      "sources": {
+        "seoul": {
+          "station": "군자초등학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11260",
+      "district_name": "중랑구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-JNG-G1-0002",
+      "station_name": "경남아파트",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "fcf5ee95401eabfa051f71c7790f82c9d80d226a61df214f45d02cf8834b1992",
+      "sources": {
+        "seoul": {
+          "station": "경남아파트",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11290",
+      "district_name": "성북구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-SBK-G1-0002",
+      "station_name": "국세청 우편물 자동화센터(구.동대문세무서)",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "0feb083a378cb65a2910c71b8e56eea348e41c9f5b323ef7cf9f04f89434a8d2",
+      "sources": {
+        "seoul": {
+          "station": "국세청 우편물 자동화센터(구.동대문세무서)",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11305",
+      "district_name": "강북구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GBK-G1-0005",
+      "station_name": "제일경로당",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "4ef7461971bfe48141a3e0df102a5fe8d3000cef1f54732ee7656321e1c4cd18",
+      "sources": {
+        "seoul": {
+          "station": "제일경로당",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11320",
+      "district_name": "도봉구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-DBG-G1-0006",
+      "station_name": "도봉산노인정",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "da38e3616df57f32a399d4983316edb3ff9738541ba7a83433900957eb45d09e",
+      "sources": {
+        "seoul": {
+          "station": "도봉산노인정",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11350",
+      "district_name": "노원구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-NWN-G1-0008",
+      "station_name": "롯데캐슬아파트",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "05ee2048dfa65982f1b88a471ffeff67ec2d3f5f2a6f3a0d7629ed3759325410",
+      "sources": {
+        "seoul": {
+          "station": "롯데캐슬아파트",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11380",
+      "district_name": "은평구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-UPG-G1-0003",
+      "station_name": "팀비전센타",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "66841f4af3408bfa4d4ded73e2f30687d2657d0c71709475e056d61565aee4fc",
+      "sources": {
+        "seoul": {
+          "station": "팀비전센타",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11410",
+      "district_name": "서대문구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-SDM-G1-0006",
+      "station_name": "북가좌놀이터",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "d89c4fc003de91d00c9ff4c30fe701ca7da1aabec24ccb6efe160f3c6bc04b19",
+      "sources": {
+        "seoul": {
+          "station": "북가좌놀이터",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11440",
+      "district_name": "마포구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-MPO-G1-0005",
+      "station_name": "양화공원",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "3a7471a05de75902a3c94a479d03e1b7dcbae8d047b59d072807ad90bdb04e9b",
+      "sources": {
+        "seoul": {
+          "station": "양화공원",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11470",
+      "district_name": "양천구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-YGC-G1-0008",
+      "station_name": "파리공원",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "504f45ada2b609f9da4d76cdfa65e8a6c5cd2439a1620770ea09038ba35798b8",
+      "sources": {
+        "seoul": {
+          "station": "파리공원",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11500",
+      "district_name": "강서구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GSS-G1-0002",
+      "station_name": "강서구청",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "5d133a572d4449a306c295e3fe4a51d1b865fa4d17d2933651d693c4932fbc0e",
+      "sources": {
+        "seoul": {
+          "station": "강서구청",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11530",
+      "district_name": "구로구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GRO-G1-0006",
+      "station_name": "고척삼명아파트",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "18b759ee6522861efb0d33a3e4524029f6a1be3447d8a501831dfd6795dd212a",
+      "sources": {
+        "seoul": {
+          "station": "고척삼명아파트",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11545",
+      "district_name": "금천구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GCN-G1-0002",
+      "station_name": "군인아파트",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "9ef3ab13657db679ceb0850e5f7d428318cc85d3ab029453a709311958c49f6c",
+      "sources": {
+        "seoul": {
+          "station": "군인아파트",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11560",
+      "district_name": "영등포구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-YDP-G1-0001",
+      "station_name": "당산공원",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "9481ec985de7b432cdd7ccbe8c01434e8f85af9355e7643d9c36dddfba3393c5",
+      "sources": {
+        "seoul": {
+          "station": "당산공원",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11590",
+      "district_name": "동작구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-DJK-G1-0005",
+      "station_name": "성남중고등학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "0e82c1c3ed26999e2d0d0e20ff682ed50630104f7839688ee828b6a395f03f9d",
+      "sources": {
+        "seoul": {
+          "station": "성남중고등학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11620",
+      "district_name": "관악구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GNK-G1-0008",
+      "station_name": "락성주유소",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "0a6176ae064a7e2a48fe9077c958b4dc3315bec2f3855bee0fcba37e80180048",
+      "sources": {
+        "seoul": {
+          "station": "락성주유소",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11650",
+      "district_name": "서초구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-SCO-G1-0010",
+      "station_name": "서울교육대학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "59b080395cd54cee6459dfc91e81721e64b9751d590d758a3fa3322accafce2f",
+      "sources": {
+        "seoul": {
+          "station": "서울교육대학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11680",
+      "district_name": "강남구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GNM-G1-0005",
+      "station_name": "신구초등학교",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "2838931873da9e68acf428f8a04981feb0dd786c16e7daa9979dda8046777a69",
+      "sources": {
+        "seoul": {
+          "station": "신구초등학교",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11710",
+      "district_name": "송파구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-SPA-G1-0009",
+      "station_name": "부리근린공원",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "ee919016dd3ada1292a291a31e7c0f0693a7c73e952a2b088c009e5e719d3ce4",
+      "sources": {
+        "seoul": {
+          "station": "부리근린공원",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    },
+    {
+      "district_code": "11740",
+      "district_name": "강동구",
+      "target_date": "2026-10-07",
+      "required_input_end_date": "2026-10-06",
+      "station_id": "SU-GDG-G1-0019",
+      "station_name": "둔촌지하수",
+      "mapping_version": "seoul-asos-candidate-v1",
+      "mapping_approved": false,
+      "feature_contract_id": "1b15a04d0fb91763e390cb581bf0eea578c08862214282680fd6446554cb418d",
+      "sources": {
+        "seoul": {
+          "station": "둔촌지하수",
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        },
+        "kma": {
+          "station": null,
+          "latest_valid_observed_date": null,
+          "last_collected_at": null,
+          "last_collection_status": "never_collected",
+          "valid_input_days": 0
+        }
+      },
+      "data_status": "MAPPING_REQUIRED",
+      "reason": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다.",
+      "inference_snapshot_id": null,
+      "forecast_date": "2026-10-07",
+      "observed_date": null,
+      "prediction": null,
+      "model_version": null,
+      "issued_at": null,
+      "mode": "live",
+      "quality_status": "MAPPING_REQUIRED",
+      "unit": null
+    }
+  ]
+}
