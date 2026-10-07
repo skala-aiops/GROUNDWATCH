@@ -1,0 +1,8 @@
+test_residual_model_trains_serializes_and_reloads_without_lambda (tests.test_groundwater_models.TensorFlowGraphTests.test_residual_model_trains_serializes_and_reloads_without_lambda) ... /usr/local/lib/python3.11/site-packages/keras/src/backend/tensorflow/core.py:172: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  return np.array(x)
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.456s
+
+OK

@@ -30,6 +30,7 @@ coverage/
 logs/
 mlruns/
 mlartifacts/
+runtime/
 data/uploads/*
 !data/uploads/.gitkeep
 

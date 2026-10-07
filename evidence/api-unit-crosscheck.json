@@ -1,0 +1,688 @@
+{
+  "checked_at": "2026-10-07",
+  "method": "Exact existing well IDs on official source; API first1000 date-matched values only. No sign conversion or mapping activation.",
+  "stations": [
+    {
+      "district_code": "11110",
+      "station_id": "SU-JNO-G1-0007",
+      "station_name": "홍익대대학로캠퍼스",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%A2%85%EB%A1%9C%EA%B5%AC&schObsvCode=SU-JNO-G1-0007&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "bad61539ae9961d70b691a638dcc1375253a02c1152d073da85aa7de82f5f344",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 22.67,
+          "source_value": -22.67,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 22.67,
+          "source_value": -22.67,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 22.68,
+          "source_value": -22.68,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11140",
+      "station_id": "SU-JGS-G1-0008",
+      "station_name": "장충단공원",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%A4%91%EA%B5%AC&schObsvCode=SU-JGS-G1-0008&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "f6652f9aa372e97fc5c91d56d2b79bd69e6b714c19474798ea8d189ace4cecf7",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 0.18,
+          "source_value": -0.18,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 0.18,
+          "source_value": -0.18,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 0.19,
+          "source_value": -0.19,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11170",
+      "station_id": "SU-YSN-G1-0007",
+      "station_name": "신세기한덕",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%9A%A9%EC%82%B0%EA%B5%AC&schObsvCode=SU-YSN-G1-0007&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "453b30814b57fc972be72131cb5b42d388fd14276d88c23c5f2eb7f509ffc107",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 14.93,
+          "source_value": -14.93,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 14.93,
+          "source_value": -14.93,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11200",
+      "station_id": "SU-SDG-G1-0003",
+      "station_name": "행당초등학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%84%B1%EB%8F%99%EA%B5%AC&schObsvCode=SU-SDG-G1-0003&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "df93b33d224853e2eab07d63c9962f1b9884a3c2c6daecd31bc9641c4af10271",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 7.14,
+          "source_value": -7.14,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 7.15,
+          "source_value": -7.15,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 7.12,
+          "source_value": -7.12,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11215",
+      "station_id": "SU-GJI-G1-0007",
+      "station_name": "신양중학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B4%91%EC%A7%84%EA%B5%AC&schObsvCode=SU-GJI-G1-0007&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "b054d2e13264dc39de4726f92b914c8e3c788c9e5c1af8cabfe48d4ba8f08829",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 12.42,
+          "source_value": -12.42,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 12.44,
+          "source_value": -12.44,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 12.45,
+          "source_value": -12.45,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11230",
+      "station_id": "SU-DDM-G1-0003",
+      "station_name": "군자초등학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EB%8F%99%EB%8C%80%EB%AC%B8%EA%B5%AC&schObsvCode=SU-DDM-G1-0003&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "b97e612290cd0ada17e7a3e25611036e43f6e7b3931da68e3d5a933fc1ec47d6",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 7.64,
+          "source_value": -7.64,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 7.64,
+          "source_value": -7.64,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 7.64,
+          "source_value": -7.64,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11260",
+      "station_id": "SU-JNG-G1-0002",
+      "station_name": "경남아파트",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%A4%91%EB%9E%91%EA%B5%AC&schObsvCode=SU-JNG-G1-0002&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "a379ab8b464a10b14a58263096382f74b1a5ee710d4e1b9a2c719747a2aaa952",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 7.55,
+          "source_value": -7.55,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 7.54,
+          "source_value": -7.54,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 7.51,
+          "source_value": -7.51,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11290",
+      "station_id": "SU-SBK-G1-0002",
+      "station_name": "국세청 우편물 자동화센터(구.동대문세무서)",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%84%B1%EB%B6%81%EA%B5%AC&schObsvCode=SU-SBK-G1-0002&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "f9e8aaae970c05e458413f00c4e80f6b0207776f34b055999e90a2f5955bd229",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 4.81,
+          "source_value": -4.81,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 4.82,
+          "source_value": -4.82,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 4.81,
+          "source_value": -4.81,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11305",
+      "station_id": "SU-GBK-G1-0005",
+      "station_name": "제일경로당",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B0%95%EB%B6%81%EA%B5%AC&schObsvCode=SU-GBK-G1-0005&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "8e3ea87a59762ed715755cf8e244eedc56fafc95f6362b94b19bc564e3812be3",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 3.72,
+          "source_value": -3.72,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 3.71,
+          "source_value": -3.71,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 3.7,
+          "source_value": -3.7,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11320",
+      "station_id": "SU-DBG-G1-0006",
+      "station_name": "도봉산노인정",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EB%8F%84%EB%B4%89%EA%B5%AC&schObsvCode=SU-DBG-G1-0006&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "ee5b6aede2c5bd5a9f169e10cf0106afb67ad5ba7043ff74117d6a0900f9c3e5",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 14.99,
+          "source_value": -14.99,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 14.97,
+          "source_value": -14.97,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 14.96,
+          "source_value": -14.96,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11350",
+      "station_id": "SU-NWN-G1-0008",
+      "station_name": "롯데캐슬아파트",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EB%85%B8%EC%9B%90%EA%B5%AC&schObsvCode=SU-NWN-G1-0008&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "5104adcb0b6e806379352494ae57995099db38730c5500875d912914e74b6dc6",
+      "table_unit_verified": true,
+      "comparison": [],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11380",
+      "station_id": "SU-UPG-G1-0003",
+      "station_name": "팀비전센타",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%9D%80%ED%8F%89%EA%B5%AC&schObsvCode=SU-UPG-G1-0003&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "6ff59354a382b61111f9681e7986f44402354285645eb54c0e4c1410f24aade6",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 10.27,
+          "source_value": -10.27,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 10.79,
+          "source_value": -10.79,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 10.55,
+          "source_value": -10.55,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11410",
+      "station_id": "SU-SDM-G1-0006",
+      "station_name": "북가좌놀이터",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC&schObsvCode=SU-SDM-G1-0006&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "948011194e393de5550c5ce5fccc653c60294d398eb4186dab09ab89e1508876",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 4.1,
+          "source_value": -4.1,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 4.1,
+          "source_value": -4.1,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11440",
+      "station_id": "SU-MPO-G1-0005",
+      "station_name": "양화공원",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EB%A7%88%ED%8F%AC%EA%B5%AC&schObsvCode=SU-MPO-G1-0005&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "c2f0e0d2d972c11e1bf790ea9c95279df93f64b0f7bdb5e6e85959bbb5301be9",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 11.57,
+          "source_value": -11.57,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 11.57,
+          "source_value": -11.57,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11470",
+      "station_id": "SU-YGC-G1-0008",
+      "station_name": "파리공원",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%96%91%EC%B2%9C%EA%B5%AC&schObsvCode=SU-YGC-G1-0008&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "19d42706d9bef2774d3a52792a14584ccb37e999934b8accd039cbd2984dc470",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 13.67,
+          "source_value": -13.67,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 13.67,
+          "source_value": -13.67,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 13.66,
+          "source_value": -13.66,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11500",
+      "station_id": "SU-GSS-G1-0002",
+      "station_name": "강서구청",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B0%95%EC%84%9C%EA%B5%AC&schObsvCode=SU-GSS-G1-0002&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "0fb72b01d6aa61b32c259d43eabb1b5b6191a1b4270738f8b2aee58c124ee6bf",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 12.68,
+          "source_value": -12.68,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 12.69,
+          "source_value": -12.69,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 12.68,
+          "source_value": -12.68,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11530",
+      "station_id": "SU-GRO-G1-0006",
+      "station_name": "고척삼명아파트",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B5%AC%EB%A1%9C%EA%B5%AC&schObsvCode=SU-GRO-G1-0006&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "e639eb307d87e47ca4bbb58f3689746d17e17fa2bee279fda02013ceca20abee",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 4.48,
+          "source_value": -4.48,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 4.46,
+          "source_value": -4.46,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 4.43,
+          "source_value": -4.43,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11545",
+      "station_id": "SU-GCN-G1-0002",
+      "station_name": "군인아파트",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B8%88%EC%B2%9C%EA%B5%AC&schObsvCode=SU-GCN-G1-0002&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "3a950b8ccfedf67312950b6f9e795ceee631dd773839a22265d236882b354678",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 11.46,
+          "source_value": -11.46,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 11.46,
+          "source_value": -11.46,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 11.47,
+          "source_value": -11.47,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11560",
+      "station_id": "SU-YDP-G1-0001",
+      "station_name": "당산공원",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%98%81%EB%93%B1%ED%8F%AC%EA%B5%AC&schObsvCode=SU-YDP-G1-0001&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "c62ce9b7aec6d14ed292054004cfcc2a4f1a19ad1048453fc4376ad7bac3b554",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 17.81,
+          "source_value": -17.81,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 17.82,
+          "source_value": -17.82,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11590",
+      "station_id": "SU-DJK-G1-0005",
+      "station_name": "성남중고등학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EB%8F%99%EC%9E%91%EA%B5%AC&schObsvCode=SU-DJK-G1-0005&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "1db2de429c14a25edd14b09834faf82423a3ef9571cf90d8c234d58d55336ff0",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 13.2,
+          "source_value": -13.2,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 13.0,
+          "source_value": -13.0,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 13.4,
+          "source_value": -13.4,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11620",
+      "station_id": "SU-GNK-G1-0008",
+      "station_name": "락성주유소",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B4%80%EC%95%85%EA%B5%AC&schObsvCode=SU-GNK-G1-0008&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "66cb1c90ece49e3f4c4c5b6de210805e88b7e6fbaaed171ae5af0d977784d5b3",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 7.72,
+          "source_value": -7.72,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 7.72,
+          "source_value": -7.72,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11650",
+      "station_id": "SU-SCO-G1-0010",
+      "station_name": "서울교육대학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%84%9C%EC%B4%88%EA%B5%AC&schObsvCode=SU-SCO-G1-0010&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "64ca0e4dc7b62c4b2787b331a193c0da3ed648f64ec8822bd3844f0b66b60d86",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 8.16,
+          "source_value": -8.16,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 8.6,
+          "source_value": -8.6,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 7.92,
+          "source_value": -7.92,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11680",
+      "station_id": "SU-GNM-G1-0005",
+      "station_name": "신구초등학교",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B0%95%EB%82%A8%EA%B5%AC&schObsvCode=SU-GNM-G1-0005&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "d1ea3d766ef6a5e19d003659a9c3cbbaacc7335e975b4547b87b22cdac99c32e",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 11.37,
+          "source_value": -11.37,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 11.36,
+          "source_value": -11.36,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 11.36,
+          "source_value": -11.36,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11710",
+      "station_id": "SU-SPA-G1-0009",
+      "station_name": "부리근린공원",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EC%86%A1%ED%8C%8C%EA%B5%AC&schObsvCode=SU-SPA-G1-0009&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "2007da118c9c854b9fe3988b76e5e310fb8a7171c72a0cbae3b9585195ed284f",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 12.06,
+          "source_value": -12.06,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 12.07,
+          "source_value": -12.07,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 12.06,
+          "source_value": -12.06,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    },
+    {
+      "district_code": "11740",
+      "station_id": "SU-GDG-G1-0019",
+      "station_name": "둔촌지하수",
+      "official_url": "https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do?schGuNm=%EA%B0%95%EB%8F%99%EA%B5%AC&schObsvCode=SU-GDG-G1-0019&schFrDate=2026-08-29&schToDate=2026-08-31",
+      "official_sha256": "100fba3d98cc5cc72da71f794b40e4b1e0c0b9053205b067beb67d0548da03b8",
+      "table_unit_verified": true,
+      "comparison": [
+        {
+          "date": "20260831",
+          "api_value": 12.16,
+          "source_value": -12.16,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260830",
+          "api_value": 12.85,
+          "source_value": -12.85,
+          "opposite_sign_equal": true
+        },
+        {
+          "date": "20260829",
+          "api_value": 11.68,
+          "source_value": -11.68,
+          "opposite_sign_equal": true
+        }
+      ],
+      "mapping_approved": false
+    }
+  ],
+  "limits": [
+    "Pointwise opposite-sign agreement does not independently establish API measurement datum or a transformation policy.",
+    "API filters return empty for a station present in root response.",
+    "No conclusion about entire API latest date from first page.",
+    "ASOS blank sumRn remains unresolved."
+  ]
+}

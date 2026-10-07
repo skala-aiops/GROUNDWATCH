@@ -1,0 +1,349 @@
+{
+  "sources": {
+    "seoul": {
+      "configured": true,
+      "service": "VTsSec",
+      "transport": "HTTP (official endpoint; TLS not verified)"
+    },
+    "kma": {
+      "configured": true,
+      "service": "ASOS DAY",
+      "available_until": "D-1"
+    }
+  },
+  "jobs": [
+    {
+      "id": "7360cb4798a540d7b9cd126ef726dbdf",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:58:32.930295+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:58:32.461945+00:00",
+      "updated_at": "2026-10-07T12:58:33.096358+00:00"
+    },
+    {
+      "id": "adae7289807f4a9ca338433cb17e17b5",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:58:27.736074+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:58:27.355756+00:00",
+      "updated_at": "2026-10-07T12:58:27.903701+00:00"
+    },
+    {
+      "id": "258d61e2464c46c2b79598ee75883d1b",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:58:27.056291+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:58:26.634062+00:00",
+      "updated_at": "2026-10-07T12:58:27.230328+00:00"
+    },
+    {
+      "id": "f7c669e8830d4349b5e228ce0b48f529",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:58:25.859417+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:58:25.590439+00:00",
+      "updated_at": "2026-10-07T12:58:26.048292+00:00"
+    },
+    {
+      "id": "368350e079f04b2db72e2a0b30866dc7",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:58:25.071923+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:58:24.993882+00:00",
+      "updated_at": "2026-10-07T12:58:25.355570+00:00"
+    },
+    {
+      "id": "1a8fac162c3843ce936c70f88cc8c0ca",
+      "kind": "collect",
+      "scope": "ingest:37293062c00c2fa2edde334064ccc734aaf7bb3838445bd5703ed17f95470409",
+      "payload": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-06",
+        "seoul_station": "강북도시농업체험장",
+        "weather_station": "108"
+      },
+      "status": "completed",
+      "result": {
+        "sources": {
+          "seoul": {
+            "status": "empty",
+            "error": null,
+            "received_rows": 0,
+            "accepted_rows": 0,
+            "quarantined_rows": 0,
+            "latest_observed_date": null,
+            "pages": 1,
+            "raw_sha256": [
+              "9a49197c0c383b1c2753d0b7393902edb5f75766d9eb1d9be448ca8149310987"
+            ],
+            "complete": true
+          },
+          "kma": {
+            "status": "collected",
+            "error": null,
+            "received_rows": 7,
+            "accepted_rows": 3,
+            "quarantined_rows": 4,
+            "latest_observed_date": "2026-10-05",
+            "pages": 1,
+            "raw_sha256": [
+              "2c1cff95289f68cdc1ed13fa53e4f400bd1897f26ccf52b1aa2922a8336b7a11"
+            ],
+            "complete": true
+          }
+        },
+        "applied_to_forecasts": false,
+        "collected_at": "2026-10-07T12:01:15.238984+00:00",
+        "integration_blockers": [
+          "서울시 API 관측소 ID·수위 단위 대조",
+          "강수 관측소 매핑 승인",
+          "API 강수로 모델 학습·평가"
+        ],
+        "collection_status": "completed"
+      },
+      "error": null,
+      "created_at": "2026-10-07T12:01:14.899389+00:00",
+      "updated_at": "2026-10-07T12:01:15.523212+00:00"
+    }
+  ],
+  "observation_store": {
+    "counts": {
+      "source_mappings": 25,
+      "collection_runs": 12,
+      "source_revisions": 7,
+      "quality_findings": 24,
+      "feature_snapshots": 0,
+      "live_predictions": 0,
+      "live_evaluations": 0
+    },
+    "active_snapshots": {},
+    "schema_version": 1
+  },
+  "forecast_integration": "blocked_pending_identity_unit_rain_mapping_and_model_validation",
+  "note": "수집 성공과 예측 자료 적용은 다릅니다. 기존 CSV·모델은 유지합니다."
+}

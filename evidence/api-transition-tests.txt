@@ -1,0 +1,168 @@
+INFO:groundwatch.http:{"request_id": "e2ac38d129e04e65b0f160d4d4676a6a", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.00823}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+INFO:groundwatch.http:{"request_id": "12f0d0b5ec8949f7afeb8e6d34b9c9f9", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.006893}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?as_of=2020-02-31 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "1e70226f9af24a2084e4a0033b2ff55b", "method": "GET", "route": "/api/v1/districts/{code}/history", "status": 422, "latency_seconds": 0.000513}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts/99999/history "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "0b0147d0b1ee46acb969a6e5df7326eb", "method": "POST", "route": "/api/v1/jobs/train", "status": 422, "latency_seconds": 0.000615}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "1c279d28bf6c473b95645cf883c61952", "method": "POST", "route": "/api/v1/jobs/train", "status": 422, "latency_seconds": 0.00028}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "20cd3ca61dbf4db6b16cf54ac5682021", "method": "GET", "route": "/api/v1/live/forecasts", "status": 200, "latency_seconds": 0.034809}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/forecasts?target_date=2026-10-07 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "4e9e6baaf0ba4a6a83b2f8a8d4569abc", "method": "GET", "route": "/api/v1/data-freshness", "status": 200, "latency_seconds": 0.024966}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/data-freshness "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "e614f00d25664a26a499be4d0602d9b9", "method": "GET", "route": "/api/v1/live/districts/{code}/history", "status": 200, "latency_seconds": 0.001139}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/districts/11110/history "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "84c3223771d54bb1911f6567fff55478", "method": "POST", "route": "/api/v1/live/prediction-jobs", "status": 404, "latency_seconds": 0.000828}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/live/prediction-jobs "HTTP/1.1 404 Not Found"
+INFO:groundwatch.http:{"request_id": "f4470a5893a148eab33b6381bb412935", "method": "GET", "route": "/api/v1/live/forecasts", "status": 422, "latency_seconds": 0.000204}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/forecasts?target_date=bad "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "aff5e3f9ae7841eebe499199233aab7e", "method": "POST", "route": "/api/v1/jobs/train", "status": 202, "latency_seconds": 0.047807}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "6c7b530b2dce4153a7aba6fcc4f74c48", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.058365}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?dataset_id=e977e8d309b28502eba5aa76d840ffe35ba73a186497520d6ef832a6fd5a0d0e&as_of=2020-07-19 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "17289ad54e294d32a9e74e2cf1355bec", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 200, "latency_seconds": 0.007558}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "7c3e4df180324b9a8874b1bedadf5d24", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.00038}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "a7fd75bf05374ce4abbf92f4e5963332", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000364}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "9a301100d06c4a3aa03bb0540cb97931", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000745}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "09f58facef694dd4bd5427a5a31f9a08", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000744}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "e9dc9c9671a64791bbf0cbb4b0d32120", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 503, "latency_seconds": 0.010654}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 503 Service Unavailable"
+INFO:groundwatch.http:{"request_id": "fae38d77ff504d75bd908b27de2255a9", "method": "POST", "route": "/api/v1/replays", "status": 202, "latency_seconds": 0.048363}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "4f9787606fdc4c50ab1f748af01e21bd", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.000926}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?replay_id=fd3c015f8ac54ba28e035b806805195f&as_of=2020-11-17 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "da2e0f1cc299483eb59e5014a7d32651", "method": "POST", "route": "/api/v1/replays/{replay_id}/advance", "status": 422, "latency_seconds": 0.000411}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays/fd3c015f8ac54ba28e035b806805195f/advance "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "a63da3260221469fae6925fdef6fe343", "method": "POST", "route": "/api/v1/replays/{replay_id}/advance", "status": 422, "latency_seconds": 0.000281}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays/fd3c015f8ac54ba28e035b806805195f/advance "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "5e3ec3f535eb4d25b1af25fadb56613e", "method": "POST", "route": "/api/v1/models/{code}/rollback", "status": 202, "latency_seconds": 0.011587}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/models/11110/rollback "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "c99984dc089c477bab29ceea27e536ad", "method": "POST", "route": "/api/v1/jobs/train", "status": 202, "latency_seconds": 0.042633}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "119fad07f2a04483b8f978b631f9ea3e", "method": "POST", "route": "/api/v1/jobs/train", "status": 409, "latency_seconds": 0.000854}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 409 Conflict"
+INFO:groundwatch.http:{"request_id": "524e040fdc074399929d92d75398e1ee", "method": "POST", "route": "/api/v1/jobs/{job_id}/retry", "status": 409, "latency_seconds": 0.000805}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/5eb7163f9188409dabe4edd5c7221de7/retry "HTTP/1.1 409 Conflict"
+INFO:groundwatch.http:{"request_id": "9da82e755061454a9cd267bea59af444", "method": "POST", "route": "/api/v1/jobs/{job_id}/retry", "status": 202, "latency_seconds": 0.003219}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/5eb7163f9188409dabe4edd5c7221de7/retry "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "2a52c3ce23524913bfe92e629d79419e", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.000745}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/426284cef7264fa198d82496e429f71b "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "9cbf2c8873814eab8c5857e30dc80241", "method": "POST", "route": "/api/v1/datasets", "status": 202, "latency_seconds": 0.008645}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "e527ba23a8cc4119a37a50c4104bb3ea", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.000767}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/3874633177364ab3be77aa98bc810901 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "5a6c74ab7d91423a9229ba5f8a827716", "method": "POST", "route": "/api/v1/datasets", "status": 202, "latency_seconds": 0.002104}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "683143a712e147d4a778d700580b72f7", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.000518}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/3874633177364ab3be77aa98bc810901 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "7d4fa046d5e34393bbb22fdf6b7f1a9d", "method": "GET", "route": "/api/v1/datasets", "status": 200, "latency_seconds": 0.000629}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/datasets "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "3ffc1d3a515348d2b0507f3b7ffe89d2", "method": "POST", "route": "/api/v1/datasets", "status": 422, "latency_seconds": 0.007489}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "29254ed9c3a449a7a4625626d6c878f0", "method": "POST", "route": "/api/v1/datasets", "status": 422, "latency_seconds": 0.000496}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 422 Unprocessable Content"
+INFO:matplotlib.font_manager:generated new fontManager
+WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+[lazy] model loaded in 0.000s on first request
+WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+ERROR:aiops:[ERROR] retraining failed - keeping current serving model
+Traceback (most recent call last):
+  File "/app/serving_app/monitoring/retrain_trigger.py", line 24, in check_and_trigger
+    result = fine_tune(rows=rows)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+RuntimeError: training failed
+WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+INFO:aiops:[OK] new_rmse=2.00 - production promoted: HAIC_Predictor v2
+ERROR:root:request metric persistence failed
+Traceback (most recent call last):
+  File "/app/serving_app/main.py", line 50, in observe
+    await asyncio.to_thread(instance.store.request_metric,request.method,route,status,latency,request_id)
+  File "/usr/local/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/tests/test_reaudit.py", line 148, in fail
+    def fail(*args):raise RuntimeError('metrics only failure')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: metrics only failure
+INFO:groundwatch.http:{"request_id": "321a9a1cc48d4657bec4dc2e76903df2", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.007127}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "e0a80e60b69a460d921d6fcc3c8d2dac", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.010785}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "71e7a030bbaf4be5ba5a654308d051b7", "method": "GET", "route": "/api/v1/pipeline", "status": 422, "latency_seconds": 0.000324}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?district_code=99999 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "edf4ed15d30c434ba3d7abd33341bf7f", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001756}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=e6a41809ff614c5aafc017f4ff6b40de "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "eb85eabe69374de69307d342289c730d", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.179395}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?replay_id=e6a41809ff614c5aafc017f4ff6b40de "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "6ea2d1d8d117448e864d4b6e05d477da", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001991}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=e6a41809ff614c5aafc017f4ff6b40de "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "0576ed8858914d9aaa2945d3d8e44320", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.012961}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "a006142173974741ab01a1c434ee50a5", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.002362}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "c1b5839b077a400291bba4d25aeaafa0", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000826}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "fdc4b0f3d8124213a43e39b43b5c2a34", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.001088}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "201f132644f54a8b857b51dd630a8f74", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000862}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "d7a458c4952a44e3beb657bf63b514d3", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000742}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "1c2ba97bb4e240cf89959d73ee9e1eb9", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000802}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "756d7f0c8d3b41c5af7d5697f0942ab1", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000665}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "10bd14d25cab481f99d52c1285280b56", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000546}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "b2a1eec060644cec94f51d63079e6d74", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000546}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "b4f032522f394fd39b2f57eb33f661c2", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000411}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "8ec62f21520b4fe3bb7574dd4aecab76", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.00051}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "d73911413cf447b5af76f712fc358d03", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000425}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "e2880b5471ef4a33b73c3a3a770529bc", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.00068}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "bb25781626144726a0c71e681f34890d", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000481}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "3bbaf05afa4a4228810c16ae9c07bbfa", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000637}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "5ff34008367f496597021f22724af6ac", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000794}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "1d8e7c215f8d4bd4831f833c52c2ab4f", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000705}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "1c6665ce22044bbe8b939b1583bdfd7f", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000543}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "1f3ff7b0df704f3291ff0e1fa36cffa4", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000441}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "edac112d84ef47c49c3a174319d6897b", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.00048}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?as_of=invalid "HTTP/1.1 422 Unprocessable Content"
+INFO:httpx2:HTTP Request: GET http://testserver/metrics/summary "HTTP/1.1 200 OK"
+----------------------------------------------------------------------
+Ran 86 tests in 26.999s
+
+OK (skipped=1)

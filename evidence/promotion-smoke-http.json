@@ -1,0 +1,167 @@
+{
+  "purpose": "isolated synthetic promotion HTTP smoke; not Seoul observed forecasts",
+  "model_root": "/app/runtime/promotion-smoke",
+  "actual_registry_namespace": "trend_1",
+  "http_adapter": "TestClient(create_app(isolated_service)); its manager_factory routes to saved isolated trend_1 ModelManager",
+  "method": "POST",
+  "path": "/api/v1/districts/11110/predict",
+  "request": {
+    "sequence": [
+      {
+        "date": "2021-04-06",
+        "groundwater_level": 10.977687375438851,
+        "rainfall_mm": 6.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-07",
+        "groundwater_level": 10.997687375438852,
+        "rainfall_mm": 0.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-08",
+        "groundwater_level": 11.017687375438852,
+        "rainfall_mm": 1.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-09",
+        "groundwater_level": 11.037687375438852,
+        "rainfall_mm": 2.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-10",
+        "groundwater_level": 11.057687375438853,
+        "rainfall_mm": 3.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-11",
+        "groundwater_level": 11.077687375438853,
+        "rainfall_mm": 4.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-12",
+        "groundwater_level": 11.097687375438852,
+        "rainfall_mm": 5.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-13",
+        "groundwater_level": 11.117687375438852,
+        "rainfall_mm": 6.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-14",
+        "groundwater_level": 11.137687375438851,
+        "rainfall_mm": 0.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-15",
+        "groundwater_level": 11.157687375438853,
+        "rainfall_mm": 1.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-16",
+        "groundwater_level": 11.177687375438852,
+        "rainfall_mm": 2.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-17",
+        "groundwater_level": 11.197687375438852,
+        "rainfall_mm": 3.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-18",
+        "groundwater_level": 11.217687375438851,
+        "rainfall_mm": 4.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-19",
+        "groundwater_level": 11.237687375438853,
+        "rainfall_mm": 5.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-20",
+        "groundwater_level": 11.257687375438852,
+        "rainfall_mm": 6.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-21",
+        "groundwater_level": 11.277687375438852,
+        "rainfall_mm": 0.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-22",
+        "groundwater_level": 11.297687375438851,
+        "rainfall_mm": 1.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-23",
+        "groundwater_level": 11.317687375438853,
+        "rainfall_mm": 2.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-24",
+        "groundwater_level": 11.337687375438852,
+        "rainfall_mm": 3.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      },
+      {
+        "date": "2021-04-25",
+        "groundwater_level": 11.357687375438852,
+        "rainfall_mm": 4.0,
+        "station_id": "synthetic-well",
+        "level_unit": "synthetic_level"
+      }
+    ]
+  },
+  "status_code": 200,
+  "response": {
+    "district_code": "11110",
+    "station_id": "synthetic-well",
+    "prediction": 11.344145040963703,
+    "model_version": "2",
+    "unit": "synthetic_level",
+    "level_unit": "synthetic_level",
+    "dataset_version": "synthetic-ar1-trend-v1",
+    "mapping_version": "synthetic-fixed-v1",
+    "observed_date": "2021-04-25",
+    "forecast_date": "2021-04-26",
+    "namespace": "trend_1",
+    "threshold": 0.4335178283589931
+  }
+}
