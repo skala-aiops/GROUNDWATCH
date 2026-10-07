@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "run": 89,
+    "passed": 88,
+    "skipped": 1,
+    "seconds": 27.954,
+    "command": "docker compose exec -T serving-app python -m unittest discover -s tests -v"
+  },
+  "browser": {
+    "created_session": "edd072c1d710446c95aa1234d5e106c1",
+    "ready_count": 25,
+    "presentation_as_of": "2026-10-07",
+    "presentation_forecast_date": "2026-10-08",
+    "source_as_of": "2023-12-19",
+    "source_forecast_date": "2023-12-20",
+    "supply_button_verified_on_session": "0c255b5e3a6248478df0b0d947b19546"
+  },
+  "scope": "supply simulation with actual historical data; not current observed forecasts"
+}

@@ -1,0 +1,51 @@
+{
+  "verified_at": "2026-10-07",
+  "probes": {
+    "named-year": {
+      "result_code": "INFO-200",
+      "total": null,
+      "rows": 0
+    },
+    "date-only": {
+      "result_code": "INFO-000",
+      "total": 879379,
+      "rows": 1000
+    },
+    "prefix-date": {
+      "result_code": "INFO-200",
+      "total": null,
+      "rows": 0
+    }
+  },
+  "root_first_1000": {
+    "received": 1000,
+    "valid_past_dates": 730,
+    "latest_valid_date_within_page": "2026-08-31",
+    "future_or_invalid": 270
+  },
+  "limits": [
+    "First1000 page does not establish whole source latest date or stable pagination",
+    "Named-year and prefixed-name filters empty",
+    "Date-only request returned entire source count, filtering not verified",
+    "API groundwater unit/datum and legacy station identity not independently verified",
+    "ASOS blank rainfall semantics unresolved"
+  ],
+  "live_forecasts_enabled": false,
+  "exact_date_filter_recheck": [
+    {
+      "probe": "station-only",
+      "result_code": "INFO-200",
+      "rows": 0
+    },
+    {
+      "probe": "station-exactday",
+      "result_code": "INFO-200",
+      "rows": 0
+    },
+    {
+      "probe": "station-recentday",
+      "result_code": "INFO-200",
+      "rows": 0
+    }
+  ]
+}

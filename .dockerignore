@@ -11,9 +11,17 @@ venv
 logs
 mlruns
 mlartifacts
+runtime
 data/uploads/*.csv
 docs
 
 # Models are initialized inside the persistent Docker volume
 serving_app/models/*
 !serving_app/models/.gitkeep
+
+# Review documents and captured evidence are not application runtime inputs
+evidence
+proposal.md
+operations.md
+demo.md
+TODO.md

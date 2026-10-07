@@ -1,0 +1,127 @@
+{
+  "registered_version": {
+    "name": "GroundWatch_85848dec46fc4abca77f22457becc953_11110",
+    "version": 2,
+    "run_id": "b47b51bbafc94d33b519cc9ded9a58bd"
+  },
+  "metrics": [
+    {
+      "key": "reference_validation_rmse",
+      "value": 0.23900250104408688
+    },
+    {
+      "key": "reference_validation_mae",
+      "value": 0.19135933291860008
+    },
+    {
+      "key": "reference_validation_count",
+      "value": 60.0
+    },
+    {
+      "key": "reference_validation_persistence_rmse",
+      "value": 0.2411008506936252
+    },
+    {
+      "key": "reference_validation_persistence_mae",
+      "value": 0.1924733965509938
+    },
+    {
+      "key": "reference_validation_persistence_count",
+      "value": 60.0
+    },
+    {
+      "key": "reference_test_rmse",
+      "value": 0.18280221102490868
+    },
+    {
+      "key": "reference_test_mae",
+      "value": 0.15457657890522572
+    },
+    {
+      "key": "reference_test_count",
+      "value": 60.0
+    },
+    {
+      "key": "reference_test_persistence_rmse",
+      "value": 0.18652611138480513
+    },
+    {
+      "key": "reference_test_persistence_mae",
+      "value": 0.15691055617734148
+    },
+    {
+      "key": "reference_test_persistence_count",
+      "value": 60.0
+    },
+    {
+      "key": "shadow_candidate_rmse",
+      "value": 0.47557762246039526
+    },
+    {
+      "key": "shadow_candidate_mae",
+      "value": 0.47557602099995094
+    },
+    {
+      "key": "shadow_candidate_count",
+      "value": 30.0
+    },
+    {
+      "key": "shadow_champion_rmse",
+      "value": 0.5049185396558211
+    },
+    {
+      "key": "shadow_champion_mae",
+      "value": 0.5049168231867102
+    },
+    {
+      "key": "shadow_champion_count",
+      "value": 30.0
+    },
+    {
+      "key": "historical_guard_rmse",
+      "value": 0.23933370842741075
+    },
+    {
+      "key": "historical_guard_mae",
+      "value": 0.18900983109469913
+    },
+    {
+      "key": "historical_guard_count",
+      "value": 60.0
+    }
+  ],
+  "tags": [
+    {
+      "key": "mlflow.user",
+      "value": "root"
+    },
+    {
+      "key": "mlflow.source.name",
+      "value": "scripts/verify_automatic_pipeline.py"
+    },
+    {
+      "key": "mlflow.source.type",
+      "value": "LOCAL"
+    },
+    {
+      "key": "mlflow.runName",
+      "value": "GroundWatch_85848dec46fc4abca77f22457becc953_11110-fine_tune"
+    },
+    {
+      "key": "gate_passed",
+      "value": "True"
+    },
+    {
+      "key": "status",
+      "value": "promoted"
+    },
+    {
+      "key": "shadow_start",
+      "value": "2021-03-15"
+    },
+    {
+      "key": "shadow_end",
+      "value": "2021-04-13"
+    }
+  ]
+}
