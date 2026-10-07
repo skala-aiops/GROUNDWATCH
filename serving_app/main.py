@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from serving_app import model_loader
+from serving_app.backend.api import install_backend
 from serving_app.routers import data, health, logs, predict
 
 _LOG_DIR = "logs"
@@ -24,6 +25,9 @@ app.include_router(predict.router)
 app.include_router(health.router)
 app.include_router(data.router)
 app.include_router(logs.router)
+
+# Register the web API before the existing catch-all static mount.
+install_backend(app)
 
 _STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 app.mount("/", StaticFiles(directory=_STATIC_DIR, html=True), name="static")

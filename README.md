@@ -64,13 +64,19 @@ docker compose up --build
 종료는 `Ctrl+C`, 생성한 컨테이너 정리는 `docker compose down`을 사용합니다.
 Docker가 설치되어 실행 중이어야 합니다. 실제 Secret이 필요한 경우 `.env.example`을 바탕으로 로컬 `.env`를 먼저 준비하고 Git에는 올리지 않습니다.
 
-- 샘플 대시보드: http://localhost:8100/
+- 지하수 관측 대시보드: http://localhost:8100/
+- 25개 구 모델 평가: http://localhost:8100/#models
+- 지하수 API 문서: http://localhost:8100/api/v1/docs
 - API 문서: http://localhost:8100/docs
 - 상태 확인: http://localhost:8100/health
 
 최초 실행은 의존성 다운로드와 샘플 모델 학습·등록으로 시간이 걸립니다. 이후에는 Docker 볼륨에 저장된 모델·MLflow DB·업로드·로그를 재사용합니다. 초기 평가 게이트를 통과하지 못하면 서버를 시작하지 않고 로그에 원인을 남깁니다. 학습 실패 시 `docker compose logs serving-app`으로 확인하세요.
 
-현재 화면·데이터·모델은 제공된 **HAIC 샘플 기준 개발용 baseline**입니다. 개인 실습 빈칸과 수업 진행 안내를 정리한 상태이며 GroundWatch 지하수위·강수량 기능은 아직 구현하지 않았습니다. 파드별 제품 구현의 출발점으로 사용하세요.
+현재 개인 브랜치에는 사용자 제공 서울 CSV로 학습한 **25개 구별 지하수 LSTM 연구용 후보 모델**과 웹 API·화면 연결이 추가되어 있습니다. 기존 HAIC 샘플 코드는 유지하며 지하수 예측과 구분합니다.
+
+현재 작업 폴더의 `data/groundwater/bundle.zip`(약 5.3 MB)은 최초 기동 때 모델 볼륨으로 복원됩니다. 별도 호스트 설치나 학습은 필요하지 않습니다. 이 묶음은 Git 제외 파일이므로 다른 환경에서는 제공된 모델 묶음을 같은 위치에 놓은 후 공용 명령을 실행하세요. 묶음과 저장된 지하수 모델이 모두 없으면 지하수 모델은 연결 대기로 표시됩니다. 묶음 체크섬 오류나 불완전한 모델 폴더는 시작 오류로 알려 줍니다.
+
+관측 자료는 과거 시계열이며 실시간 예측이나 싱크홀 발생 확률을 뜻하지 않습니다. 데이터·학습·평가·재현 방법은 [지하수 모델 실행 안내](serving_app/groundwater/README.md), 수치 결과는 [모델 결과 보고서](docs/groundwater-model-results.md)를 확인하세요.
 
 출처·정리 범위와 샘플의 한계는 [기본 코드 설명](docs/source-and-scope.md)을 확인하세요.
 
