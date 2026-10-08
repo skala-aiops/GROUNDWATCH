@@ -2,7 +2,7 @@
 import argparse,json,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from serving_app.national_sources import collect_aws_daily,parse_aws_daily
+from backend.national_sources import collect_aws_daily,parse_aws_daily
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-08T16:39:55.112Z",
+  "base_url": "http://localhost:18105",
+  "live": 200,
+  "ready": 503,
+  "station_count": 1065,
+  "seoul_count": 25,
+  "page_errors": [],
+  "historical_prediction": {
+    "as_of": "2026-07-31",
+    "forecast_date": "2026-08-01",
+    "prediction": -22.57052482008934,
+    "model_version": "1",
+    "ready_count": 23
+  },
+  "checks": [
+    "real API station directory",
+    "station selection",
+    "3D and 2D detail",
+    "operations view",
+    "mobile and reduced motion"
+  ],
+  "scope": "read-only UI/API verification on copied runtime; no new model accuracy claim"
+}

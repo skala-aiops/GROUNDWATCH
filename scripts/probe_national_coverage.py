@@ -4,8 +4,8 @@ from pathlib import Path
 from urllib.parse import unquote
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from serving_app.external_observations import OfficialClient
-from serving_app.national_sources import collect_kwater
+from backend.external_observations import OfficialClient
+from backend.national_sources import collect_kwater
 from datetime import date,timedelta
 
 def main():

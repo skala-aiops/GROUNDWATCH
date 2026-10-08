@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from serving_app.national_service import NationalService
+from backend.national_service import NationalService
 
 
 def bootstrap(service, path, max_epochs=30):
