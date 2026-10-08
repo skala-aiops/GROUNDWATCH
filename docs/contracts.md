@@ -137,7 +137,7 @@ AWS 완료일 강수는 `temporal_contract=completed_calendar_day_KST_rn_day`, �
 
 ### 기존 관제 서비스의 전국 통합 계약 변경안
 
-단일 관측소 선택을 `station_id`로 식별하고 provider·지역·legacy_district_code를 분리합니다. 서울 v1 모델·시연 이력은 기존 엔진을 호출하고, 전국 실측은 원천 관측소별 엔진을 같은 network 조회 어댑터로 노출합니다. 별도 전국 대시보드를 유지하지 않습니다. 현재 사용자 요청에 따라 구현 중인 변경안이며 팀 담당자의 합의가 완료됐다고 주장하지 않습니다.
+단일 관측소 선택을 `station_id`로 식별하고 provider·지역·legacy_district_code를 분리합니다. 서울 v1 모델·시연 이력은 기존 엔진을 호출하고, 전국 실측은 원천 관측소별 엔진을 같은 network 조회 어댑터로 노출합니다. 별도 전국 대시보드를 유지하지 않습니다. 사용자의 전체 통합 지시에 따라 적용한 현행 읽기 계약입니다. 프런트 경로·응답 소비와 서버 라우터·테스트를 대조하여 검증하며, 별도 팀 회의나 외부 운영 승인이 있었다고 주장하지 않습니다.
 
 전국 station metadata는 `source_contract_verified`, `mapping_status`(unverified/experimental/approved), `operational_approved`, `mapping_version`, `evidence`를 구분합니다. 검증된 원천 계약과 명시적 실험 매핑의 학습·예측은 허용하되 운영 승격을 차단합니다. 기존 verified 관측소의 계약은 유지합니다. 모델·예측에는 동일 매핑 버전과 experimental/operational 범위를 보존합니다.
 
