@@ -35,7 +35,7 @@ Canonical CSV는 UTF-8 또는 UTF-8 BOM이며 다음 열을 갖습니다.
 | --- | --- |
 | GET `/districts` | 선택 `dataset_id`; `{districts, mapping_version}` |
 | GET `/forecasts` | 선택 `as_of`, `mode`, `replay_id`, `dataset_id`; `{forecasts, as_of, ready_count, total, mode, replay_id}` |
-| GET `/districts/{code}/history` | 선택 `dataset_id`, `replay_id`; `{history, unit}`, 최근 최대 180행 |
+| GET `/districts/{code}/history` | 선택 `dataset_id`, `replay_id`; `{history, unit}`, 최근 입력 최대 180행과 저장된 다음 날 예측 1행 |
 | POST `/districts/{code}/predict` | JSON `{sequence:[{station_id,date,groundwater_level,rainfall_mm,level_unit}, ...]}`; 정확히 연속 20일, 등록 모델 버전과 다음 날 예측. 모델 미준비 `503` |
 | POST `/datasets` | multipart `file` CSV, `manifest` JSON; 데이터 ID·검증 작업 ID 반환 |
 | GET `/datasets` | `{datasets}`, 검증 상태·보고서 포함, 서버 파일 경로 제외 |
@@ -51,6 +51,8 @@ Canonical CSV는 UTF-8 또는 UTF-8 BOM이며 다음 열을 갖습니다.
 | POST `/replays/{id}/advance` | JSON `{days:1}`; 1~180일 진행 작업 접수 |
 
 `mode`는 `historical_replay` 또는 `current`입니다. `/forecasts`의 `current`는 현재 선택 자료(기본은 공식 과거 관측과 합성 확장 자료)의 오늘 입력으로 내일을 예측하며 외부 수집을 실행하지 않습니다. 현재 화면은 위 변경에 따라 `/forecasts?mode=current`를 사용합니다. `/live/forecasts`와 외부 수집은 보류한 확장 계약입니다. `replay_id`가 있으면 재생 시계보다 미래인 기준일을 조회할 수 없습니다. 재생은 `historical` 또는 `level_shift` 시나리오이며, 후자는 `shift_start` 이후 수위에 `shift_amount`를 더한 모의 자료입니다. 변화 시작일은 재생 시작일 이후여야 합니다.
+
+`forecasts[].latest_comparison`은 최근 입력 날짜의 `{date, actual, prediction, model_version}`입니다. 같은 namespace·관측소·원본 dataset에서 같은 날짜로 저장된 예측 중 가장 최근 생성 버전을 비교합니다. 해당 예측이 없으면 prediction/model_version은 null이며, 입력도 없으면 필드가 없을 수 있습니다. 화면은 소수 셋째 자리로 반올림한 입력값과 저장 예측을 비교해 입력 숫자만 높음(빨강)·낮음(파랑)으로 표시합니다. 같은 표시값·예측 없음은 기본 색이며 다음 날 예측은 색 판정하지 않습니다. 이 표시는 단일 날짜 차이이며 RMSE 경보·안전 등급이 아닙니다. 합성 입력도 같은 규칙을 따릅니다.
 
 예측 행에는 `district_code`, `district_name`, 관측소 정보, `observed_date`, `forecast_date`, `prediction`, `unit`, `model_version`, `dataset_version`, `mapping_version`, `source_kind`, `quality_status`, `inspection_status`, `reason`이 포함됩니다. 준비가 안 되면 `prediction: null`이며, 25행을 반환했다고 25개 예측이 준비된 것은 아닙니다. `DATA_REQUIRED`, `MODEL_NOT_READY`, `DATA_GAP`, `STALE_DATA`, `NORMAL`, `WARN`을 구분합니다. 이벤트 상태는 `OPEN`, `ACKNOWLEDGED`, `RESOLVED`입니다. 모델 생성·평가 등 정보 기록은 `RECORDED`이며 사람의 조치 버튼을 제공하지 않습니다.
 
@@ -179,7 +181,7 @@ GET /health/runtime은 실제 Docker 실행 여부·컨테이너 hostname·API P
 
 GET /api/v1/pipeline?district_code=11110&replay_id=선택값은 실제 자료 검증·오차 감시·품질 경보·재학습·후보 평가·모델 교체·서빙 확인의7단계를 반환합니다. 기본 관측소는 목록 첫 종로구이며 전체25구 조회를 대체하거나 관측소 순위를 뜻하지 않습니다. stages의 status/detail은 실제 작업·정답·이벤트·교체 이력·저장 예측에서 계산합니다. 아직 실행하지 않은 단계는 pending, 교체 거절은 rejected, 작업 실패는 failed, 후속 정답 부족은 후보번호와 대기일을 표시합니다.
 
-운영 화면의 ‘기본 상황 시연’/‘수위 변화 시연’은 동일한 POST /replays 계약을 사용합니다. 기본 시작은 고정 replay_start 전날, 종료는 자료 마지막 날짜, 변화 시작은 replay_start+23일, 변화량+0.2입니다. 이후 ‘저장 자료 1일 진행’/‘저장 자료 21일 진행’으로 실제 worker 작업을 요청하며 조회는 자동 갱신합니다. 중복 새로고침·별도 예측 확인·남은기간 진행 버튼은 제외했습니다. 진행 중 중복 요청과 종료 후 진행은 차단합니다. 일반 운영은 30초, 모델 준비·진행·활성 작업이 있는 검증 기록은 3초 간격으로 갱신합니다. 정답 시계나 실제자료 수집주기가 아닙니다. pipeline의 `active_jobs`와 `latest_advance_job`을 사용해 실제 대기·실행·처리 일수·실패를 표시합니다. 최근50개 감지·작업·평가 기록을 화면에 표시합니다.
+운영 화면의 ‘기본 상황 선택’/‘드리프트 시연 선택’은 동일한 POST /replays 계약을 사용합니다. 기본 시작은 고정 replay_start 전날, 종료는 자료 마지막 날짜, 변화 시작은 replay_start+23일, 변화량+0.2입니다. 이후 ‘저장 자료 1일 진행’/‘저장 자료 21일 진행’으로 실제 worker 작업을 요청하며 조회는 자동 갱신합니다. 중복 새로고침·별도 예측 확인 버튼은 제외했습니다. 선택한 상황은 그대로 유지하며 ‘선택한 상황으로 처음부터’로 새로 시작하거나 ‘남은 자료 끝까지 진행’으로 남은 날짜를 순차 처리할 수 있습니다. 진행 중 중복 요청과 종료 후 진행은 차단합니다. 일반 운영은 30초, 모델 준비·진행·활성 작업이 있는 검증 기록은 3초 간격으로 갱신합니다. 정답 시계나 실제자료 수집주기가 아닙니다. pipeline의 `active_jobs`와 `latest_advance_job`을 사용해 실제 대기·실행·처리 일수·실패를 표시합니다. 최근50개 감지·작업·평가 기록을 화면에 표시합니다.
 
 ## 공식 API 수집
 
@@ -262,6 +264,6 @@ GET /api/v1/events, 본문 없음 →200, {events:[...]}에 감지·재학습·�
 
 ## 드리프트 시연 표시 보완 (2026-10-08)
 
-`GET /pipeline`에 기존 필드를 유지하고 `drift_demo`를 추가했습니다. 수위 변화 시연일 때 `shift_start`, `shift_amount`, `applied`, `monitoring_note`를 반환하며 기본 상황은 null입니다. 원본 파일을 변경하지 않고 시연 namespace에서 변화 시작일 이후 수위만 더합니다. 기본 변화 시작은 첫 정답의 22일째이며 21일 정상 구간 뒤 변화를 공개합니다. 기존에 생성한 시연의 날짜·변화량은 그대로 보존합니다.
+`GET /pipeline`에 기존 필드를 유지하고 `drift_demo`를 추가했습니다. 드리프트 시연 선택일 때 `shift_start`, `shift_amount`, `applied`, `monitoring_note`를 반환하며 기본 상황은 null입니다. 원본 파일을 변경하지 않고 시연 namespace에서 변화 시작일 이후 수위만 더합니다. 기본 변화 시작은 첫 정답의 22일째이며 21일 정상 구간 뒤 변화를 공개합니다. 기존에 생성한 시연의 날짜·변화량은 그대로 보존합니다.
 
 화면에서 드리프트는 예측 오차 기준의 감지를 뜻합니다. 입력 분포·입력과 정답 관계의 변화를 통계적으로 확정한 뜻은 아닙니다. `남은 자료 끝까지 진행`은 기존 advance API에 남은 일수(최대180)를 보내며, worker는 하루씩 순차 처리하고 감지일의 재학습을 마친 뒤 다음 정답을 공개합니다. 평가·교체 결과를 강제로 성공시키지 않습니다.
