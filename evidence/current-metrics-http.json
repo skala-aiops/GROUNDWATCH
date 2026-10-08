@@ -1,0 +1,275 @@
+{
+  "verified_at": "2026-10-08T09:36:17.127519+09:00",
+  "http_status": 200,
+  "endpoint": "GET /metrics/summary",
+  "passed": true,
+  "meaning": "Measured actual API request log window, not controlled load test or SLA claim.",
+  "response": {
+    "window_seconds": 300,
+    "count": 107,
+    "http_5xx_count": 0,
+    "http_4xx_count": 0,
+    "error_rate": 0.0,
+    "success_rate": 1.0,
+    "throughput_per_second": 0.3566666666666667,
+    "mean_seconds": 0.15314489844876394,
+    "p95_seconds": 0.6537990840006387,
+    "minimum_samples": 20,
+    "sufficient_samples": true,
+    "thresholds": {
+      "p95_seconds": 1,
+      "http_5xx_rate": 0.01
+    },
+    "evaluation_interval_seconds": 60,
+    "availability_note": "request success rate; not time-based uptime SLA",
+    "service_alerts": [
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-08T00:31:16.885337+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 47,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.15666666666666668,
+          "p95_seconds": 1.0285695429920452
+        },
+        "id": "b8eed6b80bef4b16a0a988baa1a77a44"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-08T00:29:38.865072+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 30,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.1,
+          "p95_seconds": 1.679214542004047
+        },
+        "id": "f18927f8c71c408e8be5cbcab6fccf65"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T13:56:50.365064+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 24,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.08,
+          "p95_seconds": 1.2341867089999141
+        },
+        "id": "1eb55795c95e4de9aa465b636f24b248"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T13:55:50.351170+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 25,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.08333333333333333,
+          "p95_seconds": 1.3706310839988873
+        },
+        "id": "096b6683d7ca42e99f5066ece1dd1d19"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T13:54:50.335808+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 25,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.08333333333333333,
+          "p95_seconds": 1.3706310839988873
+        },
+        "id": "f62ae15028e0498d838bdf12f24e1702"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T12:50:49.224989+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 22,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.07333333333333333,
+          "p95_seconds": 1.2255857919990376
+        },
+        "id": "cf5b71acd8e942a395a25335e91b0b52"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:35:29.678494+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 43,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.14333333333333334,
+          "p95_seconds": 1.0423813340021297
+        },
+        "id": "6b37b0b0e1144ea8a4fcdd290456d858"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:31:05.000928+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 20,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.06666666666666667,
+          "p95_seconds": 1.0378064590004215
+        },
+        "id": "de23551c2e874c029efec80a3bfd8b21"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:30:04.787895+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 39,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.13,
+          "p95_seconds": 1.0378064590004215
+        },
+        "id": "48bdc834f45840cfae5807b59ebfe1d0"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:29:04.772264+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 42,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.14,
+          "p95_seconds": 1.0378064590004215
+        },
+        "id": "1f6f521baf20421ea82ae945f73e8e0c"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:28:04.761373+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 41,
+          "http_5xx_count": 0,
+          "http_4xx_count": 0,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.13666666666666666,
+          "p95_seconds": 1.0378064590004215
+        },
+        "id": "ce44c92ad28342cb8eb79aafca8a260f"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:10:58.547553+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 20,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.06666666666666667,
+          "p95_seconds": 1.4032184999996389
+        },
+        "id": "3dc69887d18e436eb021d36bfbf6da8a"
+      },
+      {
+        "district_code": null,
+        "kind": "service",
+        "status": "OPEN",
+        "message": "서비스 지표 경보: p95 > 1s",
+        "namespace": "service",
+        "created_at": "2026-10-07T11:09:58.540812+00:00",
+        "summary": {
+          "window_seconds": 300,
+          "count": 20,
+          "http_5xx_count": 0,
+          "http_4xx_count": 1,
+          "error_rate": 0.0,
+          "success_rate": 1.0,
+          "throughput_per_second": 0.06666666666666667,
+          "p95_seconds": 1.4032184999996389
+        },
+        "id": "2eb97af646da4946b90ba3c2d0f77db5"
+      }
+    ]
+  }
+}

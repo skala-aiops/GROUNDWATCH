@@ -41,3 +41,8 @@ Thumbs.db
 # Models are initialized inside the persistent Docker volume
 serving_app/models/*
 !serving_app/models/.gitkeep
+
+# Office and presentation generation locks
+~$*
+.slide_jobs.json.lock
+.slide_run_state.json.lock

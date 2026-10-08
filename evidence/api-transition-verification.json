@@ -55,7 +55,8 @@
     "file": "../output/pdf/groundwatch-api-transition-proposal.pdf",
     "pages": 10,
     "rendered": true,
-    "text_bounds_valid": true
+    "text_bounds_valid": true,
+    "artifact_relocated_to": "../output/pdf/archive/groundwatch-api-transition-proposal.pdf"
   },
   "security": {
     "env_mode": "0600",
