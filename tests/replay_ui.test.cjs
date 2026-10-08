@@ -61,3 +61,23 @@ scenario$('namespace').value='drift123';scenarioContext.state.selectedScenario='
 scenarioContext.state.pipeline={};scenarioContext.notice=()=>{};
 vm.runInContext(source.slice(source.indexOf('async function startDemo'),source.indexOf("$('normal-demo').addEventListener")),scenarioContext);
 scenarioContext.startDemo('level_shift',{}).then(()=>{assert.equal(scenarioContext.state.startingDemo,undefined);console.log('Scenario selection and selected-click preservation passed');}).catch(e=>{console.error(e);process.exitCode=1;});
+
+// Signed groundwater values, missing truth and display precision must stay distinct.
+const compareContext={numeric:Number.isFinite,text:String,escapeHTML:String};vm.createContext(compareContext);
+vm.runInContext(source.slice(source.indexOf('function comparison('),source.indexOf('function renderForecasts')),compareContext);
+for(const [actual,predicted,tone] of [[-21.3,-21.5,'above'],[-21.7,-21.5,'below'],[-21.5,-21.5,''],[-21.50001,-21.5,''],[null,-21.5,''],[-21.5,null,'']]){
+ assert.equal(compareContext.comparison(actual,predicted).tone,tone);
+}
+assert.match(compareContext.comparisonHTML({actual:-21.3,prediction:-21.5},'gl.-m'),/actual-value above/);
+assert.match(compareContext.comparisonHTML({actual:-21.7,prediction:-21.5},'gl.-m'),/actual-value below/);
+assert.equal(compareContext.comparisonHTML({actual:null,prediction:-21.5},'gl.-m'),'');
+console.log('Same-date comparison: higher, lower, equal, missing and precision cases passed');
+const chartContext={...compareContext,escapeHTML:String};vm.createContext(chartContext);
+vm.runInContext(source.slice(source.indexOf('function comparison('),source.indexOf('function renderForecasts')),chartContext);
+vm.runInContext(source.slice(source.indexOf('function chart('),source.indexOf('function compactModel')),chartContext);
+const chartEl={};chartContext.chart(chartEl,[{date:'2026-10-06',groundwater_level:-21.3,prediction:-21.5},{date:'2026-10-07',groundwater_level:-21.7,prediction:-21.5},{date:'2026-10-08',groundwater_level:null,prediction:-21.6}],[{key:'groundwater_level',color:'green',label:'입력'},{key:'prediction',color:'orange',label:'예측'}],'gl.-m',false);
+assert.equal((chartEl.innerHTML.match(/class="comparison-point above"/g)||[]).length,1);
+assert.equal((chartEl.innerHTML.match(/class="comparison-point below"/g)||[]).length,1);
+assert.match(chartEl.innerHTML,/다음 날 예측/);
+assert.doesNotMatch(chartEl.innerHTML,/NaN/);
+console.log('Chart comparison: observed points only; unlabelled future stays distinct');
