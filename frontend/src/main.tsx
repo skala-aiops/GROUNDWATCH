@@ -29,6 +29,9 @@ import {
   chartSegments,
   initialStationId,
   serviceStations,
+  stationDataStatus,
+  measurementLabel,
+  selectedNetworkStationId,
   predictionLabel,
   confirmedUnit,
   comparison,
@@ -276,22 +279,6 @@ function App() {
   const scope = new URLSearchParams();
   if (mode === "historical_replay" && replay) scope.set("replay_id", replay);
   const suffix = scope.toString();
-  const pipeline = useResource(
-    selected.includes(":")
-      ? "/api/v2/network/pipeline?station_id=" +
-          encodeURIComponent(selected) +
-          "&mode=" +
-          mode +
-          (date && mode !== "current" ? "&as_of=" + date : "") +
-          (suffix ? "&" + suffix : "")
-      : null,
-    view === "operations" ? 3000 : 30000,
-    revision,
-  );
-  const pending =
-    !!replay &&
-    mode === "historical_replay" &&
-    pipeline.data?.replay_status !== "ready";
   const fq = new URLSearchParams(scope);
   fq.set("mode", mode);
   if (date && mode !== "current") fq.set("as_of", date);
@@ -317,6 +304,23 @@ function App() {
         : r.name || r.station_name,
     unit: confirmedUnit(r.unit || r.level_unit),
   }));
+  const networkSelected = selectedNetworkStationId(rows, selected);
+  const pipeline = useResource(
+    networkSelected
+      ? "/api/v2/network/pipeline?station_id=" +
+          encodeURIComponent(networkSelected) +
+          "&mode=" +
+          mode +
+          (date && mode !== "current" ? "&as_of=" + date : "") +
+          (suffix ? "&" + suffix : "")
+      : null,
+    view === "operations" ? 3000 : 30000,
+    revision,
+  );
+  const pending =
+    !!replay &&
+    mode === "historical_replay" &&
+    pipeline.data?.replay_status !== "ready";
   const choices: Row[] = rows.filter(
     (r) =>
       (!region || r.region_code === region || r.district_name === region) &&
@@ -344,7 +348,7 @@ function App() {
   if (row.source_dataset_id && !replay)
     hq.set("dataset_id", row.source_dataset_id);
   const history = useResource(
-    view === "detail" && !pending && selected.includes(":")
+    view === "detail" && !pending && !!networkSelected
       ? "/api/v2/network/stations/" +
           encodeURIComponent(selected) +
           "/history?" +
@@ -381,7 +385,7 @@ function App() {
     }
   }
   useEffect(() => {
-    if (selected.startsWith("kwater:") && replay) setSession("");
+    if (dataScope !== "seoul-history" && replay) setSession("");
   }, [selected, replay]);
   const p = pipeline.data || {};
   const experimental =
@@ -551,7 +555,7 @@ function App() {
           <div className="breadcrumb">
             {dataScope === "seoul-history"
               ? "서울 구별 대표 관측소"
-              : "전국 추가 관측소"}{" "}
+              : dataScope === "simulation" ? "전국 시뮬레이션" : "전국 추가 관측소"}{" "}
             <ChevronRight size={13} />
             <b>{titles[view]}</b>
           </div>
@@ -592,7 +596,7 @@ function App() {
               <p>
                 {dataScope === "seoul-history"
                   ? "서울 25개 구별 대표 관측소의 수위·강수와 모델 품질을 확인합니다."
-                  : "추가로 확보된 전국 실측 관측소의 수위·강수와 모델 품질을 확인합니다."}
+                  : dataScope === "simulation" ? "합성 수위·강수로 전국 관제와 모델 운영 흐름을 검증합니다. 실제 관측값이 아닙니다." : "추가로 확보된 전국 실측 관측소의 수위·강수와 모델 품질을 확인합니다."}
               </p>
             </div>
             <label className="data-scope-control">
@@ -617,6 +621,7 @@ function App() {
                   서울 25개 구별 대표 관측소
                 </option>
                 <option value="observed">전국 추가 실측 관측소</option>
+                <option value="simulation">전국 시뮬레이션 · 합성 자료</option>
               </select>
             </label>
             {legacySelected && (
@@ -668,7 +673,7 @@ function App() {
             )}
           </div>
           <p className="footnote service-scope-note">
-            {dataScope === "observed"
+            {dataScope === "simulation" ? "전국 시뮬레이션: 생성된 수위·강수이며 현장 실측·지역 대표값이 아닙니다. 실측 모델·이력과 분리되고 운영 승격에 사용하지 않습니다." : dataScope === "observed"
               ? forecasts.loading
                 ? "실측 자료 범위를 조회하고 있습니다."
                 : `실측 이력이 확보된 ${rows.length}곳만 제공합니다. 위치만 있는 관측소는 표시하지 않습니다. 모델 사용 여부는 관측소마다 다르며 운영 미승인 실험입니다.`
@@ -705,7 +710,7 @@ function App() {
             <>
               <div className="stats">
                 <article>
-                  <span>예측 준비 관측소</span>
+                  <span>모델 준비 관측소</span>
                   <strong>
                     {forecasts.loading
                       ? "—"
@@ -725,7 +730,7 @@ function App() {
                   </div>
                 </article>
                 <article>
-                  <span>최근 실측일</span>
+                  <span>{row.source_kind === "synthetic" ? "시뮬레이션 입력일" : "최근 실측일"}</span>
                   <strong className="date">{row.observed_date || "—"}</strong>
                   <small>선택 관측소의 마지막 확보 날짜</small>
                 </article>
@@ -749,6 +754,7 @@ function App() {
                       <h2>
                         {dataScope === "observed"
                           ? "실측 관측소 · 전국 위치"
+                          : dataScope === "simulation" ? "시뮬레이션 관측소 · 전국 위치"
                           : "서울 25개 구별 대표 관측소"}
                       </h2>
                     </div>
@@ -867,7 +873,7 @@ function App() {
                     >
                       <Scene rows={choices} />
                     </Suspense>
-                  ) : three && dataScope === "observed" ? (
+                  ) : three && dataScope !== "seoul-history" ? (
                     <Suspense
                       fallback={
                         <div className="empty">3D 지도를 준비합니다.</div>
@@ -875,7 +881,7 @@ function App() {
                     >
                       <NationalRainScene
                         stations={
-                          mapLayer === "rainfall"
+                          dataScope === "observed" && mapLayer === "rainfall"
                             ? weather.data?.stations || []
                             : []
                         }
@@ -891,7 +897,8 @@ function App() {
                         }
                         groundSelected={selected}
                         onGroundSelect={setSelected}
-                        groundwaterOnly={mapLayer !== "rainfall"}
+                        groundwaterOnly={dataScope === "simulation" || mapLayer !== "rainfall"}
+                        simulation={dataScope === "simulation"}
                       />
                     </Suspense>
                   ) : (
@@ -931,7 +938,7 @@ function App() {
                     <span>
                       {number(row.prediction)
                         ? predictionLabel(row)
-                        : "최근 실측 수위"}
+                        : measurementLabel(row)}
                       {experimental ? " · 실험 검증" : ""}
                     </span>
                     <strong>
@@ -959,8 +966,7 @@ function App() {
                   )}
                   {experimental && (
                     <p className="footnote">
-                      실험용 예측입니다. 운영 승인과 자동 승격은 별도이며 현재
-                      허용하지 않습니다.
+                      {row.source_kind === "synthetic" ? "합성 시뮬레이션의 모델 결과입니다. 실제 관측 정확도나 운영 승격을 뜻하지 않습니다." : "실험용 예측입니다. 운영 승인과 자동 승격은 별도이며 현재 허용하지 않습니다."}
                     </p>
                   )}
                   <dl>
@@ -971,7 +977,7 @@ function App() {
                     <div>
                       <dt>자료 · 예측</dt>
                       <dd>
-                        <Badge status={row.quality_status || row.data_status} />
+                        <Badge status={stationDataStatus(row)} />
                       </dd>
                     </div>
                     <div>
@@ -1069,9 +1075,7 @@ function App() {
                             <td>
                               <Badge
                                 status={
-                                  r.quality_status ||
-                                  r.data_status ||
-                                  "data_required"
+                                  stationDataStatus(r)
                                 }
                               />
                               <small>
@@ -1144,7 +1148,7 @@ function App() {
                     <h2>
                       {legacySelected
                         ? "관측정 · 수위 개념도"
-                        : "관측소 · 수위 비교도"}
+                        : dataScope === "simulation" ? "시뮬레이션 · 수위 개념 비교도" : "관측소 · 수위 비교도"}
                     </h2>
                     <span className="pill">
                       {three
@@ -1201,8 +1205,7 @@ function App() {
                   )}
                   {experimental && (
                     <p className="footnote">
-                      실험용 예측입니다. 운영 승인과 자동 승격은 별도이며 현재
-                      허용하지 않습니다.
+                      {row.source_kind === "synthetic" ? "합성 시뮬레이션의 모델 결과입니다. 실제 관측 정확도나 운영 승격을 뜻하지 않습니다." : "실험용 예측입니다. 운영 승인과 자동 승격은 별도이며 현재 허용하지 않습니다."}
                     </p>
                   )}
                   <dl>
@@ -1238,7 +1241,7 @@ function App() {
                       <dd>{row.model_version || "미준비"}</dd>
                     </div>
                   </dl>
-                  <Badge status={row.quality_status || row.data_status} />
+                  <Badge status={stationDataStatus(row)} />
                   <p className="footnote">
                     {row.reason ||
                       "관측소별 수위 기준과 원자료의 부호를 유지합니다. 예측 대상일의 정답 확보 전에는 예측을 평가하지 않습니다."}
@@ -1251,7 +1254,7 @@ function App() {
               </div>
               <section className="panel">
                 <div className="panel-top">
-                  <h2>최근 실측 수위와 {predictionLabel(row)}</h2>
+                  <h2>{measurementLabel(row)}와 {predictionLabel(row)}</h2>
                   <select
                     aria-label="차트 표시 기간"
                     value={range}
@@ -1280,12 +1283,12 @@ function App() {
                 <p className="footnote">
                   단위 {history.data?.unit || row.unit || "미확인"} · 기준{" "}
                   {row.level_reference || row.reference_status || "확인 필요"} ·
-                  결측값을 이어 그리지 않습니다. 금색 배경은 공식 장마 기간(사후 평가용)이며 해당 구간이 있을 때만 표시합니다.
+                  결측값을 이어 그리지 않습니다. {dataScope === "simulation" ? "합성 시나리오이며 실제 관측·공식 장마 판정이 아닙니다." : "금색 배경은 공식 장마 기간(사후 평가용)이며 해당 구간이 있을 때만 표시합니다."}
                 </p>
               </section>
               <section className="panel">
                 <h2>
-                  일 강수량{" "}
+                  {dataScope === "simulation" ? "시뮬레이션 일 강수량" : "일 강수량"}{" "}
                   <small>
                     mm ·{" "}
                     {history.loading
@@ -1318,7 +1321,7 @@ function App() {
                         : "") ||
                       (legacySelected ? "서울 원천 날짜 결합" : "미승인")}
                   .{" "}
-                  {experimental
+                  {row.source_kind === "synthetic" ? "합성 시나리오 입력입니다. 실제 기상 관측소 연결이 아닙니다." : experimental
                     ? "실험용 연결이며 운영 승인 전입니다."
                     : context.note || ""}
                 </p>
@@ -1346,16 +1349,15 @@ function App() {
                   </>
                 )}
                 <details>
-                  <summary>공식 장마 기간 · 과거 평가 기준</summary>
+                  <summary>{row.source_kind === "synthetic" ? "장마 시나리오 · 합성 평가 기준" : "공식 장마 기간 · 과거 평가 기준"}</summary>
                   <p className="footnote">
-                    장마 기간은 사후 확정된 통계이며 실시간 장마 판정이
-                    아닙니다.
+                    {row.source_kind === "synthetic" ? "합성 자료를 평가하기 위해 생성한 장마 시나리오입니다. 공식 장마 통계나 실시간 판정이 아닙니다." : "장마 기간은 사후 확정된 통계이며 실시간 장마 판정이 아닙니다."}
                   </p>
                   {Array.isArray(context.rainy_period) &&
                   context.rainy_period.length ? (
                     <>
                       <p className="footnote">
-                        {legacySelected ? "서울 기상지점 108 장마 통계 · 강수 입력 교체 없음" : `공식 기상지점 ${context.source_station_id} · 매핑 ${label(context.mapping_status)}`} · 과거 평가용
+                        {row.source_kind === "synthetic" ? "합성 장마·강수 시나리오 · 시뮬레이션 평가용" : legacySelected ? "서울 기상지점 108 장마 통계 · 강수 입력 교체 없음" : `공식 기상지점 ${context.source_station_id} · 매핑 ${label(context.mapping_status)}`} · 과거 평가용
                       </p>
                       {context.rainy_period.slice(-5).map((r: Row) => (
                         <p
@@ -1630,16 +1632,18 @@ function NationalModelPanel({
         </div>
       </div>
       <p>
-        자료 {label(row.data_status)} · 모델 {label(row.model_status)} ·{" "}
+        자료 {label(stationDataStatus(row))} · 모델 {label(row.model_status)} ·{" "}
         {row.operational_approved
           ? "운영 승인"
-          : row.mapping_status === "experimental"
+          : row.source_kind === "synthetic"
+            ? "시뮬레이션 검증 / 실측 운영 미승인"
+            : row.mapping_status === "experimental"
             ? "실험 검증 / 운영 미승인"
             : "모델 준비 전 / 운영 미승인"}
       </p>
       <p className="footnote">
-        실험용 자료 계약과 매핑 확인을 통과한 관측소만 학습·예측을 요청할 수
-        있습니다. 운영 승격은 승인 전 차단합니다.
+        실측은 자료 계약·실험 매핑을 확인한 지점에서 요청합니다. 시뮬레이션은
+        합성 자료 전용 모델·이력으로 검증하며 실제 운영 승격과 분리합니다.
       </p>
       <div className="record">
         <h3>오차 감시 · 관측 수집</h3>

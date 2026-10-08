@@ -16,16 +16,19 @@ def _read(name, default):
 class NetworkService:
     def __init__(self, legacy, national):
         self.legacy, self.national = legacy, national
+        from serving_app.seoul_observation_extension import load_extension
+        self.seoul_extension = load_extension()
 
     @staticmethod
     def _persistence(rows, source):
         if not source.get('source_contract_verified') or len(rows) < 20:
             return None
+        synthetic = source.get('source_kind') == 'synthetic' and source.get('namespace') == 'national_synthetic_v1'
         window = rows[-20:]
         for i, row in enumerate(window):
             value = row.get('groundwater_level')
             if (row.get('quality_status', 'valid') != 'valid' or
-                row.get('source_kind', 'observed') not in ('observed', 'observed_api') or
+                row.get('source_kind', 'observed') not in (('synthetic',) if synthetic else ('observed', 'observed_api')) or
                 isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or
                 row.get('level_unit') != source.get('level_unit') or
                 row.get('level_reference') != source.get('level_reference')):
@@ -34,7 +37,7 @@ class NetworkService:
                 return None
         return {'prediction': window[-1]['groundwater_level'],
                 'target_date': (date.fromisoformat(window[-1]['date']) + timedelta(days=1)).isoformat(),
-                'input_end_date': window[-1]['date'], 'prediction_scope': 'experimental',
+                'input_end_date': window[-1]['date'], 'prediction_scope': 'synthetic' if synthetic else 'experimental',
                 'horizon_days':1,'forecast_timing':None}
 
     def _national_index(self, as_of=None):
@@ -57,14 +60,17 @@ class NetworkService:
         result = []
         for sid, source in sources.items():
             sample, operational = sample_map.get(sid), registry.get(sid)
-            rows = self.national.repo.observations(operational['station_id'], end=as_of) if operational else (sample or {}).get('observations', [])
+            display_start = (date.fromisoformat(as_of)-timedelta(days=179)).isoformat() if as_of else None
+            rows = self.national.repo.observations(operational['station_id'], start=display_start, end=as_of) if operational else (sample or {}).get('observations', [])
             rows = [r for r in rows if not as_of or r['date'] <= as_of]
-            models = self.national.manager.list_models(operational['station_id']) if operational else []
+            manager = (self.national.manager_for(operational['station_id']) if hasattr(self.national, 'manager_for') else self.national.manager) if operational else None
+            models = manager.list_models(operational['station_id']) if operational else []
             active = next((m for m in models if m.get('active')), None)
             issued = self.national.forecasts(operational['station_id']) if operational else []
             issued = [p for p in issued if not as_of or p.get('input_end_date', p.get('target_date', '')) <= as_of]
             active_issued = [p for p in issued if active and p.get('model_version') == active.get('version')]
             prediction = max(active_issued, key=lambda p: (p.get('target_date', ''), p.get('issued_at', '')), default={})
+            synthetic = source.get('source_kind') == 'synthetic'
             fallback = self._persistence(rows, source) if not active else None
             if fallback:
                 prediction = fallback
@@ -73,9 +79,11 @@ class NetworkService:
             ready = bool(operational and self.national.repo.readiness(operational['station_id']).get('data_ready'))
             name = source.get('name', sid)
             public_source = {k: v for k, v in source.items() if k not in ('observations', 'raw_sources', 'quality')}
-            result.append({**public_source, 'station_id': f'kwater:{sid}', 'provider': 'kwater',
+            public_id = operational['station_id'] if synthetic and operational else f'kwater:{sid}'
+            result.append({**public_source, 'station_id': public_id,
+                'provider': 'groundwatch_simulation' if synthetic else 'kwater',
                 'source_station_id': sid, 'operation_station_id': operational['station_id'] if operational else None,
-                'name': name, 'district_name': name, 'district_code': f'kwater:{sid}',
+                'name': name, 'district_name': name, 'district_code': public_id,
                 'region_code': source.get('region_code') or '미분류', 'region_name': source.get('region_code') or '미분류',
                 'unit': source.get('level_unit', source.get('unit')),
                 'reference_status': 'source_contract_verified' if source.get('source_contract_verified') else source.get('level_reference_status', 'verified' if verified else 'unverified'),
@@ -97,14 +105,46 @@ class NetworkService:
                 'model_status': 'active' if active else 'not_ready',
                 'verified': verified, 'training_approved': bool(source.get('operational_approved', verified)),
                 'capabilities': {'history': bool(rows), 'train': bool(verified and ready),
-                    'train_experimental': bool(experimental and rows), 'predict': bool(active and ready),
+                    'train_experimental': bool((experimental or synthetic) and rows), 'predict': bool(active and ready),
                     'replay': False, 'rollback': bool(operational and sum(bool(m.get('activated_at')) for m in models) > 1)}})
         return result
+
+    def _extension_rows(self, code, station_id, as_of=None):
+        if not self.seoul_extension:
+            return []
+        return [r for r in self.seoul_extension['rows'].get(code, [])
+                if r['station_id'] == station_id and (not as_of or r['date'] <= as_of)]
+
+    def _current_seoul_observation(self, row, mode, replay_id, as_of):
+        if mode != 'current' or replay_id or row.get('source_kind') != 'observed':
+            return row
+        rows = self._extension_rows(str(row['district_code']), row.get('station_id'), as_of)
+        if not rows or rows[-1]['date'] <= (row.get('observed_date') or ''):
+            return row
+        latest = rows[-1]
+        freshness = (date.fromisoformat(as_of) - date.fromisoformat(latest['date'])).days
+        return {**row, 'observed_date': latest['date'], 'freshness_days': freshness,
+                'latest_actual_level': latest['groundwater_level'], 'prediction': None,
+                'input_origin': 'observed', 'model_version': None,
+                'quality_status': 'STALE_DATA' if freshness > 0 else 'MODEL_NOT_READY',
+                'reason': '추가 실측을 표시합니다. 기존 모델의 입력 계약·승격 검증은 완료되지 않았습니다.' +
+                    (f' 마지막 관측 후 {freshness}일 경과했습니다.' if freshness > 0 else ''),
+                'latest_comparison': {'date': latest['date'], 'actual': latest['groundwater_level'],
+                                      'prediction': None, 'model_version': None},
+                'data_source': {**row.get('data_source', {}), 'kind': 'observed',
+                    'observed_through': latest['date'], 'input_through': None,
+                    'contains_synthetic': False, 'synthetic_from': None, 'synthetic_through': None,
+                    'external_api_applied': False, 'observation_display_only': True,
+                    'observation_source': '서울특별시 물순환정보 공개시스템 HTML',
+                    'observation_source_url': self.seoul_extension['source_url'],
+                    'observation_snapshot_id': self.seoul_extension['id'],
+                    'observation_collected_at': self.seoul_extension['collected_at']}}
 
     def stations(self, mode='current', replay_id=None, as_of=None, region_code=None):
         legacy = self.legacy.forecasts(mode=mode, replay_id=replay_id, as_of=as_of)
         items = []
         for row in legacy['forecasts']:
+            row = self._current_seoul_observation(row, mode, replay_id, legacy['as_of'])
             code = str(row['district_code'])
             items.append({**row, 'station_id': 'seoul:' + str(row.get('station_id') or code),
                 'provider': 'seoul', 'legacy_district_code': code, 'name': row['district_name'],
@@ -118,7 +158,8 @@ class NetworkService:
                 'forecast_timing':row.get('forecast_timing'),
                 'horizon_days':row.get('horizon_days'),
                 'prediction_issued_at':row.get('issued_at'),
-                'capabilities': {'history': bool(row.get('observed_date')), 'train': True,
+                'capabilities': {'history': bool(row.get('observed_date')),
+                    'train': not row.get('data_source', {}).get('observation_display_only', False),
                     'train_experimental': False, 'predict': row.get('prediction') is not None,
                     'replay': True, 'rollback': bool(row.get('model_version'))}})
         items.extend(self._national_index(legacy['as_of']))
@@ -141,6 +182,12 @@ class NetworkService:
         if station['provider'] == 'seoul':
             value = self.legacy.history(station['legacy_district_code'], replay_id=scope.get('replay_id'))
             rows = value['history']
+            if scope.get('mode', 'current') == 'current' and not scope.get('replay_id') and station.get('data_source', {}).get('observation_display_only'):
+                extension = self._extension_rows(station['legacy_district_code'],
+                    station['station_id'].removeprefix('seoul:'), scope.get('as_of'))
+                if extension:
+                    # No historic archived prediction is attached to a different snapshot.
+                    rows = extension[-180:]
         elif station.get('operation_station_id'):
             rows = self.national.repo.observations(station['operation_station_id'], end=scope.get('as_of'))
         else:
@@ -150,12 +197,16 @@ class NetworkService:
         if scope.get('as_of'):
             rows = [r for r in rows if r['date'] <= scope['as_of']]
         rows = [{**r, 'prediction': r.get('prediction'), 'rainfall_mm': r.get('rainfall_mm'),
-                 'origin': r.get('origin', 'observed')} for r in rows]
+                 'origin': r.get('origin', r.get('source_kind', 'observed'))} for r in rows]
         candidates = next((s.get('nearest_weather_candidates', []) for s in
             _read('national_training_readiness.json', {}).get('stations', [])
             if str(s['source_station_id']) == station.get('source_station_id')), [])
         rainy_region = station.get('rainy_region')
         periods = self.national.repo.rainy_periods(region_code=rainy_region) if rainy_region and station.get('source_contract_verified') else []
+        if station.get('source_kind') == 'synthetic' and rows:
+            years = sorted({date.fromisoformat(r['date']).year for r in rows})
+            periods = [{'year':year, 'start_date':f'{year}-06-20', 'end_date':f'{year}-07-25',
+                        'source_kind':'synthetic', 'usage':'scenario_evaluation_only'} for year in years]
         weather = {'mapping_status': station.get('mapping_status', 'unapproved'),
                    'source_station_id': station.get('weather_source_station_id'),
                    'mapping_version': station.get('mapping_version'),
@@ -163,7 +214,7 @@ class NetworkService:
                    'operational_approved': bool(station.get('operational_approved')),
                    'candidates': candidates, 'rainy_region': rainy_region,
                    'rainy_period': periods or None, 'rainy_period_usage': 'evaluation_only',
-                   'note': '실험 매핑과 운영 승인은 구분합니다. 장마 통계는 평가용이며 미래 예보가 아닙니다.'}
+                   'note': ('합성 수위·강수와 고정 장마 시나리오입니다. 실제 관측·장마 통계가 아닙니다.' if station.get('source_kind') == 'synthetic' else '실험 매핑과 운영 승인은 구분합니다. 장마 통계는 평가용이며 미래 예보가 아닙니다.')}
         if station['provider'] == 'seoul':
             # Seoul rain remains the original source join; 108 is only a post-hoc
             # rainy-season context, not a replacement weather-input mapping.
@@ -187,13 +238,15 @@ class NetworkService:
             raise KeyError('관측소를 찾을 수 없습니다.')
         if station['provider'] == 'seoul':
             result = self.legacy.pipeline(station['legacy_district_code'], replay_id=scope.get('replay_id'))
+            if station.get('data_source', {}).get('observation_display_only'):
+                result = {**result, 'note': '추가 실측은 조회용입니다. 아래 모델·감시 이력은 기존 동결 자료의 이력이며 추가 실측의 평가·승격 결과가 아닙니다.'}
         elif station.get('operation_station_id'):
             result = self.national.pipeline(station['operation_station_id'])
             result = {**result, 'stages': [], 'active_jobs': [j for j in result.get('jobs', []) if j.get('status') in ('queued', 'running')], 'log': [], 'defaults': {}}
         else:
             result = {'stages': [], 'active_jobs': [], 'log': [], 'defaults': {},
                       'note': '원천 관측 조회 단계입니다. 승인된 모델과 작업 이력은 없습니다.'}
-        seasonal_path = self.national.root.parent / 'seasonal_evaluation.json' if hasattr(self.national, 'root') else None
+        seasonal_path = self.national.root.parent / ('synthetic_seasonal_evaluation.json' if station.get('source_kind') == 'synthetic' else 'seasonal_evaluation.json') if hasattr(self.national, 'root') else None
         seasonal = json.loads(seasonal_path.read_text()) if seasonal_path and seasonal_path.exists() else {}
         evaluation = next((item for item in seasonal.get('stations', []) if item['station_id'] == station.get('operation_station_id')), None)
         collection_path = self.national.root / 'observation_collection' / 'state.json' if hasattr(self.national, 'root') else None

@@ -16,6 +16,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 NAMESPACE = 'national_observed_v1'
+SYNTHETIC_NAMESPACE = 'national_synthetic_v1'
 SUMMARY_ORDER = ['rain_3d', 'rain_7d', 'rain_14d', 'wet_streak_capped_20', 'year_sin', 'year_cos']
 _LOCK = threading.RLock()
 
@@ -35,7 +36,7 @@ def _read(path):
     return json.loads(path.read_text())
 
 
-def _rows(station_id, records, length=None):
+def _rows(station_id, records, length=None, allow_synthetic=False):
     rows = [dict(r) for r in records]
     if length is not None and len(rows) != length:
         raise ValueError(f'exactly {length} consecutive daily rows required')
@@ -45,8 +46,8 @@ def _rows(station_id, records, length=None):
         date.fromisoformat(row['date'])
         if row.get('station_id', station_id) != station_id:
             raise ValueError('station identity mismatch')
-        if row.get('source_kind', 'observed') not in ('observed', 'observed_api'):
-            raise ValueError('national models require observed data')
+        if row.get('source_kind', 'observed') not in (('synthetic',) if allow_synthetic else ('observed', 'observed_api')):
+            raise ValueError('national models require explicit synthetic data' if allow_synthetic else 'national models require observed data')
         if row.get('quality_status', 'valid') != 'valid':
             raise ValueError('only valid observations may enter model input')
         for field in ('groundwater_level', 'rainfall_mm'):
@@ -61,16 +62,18 @@ def _rows(station_id, records, length=None):
     return rows
 
 
-def _metadata(station_id, metadata):
+def _metadata(station_id, metadata, allow_synthetic=False):
     metadata = dict(metadata or {})
-    if metadata.get('source_kind') not in ('observed', 'observed_api'):
-        raise ValueError('source_kind must be observed')
+    if metadata.get('source_kind') not in (('synthetic',) if allow_synthetic else ('observed', 'observed_api')):
+        raise ValueError('source_kind must be synthetic' if allow_synthetic else 'source_kind must be observed')
     if metadata.get('station_id', metadata.get('id', station_id)) != station_id:
         raise ValueError('station metadata mismatch')
     experimental = (metadata.get('source_contract_verified') is True and
-                    metadata.get('mapping_status') == 'experimental' and
+                    metadata.get('mapping_status') == ('synthetic' if allow_synthetic else 'experimental') and
                     metadata.get('operational_approved') is False and
                     bool(metadata.get('mapping_version')) and bool(metadata.get('evidence') or metadata.get('contract_evidence')))
+    if allow_synthetic and (not experimental or metadata.get('verified') is not False):
+        raise ValueError('explicit unapproved synthetic contract required')
     if (metadata.get('verified') is not True and not experimental) or not metadata.get('level_unit') or not metadata.get('level_reference'):
         raise ValueError('verified unit and level_reference required')
     return {'station_id': station_id, 'source_kind': metadata['source_kind'],
@@ -104,11 +107,11 @@ def _summary(rows, target_date):
     return [sum(rain[-3:]), sum(rain[-7:]), sum(rain[-14:]), streak, math.sin(angle), math.cos(angle)]
 
 
-def build_features(records, variant='M0', target_date=None):
+def build_features(records, variant='M0', target_date=None, allow_synthetic=False):
     """Unscaled twenty-day sequence and M1 target-time summary (no future rain)."""
     if variant not in ('M0', 'M1'):
         raise ValueError('only M0/M1 supported; M2 requires archived forecasts')
-    rows = _rows(records[0].get('station_id', '') if records else '', records, 20)
+    rows = _rows(records[0].get('station_id', '') if records else '', records, 20, allow_synthetic=allow_synthetic)
     expected = (date.fromisoformat(rows[-1]['date'])+timedelta(days=1)).isoformat()
     if target_date is not None and target_date != expected:
         raise ValueError('target must be one day after input_end_date')
@@ -124,6 +127,9 @@ class NationalTensorFlowBackend:
         import tensorflow as tf
         tf.keras.utils.set_random_seed(42)
         if initial is None:
+            tf.keras.backend.clear_session()
+            import gc
+            gc.collect()
             seq = tf.keras.Input((20, 2), name='daily_observations')
             hidden = tf.keras.layers.LSTM(32)(seq)
             inputs = [seq]
@@ -176,10 +182,20 @@ class NationalTensorFlowBackend:
 class NationalModelManager:
     namespace = NAMESPACE
 
-    def __init__(self, root, backend=None):
-        self.root = Path(root)/NAMESPACE
+    def __init__(self, root, backend=None, namespace=NAMESPACE, source_kind='observed'):
+        if (namespace,source_kind) not in ((NAMESPACE,'observed'),(SYNTHETIC_NAMESPACE,'synthetic')):
+            raise ValueError('model namespace/source contract mismatch')
+        self.namespace=namespace
+        self.source_kind=source_kind
+        self.root = Path(root)/namespace
         self.root.mkdir(parents=True, exist_ok=True)
         self.backend = backend or NationalTensorFlowBackend()
+
+    def _rows(self, station_id, records, length=None):
+        return _rows(station_id,records,length,allow_synthetic=self.source_kind=='synthetic')
+
+    def _metadata(self, station_id, metadata):
+        return _metadata(station_id,metadata,allow_synthetic=self.source_kind=='synthetic')
 
     def _station(self, station_id):
         return self.root/hashlib.sha256(station_id.encode()).hexdigest()
@@ -206,13 +222,13 @@ class NationalModelManager:
         if not isinstance(version, str) or len(version) != 32 or any(c not in '0123456789abcdef' for c in version):
             raise ValueError('invalid version')
         bundle = _read(self._station(station_id)/version/'bundle.json')
-        if bundle['station_id'] != station_id or bundle['namespace'] != NAMESPACE:
+        if bundle['station_id'] != station_id or bundle['namespace'] != self.namespace:
             raise ValueError('artifact identity mismatch')
         return bundle
 
     @staticmethod
     def _inputs(rows, bundle):
-        feature = build_features(rows, bundle['variant'])
+        feature = build_features(rows, bundle['variant'], allow_synthetic=bundle['source_kind']=='synthetic')
         scale = bundle['scaler']
         sequence = [[(v-scale['minimum'][i])/(scale['maximum'][i]-scale['minimum'][i] or 1)
                      for i, v in enumerate(pair)] for pair in feature['sequence']]
@@ -234,8 +250,8 @@ class NationalModelManager:
 
     def train(self, station_id, records, metadata=None, variant='M0', validation_targets=30,
               holdout_targets=30, max_epochs=30):
-        identity = _metadata(station_id, metadata)
-        rows = _rows(station_id, records)
+        identity = self._metadata(station_id, metadata)
+        rows = self._rows(station_id, records)
         for row in rows:
             for field in ('level_unit', 'level_reference'):
                 if row.get(field) is not None and row[field] != identity[field]:
@@ -265,7 +281,7 @@ class NationalModelManager:
         version = uuid.uuid4().hex
         directory = self._station(station_id)/version
         directory.mkdir(parents=True)
-        bundle = {**identity, 'contract_evidence': (metadata or {}).get('evidence', []), 'namespace': NAMESPACE, 'version': version, 'variant': variant,
+        bundle = {**identity, 'contract_evidence': (metadata or {}).get('evidence', []), 'namespace': self.namespace, 'version': version, 'variant': variant,
                   'kind': 'initial_train',
                   'initial_reference_version': version,
                   'feature_contract_id': f'national-{variant.lower()}-v1', 'dtype': 'float32',
@@ -324,13 +340,13 @@ class NationalModelManager:
             _write(self._station(station_id)/version/'bundle.json', bundle)
 
     def predict(self, station_id, records, metadata=None, version=None, target_date=None):
-        rows = _rows(station_id, records, 20)
+        rows = self._rows(station_id, records, 20)
         version = version or self._state(station_id)['active_version']
         if version is None:
             raise ValueError('national model not ready')
         bundle = self._bundle(station_id, version)
-        identity = _metadata(station_id, metadata)
-        bundle_identity = _metadata(station_id, bundle)
+        identity = self._metadata(station_id, metadata)
+        bundle_identity = self._metadata(station_id, bundle)
         for key in identity:
             if identity[key] != bundle_identity[key]:
                 raise ValueError(f'model metadata mismatch: {key}')
@@ -338,19 +354,19 @@ class NationalModelManager:
             for field in ('level_unit', 'level_reference'):
                 if row.get(field) is not None and row[field] != bundle[field]:
                     raise ValueError(f'observation metadata mismatch: {field}')
-        expected = build_features(rows, bundle['variant'], target_date)['target_date']
+        expected = build_features(rows, bundle['variant'], target_date, allow_synthetic=self.source_kind=='synthetic')['target_date']
         # Append a placeholder target only for index selection; it is never an input.
         prediction = self._predictions(station_id, version, rows+[{'date': expected}], [20])[0]
-        return {'station_id': station_id, 'namespace': NAMESPACE, 'model_version': version,
+        return {'station_id': station_id, 'namespace': self.namespace, 'model_version': version,
                 'feature_contract_id': bundle['feature_contract_id'], 'input_end_date': rows[-1]['date'],
                 'target_date': expected, 'predicted_level': prediction, 'level_unit': bundle['level_unit'],
                 'level_reference': bundle['level_reference'], 'variant': bundle['variant'],
                 'mapping_status': bundle_identity['mapping_status'],
                 'operational_approved': bundle_identity['operational_approved'],
-                'prediction_scope': 'operational' if bundle_identity['operational_approved'] else 'experimental'}
+                'prediction_scope': 'synthetic' if self.source_kind=='synthetic' else 'operational' if bundle_identity['operational_approved'] else 'experimental'}
 
     def evaluate(self, station_id, version, records, seasonal_labels=None, heavy_rain_threshold_mm=None):
-        rows = _rows(station_id, records)
+        rows = self._rows(station_id, records)
         bundle = self._bundle(station_id, version)
         if len(rows) < 21:
             raise ValueError('evaluation requires context plus at least one target')
@@ -369,8 +385,8 @@ class NationalModelManager:
 
     def fine_tune(self, station_id, records, metadata=None, max_epochs=10):
         """Exactly twenty context days plus twenty-one new labels, unchanged contract."""
-        rows = _rows(station_id, records, 41)
-        identity = _metadata(station_id, metadata)
+        rows = self._rows(station_id, records, 41)
+        identity = self._metadata(station_id, metadata)
         state = self._state(station_id)
         if not state['active_version']:
             raise ValueError('national model not ready')
@@ -408,14 +424,59 @@ class NationalModelManager:
         _write(directory/'bundle.json', bundle)
         return self._public(bundle)
 
+    def expire_candidate(self, station_id, version, as_of, max_wait_days=90, seasonal_labels=None):
+        """Close immutable insufficient guards or timed-out shadow evidence; never switch."""
+        if type(max_wait_days) is not int or max_wait_days<30:
+            raise ValueError('candidate timeout must be at least thirty days')
+        day=date.fromisoformat(as_of)
+        with self._mutation(station_id):
+            state=self._state(station_id)
+            bundle=self._bundle(station_id,version)
+            if state['active_version']==version:
+                return {'status':'active','expired':False,'model_version':version}
+            if bundle['status'].startswith('expired_'):
+                return {'status':bundle['status'],'expired':True,'model_version':version,
+                        'reason':bundle.get('expiration_reason'),'expired_as_of':bundle.get('expired_as_of')}
+            evaluation_path=self._station(station_id)/version/'evaluation.json'
+            evaluation=_read(evaluation_path) if evaluation_path.exists() else {}
+            if bundle['status']!='awaiting_shadow' or evaluation.get('status') in ('gate_passed','experimental_gate_passed','synthetic_gate_passed','rejected'):
+                return {'status':evaluation.get('status',bundle['status']),'expired':False,'model_version':version}
+            after=date.fromisoformat(bundle['shadow_after'])
+            if day<after:
+                raise ValueError('expiration date precedes candidate cutoff')
+            counts=None
+            reason=None
+            if bundle['variant']=='M1' and seasonal_labels is not None:
+                targets=bundle['guard_rows'][20:]
+                counts={group:sum(group in seasonal_labels.get(r['date'],[]) for r in targets)
+                        for group in ('rainy','non_rainy')}
+                counts['heavy_rain']=sum(r['rainfall_mm']>0 and r['rainfall_mm']>=bundle['heavy_rain_threshold_mm'] for r in targets)
+                if any(count<30 for count in counts.values()):
+                    reason='immutable_guard_seasonal_counts_below_30'
+            if reason:
+                status='expired_insufficient_seasonal_evidence'
+            elif (day-after).days>=max_wait_days:
+                status='expired_shadow_timeout';reason='prospective_evidence_timeout'
+            else:
+                return {'status':'awaiting_shadow','expired':False,'model_version':version,
+                        'elapsed_days':(day-after).days,'timeout_days':max_wait_days}
+            bundle.update(status=status,expired_as_of=as_of,expiration_reason=reason,
+                expiration_policy={'timeout_days':max_wait_days,'seasonal_minimum':30},
+                expiration_seasonal_counts=counts)
+            _write(self._station(station_id)/version/'bundle.json',bundle)
+            return {'status':status,'expired':True,'model_version':version,'reason':reason,
+                    'expired_as_of':as_of,'seasonal_counts':counts,'active_version':state['active_version']}
+
     def evaluate_candidate(self, station_id, version, records, seasonal_labels=None, issued_predictions=None):
         """Thirty fresh consecutive targets and frozen untouched holdout; never auto-promote."""
-        rows = _rows(station_id, records)
         bundle = self._bundle(station_id, version)
+        if bundle['status'].startswith('expired_'):
+            return {'status':bundle['status'],'reason':bundle.get('expiration_reason'),'operational_promotion_evidence':False}
+        rows = self._rows(station_id, records)
         existing = self._station(station_id)/version/'evaluation.json'
         if existing.exists():
             previous = _read(existing)
-            if previous.get('status') in ('gate_passed', 'experimental_gate_passed', 'rejected'):
+            if previous.get('status') in ('gate_passed', 'experimental_gate_passed', 'synthetic_gate_passed', 'rejected'):
                 return previous
         state = self._state(station_id)
         if not bundle.get('comparison_version') or state['active_version'] != bundle['comparison_version'] or state['generation'] != bundle['comparison_generation']:
@@ -427,13 +488,13 @@ class NationalModelManager:
         first_expected = (date.fromisoformat(bundle['shadow_after'])+timedelta(days=1)).isoformat()
         if rows[selected[0]]['date'] != first_expected:
             return {'status': 'blocked', 'reason': 'shadow_calendar_gap'}
-        prediction_scope = 'experimental' if bundle.get('operational_approved') is False else 'operational'
+        prediction_scope = 'synthetic' if self.source_kind=='synthetic' else 'experimental' if bundle.get('operational_approved') is False else 'operational'
         prospective = bool(issued_predictions)
         if prospective:
             proofs = list(issued_predictions)
             if len(proofs) < 30:
                 return {'status': 'awaiting_issued_predictions', 'count': len(proofs), 'required': 30,
-                        'evaluation_mode': 'prospective'}
+                        'evaluation_mode': 'simulated_prospective' if self.source_kind=='synthetic' else 'prospective'}
             by_date = {p['target_date']: p for p in proofs}
             if len(proofs) != 30 or len(by_date) != 30:
                 raise ValueError('exactly thirty unique issued prediction pairs required')
@@ -443,10 +504,10 @@ class NationalModelManager:
                 proof = by_date.get(row['date'], {})
                 if proof.get('prediction_scope','operational') != prediction_scope:
                     raise ValueError('issued prediction scope mismatch')
-                if prediction_scope == 'experimental':
+                if prediction_scope in ('experimental','synthetic'):
                     expected_end = (date.fromisoformat(row['date'])-timedelta(days=1)).isoformat()
                     if (proof.get('input_end_date') != expected_end or proof.get('horizon_days') != 1 or
-                        proof.get('namespace') != NAMESPACE or proof.get('mapping_version') != bundle.get('mapping_version') or
+                        proof.get('namespace') != self.namespace or proof.get('mapping_version') != bundle.get('mapping_version') or
                         proof.get('feature_contract_id') != bundle['feature_contract_id']):
                         raise ValueError('experimental issuance input contract mismatch')
                 if (proof.get('candidate_version'), proof.get('champion_version')) != (version, state['active_version']):
@@ -492,12 +553,13 @@ class NationalModelManager:
                  'guard': guard_candidate['rmse'] <= guard_champion['rmse']*1.10+1e-12,
                  'seasonal': seasonal_passed if bundle['variant'] == 'M1' else True}
         status = 'insufficient_seasonal_evidence' if bundle['variant'] == 'M1' and not enough else ('gate_passed' if all(gates.values()) else 'rejected')
-        if status == 'gate_passed' and prediction_scope == 'experimental':
-            status = 'experimental_gate_passed'
+        if status == 'gate_passed' and prediction_scope in ('experimental','synthetic'):
+            status = 'synthetic_gate_passed' if prediction_scope=='synthetic' else 'experimental_gate_passed'
         if not prospective:
             status = 'retrospective_evaluation'
         result = {'status': status, 'gates': gates, 'candidate': candidate, 'champion': champion,
-                  'evaluation_mode': 'prospective' if prospective else 'retrospective',
+                  'evaluation_mode': ('simulated_prospective' if prospective else 'retrospective_simulation') if self.source_kind=='synthetic' else ('prospective' if prospective else 'retrospective'),
+                  'simulation':self.source_kind=='synthetic',
                   'prediction_scope':prediction_scope,'operational_promotion_evidence':prediction_scope == 'operational' and prospective,
                   'guard_candidate': guard_candidate, 'guard_champion': guard_champion,
                   'seasonal': seasonal, 'comparison_version': state['active_version'],
@@ -518,6 +580,8 @@ class NationalModelManager:
             bundle = self._bundle(station_id, version)
             if bundle.get('operational_approved') is False:
                 raise ValueError('operational mapping approval required for promotion')
+            if bundle['status'].startswith('expired_'):
+                raise ValueError('expired candidate cannot be promoted')
             evaluation = _read(self._station(station_id)/version/'evaluation.json')
             champion_rmse=evaluation.get('champion',{}).get('rmse')
             candidate_rmse=evaluation.get('candidate',{}).get('rmse')

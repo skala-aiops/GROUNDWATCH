@@ -1,3 +1,6 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { createElement } from "react";
+import WaterLevelDiagram from "./WaterLevelDiagram";
 import { describe, expect, it } from "vitest";
 import { levelDiagramData } from "./WaterLevelDiagram";
 describe("diagram datum and values", () => {
@@ -48,4 +51,14 @@ describe("diagram datum and values", () => {
       }).known,
     ).toBe(false);
   });
+});
+
+it("keeps synthetic relative datum separate from physical ground or sea level", () => {
+ const d = levelDiagramData({source_kind:"synthetic",level_reference:"simulation_relative_datum",unit:"m",latest_actual_level:0,prediction:1});
+ expect(d.known).toBe(true); expect(d.simulated).toBe(true); expect(d.groundRelative).toBe(false);
+});
+
+it("labels synthetic dates and levels without observed claims in the 2D fallback", () => {
+ const html=renderToStaticMarkup(createElement(WaterLevelDiagram,{row:{source_kind:"synthetic",level_reference:"simulation_relative_datum",unit:"m",latest_actual_level:0,prediction:1,observed_date:"2026-10-07"}}));
+ expect(html).toContain("시뮬레이션 수위"); expect(html).not.toContain("실측");
 });

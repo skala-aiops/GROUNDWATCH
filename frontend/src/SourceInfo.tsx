@@ -5,7 +5,7 @@ export function sourceLabel(kind: unknown) {
     (
       {
         observed: "저장 관측 자료",
-        synthetic: "시연 자료",
+        synthetic: "합성·시뮬레이션 자료",
         observed_api: "외부 API 실측",
       } as Record<string, string>
     )[String(kind)] || "출처 확인 필요"
@@ -14,6 +14,8 @@ export function sourceLabel(kind: unknown) {
 
 export function SourceInfo({ row }: { row: Row }) {
   const s = row.data_source || {};
+  if (row.provider === "groundwatch_simulation")
+    return <details><summary>{row.station_name || row.name} · 시뮬레이션 출처</summary><p>합성 수위·강수 · 기준일 {row.observed_date || "확인 필요"} · 시뮬레이션 상대 기준면(m)</p><p>실제 관측·해발 높이·관정 시공 도면이 아닙니다. 생성 시나리오의 모델·이력을 실측과 분리하며 운영 승인으로 해석하지 않습니다.</p></details>;
   if (row.provider === "kwater")
     return (
       <details>
@@ -44,7 +46,7 @@ export function SourceInfo({ row }: { row: Row }) {
       <p>
         {sourceLabel(s.kind || row.source_kind)} · 실제 관측 종료{" "}
         {s.observed_through || "확인 필요"} · 예측 입력 종료{" "}
-        {s.input_through || "확인 필요"}
+        {s.observation_display_only ? "모델 미연결" : s.input_through || "확인 필요"}
       </p>
       <p>
         합성 입력{" "}
@@ -54,8 +56,9 @@ export function SourceInfo({ row }: { row: Row }) {
         · 자료 생성 시각 {s.generated_at || "확인 필요"}
       </p>
       <p>
-        외부 API 실측은 기본 예측 화면에 적용하지 않습니다. 입력 종료일은 실시간
-        수집을 뜻하지 않습니다.
+        {s.observation_display_only
+          ? `${s.observation_source}의 추가 실측을 조회합니다. 수집 시각 ${s.observation_collected_at || "확인 필요"}. 기존 모델의 추가 실측 평가·승격은 완료되지 않았습니다.`
+          : "외부 API 실측은 기본 예측 화면에 적용하지 않습니다. 입력 종료일은 실시간 수집을 뜻하지 않습니다."}
       </p>
     </details>
   );

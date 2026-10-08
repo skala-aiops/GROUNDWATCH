@@ -146,3 +146,18 @@ AWS 완료일 강수는 `temporal_contract=completed_calendar_day_KST_rn_day`, �
 서울 network history의 weather_context.rainy_region은 kma_asos:108이며 공식 서울 지점의 사후 장마 기간을 평가용으로 조회합니다. 기존 서울 원천 강수 날짜 결합은 유지하고 source_station_id를108로 바꾸거나 강수 입력 매핑 승인으로 해석하지 않습니다.
 
 수위·연결 강수 차트의 금색 배경은 선택 구간과 겹치는 공식 장마 기간(사후 평가용)입니다. 다른 참고 기상지점 강수에는 지하수 관측소의 장마 라벨을 임의 적용하지 않습니다.
+
+
+## 서울 추가 실측의 현재 조회 표시
+
+`/api/v2/network/stations?mode=current`와 같은 경로의 관측소 history는 기존 서울 대표 관측소에 한해 검증된 추가 실측 스냅샷을 표시합니다. API 경로와 기존 필드는 유지하며 `data_source.observation_display_only`, `observation_snapshot_id`, `observation_collected_at`을 추가합니다. 이 읽기 연결은 학습 데이터셋 등록·매핑 승인·모델 활성화·승격을 수행하지 않습니다. 서울 원천의 같은 날짜 강수를 유지하며 ASOS 강수로 대체하지 않습니다.
+
+예를 들어 2026-10-08 현재 종로구는 `observed_date=2026-09-30`, `freshness_days=8`, `quality_status=STALE_DATA`, `prediction=null`입니다. `data_source.observed_through`는 추가 실측 종료일, `input_through=null`은 해당 스냅샷이 기존 모델의 검증된 입력으로 연결되지 않았다는 뜻입니다. 기존 `dataset_version`은 기존 모델 자료 식별자이며 추가 실측 식별자는 별도 `observation_snapshot_id`입니다. history는 같은 추가 실측의 최근 최대180행이며 예측을 소급 생성하거나 과거 다른 자료의 예측을 붙이지 않습니다. 현재 추가 실측의 `capabilities.train`은 false이고 파이프라인의 기존 모델·감시 기록은 동결 자료 이력으로 안내합니다.
+
+CSV 해시·동결 원본 해시·25개 고정 관측소·단위·중복 날짜·유한 수치 검증 실패 시 추가 실측 전체를 사용하지 않습니다. 서버 시작 시 읽기 스냅샷을 검증하므로 파일 갱신 후에는 재시작이 필요합니다. `historical_replay`, 합성 자료, 재생 세션에는 추가 실측을 연결하지 않으며 `/api/v1`과 원본 CSV·관측소 manifest·모델 Registry는 그대로 유지합니다. 이 additive 읽기 계약은 현재 구현 범위이며 양 파드 합의 완료를 뜻하지 않습니다.
+
+### 전국 합성 관제 격리 계약
+
+사용자가 자료 부족 부분의 시뮬레이션 보완을 승인한 개인 브랜치 구현입니다. 기존 v1·실측 station 계약을 변경하지 않고 `/api/v2/network/stations` 목록에 `provider=groundwatch_simulation`, `source_kind=synthetic`, `station_id=sim-gims-<원천후보ID>`, `source_station_id=sim-<원천후보ID>`를 추가합니다. UI는 별도 자료 범위로 필터링합니다. 이 ID의 상세와 모델 작업은 기존 v2 경로를 사용하고, 작업·모델 namespace는 `national_synthetic_v1`입니다. 운영 승인·운영 승격은 허용하지 않습니다.
+
+`level_unit=m`, `level_reference=simulation_relative_datum`은 임의 상대 기준면입니다. `source_contract_verified=true`라도 `source_contract_scope=simulation_generator`이며 실제 원천 단위/좌표의 승인이라는 뜻이 아닙니다. `simulation_clock=true`의 일별 available_at은 가상 시계이고 실제 수집시각으로 해석하지 않습니다. history.origin=synthetic과 source_kind를 보존합니다. 합성 장마 분류는 `source_kind=synthetic`·scenario_evaluation_only이며 공식 통계와 분리합니다. 동일 후보의 실제 `kwater:<ID>` 항목을 덮어쓰지 않습니다.

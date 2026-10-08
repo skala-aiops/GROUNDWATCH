@@ -22,6 +22,15 @@ class NationalService:
         self.repo = NationalRepository(self.root / 'observations.sqlite3')
         self.store = Store(self.root / 'jobs.sqlite3')
         self.manager = manager or NationalModelManager(self.root / 'models')
+        self.synthetic_manager = None
+
+    def manager_for(self, station_id):
+        if self.station(station_id).get('source_kind') != 'synthetic':
+            return self.manager
+        if self.synthetic_manager is None:
+            self.synthetic_manager = NationalModelManager(self.root / 'models',
+                namespace='national_synthetic_v1', source_kind='synthetic')
+        return self.synthetic_manager
 
     def station(self, station_id):
         item = self.repo.station(station_id)
@@ -37,7 +46,7 @@ class NationalService:
             if end is not None and row['date'] > end:
                 continue
             valid = (row.get('quality_status', 'valid') == 'valid' and
-                     row.get('source_kind', 'observed') in ('observed', 'observed_api') and
+                     row.get('source_kind', 'observed') in (('synthetic',) if station.get('source_kind') == 'synthetic' else ('observed', 'observed_api')) and
                      all(row.get(k) == station[k] for k in ('level_unit', 'level_reference')))
             if not valid:
                 segment = []
@@ -48,6 +57,11 @@ class NationalService:
         return segment
 
     def _require_observed(self, station):
+        if (station.get('source_kind') == 'synthetic' and station.get('mapping_status') == 'synthetic'
+                and station.get('source_contract_verified') is True and station.get('operational_approved') is False
+                and station.get('mapping_version') and station.get('evidence')
+                and station.get('level_unit') and station.get('level_reference')):
+            return
         experimental = (station.get('source_contract_verified') is True and
                         station.get('mapping_status') == 'experimental' and
                         station.get('operational_approved') is False and
@@ -85,7 +99,7 @@ class NationalService:
 
     @staticmethod
     def _prediction_scope(station):
-        return 'experimental' if station.get('operational_approved') is False else 'operational'
+        return 'synthetic' if station.get('source_kind') == 'synthetic' else 'experimental' if station.get('operational_approved') is False else 'operational'
 
     @staticmethod
     def _experimental_monitoring_enabled():
@@ -107,21 +121,21 @@ class NationalService:
         return [by_date[d] for d in sorted(by_date)][:30]
 
     def pending_candidates(self, station_id):
-        models = self.manager.list_models(station_id)
+        models = self.manager_for(station_id).list_models(station_id)
         active = next((m for m in models if m.get('active')), None)
-        return [m for m in models if m.get('status') == 'awaiting_shadow' and m.get('evaluation_status') not in ('experimental_gate_passed','gate_passed','rejected') and not m.get('active') and
+        return [m for m in models if m.get('status') == 'awaiting_shadow' and m.get('evaluation_status') not in ('experimental_gate_passed','synthetic_gate_passed','gate_passed','rejected','expired_insufficient_seasonal_evidence','expired_shadow_timeout') and not m.get('active') and
                 active and m.get('comparison_version') == active['version']]
 
     def _reference(self, station_id, version):
-        bundle = self.manager._bundle(station_id, version)
+        bundle = self.manager_for(station_id)._bundle(station_id, version)
         version = bundle.get('initial_reference_version', version)
         key = hashlib.sha256(json.dumps([station_id, version]).encode()).hexdigest()
         try:
             return self.store.get('national_reference', key)['threshold']
         except KeyError:
-            bundle = self.manager._bundle(station_id, version)
+            bundle = self.manager_for(station_id)._bundle(station_id, version)
             guard = bundle['guard_rows']
-            predicted = self.manager._predictions(station_id, version, guard, list(range(20, len(guard))))
+            predicted = self.manager_for(station_id)._predictions(station_id, version, guard, list(range(20, len(guard))))
             threshold = reference_threshold([r['groundwater_level'] for r in guard[20:]], predicted)
             self.store.put('national_reference', {'station_id': station_id, 'model_version': version,
                 'threshold': threshold, 'policy': 'frozen_holdout_rolling21_p95_times1.5',
@@ -135,7 +149,7 @@ class NationalService:
         if scope == 'experimental' and not self._experimental_monitoring_enabled():
             return {'status':'experimental_monitoring_disabled','prediction_scope':scope}
         cutoff = cutoff or now()
-        models = self.manager.list_models(station_id)
+        models = self.manager_for(station_id).list_models(station_id)
         active = next((m for m in models if m.get('active')), None)
         if active is None:
             return {'status': 'model_not_ready'}
@@ -164,7 +178,7 @@ class NationalService:
                     'target_date':target, 'prediction':prediction['prediction'],
                     'actual':label['groundwater_level'], 'actual_revision_id':label['revision_id'],
                     'actual_available_at':label['available_at'], 'prediction_id':prediction['id'],
-                    'namespace':self.manager.namespace, 'source_kind':'observed','prediction_scope':scope}, label_key)
+                    'namespace':self.manager_for(station_id).namespace, 'source_kind':station['source_kind'],'prediction_scope':scope}, label_key)
             by_date.setdefault(target, archived)
         pairs = [by_date[d] for d in sorted(by_date)]
         if not pairs:
@@ -181,7 +195,8 @@ class NationalService:
                 continue
             training = self.contiguous_segment(rows, station, pair['target_date'])
             latest = evaluate_monitor(pairs, threshold, state, bool(self.pending_candidates(station_id)),
-                                      training, pair['target_date'])
+                                      training, pair['target_date'], namespace=self.manager_for(station_id).namespace,
+                                      source_kind=station.get('source_kind','observed'))
             state = latest['state']
             state['feature_contract_id'] = active['feature_contract_id']
             state['last_reason'] = latest['reason']
@@ -210,9 +225,14 @@ class NationalService:
                 station_id = station['station_id']
                 try:
                     self.monitor_station(station_id, instant.isoformat())
-                    active = next((m for m in self.manager.list_models(station_id) if m.get('active')), None)
+                    active = next((m for m in self.manager_for(station_id).list_models(station_id) if m.get('active')), None)
                     if active is None:
                         continue
+                    manager = self.manager_for(station_id)
+                    for candidate in self.pending_candidates(station_id):
+                        guard = manager._bundle(station_id, candidate['version'])['guard_rows']
+                        manager.expire_candidate(station_id, candidate['version'],instant.date().isoformat(),
+                            max_wait_days=90, seasonal_labels=self.seasonal_labels(station_id, guard))
                     candidates = self.pending_candidates(station_id)
                     actions = []
                     for candidate in candidates:
@@ -257,12 +277,12 @@ class NationalService:
                 rows = self.repo.observations(p['station_id'], end=(kst_today()-timedelta(days=1)).isoformat(), cutoff=cutoff)
                 rows = self.contiguous_segment(rows, station)
                 options = {k: p[k] for k in ('validation_targets', 'holdout_targets', 'max_epochs') if k in p}
-                result = self.manager.train(p['station_id'], rows, metadata=station,
+                result = self.manager_for(p['station_id']).train(p['station_id'], rows, metadata=station,
                                             variant=p.get('variant', 'M0'), **options)
             elif job['kind'] == 'predict':
                 end = p.get('input_end_date') or (kst_today()-timedelta(days=1)).isoformat()
                 snapshot = self.repo.snapshot(p['station_id'], end, cutoff)
-                result = self.manager.predict(p['station_id'], snapshot['rows'], metadata=station)
+                result = self.manager_for(p['station_id']).predict(p['station_id'], snapshot['rows'], metadata=station)
                 result['prediction'] = result.get('predicted_level', result.get('prediction'))
                 target = (date.fromisoformat(end)+timedelta(days=1)).isoformat()
                 result = {**result, 'station_id': p['station_id'], 'target_date': target,
@@ -270,7 +290,7 @@ class NationalService:
                           'snapshot_id': snapshot.get('sha256', snapshot.get('id')),
                           'unit': station['level_unit'], 'level_reference': station['level_reference'],
                           'source_kind': station.get('source_kind', 'observed'),
-                          'mode': 'historical_replay' if target < kst_today().isoformat() else 'live',
+                          'mode': 'simulation' if station.get('source_kind') == 'synthetic' else 'historical_replay' if target < kst_today().isoformat() else 'live',
                           'prediction_scope':self._prediction_scope(station),
                           'forecast_timing': 'historical_reconstruction' if target < kst_today().isoformat() else 'same_day_estimate'}
                 key = hashlib.sha256(json.dumps([p['station_id'], target, result.get('model_version'),
@@ -287,7 +307,7 @@ class NationalService:
                     for candidate in self.pending_candidates(p['station_id']):
                         if target <= candidate['shadow_after']:
                             continue
-                        candidate_result = self.manager.predict(p['station_id'], snapshot['rows'],
+                        candidate_result = self.manager_for(p['station_id']).predict(p['station_id'], snapshot['rows'],
                                                                 metadata=station, version=candidate['version'])
                         pair = {'station_id': p['station_id'], 'target_date': target,
                                 'candidate_version': candidate['version'], 'champion_version': result['model_version'],
@@ -296,7 +316,7 @@ class NationalService:
                                 'snapshot_id': result['snapshot_id'], 'input_end_date': end,
                                 'forecast_timing': result['forecast_timing'],'prediction_scope':result['prediction_scope'],
                                 'operational_promotion_evidence':result['prediction_scope']=='operational',
-                                'namespace':self.manager.namespace,'horizon_days':1,
+                                'namespace':self.manager_for(p['station_id']).namespace,'horizon_days':1,
                                 'feature_contract_id':candidate_result['feature_contract_id'],
                                 'mapping_version':station.get('mapping_version')}
                         pair_id = hashlib.sha256(json.dumps([p['station_id'], target, candidate['version'],
@@ -315,9 +335,9 @@ class NationalService:
                 rows = self.contiguous_segment(rows, station, end)
                 if not rows or rows[-1]['date'] != end:
                     raise ValueError('fine_tuning_data_stale')
-                result = self.manager.fine_tune(p['station_id'], rows[-41:], metadata=station)
+                result = self.manager_for(p['station_id']).fine_tune(p['station_id'], rows[-41:], metadata=station)
             elif job['kind'] == 'evaluate':
-                bundle = self.manager._bundle(p['station_id'], p['version'])
+                bundle = self.manager_for(p['station_id'])._bundle(p['station_id'], p['version'])
                 after = date.fromisoformat(bundle['shadow_after'])
                 rows = self.repo.observations(p['station_id'], start=(after-timedelta(days=19)).isoformat(),
                     end=min(after+timedelta(days=30),kst_today()-timedelta(days=1)).isoformat(), cutoff=cutoff)
@@ -325,12 +345,12 @@ class NationalService:
                 if rows and rows[0]['date'] != (after-timedelta(days=19)).isoformat():
                     raise ValueError('shadow_calendar_gap')
                 guard = bundle['guard_rows']
-                result = self.manager.evaluate_candidate(p['station_id'], p['version'], rows,
+                result = self.manager_for(p['station_id']).evaluate_candidate(p['station_id'], p['version'], rows,
                     seasonal_labels=self.seasonal_labels(p['station_id'], guard),
                     issued_predictions=self.issuance_proofs(p['station_id'], p['version'], rows))
                 if p.get('automatic') and result['status'] == 'gate_passed' and station.get('operational_approved') is not False:
-                    result['promotion'] = self.manager.promote(p['station_id'],p['version'])
-                if result['status'] in ('rejected', 'gate_passed', 'experimental_gate_passed'):
+                    result['promotion'] = self.manager_for(p['station_id']).promote(p['station_id'],p['version'])
+                if result['status'] in ('rejected', 'gate_passed', 'experimental_gate_passed', 'synthetic_gate_passed'):
                     try:
                         monitor = self.store.get('monitor', f'national:{p["station_id"]}')
                         monitor.update(last_trigger=(kst_today()-timedelta(days=1)).isoformat(),breaches=0)
@@ -338,9 +358,9 @@ class NationalService:
                     except KeyError:
                         pass
             elif job['kind'] == 'promote':
-                result = self.manager.promote(p['station_id'], p['version'])
+                result = self.manager_for(p['station_id']).promote(p['station_id'], p['version'])
             elif job['kind'] == 'rollback':
-                result = self.manager.rollback(p['station_id'], p['version'], p['reason'])
+                result = self.manager_for(p['station_id']).rollback(p['station_id'], p['version'], p['reason'])
             else:
                 raise ValueError('지원하지 않는 전국 작업입니다.')
             self.store.finish(job['id'], result=result)
@@ -356,7 +376,7 @@ class NationalService:
         except KeyError:
             monitor = {'status':'no_labelled_prediction'}
         return {'station': station, 'readiness': self.repo.readiness(station_id),
-                'models': self.manager.list_models(station_id),
+                'models': self.manager_for(station_id).list_models(station_id),
                 'jobs': [j for j in self.store.jobs() if j['payload']['station_id'] == station_id],
                 'predictions': self.forecasts(station_id),
                 'monitor':monitor,
@@ -364,6 +384,7 @@ class NationalService:
                     'experimental_enabled':self._experimental_monitoring_enabled(),
                     'window_days':21,'consecutive_breaches':2,'cooldown_days':21,
                     'fine_tuning_days':41,'candidate_shadow_days':30,
-                    'operational_promotion_allowed':station.get('operational_approved') is not False},
+                    'operational_promotion_allowed':station.get('operational_approved') is not False,
+                    'candidate_timeout_days':90},
                 'limitations': ['M2 예보 입력과 호우특보 자동 수집은 아직 활성화되지 않았습니다.',
                                 '과거 자료 재현과 실제 발행 예측은 구분합니다.']}

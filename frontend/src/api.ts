@@ -7,6 +7,7 @@ export const fmt = (v: unknown, digits = 3) =>
 export const labels: Record<string, string> = {
   normal: "예측 준비",
   observations_available: "실측 자료 확보",
+  synthetic_available: "시뮬레이션 자료 확보",
   experimental: "실험 연결",
   seoul_source_date_join: "서울 원천 날짜 결합",
   unapproved: "매핑 미승인",
@@ -204,9 +205,12 @@ export function confirmedUnit(value: unknown) {
 
 export function serviceStations(rows: Row[], scope: string): Row[] {
   return rows.filter((r) =>
-    scope === "seoul-history"
-      ? r.provider === "seoul" && !!r.partitions
-      : r.source_contract_verified === true &&
+    scope === "simulation"
+      ? r.provider === "groundwatch_simulation" && r.source_kind === "synthetic"
+      : scope === "seoul-history"
+      ? r.provider === "seoul"
+      : r.source_kind !== "synthetic" && r.provider !== "groundwatch_simulation" &&
+        r.source_contract_verified === true &&
         r.data_status === "observations_available" &&
         !!r.observed_date &&
         number(r.latest_actual_level),
@@ -232,4 +236,17 @@ export function predictionLabel(row: Row): string {
   if (row.forecast_timing === "same_day_estimate") return "당일 수위 추정";
   if (row.legacy_district_code) return "다음 날 수위 예측";
   return "저장된 수위 추정";
+}
+
+export function measurementLabel(row: Row): string {
+  return row.source_kind === "synthetic" || row.provider === "groundwatch_simulation" ? "시뮬레이션 수위" : "최근 실측 수위";
+}
+
+export function stationDataStatus(row: Row): string {
+  if (row.source_kind === "synthetic" || row.provider === "groundwatch_simulation") return "synthetic_available";
+  return row.quality_status || row.data_status || "data_required";
+}
+
+export function selectedNetworkStationId(rows: Row[], selected: string): string | null {
+ return rows.some(row => row.station_id === selected) ? selected : null;
 }

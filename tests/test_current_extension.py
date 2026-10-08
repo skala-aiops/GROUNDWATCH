@@ -45,6 +45,20 @@ class CurrentExtensionTests(unittest.TestCase):
                 self.assertLess(parts['test'][-1].target_date,parts['replay'][0].target_date)
             self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),before)
 
+    def test_verified_refresh_is_preserved_before_synthetic_tail(self):
+        root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as directory:
+            path, mapping = build_extension(root/'data/groundwater_observations.csv',
+                root/'data/representatives.json', directory, date(2026,10,8),
+                observed_extension_dir=root/'data')
+            extended = load_canonical(path,mapping)
+            self.assertTrue(extended.manifest['provenance']['additional_observation_snapshot_id'])
+            for station in extended.manifest['stations']:
+                rows = extended.rows_for_district(station['district_code'])
+                self.assertEqual(max(r['date'] for r in rows if r['origin']=='observed'), '2026-09-30')
+                self.assertEqual(min(r['date'] for r in rows if r['origin']=='synthetic'), '2026-10-01')
+            self.assertEqual(extended.manifest['source_kind'],'synthetic')
+
     def test_future_generation_is_rejected(self):
         with self.assertRaises(ValueError):
             build_extension('unused','unused','unused',date.today()+timedelta(days=2))

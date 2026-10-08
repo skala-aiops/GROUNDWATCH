@@ -125,8 +125,11 @@ class NationalRepository:
                 **dict(counts)}
 
     def _validated_observation(self, station_id, item):
-        self.station(station_id)
+        station = self.station(station_id)
         item = dict(item)
+        item.setdefault('source_kind', station['source_kind'])
+        if item['source_kind'] not in (('synthetic',) if station['source_kind']=='synthetic' else ('observed','observed_api')):
+            raise ValueError('source_kind_mismatch')
         _text(item, ('date','level_unit','level_reference','revision_id','source_sha256'))
         _day(item['date'])
         for key in ('available_at','collected_at'):
@@ -206,7 +209,7 @@ class NationalRepository:
     def snapshot(self, station_id, input_end_date, cutoff):
         station = self.station(station_id)
         experimental = (station.get('source_contract_verified') is True and
-                        station.get('mapping_status') == 'experimental' and
+                        station.get('mapping_status') in ('experimental', 'synthetic') and
                         station.get('operational_approved') is False and
                         bool(station.get('mapping_version')) and bool(station.get('evidence')))
         if not station['verified'] and not experimental:
@@ -219,6 +222,9 @@ class NationalRepository:
                 (start+timedelta(days=n)).isoformat() for n in range(20)]:
             raise ValueError('incomplete_consecutive_input')
         for row in rows:
+            expected = ('synthetic',) if station['source_kind'] == 'synthetic' else ('observed','observed_api')
+            if row.get('source_kind','observed') not in expected:
+                raise ValueError('source_kind_mismatch')
             if row['quality_status'] != 'valid':
                 raise ValueError('invalid_quality')
             if any(row[k] != station[k] for k in ('level_unit','level_reference')):

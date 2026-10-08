@@ -1,4 +1,4 @@
-import { fmt, number, predictionLabel, type Row } from "./api";
+import { fmt, number, predictionLabel, measurementLabel, type Row } from "./api";
 
 export function levelDiagramData(row: Row) {
   const actual = number(row.latest_actual_level)
@@ -13,13 +13,15 @@ export function levelDiagramData(row: Row) {
     .includes("gl");
   const elevation =
     reference === "elevation" && (row.unit || row.level_unit) === "m";
-  const known = groundRelative || elevation;
+  const simulated = row.source_kind === "synthetic" && row.level_reference === "simulation_relative_datum" && (row.unit || row.level_unit) === "m";
+  const known = groundRelative || elevation || simulated;
   const values = [actual, prediction].filter(number) as number[];
   if (groundRelative) values.push(0);
   const min = Math.min(...values),
     max = Math.max(...values);
   const pad = values.length ? Math.max((max - min) * 0.25, 0.1) : 1;
   return {
+    simulated,
     actual,
     prediction,
     known,
@@ -36,7 +38,7 @@ export default function WaterLevelDiagram({ row }: { row: Row }) {
   return (
     <div className="water-level-diagram">
       <p className="footnote">
-        {d.groundRelative
+        {d.simulated ? "시뮬레이션 상대 기준면(m) · 실제 해발·지표 기준이 아닙니다." : d.groundRelative
           ? "지표 기준(GL) · 지표 0m"
           : d.known
             ? "원천 해발 수위 기준 · 지표 높이는 표시하지 않습니다."
@@ -91,7 +93,7 @@ export default function WaterLevelDiagram({ row }: { row: Row }) {
                 fill="#78ddbf"
                 fontSize="12"
               >
-                최근 실측 {fmt(d.actual)}
+                {measurementLabel(row)} {fmt(d.actual)}
               </text>
             </g>
           )}
@@ -125,7 +127,7 @@ export default function WaterLevelDiagram({ row }: { row: Row }) {
         </div>
       )}
       <p className="footnote">
-        실측 {row.observed_date || "날짜 미확인"} · {forecast}{" "}
+        {measurementLabel(row)} {row.observed_date || "날짜 미확인"} · {forecast}{" "}
         {row.forecast_date || "날짜 미확인"}. 세로축은 두 값의 차이를 보여주는
         표시 축척입니다.
       </p>

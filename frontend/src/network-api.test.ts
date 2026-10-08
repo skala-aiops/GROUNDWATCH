@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   predictionLabel,
+  selectedNetworkStationId,
   confirmedUnit,
   initialStationId,
   post,
@@ -102,4 +103,14 @@ describe("prediction issuance timing labels", () => {
       "저장된 수위 추정",
     );
   });
+});
+
+it("waits for an exact listed network station before requesting station endpoints", () => {
+ const rows=[{station_id:"seoul:SU-JNO",legacy_district_code:"11110"},{station_id:"sim-gims-11"}];
+ expect(selectedNetworkStationId([],"11110")).toBeNull();
+ expect(selectedNetworkStationId(rows,"11110")).toBeNull();
+ expect(initialStationId(rows,"11110")).toBe("seoul:SU-JNO");
+ expect(selectedNetworkStationId(rows,initialStationId(rows,"11110"))).toBe("seoul:SU-JNO");
+ expect(selectedNetworkStationId(rows,"sim-gims-11")).toBe("sim-gims-11");
+ expect(selectedNetworkStationId(rows,"unknown")).toBeNull();
 });

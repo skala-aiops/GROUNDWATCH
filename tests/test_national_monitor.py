@@ -104,3 +104,16 @@ def test_experimental_scope_isolated_from_operational_errors_and_state():
         run(41,pairs=observed)
     with pytest.raises(ValueError,match='scope'):
         run(41,state=result['state'])
+
+
+def test_explicit_synthetic_monitor_is_isolated_and_runs_same_policy():
+    simulated_pairs=[{**p,'namespace':'national_synthetic_v1','source_kind':'synthetic','prediction_scope':'synthetic'} for p in pairs()]
+    inputs=[{**r,'source_kind':'synthetic'} for r in records()]
+    options={'namespace':'national_synthetic_v1','source_kind':'synthetic','latest_input_rows':inputs}
+    first=evaluate_monitor(simulated_pairs,1.,as_of=records()[40]['date'],**options)
+    second=evaluate_monitor(simulated_pairs,1.,state=first['state'],as_of=records()[41]['date'],**options)
+    assert second['trigger'] is True
+    assert second['state']['namespace']=='national_synthetic_v1'
+    assert second['state']['prediction_scope']=='synthetic'
+    with pytest.raises(ValueError,match='observed'):
+        evaluate_monitor(simulated_pairs,1.,as_of=records()[41]['date'])

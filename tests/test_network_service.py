@@ -157,3 +157,19 @@ class NetworkTests(unittest.TestCase):
         self.assertEqual(item['horizon_days'],1)
         self.assertEqual(item['model_version'],'v2')
         self.assertTrue(item['model_ready'])
+
+    def test_simulation_is_separate_station_and_preserves_origin(self):
+        self.registry.append({'station_id':'sim-gims-1','source_station_id':'sim-1',
+            'region_code':'경기도','verified':False,'source_kind':'synthetic',
+            'namespace':'national_synthetic_v1','source_contract_verified':True,
+            'mapping_status':'synthetic','operational_approved':False,
+            'level_unit':'m','level_reference':'simulation_relative_datum'})
+        self.national.repo.observations=lambda *a,**kw: [{'date':'2026-01-02',
+            'groundwater_level':2.,'rainfall_mm':1.,'source_kind':'synthetic'}]
+        items=self.service.stations()['stations']
+        simulated=next(s for s in items if s['station_id']=='sim-gims-1')
+        self.assertEqual(simulated['provider'],'groundwatch_simulation')
+        self.assertFalse(simulated['training_approved'])
+        self.assertTrue(simulated['capabilities']['train_experimental'])
+        self.assertEqual(self.service.history('sim-gims-1')['history'][0]['origin'],'synthetic')
+        self.assertTrue(any(s['station_id']=='kwater:1' for s in items))

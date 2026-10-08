@@ -35,7 +35,7 @@ def reference_threshold(actual, predicted):
 
 
 def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
-                     latest_input_rows=None, as_of=None):
+                     latest_input_rows=None, as_of=None, namespace=NAMESPACE, source_kind='observed'):
     """Evaluate one completed target date, preserving idempotency and cooldown.
 
     Pairs require target_date, model_version, station_id, prediction and actual.
@@ -43,6 +43,8 @@ def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
     completed observation date, not the scheduler's wall clock. Missing days
     reset the two-day breach run. First detection has no extra cooldown.
     """
+    if (namespace,source_kind) not in ((NAMESPACE,'observed'),('national_synthetic_v1','synthetic')):
+        raise ValueError('monitor namespace/source contract mismatch')
     threshold = _finite(threshold, 'threshold')
     if threshold <= 0:
         raise ValueError('threshold must be positive')
@@ -51,7 +53,7 @@ def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
     for item in pairs:
         item = dict(item)
         date.fromisoformat(item['target_date'])
-        if item.get('namespace', NAMESPACE) != NAMESPACE or item.get('source_kind', 'observed') not in ('observed', 'observed_api'):
+        if item.get('namespace', namespace) != namespace or item.get('source_kind', 'observed') not in (('synthetic',) if source_kind=='synthetic' else ('observed','observed_api')):
             raise ValueError('national monitoring requires observed namespace')
         if item.get('quality_status', 'valid') != 'valid':
             raise ValueError('monitor pairs must have valid observations')
@@ -68,7 +70,7 @@ def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
     day = date.fromisoformat(as_of)
     records = [p for p in records if p['target_date'] <= as_of]
     scopes = {p.get('prediction_scope','operational') for p in records}
-    if len(scopes)>1 or any(scope not in ('operational','experimental') for scope in scopes):
+    if len(scopes)>1 or any(scope not in (('synthetic',) if source_kind=='synthetic' else ('operational','experimental')) for scope in scopes):
         raise ValueError('monitor prediction scope mismatch')
     scope=next(iter(scopes),'operational')
     if current.get('prediction_scope',scope) != scope:
@@ -85,12 +87,12 @@ def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
     station_id, version = today[0]['station_id'], today[0]['model_version']
     if current.get('station_id') not in (None, station_id):
         raise ValueError('monitor state station mismatch')
-    if current.get('namespace', NAMESPACE) != NAMESPACE:
+    if current.get('namespace', namespace) != namespace:
         raise ValueError('monitor state namespace mismatch')
     changed = current.get('version') is not None and str(current['version']) != version
     if changed:
         current.update(breaches=0, last_processed_target_date=None, last_trigger=as_of, rmse=None)
-    current.update(station_id=station_id, namespace=NAMESPACE, version=version, threshold=threshold)
+    current.update(station_id=station_id, namespace=namespace, version=version, threshold=threshold)
     previous = current.get('last_processed_target_date')
     if previous and as_of <= previous:
         return {'state': current, 'trigger': False, 'reason': 'already_processed', 'rmse': current.get('rmse')}
@@ -122,7 +124,7 @@ def evaluate_monitor(pairs, threshold, state=None, candidate_pending=False,
     if len(input_rows) < 41:
         return result('insufficient_fine_tuning_rows')
     try:
-        training = _rows(station_id, input_rows[-41:], 41)
+        training = _rows(station_id, input_rows[-41:], 41, allow_synthetic=source_kind=='synthetic')
     except (ValueError, TypeError, KeyError):
         return result('invalid_fine_tuning_rows')
     if training[-1]['date'] != as_of:

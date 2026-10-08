@@ -1,0 +1,38 @@
+{
+  "seoul": {
+    "stations": 25,
+    "additional_rows": 22582,
+    "latest_observed_date": "2026-09-30",
+    "application_scope": "current_observation_display_only",
+    "model_training_performed": false
+  },
+  "national_history": {
+    "stations": 3,
+    "period": "2020-01-01/2025-12-31",
+    "valid_rows": 6450
+  },
+  "national_region_probe": {
+    "regions": 17,
+    "successful_metadata_responses": 17,
+    "base_name_matches": 17,
+    "observation_rows_per_station": 31,
+    "mapping_approved": false
+  },
+  "asos_history": {
+    "stations": [
+      203,
+      165,
+      188
+    ],
+    "accepted": 2729,
+    "quarantined": 3847,
+    "no_zero_fill": true,
+    "training_ready": false
+  },
+  "asos_hub_period_probe": {
+    "http_status": 200,
+    "application_completed": true,
+    "same_key_used": true,
+    "initial_http_status": 403
+  }
+}

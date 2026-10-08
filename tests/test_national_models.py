@@ -238,3 +238,92 @@ def test_zero_error_tie_fails_future_improvement(tmp_path):
     (service._station('kwater:one')/candidate['version']/'evaluation.json').write_text(json.dumps(result))
     with pytest.raises(ValueError,match='quality gates'):
         service.promote('kwater:one',candidate['version'])
+
+
+def synthetic_metadata():
+    return metadata(source_kind='synthetic',verified=False,source_contract_verified=True,
+        mapping_status='synthetic',operational_approved=False,mapping_version='synthetic-v1',evidence=['synthetic fixture'])
+
+
+def test_synthetic_manager_requires_explicit_namespace_and_keeps_artifacts_isolated(tmp_path):
+    synthetic=[{**r,'source_kind':'synthetic'} for r in rows()]
+    simulated=NationalModelManager(tmp_path,LearnedDeltaBackend(),namespace='national_synthetic_v1',source_kind='synthetic')
+    trained=simulated.train('kwater:one',synthetic,synthetic_metadata())
+    assert trained['namespace']=='national_synthetic_v1'
+    assert trained['source_kind']=='synthetic'
+    predicted=simulated.predict('kwater:one',synthetic[-20:],synthetic_metadata())
+    assert predicted['prediction_scope']=='synthetic'
+    assert manager(tmp_path).list_models('kwater:one')==[]
+    with pytest.raises(ValueError,match='observed'):
+        manager(tmp_path).train('kwater:one',synthetic,synthetic_metadata())
+    with pytest.raises(ValueError,match='synthetic'):
+        simulated.train('kwater:one',rows(),synthetic_metadata())
+    with pytest.raises(ValueError,match='namespace'):
+        NationalModelManager(tmp_path,namespace='national_observed_v1',source_kind='synthetic')
+
+
+def test_candidate_immutable_seasonal_shortage_expires_without_switching(tmp_path):
+    service=manager(tmp_path)
+    initial=service.train('kwater:one',rows(),metadata())
+    candidate=service.train('kwater:one',rows(),metadata(),variant='M1')
+    result=service.expire_candidate('kwater:one',candidate['version'],candidate['shadow_after'],seasonal_labels={})
+    assert result['status']=='expired_insufficient_seasonal_evidence'
+    assert result['expired'] is True
+    assert result['seasonal_counts']['rainy']==0
+    assert service._state('kwater:one')['active_version']==initial['version']
+    assert service.evaluate_candidate('kwater:one',candidate['version'],[])['status']==result['status']
+    assert service.expire_candidate('kwater:one',candidate['version'],candidate['shadow_after'])['status']==result['status']
+    with pytest.raises(ValueError,match='expired'):
+        service.promote('kwater:one',candidate['version'])
+    assert next(m for m in service.list_models('kwater:one') if m['version']==candidate['version'])['status']==result['status']
+
+
+def test_shadow_timeout_is_terminal_and_does_not_expire_active_model(tmp_path):
+    service=manager(tmp_path)
+    initial=service.train('kwater:one',rows(),metadata())
+    candidate=service.train('kwater:one',rows(),metadata())
+    after=date.fromisoformat(candidate['shadow_after'])
+    assert service.expire_candidate('kwater:one',candidate['version'],(after+timedelta(days=89)).isoformat())['expired'] is False
+    assert service.expire_candidate('kwater:one',candidate['version'],(after+timedelta(days=90)).isoformat())['status']=='expired_shadow_timeout'
+    assert service.expire_candidate('kwater:one',initial['version'],(after+timedelta(days=100)).isoformat())['status']=='active'
+    assert service._state('kwater:one')['active_version']==initial['version']
+
+
+def test_sufficient_frozen_seasonal_counts_do_not_expire_before_timeout(tmp_path):
+    service=manager(tmp_path)
+    observed=[{**r,'rainfall_mm':1.} for r in rows(240)]
+    service.train('kwater:one',observed,metadata(),holdout_targets=90)
+    candidate=service.train('kwater:one',observed,metadata(),variant='M1',holdout_targets=90)
+    guard=service._bundle('kwater:one',candidate['version'])['guard_rows'][20:]
+    labels={r['date']:['rainy' if i<30 else 'non_rainy'] for i,r in enumerate(guard)}
+    result=service.expire_candidate('kwater:one',candidate['version'],candidate['shadow_after'],seasonal_labels=labels)
+    assert result['expired'] is False
+    assert result['status']=='awaiting_shadow'
+
+
+def test_synthetic_shadow_quality_pass_is_explicitly_simulated_and_not_operational(tmp_path):
+    class ImprovingBackend(LearnedDeltaBackend):
+        def __init__(self):self.count=0
+        def train(self,*args,**kwargs):
+            self.count+=1
+            learned=super().train(*args,**kwargs)
+            return {'delta':0.} if self.count==1 else learned
+    service=NationalModelManager(tmp_path,ImprovingBackend(),namespace='national_synthetic_v1',source_kind='synthetic')
+    observed=[{**r,'source_kind':'synthetic'} for r in rows()]
+    initial=service.train('kwater:one',observed,synthetic_metadata())
+    candidate=service.train('kwater:one',observed,synthetic_metadata())
+    future=[{**r,'source_kind':'synthetic','available_at':r['date']+'T23:59:00+09:00'} for r in rows(190)]
+    proofs=[{'target_date':r['date'],'candidate_version':candidate['version'],
+        'champion_version':initial['version'],'snapshot_id':'synthetic-clock-'+r['date'],
+        'issued_at':r['date']+'T11:30:00+09:00','input_end_date':future[i-1]['date'],
+        'candidate_prediction':r['groundwater_level'],'champion_prediction':future[i-1]['groundwater_level'],
+        'namespace':'national_synthetic_v1','horizon_days':1,'prediction_scope':'synthetic',
+        'mapping_version':synthetic_metadata()['mapping_version'],'feature_contract_id':candidate['feature_contract_id']}
+        for i,r in enumerate(future) if i>=160]
+    result=service.evaluate_candidate('kwater:one',candidate['version'],future,issued_predictions=proofs)
+    assert result['status']=='synthetic_gate_passed'
+    assert result['evaluation_mode']=='simulated_prospective'
+    assert result['simulation'] is True
+    assert result['operational_promotion_evidence'] is False
+    with pytest.raises(ValueError,match='operational'):
+        service.promote('kwater:one',candidate['version'])

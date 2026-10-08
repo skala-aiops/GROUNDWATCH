@@ -218,6 +218,7 @@ export default function NationalRainScene({
   groundSelected = "",
   onGroundSelect = () => {},
   groundwaterOnly = false,
+  simulation = false,
 }: {
   stations: RainStation[];
   selected: string;
@@ -227,6 +228,7 @@ export default function NationalRainScene({
   groundSelected?: string;
   onGroundSelect?: (id: string) => void;
   groundwaterOnly?: boolean;
+  simulation?: boolean;
 }) {
   const markerPortal = useRef<HTMLDivElement>(null!);
   const actualMax = Math.max(
@@ -309,7 +311,7 @@ export default function NationalRainScene({
         </Canvas>
         <div className="national-map-note">
           {groundwaterOnly
-            ? "실측 이력이 있는 관측소만 표시 · 이름을 누르면 선택"
+            ? simulation ? "합성 시뮬레이션 관측소 · 실제 관측 위치·수위가 아님" : "실측 이력이 있는 관측소만 표시 · 이름을 누르면 선택"
             : `일강수 실측 · ${actualMax > 0 ? "기둥 높이 0–" + actualMax.toFixed(1) + "mm" : "양의 강수 관측값 없음"}`}
           <br />
           회전·확대 가능 · 강수 0mm·결측 지점은 기둥 생략
@@ -322,7 +324,7 @@ export default function NationalRainScene({
           )}
           <span className="gold">● 선택 지점</span>
           {!!groundStations.length && (
-            <span style={{ color: "#80a7e6" }}>● 실측 관측소</span>
+            <span style={{ color: "#80a7e6" }}>{simulation ? "● 시뮬레이션 관측소" : "● 실측 관측소"}</span>
           )}
         </div>
       </div>

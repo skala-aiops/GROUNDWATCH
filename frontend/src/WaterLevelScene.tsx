@@ -2,7 +2,7 @@ import { Component, type ReactNode } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Line, OrbitControls } from "@react-three/drei";
 import WaterLevelDiagram, { levelDiagramData } from "./WaterLevelDiagram";
-import { fmt, number, predictionLabel, type Row } from "./api";
+import { fmt, number, predictionLabel, measurementLabel, type Row } from "./api";
 
 class Boundary extends Component<
   { row: Row; children: ReactNode },
@@ -27,7 +27,7 @@ export default function WaterLevelScene({ row }: { row: Row }) {
   const y = (value: number) =>
     -1.4 + ((value - d.low) / (d.high - d.low)) * 2.8;
   const forecast = predictionLabel(row);
-  const label = `${row.station_name || row.name} · 최근 실측 ${fmt(d.actual)} ${row.unit || "m"} · ${forecast} ${fmt(d.prediction)} ${row.unit || "m"}`;
+  const label = `${row.station_name || row.name} · ${measurementLabel(row)} ${fmt(d.actual)} ${row.unit || "m"} · ${forecast} ${fmt(d.prediction)} ${row.unit || "m"}`;
   return (
     <Boundary row={row}>
       <div className="water-level-three">
@@ -121,18 +121,18 @@ export default function WaterLevelScene({ row }: { row: Row }) {
         </div>
         <div className="water-level-three-values">
           <span>
-            ● 최근 실측 {fmt(d.actual)} {row.unit}
+            ● {measurementLabel(row)} {fmt(d.actual)} {row.unit}
           </span>
           <span>
             {forecast} {fmt(d.prediction)} {row.unit}
           </span>
         </div>
         <p className="footnote">
-          실측 {row.observed_date || "날짜 미확인"} · 비교 대상{" "}
+          {measurementLabel(row)} {row.observed_date || "날짜 미확인"} · 비교 대상{" "}
           {row.forecast_date || "날짜 미확인"}. 드래그 회전 · 스크롤 확대.
         </p>
         <p className="footnote">
-          {d.groundRelative ? "지표 기준(GL)" : "원천 해발 수위 기준"} ·
+          {d.simulated ? "시뮬레이션 상대 기준면 · 실제 해발·지표 아님" : d.groundRelative ? "지표 기준(GL)" : "원천 해발 수위 기준"} ·
           세로축은 표시용 축척이며 위·중간·아래 경계값을 표시합니다. 두 면은
           같은 관측소의 값 비교용입니다.
         </p>

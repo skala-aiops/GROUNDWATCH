@@ -119,6 +119,9 @@ class TensorFlowBackend:
         import tensorflow as tf
         tf.keras.utils.set_random_seed(42)
         if initial is None:
+            tf.keras.backend.clear_session()
+            import gc
+            gc.collect()
             if architecture == 'absolute_lstm':
                 model = tf.keras.Sequential([
                     tf.keras.layers.Input(shape=(20, 2)),
