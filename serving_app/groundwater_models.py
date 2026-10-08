@@ -520,10 +520,68 @@ class ModelManager:
             return version
 
     def promote(self, code, version):
+        """Activate only a quality-validated initial model or shadow candidate."""
+        with self._lock(code):
+            _, bundle, version = self._loaded(code, str(version))
+            current = self.current_version(code)
+            if bundle.get('kind') == 'initial':
+                scores = bundle.get('metrics', {})
+                validation = scores.get('validation', {}).get('rmse')
+                persistence = scores.get('validation_persistence', {}).get('rmse')
+                if not self._valid_rmse(validation) or not self._valid_rmse(persistence) or validation > persistence * 1.10 + 1e-12:
+                    raise ModelNotReady('initial quality gate was not passed')
+            elif bundle.get('kind') == 'fine_tune':
+                evaluation = self._state(code)['versions'][version].get('shadow_result', {})
+                self._validate_shadow_gate(bundle, version, evaluation)
+                if current == version and evaluation['status'] == 'promoted':
+                    return {'status': 'promoted', 'model_version': version,
+                            'previous_version': evaluation['previous_version']}
+                if current != bundle['parent_version']:
+                    raise ModelNotReady('champion_changed')
+            else:
+                raise ModelNotReady('unknown model quality policy')
+            return self._activate(code, version, current)
+
+    @staticmethod
+    def _valid_rmse(value):
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value >= 0
+
+    def _validate_shadow_gate(self, bundle, version, evaluation):
+        """Recheck persisted evidence rather than trusting a caller's pass flag."""
+        scores = evaluation.get('metrics', {})
+        candidate = scores.get('shadow_candidate', {})
+        champion = scores.get('shadow_champion', {})
+        guard = scores.get('historical_guard', {})
+        reference = bundle.get('metrics', {}).get('validation', {}).get('rmse')
+        values = (candidate.get('rmse'), champion.get('rmse'), guard.get('rmse'), reference)
+        try:
+            start, end = date.fromisoformat(evaluation['shadow_start']), date.fromisoformat(evaluation['shadow_end'])
+            dates_valid = start > date.fromisoformat(bundle['shadow_after']) and (end-start).days == 29
+        except (KeyError, TypeError, ValueError):
+            dates_valid = False
+        if not (
+            evaluation.get('status') in ('gate_passed', 'promoted')
+            and evaluation.get('gate_passed') is True
+            and evaluation.get('candidate_version') == version
+            and evaluation.get('previous_version') == bundle['parent_version']
+            and candidate.get('count') == champion.get('count') == 30
+            and isinstance(guard.get('count'), int) and guard['count'] > 0
+            and dates_valid and all(self._valid_rmse(value) for value in values)
+            and candidate['rmse'] <= champion['rmse'] * .95
+            and guard['rmse'] <= reference * 1.10 + 1e-12
+        ):
+            raise ModelNotReady('shadow quality gate was not passed')
+
+    def _activate(self, code, version, expected_current):
+        """Shared switch for validated promotion and explicit history-based rollback."""
         with self._lock(code):
             model, bundle, version = self._loaded(code, str(version))
             self._predict(model, bundle, validate_rows(bundle['smoke_rows'], 20))
             name, old = self._name(code), self.backend.alias(self._name(code))
+            if old != expected_current:
+                raise ModelNotReady('champion_changed')
+            if old == version:
+                return {'status': 'promoted', 'model_version': version, 'previous_version': old}
             old_cache = self._cache.get(code)
             state = self._state(code)
             try:
@@ -531,6 +589,9 @@ class ModelManager:
                 self._cache[code] = (version, model, bundle)
                 state['champion'] = version
                 state['history'].append({'from': old, 'to': version, 'promoted_at':datetime.now(timezone.utc).isoformat()})
+                evaluation = state['versions'][version].get('shadow_result', {})
+                if evaluation.get('status') == 'gate_passed':
+                    evaluation.update(status='promoted', model_version=version, previous_version=old)
                 self._save(code, state)
             except Exception:
                 self.backend.set_alias(name, old)
@@ -562,6 +623,7 @@ class ModelManager:
                       'fine_tuning_rows_count': 41,
                       'learning_rate': .0001,
                       'smoke_rows': rows[-20:], 'scaler': bundle['scaler']}
+        new_bundle.pop('shadow_result', None)
         version = self._register(district_code, candidate, new_bundle)
         return {'status': 'awaiting_shadow', 'candidate_version': version, 'model_version': champion,
                 'trained_through': rows[-1]['date'], 'required_shadow_targets': 30}
@@ -609,16 +671,19 @@ class ModelManager:
         self._check_namespace(namespace)
         rows = validate_rows(records)
         candidate, bundle, version = self._loaded(district_code, str(candidate_version))
+        if bundle.get('kind') != 'fine_tune':
+            raise ModelNotReady('shadow evaluation requires a fine-tuned candidate')
+        with self._lock(district_code):
+            previous = self._state(district_code)['versions'][version].get('shadow_result', {})
+            if previous.get('status') in ('promoted', 'rejected'):
+                return previous
         self._identity(district_code, rows, bundle)
         eligible = [i for i in range(20, len(rows)) if rows[i]['date'] > bundle['shadow_after']]
         if len(eligible) < 30:
             return {'status': 'pending', 'count': len(eligible), 'required': 30}
         champion, old_bundle, current = self._loaded(district_code)
         if current != bundle['parent_version']:
-            result = {'status':'rejected','reason':'champion_changed','candidate_version':version}
-            if hasattr(self.backend,'record_evaluation'):
-                self.backend.record_evaluation(self._name(district_code),version,result)
-            return result
+            return self.reject_candidate(district_code, version, 'champion_changed')
         selected = eligible[:30]
         actual = [rows[i]['groundwater_level'] for i in selected]
         candidate_values = [self._predict(candidate, bundle, rows[i-20:i]) for i in selected]
@@ -628,7 +693,7 @@ class ModelManager:
         guard_actual = [r['groundwater_level'] for r in guard[20:]]
         guard_score = metrics(guard_actual, [self._predict(candidate, bundle, guard[i-20:i]) for i in range(20, len(guard))])
         passed = candidate_score['rmse'] <= champion_score['rmse'] * .95 and guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12
-        result = {'status': 'rejected', 'candidate_version': version, 'gate_passed': passed,
+        result = {'status': 'gate_passed' if passed else 'rejected', 'candidate_version': version, 'gate_passed': passed,
                   'gates': {'future_improvement': {
                       'passed': candidate_score['rmse'] <= champion_score['rmse'] * .95,
                       'rmse': candidate_score['rmse'], 'limit': champion_score['rmse'] * .95},
@@ -638,28 +703,43 @@ class ModelManager:
                           'limit': old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12}},
                   'metrics': {'shadow_candidate': candidate_score, 'shadow_champion': champion_score, 'historical_guard': guard_score},
                   'shadow_start': rows[selected[0]]['date'], 'shadow_end': rows[selected[-1]]['date']}
-        state = self._state(district_code)
-        state['versions'][version]['shadow_result'] = result
-        self._save(district_code, state)
-        if hasattr(self.backend,'record_evaluation'):
-            self.backend.record_evaluation(self._name(district_code),version,{**result,'status':'gate_passed' if passed else 'rejected'})
         if passed:
-            result.update(self.promote(district_code, version))
+            result['previous_version'] = current
+        with self._lock(district_code):
+            # Evaluation runs outside the lock; another valid promotion may win.
+            state = self._state(district_code)
+            previous = state['versions'][version].get('shadow_result', {})
+            if previous.get('status') in ('promoted', 'rejected'):
+                return previous
+            if self.current_version(district_code) != current:
+                return self.reject_candidate(district_code, version, 'champion_changed')
+            state['versions'][version]['shadow_result'] = result
+            self._save(district_code, state)
             if hasattr(self.backend,'record_evaluation'):
+                self.backend.record_evaluation(self._name(district_code),version,result)
+            if passed:
                 try:
-                    self.backend.record_evaluation(self._name(district_code),version,result)
-                except Exception as exc:
-                    result['tracking_warning'] = f'promotion completed; evaluation tracking failed: {exc}'
-        state = self._state(district_code)
-        state['versions'][version]['shadow_result'] = result
-        self._save(district_code,state)
+                    result.update(self.promote(district_code, version))
+                except ModelNotReady:
+                    if self.current_version(district_code) != current:
+                        return self.reject_candidate(district_code, version, 'champion_changed')
+                    raise
+                if hasattr(self.backend,'record_evaluation'):
+                    try:
+                        self.backend.record_evaluation(self._name(district_code),version,result)
+                    except Exception as exc:
+                        result['tracking_warning'] = f'promotion completed; evaluation tracking failed: {exc}'
+            state = self._state(district_code)
+            state['versions'][version]['shadow_result'] = result
+            self._save(district_code,state)
         return result
 
     def reject_candidate(self, district_code, version, reason):
         result={'status':'rejected','candidate_version':str(version),'reason':reason,'gate_passed':False}
-        state=self._state(district_code)
-        state['versions'][str(version)]['shadow_result']=result
-        self._save(district_code,state)
+        with self._lock(district_code):
+            state=self._state(district_code)
+            state['versions'][str(version)]['shadow_result']=result
+            self._save(district_code,state)
         if hasattr(self.backend,'record_evaluation'):
             try:
                 self.backend.record_evaluation(self._name(district_code),str(version),result)
@@ -675,7 +755,7 @@ class ModelManager:
             validated = {str(h['to']) for h in state['history']}
             if version is None or str(version) not in validated:
                 raise ModelNotReady('no previous registered version to restore')
-            result = self.promote(district_code, str(version))
+            result = self._activate(district_code, str(version), self.current_version(district_code))
             result['status'] = 'rolled_back'
             return result
 

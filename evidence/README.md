@@ -2,6 +2,14 @@
 
 이 문서는 최신 검증의 진입점입니다. 과거 상태와 실패·검수 이력은 [날짜별 원문](records/2026-10-08.md)에 보존합니다. 아래 항목은 각각 당시 환경의 기록입니다.
 
+## 모델 교체 자격 보강 — 2026-10-08
+
+- 개인 브랜치 `feat/aiops/geonwoo/model-promotion-policy`의 로컬 구현·검증입니다. 기존 운영 컨테이너·자료·모델을 변경하지 않았고 표준 Compose 재배포·실측 성능 검증·커밋·푸시는 수행하지 않았습니다.
+- [전체 테스트](records/2026-10-08-model-promotion-policy-tests.txt): 107개 통과, 실패·skip 0. 실제 TensorFlow 학습·직렬화·재로드 검사 포함. 미평가·탈락 후보 직접 교체 차단, 과거 성능 기준, 평가 중 버전 변경, alias·이력 저장 실패 시 기존 예측 유지, HTTP 버전·재로드를 확인했습니다.
+- [실제 TensorFlow·MLflow·HTTP 결과](records/2026-10-08-model-promotion-policy-http.json)·[원문 로그](records/2026-10-08-model-promotion-policy-http-log.txt): 격리 합성 자료에서 후속 30일 RMSE 0.0357775831→0.0294161300 및 과거 guard 통과. 컨테이너 내부 실제 HTTP 200 응답에서 v1→v2 전환을 확인했습니다.
+- 추가 v3 후보의 미평가 직접 교체를 차단했고, 평가 탈락 후 같은 입력의 v2 버전·예측값과 서버·ModelManager 재시작 후 상태를 확인했습니다. 탈락 검증용 정답은 기존 모델 예측으로 재귀 생성한 합성 자료로, 기존 RMSE 0은 이 정책 검증 자료의 생성 규칙이며 실측 정확도가 아닙니다.
+- 운영 볼륨·호스트 포트 없이 로컬 기존 이미지에서 파생한 별도 검증 이미지와 컨테이너 loopback HTTP를 사용했습니다. [재현 스크립트](../scripts/verify_model_promotion_policy.py)는 저장소 루트의 프로젝트 환경에서 실행하며 기존 [합성 학습 검증](../scripts/verify_model_promotion.py)을 사용합니다. 모델 정책과 단일 프로세스 잠금 범위는 [운영 기준](../docs/operations.md)을 따릅니다.
+
 ## 발표 전후 캡처·그래프 개선 — 2026-10-08
 
 - [실제 요청·응답](records/presentation-demo-http.json): 동일 합성 세션 6d00ba의 v1 예측, +0.2 변화, 품질 경보, 후보 생성, 정답 30일 평가, v2 실제 예측. RMSE 0.0232006162→0.0210488850, 9.274457% 감소 및 guard 통과.
