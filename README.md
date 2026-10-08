@@ -32,7 +32,7 @@ Docker 빌드에서 `frontend/`의 React·TypeScript·Vite 화면을 Node 단계
 
 ## 제출 자료
 
-현재 PDF는 [output/final/AIOps_조별 과제_광주_3반_GroundWatch.pdf](output/final/AIOps_조별%20과제_광주_3반_GroundWatch.pdf)입니다. 발표 내용 참고 원문은 [output/source/proposal.md](output/source/proposal.md)에 보존하며 PDF 배치 편집 원본은 아닙니다. 과제 기획의 기준 원본은 `proposal.md`이며 PDF는 발표용 표현본입니다. `output/source/working-v4.pdf`는 다른 작업에서 생성한 작업본이며 제출본으로 안내하지 않습니다. 외부 생성 작업이 이전 경로에 파일을 다시 만들면 이 작업본 위치로 정리합니다. 현재 작업 트리에는 이전 3종 PPT·ZIP가 없으므로 제출 파일로 안내하지 않습니다. 실제 제출·발표 완료는 별도로 확인합니다.
+발표용 [GroundWatch_발표기획서.pdf](output/final/GroundWatch_발표기획서.pdf), 편집 가능한 [PPTX 원문](output/source/GroundWatch_발표기획서.pptx), [페이지별 대본](output/source/발표대본.md)을 관리합니다. [요구사항 검수](output/source/proposal.md)에서 여섯 필수 흐름과 페이지를 확인합니다. 과제 기획의 기준 문서는 [proposal.md](proposal.md)입니다. `건우짱.pdf`는 위 최종 파일명으로 정리했습니다. 실제 제출·발표 완료는 별도로 확인합니다.
 
 ## 협업과 문서 관리
 
