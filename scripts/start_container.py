@@ -29,7 +29,9 @@ def main():
     import os
     if source.exists() and manifest.exists() and os.getenv('GROUNDWATCH_CURRENT_EXTENSION', 'true').lower() == 'true':
         from data.current_extension import build_extension
-        generated, generated_manifest = build_extension(source, manifest, service.root/'current-extension')
+        extension_dir = source.parent if (source.parent/'seoul_observation_extension_manifest.json').exists() else None
+        generated, generated_manifest = build_extension(source, manifest, service.root/'current-extension',
+                                                        observed_extension_dir=extension_dir)
         content, mapping = generated.read_bytes(), generated_manifest.read_bytes()
         dataset_id = hashlib.sha256(content+mapping).hexdigest()
         try:
@@ -45,6 +47,12 @@ def main():
         service.store.put('dataset', entry, dataset_id)
     children = [subprocess.Popen([sys.executable, '-m', 'serving_app.groundwater_worker']),
                 subprocess.Popen([sys.executable, '-m', 'serving_app.external_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.national_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.weather_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.national_observation_worker']),
+                subprocess.Popen([sys.executable, 'scripts/evaluate_national_seasons.py', '--worker']),
+                subprocess.Popen([sys.executable, 'scripts/evaluate_national_seasons.py', '--worker', '--source-kind', 'synthetic',
+                                  '--max-epochs', os.getenv('GROUNDWATCH_SIMULATION_TRAIN_EPOCHS', '10')]),
                 subprocess.Popen([sys.executable, '-m', 'uvicorn', 'serving_app.main:app',
                                   '--host', '0.0.0.0', '--port', '8099', '--workers', '1'])]
     stopping = False

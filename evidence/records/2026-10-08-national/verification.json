@@ -1,0 +1,25 @@
+{
+  "branch": "feat/aiops/geonwoo/model-promotion-policy",
+  "docker_project": "groundwatch-national-check",
+  "port": 18104,
+  "test_epochs": 1,
+  "current_extension": false,
+  "collection_enabled": false,
+  "python_tests": {
+    "passed": 151,
+    "skipped": 1
+  },
+  "frontend_tests": 10,
+  "restart_network_counts": {
+    "stations": 66,
+    "observed": 57,
+    "missing": 9,
+    "zero": 3
+  },
+  "history_days": 62,
+  "uncollected_date_http_status": 404,
+  "invalid_date_http_status": 422,
+  "health_live": "alive",
+  "national_models_approved": 0,
+  "national_accuracy_measured": false
+}

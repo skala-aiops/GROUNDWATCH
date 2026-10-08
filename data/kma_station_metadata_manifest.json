@@ -1,0 +1,10 @@
+{
+  "source": "기상청 지점정보 공식 다운로드",
+  "source_url": "https://data.kma.go.kr/tmeta/stn/selectStnList.do",
+  "download_endpoint": "https://data.kma.go.kr/tmeta/stn/selectStnListDownload.do",
+  "sha256": "15cd579ee8d2078d7ecf4233b5df31217fcd3c55b818bf9ca5f6dfd8b41f0066",
+  "encoding": "cp949",
+  "rows": 14928,
+  "retrieved_date": "2026-10-08",
+  "purpose": "관측시점에 유효한 지점 ID와 좌표 명세 대조. 운영 갱신은 별도 확인하며 위치를 추정하지 않음."
+}

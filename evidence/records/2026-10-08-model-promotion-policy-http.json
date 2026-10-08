@@ -1,0 +1,242 @@
+{
+  "purpose": "synthetic actual TensorFlow/MLflow and real loopback HTTP policy verification; no Seoul accuracy claim",
+  "network": "container loopback only; no host ports or operational volumes",
+  "seed": 42,
+  "initial": {
+    "status": "promoted",
+    "version": "1",
+    "model_version": "1",
+    "metrics": {
+      "validation": {
+        "rmse": 0.2467950122511823,
+        "mae": 0.19631292279953963,
+        "count": 60
+      },
+      "validation_persistence": {
+        "rmse": 0.24800536368226478,
+        "mae": 0.19766728198659317,
+        "count": 60
+      },
+      "test": {
+        "rmse": 0.22323525539326405,
+        "mae": 0.1830538933213848,
+        "count": 60
+      },
+      "test_persistence": {
+        "rmse": 0.22498125021994506,
+        "mae": 0.1836458560694525,
+        "count": 60
+      }
+    },
+    "splits": {
+      "train": {
+        "start": "2020-01-21",
+        "end": "2020-07-18",
+        "count": 180
+      },
+      "validation": {
+        "start": "2020-07-19",
+        "end": "2020-09-16",
+        "count": 60
+      },
+      "test": {
+        "start": "2020-09-17",
+        "end": "2020-11-15",
+        "count": 60
+      },
+      "replay": {
+        "start": "2020-11-16",
+        "end": "2021-02-13",
+        "count": 90
+      }
+    },
+    "threshold": 0.4335178283589931,
+    "gate_passed": true
+  },
+  "successful_evaluation": {
+    "status": "promoted",
+    "candidate_version": "2",
+    "gate_passed": true,
+    "gates": {
+      "future_improvement": {
+        "passed": true,
+        "rmse": 0.02941612997712992,
+        "limit": 0.033988703988806095
+      },
+      "historical_guard": {
+        "passed": true,
+        "rmse": 0.2471440914533525,
+        "limit": 0.27147451347730056
+      }
+    },
+    "metrics": {
+      "shadow_candidate": {
+        "rmse": 0.02941612997712992,
+        "mae": 0.029291938414970176,
+        "count": 30
+      },
+      "shadow_champion": {
+        "rmse": 0.03577758314611168,
+        "mae": 0.03570674438074839,
+        "count": 30
+      },
+      "historical_guard": {
+        "rmse": 0.2471440914533525,
+        "mae": 0.19730387661001045,
+        "count": 60
+      }
+    },
+    "shadow_start": "2021-03-27",
+    "shadow_end": "2021-04-25",
+    "previous_version": "1",
+    "model_version": "2"
+  },
+  "before": {
+    "status_code": 200,
+    "response": {
+      "district_code": "11110",
+      "station_id": "synthetic-well",
+      "prediction": 11.337824767974466,
+      "model_version": "1",
+      "unit": "synthetic_level",
+      "level_unit": "synthetic_level",
+      "dataset_version": "synthetic-ar1-trend-v1",
+      "mapping_version": "synthetic-fixed-v1",
+      "observed_date": "2021-04-25",
+      "forecast_date": "2021-04-26",
+      "namespace": "trend_1",
+      "threshold": 0.4335178283589931
+    }
+  },
+  "after": {
+    "status_code": 200,
+    "response": {
+      "district_code": "11110",
+      "station_id": "synthetic-well",
+      "prediction": 11.344145040963703,
+      "model_version": "2",
+      "unit": "synthetic_level",
+      "level_unit": "synthetic_level",
+      "dataset_version": "synthetic-ar1-trend-v1",
+      "mapping_version": "synthetic-fixed-v1",
+      "observed_date": "2021-04-25",
+      "forecast_date": "2021-04-26",
+      "namespace": "trend_1",
+      "threshold": 0.4335178283589931
+    }
+  },
+  "awaiting_candidate": {
+    "status_code": 200,
+    "response": {
+      "district_code": "11110",
+      "station_id": "synthetic-well",
+      "prediction": 11.344145040963703,
+      "model_version": "2",
+      "unit": "synthetic_level",
+      "level_unit": "synthetic_level",
+      "dataset_version": "synthetic-ar1-trend-v1",
+      "mapping_version": "synthetic-fixed-v1",
+      "observed_date": "2021-04-25",
+      "forecast_date": "2021-04-26",
+      "namespace": "trend_1",
+      "threshold": 0.4335178283589931
+    }
+  },
+  "unevaluated_direct_promotion_blocked": true,
+  "rejection_rule": "30 future synthetic labels recursively generated from frozen champion predictions",
+  "rejected_evaluation": {
+    "status": "rejected",
+    "candidate_version": "3",
+    "gate_passed": false,
+    "gates": {
+      "future_improvement": {
+        "passed": false,
+        "rmse": 0.0072224558939761934,
+        "limit": 0.0
+      },
+      "historical_guard": {
+        "passed": true,
+        "rmse": 0.2477495923503835,
+        "limit": 0.27147451347730056
+      }
+    },
+    "metrics": {
+      "shadow_candidate": {
+        "rmse": 0.0072224558939761934,
+        "mae": 0.007209933130897047,
+        "count": 30
+      },
+      "shadow_champion": {
+        "rmse": 0.0,
+        "mae": 0.0,
+        "count": 30
+      },
+      "historical_guard": {
+        "rmse": 0.2477495923503835,
+        "mae": 0.1984553795867263,
+        "count": 60
+      }
+    },
+    "shadow_start": "2021-04-26",
+    "shadow_end": "2021-05-25"
+  },
+  "after_rejection": {
+    "status_code": 200,
+    "response": {
+      "district_code": "11110",
+      "station_id": "synthetic-well",
+      "prediction": 11.344145040963703,
+      "model_version": "2",
+      "unit": "synthetic_level",
+      "level_unit": "synthetic_level",
+      "dataset_version": "synthetic-ar1-trend-v1",
+      "mapping_version": "synthetic-fixed-v1",
+      "observed_date": "2021-04-25",
+      "forecast_date": "2021-04-26",
+      "namespace": "trend_1",
+      "threshold": 0.4335178283589931
+    }
+  },
+  "after_server_and_manager_restart": {
+    "status_code": 200,
+    "response": {
+      "district_code": "11110",
+      "station_id": "synthetic-well",
+      "prediction": 11.344145040963703,
+      "model_version": "2",
+      "unit": "synthetic_level",
+      "level_unit": "synthetic_level",
+      "dataset_version": "synthetic-ar1-trend-v1",
+      "mapping_version": "synthetic-fixed-v1",
+      "observed_date": "2021-04-25",
+      "forecast_date": "2021-04-26",
+      "namespace": "trend_1",
+      "threshold": 0.4335178283589931
+    }
+  },
+  "rejected_direct_promotion_blocked_after_restart": true,
+  "source_hashes": {
+    "serving_app/groundwater_models.py": "4ba3d29ec440530c3e8454a9f23a537448e82dc067d076580c72e55ceb86030c",
+    "tests/test_groundwater_models.py": "eb76e33bae7e22dbc42daca89ab396298d5af10849d5ea8caedaef42c5f39e4f",
+    "tests/test_groundwater_api.py": "c38335bd341a563d2f231a5de443f1c88b36919dbc8b1b9b303887afb280a4f6"
+  },
+  "verification": {
+    "recorded_at_utc": "2026-10-08T07:16:09.108932+00:00",
+    "base_commit": "5b3bc8ca1a456173ceea258effa774fa6c30c4cc",
+    "branch": "feat/aiops/geonwoo/model-promotion-policy",
+    "image": "groundwatch-promotion-policy-check:local",
+    "base_image_id": "sha256:04406447d01569d4dbab29197ef6ac615789b02cd4a8d98e2fc4996e8d42c1ac",
+    "tests": {
+      "run": 107,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "tensorflow_opt_in": true
+    },
+    "source_hashes_match_worktree": true,
+    "verifier": "scripts/verify_model_promotion_policy.py",
+    "verifier_sha256": "5524010dd05d370a8ea5011ddd0ec97caf05dacf38995ff0f2762c0b26f86f51",
+    "environment": "isolated derived local image; current repository source in /check; no operational volumes; network none; HTTP on container loopback",
+    "scope": "local implementation and verification only; no standard Compose deployment, live Seoul evaluation, commit, or push"
+  }
+}

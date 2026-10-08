@@ -12,7 +12,7 @@ import { OrbitControls, Line, Edges } from "@react-three/drei";
 import { Shape, ExtrudeGeometry, Group, MathUtils } from "three";
 import { useAtom } from "jotai";
 import { districtAtom, reducedAtom } from "./state";
-import { type Row, number, fmt } from "./api";
+import { type Row, number, fmt, predictionLabel } from "./api";
 class Boundary extends Component<{ children: ReactNode }, { error: boolean }> {
   state = { error: false };
   static getDerivedStateFromError() {
@@ -92,7 +92,7 @@ function District({ feature, rows }: { feature: Row; rows: Row[] }) {
           onPointerOut={() => setHover(false)}
           onClick={(e) => {
             e.stopPropagation();
-            if (row) setSelected(row.district_code);
+            if (row && e.delta <= 4) setSelected(row.district_code);
           }}
         >
           <meshStandardMaterial
@@ -109,7 +109,9 @@ function District({ feature, rows }: { feature: Row; rows: Row[] }) {
   );
 }
 function Section({ row }: { row: Row }) {
-  const actual = row.latest_comparison?.actual;
+  const actual = number(row.latest_actual_level)
+    ? row.latest_actual_level
+    : row.latest_comparison?.actual;
   const prediction = row.prediction;
   const max = Math.max(
     5,
@@ -240,7 +242,8 @@ export default function Scene({
             </span>
           )}
           <span className="gold">
-            다음 날 예측 {fmt(selectedRow.prediction)} {selectedRow.unit || ""}
+            {predictionLabel(selectedRow)} {fmt(selectedRow.prediction)}{" "}
+            {selectedRow.unit || ""}
           </span>
         </div>
         <div className="scene-note">

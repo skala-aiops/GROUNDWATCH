@@ -1,0 +1,143 @@
+{
+  "source": "gims",
+  "collected_date": "2026-10-08",
+  "station_metadata_endpoint": "https://www.gims.go.kr/api/data/groundwaterMonitoringNetworkService/getNationalGroundwater",
+  "daily_endpoint": "https://www.gims.go.kr/api/data/observationStationService/getGroundwaterMonitoringNetwork",
+  "public_map_layer": "https://www.gims.go.kr/arcgis/rest/services/jihasu/Monitor/MapServer/0",
+  "probes": [
+    {
+      "tag": "daily_11775",
+      "raw_sha256": "e34a71bf032c4c5526019ceb5846aadf3434cd8cad4bbab4e0f5c1cdfba6d8f2",
+      "raw_file": "daily_11775-e34a71bf032c4c5526019ceb5846aadf3434cd8cad4bbab4e0f5c1cdfba6d8f2.raw",
+      "result_code": "Success",
+      "row_count": 3,
+      "observed_start": "20260301",
+      "observed_end": "20260303"
+    },
+    {
+      "tag": "daily_11775_july",
+      "raw_sha256": "4b91470657f91d29644c9412cb41e483b768dd9516e8e8a901f4832523313082",
+      "raw_file": "daily_11775_july-4b91470657f91d29644c9412cb41e483b768dd9516e8e8a901f4832523313082.raw",
+      "result_code": "Success",
+      "row_count": 31,
+      "observed_start": "20260701",
+      "observed_end": "20260731"
+    },
+    {
+      "tag": "daily_11775_latest",
+      "raw_sha256": "4e48cc594419309c7d4f47f351ea0dcd814bec9c0ab0f14c5d267958f5cb18c1",
+      "raw_file": "daily_11775_latest-4e48cc594419309c7d4f47f351ea0dcd814bec9c0ab0f14c5d267958f5cb18c1.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": "20261007",
+      "observed_end": "20261007"
+    },
+    {
+      "tag": "daily_601739",
+      "raw_sha256": "acff27e9944287fe85b59c58c00f7a611e5774f13d3b4fe62f15fbbdaf3ffa3f",
+      "raw_file": "daily_601739-acff27e9944287fe85b59c58c00f7a611e5774f13d3b4fe62f15fbbdaf3ffa3f.raw",
+      "result_code": "Success",
+      "row_count": 3,
+      "observed_start": "20260301",
+      "observed_end": "20260303"
+    },
+    {
+      "tag": "daily_601739_july",
+      "raw_sha256": "1d7e9608a81b142fcde35b48fa02aa96fe272f3e54304b7496a55971cb5c93f1",
+      "raw_file": "daily_601739_july-1d7e9608a81b142fcde35b48fa02aa96fe272f3e54304b7496a55971cb5c93f1.raw",
+      "result_code": "Success",
+      "row_count": 31,
+      "observed_start": "20260701",
+      "observed_end": "20260731"
+    },
+    {
+      "tag": "daily_601739_latest",
+      "raw_sha256": "667fbbb9ca2ee61b56cb2263e85aad7fff547716ad6b613d61226e304eebae87",
+      "raw_file": "daily_601739_latest-667fbbb9ca2ee61b56cb2263e85aad7fff547716ad6b613d61226e304eebae87.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": "20261007",
+      "observed_end": "20261007"
+    },
+    {
+      "tag": "daily_95537",
+      "raw_sha256": "8b4bc16f4a1c6727949e8aef1ae837b3d252aac251b30b7e0d3332507794f660",
+      "raw_file": "daily_95537-8b4bc16f4a1c6727949e8aef1ae837b3d252aac251b30b7e0d3332507794f660.raw",
+      "result_code": "Success",
+      "row_count": 3,
+      "observed_start": "20260301",
+      "observed_end": "20260303"
+    },
+    {
+      "tag": "daily_95537_july",
+      "raw_sha256": "895c97f975371b8d8ec870fb9091c163ce2b95d1c3339293a548ce9433e57b2e",
+      "raw_file": "daily_95537_july-895c97f975371b8d8ec870fb9091c163ce2b95d1c3339293a548ce9433e57b2e.raw",
+      "result_code": "Success",
+      "row_count": 31,
+      "observed_start": "20260701",
+      "observed_end": "20260731"
+    },
+    {
+      "tag": "daily_95537_latest",
+      "raw_sha256": "b1bcd2be7283a62559171719ddf71f795840a0ce9327cb466454e89fc8239a19",
+      "raw_file": "daily_95537_latest-b1bcd2be7283a62559171719ddf71f795840a0ce9327cb466454e89fc8239a19.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": "20261007",
+      "observed_end": "20261007"
+    },
+    {
+      "tag": "daily_sample",
+      "raw_sha256": "4182b48281e80eddc469997f1113135a1e911ecb35d18ba863886fb347122ab7",
+      "raw_file": "daily_sample-4182b48281e80eddc469997f1113135a1e911ecb35d18ba863886fb347122ab7.raw",
+      "result_code": "Success",
+      "row_count": 3,
+      "observed_start": "20260301",
+      "observed_end": "20260303"
+    },
+    {
+      "tag": "station_11775",
+      "raw_sha256": "3407214870624168644ab7908fce8f0e506387b451c3b5e1718669a1fd55cc03",
+      "raw_file": "station_11775-3407214870624168644ab7908fce8f0e506387b451c3b5e1718669a1fd55cc03.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": null,
+      "observed_end": null
+    },
+    {
+      "tag": "station_601739",
+      "raw_sha256": "d9a3a9255a3d9b92251b3d9e8820e8db7df184073210a15af7fafc80b141fba4",
+      "raw_file": "station_601739-d9a3a9255a3d9b92251b3d9e8820e8db7df184073210a15af7fafc80b141fba4.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": null,
+      "observed_end": null
+    },
+    {
+      "tag": "station_95537",
+      "raw_sha256": "6ecb8d92ad1fb1652227bbf2da74a03dc1b5d0154c4720bc6271c52270bec9ad",
+      "raw_file": "station_95537-6ecb8d92ad1fb1652227bbf2da74a03dc1b5d0154c4720bc6271c52270bec9ad.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": null,
+      "observed_end": null
+    },
+    {
+      "tag": "station_sample",
+      "raw_sha256": "eedac3aaf58e0ede9079dafa2a9d5c5cf55180fed2188a8685b9a3e6dabd9d88",
+      "raw_file": "station_sample-eedac3aaf58e0ede9079dafa2a9d5c5cf55180fed2188a8685b9a3e6dabd9d88.raw",
+      "result_code": "Success",
+      "row_count": 1,
+      "observed_start": null,
+      "observed_end": null
+    }
+  ],
+  "model_activation": false,
+  "limitations": [
+    "Public map layer is named standardization test; metadata review required.",
+    "16 of 1039 source geometries contain NaN and are quarantined.",
+    "1038 of 1039 source IDs match public dropdown; dropdown contains 1135 IDs.",
+    "Source graph labels groundwater as el.m and depth as m; approved station-level contract still required.",
+    "Three sampled stations do not prove all nationwide stations have complete recent records."
+  ]
+}

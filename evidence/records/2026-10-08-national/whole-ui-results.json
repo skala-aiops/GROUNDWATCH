@@ -1,0 +1,22 @@
+{
+  "frontend_tests": 23,
+  "desktop_station_selection": [
+    "kwater:601739",
+    "kwater:95537"
+  ],
+  "national_three_to_two_dimension": "passed",
+  "seoul_three_to_two_dimension": "passed",
+  "weather_selection": {
+    "station": "보령",
+    "date": "2026-07-17",
+    "rainfall_mm": 120.4,
+    "groundwater_selected": "kwater:11775"
+  },
+  "mobile": {
+    "width": 390,
+    "document_width": 390,
+    "three_canvas": true
+  },
+  "browser_error_log_count": 0,
+  "raw_data_and_operational_approval": "unchanged"
+}

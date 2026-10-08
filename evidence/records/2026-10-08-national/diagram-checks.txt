@@ -1,0 +1,35 @@
+
+> groundwatch-dashboard@1.0.0 test
+> vitest run --run
+
+
+ RUN  v5.0.3 /Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team/frontend
+
+
+ Test Files  5 passed (5)
+      Tests  22 passed (22)
+   Start at  21:16:31
+   Duration  225ms (transform 52%, import 28%, tests 16%, worker 4%)
+
+
+> groundwatch-dashboard@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.3 building client environment for production...
+transforming...
+✓ 2130 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.48 kB │ gzip:   0.33 kB
+dist/assets/index-BiIgNEOQ.css              27.15 kB │ gzip:   6.54 kB
+dist/assets/Scene-CnJU1hNC.js                5.46 kB │ gzip:   2.62 kB
+dist/assets/NationalRainScene-BNzqT_a6.js   12.76 kB │ gzip:   5.31 kB
+dist/assets/index-BvLnYyir.js              301.54 kB │ gzip:  93.87 kB
+dist/assets/OrbitControls-v-zj6CrE.js      903.88 kB │ gzip: 240.90 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 326ms
