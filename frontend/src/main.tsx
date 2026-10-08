@@ -1,3 +1,4 @@
+import { nativeApiStation } from "./api";
 import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider, useAtom } from "jotai";
@@ -283,13 +284,13 @@ function App() {
   fq.set("mode", mode);
   if (date && mode !== "current") fq.set("as_of", date);
   const forecasts = useResource(
-    "/api/v2/network/stations?" + fq,
+    mode === "api" && dataScope === "seoul-history" ? "/api-observations" : "/api/v2/network/stations?" + fq,
     30000,
     revision,
   );
   const replays = useResource("/replays", 3000, revision);
   const rows: Row[] = serviceStations(
-    forecasts.data?.stations || [],
+    forecasts.data?.stations || (forecasts.data?.forecasts || []).map(nativeApiStation),
     dataScope,
   ).map((r: Row) => ({
     ...r,
@@ -306,7 +307,7 @@ function App() {
   }));
   const networkSelected = selectedNetworkStationId(rows, selected);
   const pipeline = useResource(
-    networkSelected
+    mode === "api" && dataScope === "seoul-history" && networkSelected ? "/api-observations/" + networkSelected.replace(/^seoul:/, "") + "/pipeline" : networkSelected
       ? "/api/v2/network/pipeline?station_id=" +
           encodeURIComponent(networkSelected) +
           "&mode=" +
@@ -349,7 +350,7 @@ function App() {
     hq.set("dataset_id", row.source_dataset_id);
   const history = useResource(
     view === "detail" && !pending && !!networkSelected
-      ? "/api/v2/network/stations/" +
+      ? mode === "api" && dataScope === "seoul-history" ? "/api-observations/" + selected.replace(/^seoul:/, "") + "/history" : "/api/v2/network/stations/" +
           encodeURIComponent(selected) +
           "/history?" +
           hq
@@ -387,6 +388,7 @@ function App() {
   useEffect(() => {
     if (dataScope !== "seoul-history" && replay) setSession("");
   }, [selected, replay]);
+  const collectionJobs = useResource(mode === "api" && view === "operations" ? "/api-observations/collection-jobs" : null, 3000, revision);
   const p = pipeline.data || {};
   const experimental =
     row.prediction_scope === "experimental" ||
@@ -606,6 +608,7 @@ function App() {
                 value={dataScope}
                 onChange={(e) => {
                   setDataScope(e.target.value);
+                  setMode("current");
                   setRegion("");
                   setSearch("");
                   setSelected("");
@@ -631,17 +634,18 @@ function App() {
                   <select
                     value={mode}
                     onChange={(e) => {
+                      if (e.target.value !== "historical_replay") setSession("");
                       setMode(e.target.value);
                       setDate("");
                       setAll(false);
-                      if (e.target.value === "current") setSession("");
                     }}
                   >
                     <option value="current">오늘 기준 예측</option>
+                    <option value="api">서울 실제 API 관측·예측 · 원값</option>
                     <option value="historical_replay">저장 자료로 검증</option>
                   </select>
                 </label>
-                {mode !== "current" && (
+                {mode === "historical_replay" && (
                   <>
                     <label>
                       검증 기록
@@ -681,7 +685,7 @@ function App() {
           </p>
           <div className="provenance">
             <span className="dot" />
-            {legacySelected
+            {mode === "api" ? "서울 실제 API 원값 · 관측일과 수집 시각 확인" : legacySelected
               ? "관측소 모델 · 저장 자료 모드"
               : "관측소 · 자료와 모델 준비 상태"}
             <SourceInfo row={row} />
@@ -1282,7 +1286,7 @@ function App() {
                 )}
                 <p className="footnote">
                   단위 {history.data?.unit || row.unit || "미확인"} · 기준{" "}
-                  {row.level_reference || row.reference_status || "확인 필요"} ·
+                  {(mode === "api" ? "unverified_api_native" : row.level_reference || row.reference_status) || "확인 필요"} ·
                   결측값을 이어 그리지 않습니다. {dataScope === "simulation" ? "합성 시나리오이며 실제 관측·공식 장마 판정이 아닙니다." : "금색 배경은 공식 장마 기간(사후 평가용)이며 해당 구간이 있을 때만 표시합니다."}
                 </p>
               </section>
@@ -1381,7 +1385,41 @@ function App() {
               </section>
             </>
           )}
-          {view === "operations" && (
+          {view === "operations" && mode === "api" && (
+            <section className="panel"><div className="panel-top"><h2>실제 API 학습·예측·드리프트 관리</h2>{choose}</div>
+              <p>최근 지하수 관측일 {forecasts.data?.as_of || "수집 대기"} · 관측 확보 {forecasts.data?.observation_count ?? 0}/25곳</p>
+              <p>현재 관측소: {row.reason || "수집 대기"}. 실제 수위 원값과 강수를 날짜별 결합해 별도 LSTM으로 학습합니다. 강수 결측은 학습 구간 중앙값과 결측 여부로 입력하며 원본은 보존합니다. 실제 발행 예측의 정답이 수집되면 드리프트 감지와 재학습·평가·교체가 자동 진행됩니다. 별도 시연은 ‘저장 자료로 검증’ 모드에서 진행합니다.</p>
+              <p>예측 준비 {forecasts.data?.ready_count ?? 0}/25곳 · 학습 상태 {label(forecasts.data?.training?.status)}</p>
+              <button disabled={busy || forecasts.data?.training?.status === "running"}
+                onClick={() => action(() => post("/api-observations/train", {}))}>미준비 모델 학습 다시 시도</button>
+              <button disabled={busy || (collectionJobs.data?.jobs || []).some((j: Row) => ["queued", "running"].includes(j.status))}
+                onClick={() => action(() => post("/api-observations/refresh", {}))}>실제 API 자료 다시 수집</button>
+              <button disabled={busy} onClick={() => action(() => post("/api-observations/check", {}))}>새 정답·드리프트 확인</button>
+              <button disabled={busy || !p.can_rollback || (p.jobs || []).some((j: Row) => ["queued", "running"].includes(j.status))}
+                onClick={() => action(() => post("/api-observations/" + selected.replace(/^seoul:/, "") + "/rollback", {reason: "화면에서 이전 검증 API 모델 복귀 요청"}))}>이전 검증 API 모델로 복귀</button>
+              <p>{p.note || "운영 상태 확인 중"}</p>
+              {pipeline.error && <p role="alert">{pipeline.error}</p>}
+              <ol className="pipeline">{(p.stages || []).map((s: Row, i: number) => <li key={s.key} className={s.status}>
+                <span>{String(i + 1).padStart(2, "0")}</span><h3>{s.title}</h3><Badge status={s.status} /><p>{s.detail}</p>
+              </li>)}</ol>
+              <details><summary>드리프트·후보 평가 결과</summary><Json value={{monitor:p.monitor,evaluation:p.evaluation,policy:p.policy}} /></details>
+              <h3>실제 API 경보·운영 이력</h3>
+              {(p.events || []).map((e: Row) => <div className="record" key={e.id}><strong>{e.message}</strong><p>{e.created_at} · {label(e.status)}</p>
+                {e.kind === "quality" && e.status !== "RESOLVED" && <button disabled={busy} onClick={() => action(() => post("/events/" + e.id + (e.status === "OPEN" ? "/ack" : "/resolve"), {reason: "화면에서 실제 API 경보 확인", note: "자동 재학습·후보 평가 상태 확인"}))}>{e.status === "OPEN" ? "경보 확인" : "조치 완료"}</button>}
+              </div>)}
+              {!(p.events || []).length && <p>기록된 드리프트 경보가 없습니다. 발행 예측 정답이 연속 21일 쌓여야 오차를 판정합니다.</p>}
+              <details><summary>작업·수집 진행 상태</summary>{[...(p.jobs || []), ...(collectionJobs.data?.jobs || [])].map((j: Row) => <div key={j.id}>
+                <p>{j.kind} · {label(j.status)} · {j.error || j.id}</p>
+                {["failed", "interrupted"].includes(j.status) && j.kind !== "refresh_api_feed" && <button disabled={busy} onClick={() => action(() => post("/jobs/" + j.id + "/retry", {}))}>실패 작업 다시 시도</button>}
+              </div>)}</details>
+              <h3>현재 모델 평가</h3>
+              <p>학습 종료 {row.api_model?.trained_through || "—"} · 검증 RMSE {fmt(row.api_model?.metrics?.validation?.rmse, 5)} · 시험 RMSE {fmt(row.api_model?.metrics?.test?.rmse, 5)} ({row.api_model?.metrics?.test?.count ?? 0}일)</p>
+              <p>시험 구간의 전일 수위 유지 기준 RMSE {fmt(row.api_model?.metrics?.test_persistence?.rmse, 5)} · 최근 20일 중 강수 결측 입력 {row.api_model?.imputed_rain_days ?? "—"}일</p>
+              <details><summary>모델·평가 상세</summary><Json value={row.api_model || {status: "모델 준비 중"}} /></details>
+              <details><summary>수집 상태</summary><Json value={forecasts.data?.collection || {}} /></details>
+            </section>
+          )}
+          {view === "operations" && mode !== "api" && (
             <>
               {legacySelected ? (
                 <section className="panel">

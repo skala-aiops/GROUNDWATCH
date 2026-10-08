@@ -70,8 +70,17 @@ def main():
             from serving_app.live_observations import LiveObservations
             from serving_app.groundwater_store import now
             external=ExternalObservations(args.state_root)
+            external_service=GroundwaterService(args.state_root)
+            if os.getenv('GROUNDWATCH_COLLECTION_ENABLED','false').lower()=='true':
+                from serving_app.api_observation_feed import ApiObservationFeed
+                from serving_app.api_feed_models import ApiFeedTraining
+                from serving_app.api_feed_ops import ApiFeedOperations
+                feed=ApiObservationFeed(args.state_root)
+                feed.refresh_if_due()
+                ApiFeedTraining(args.state_root).enqueue_if_due(external_service, feed)
+                ApiFeedOperations(external_service).enqueue_cycle()
             scheduled=external.schedule_due()
-            result=LiveObservations(GroundwaterService(args.state_root)).cycle()
+            result=LiveObservations(external_service).cycle()
             external.store.put('worker',{'checked_at':now(),'schedule':scheduled,'cycle_status':result['status']},'external')
         elif args.action and args.action.startswith('national-'):
             from serving_app.national_service import NationalService

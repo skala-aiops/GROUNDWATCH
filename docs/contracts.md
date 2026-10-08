@@ -161,3 +161,27 @@ CSV 해시·동결 원본 해시·25개 고정 관측소·단위·중복 날짜�
 사용자가 자료 부족 부분의 시뮬레이션 보완을 승인한 개인 브랜치 구현입니다. 기존 v1·실측 station 계약을 변경하지 않고 `/api/v2/network/stations` 목록에 `provider=groundwatch_simulation`, `source_kind=synthetic`, `station_id=sim-gims-<원천후보ID>`, `source_station_id=sim-<원천후보ID>`를 추가합니다. UI는 별도 자료 범위로 필터링합니다. 이 ID의 상세와 모델 작업은 기존 v2 경로를 사용하고, 작업·모델 namespace는 `national_synthetic_v1`입니다. 운영 승인·운영 승격은 허용하지 않습니다.
 
 `level_unit=m`, `level_reference=simulation_relative_datum`은 임의 상대 기준면입니다. `source_contract_verified=true`라도 `source_contract_scope=simulation_generator`이며 실제 원천 단위/좌표의 승인이라는 뜻이 아닙니다. `simulation_clock=true`의 일별 available_at은 가상 시계이고 실제 수집시각으로 해석하지 않습니다. history.origin=synthetic과 source_kind를 보존합니다. 합성 장마 분류는 `source_kind=synthetic`·scenario_evaluation_only이며 공식 통계와 분리합니다. 동일 후보의 실제 `kwater:<ID>` 항목을 덮어쓰지 않습니다.
+
+
+## 서울 실제 API 관측·예측·운영
+
+접두사는 `/api/v1/api-observations`입니다. namespace는 `api_native_masked_v1`, 특성 계약은 `VTsSec-native-ASOS108-train-median-missing-mask-v1`입니다. 서울시 `UDGD_WATL`의 물리적 기준은 미확정이므로 `unit="API 원값"`, `level_unit=null`을 유지합니다. 원본의 부호를 바꾸거나 기존 gl.-m 모델과 섞지 않습니다. ASOS 서울 108의 `sumRn` 숫자는 mm이며 빈값은 null입니다. 모델의 20일 입력은 수위·학습 구간 중앙값으로 채운 강수·강수 결측 표시 3개 특성입니다. 원본 강수는 변경하지 않습니다.
+
+| Method·하위 경로 | 의미 |
+| --- | --- |
+| GET (접두사 자체) | 25개 관측소·수집·학습 상태. `observation_count`와 예측 `ready_count` 구분 |
+| GET /{code}/history | 원관측·강수·시험 구간 예측·발행 예측·최신 가용 관측 다음 날 예측 |
+| GET /{code}/pipeline | 7단계 상태, monitor·후보 평가·jobs·events·versions·can_rollback |
+| POST /train | 미준비 모델 학습·기존 모델 재사용 예측 접수. 작업이 있으면 202, up_to_date이면 200 |
+| POST /refresh | 실제 API 수동 수집 접수 202. 활성 수집 작업은 재사용 |
+| GET /collection-jobs | 수동 수집 작업 조회. 외부 수집 DB에 저장하므로 일반 `/jobs/{id}` 대신 이 경로 사용 |
+| POST /check | 새 정답 평가·드리프트·후보 평가 접수 202. 새 자료를 네트워크에서 수집하는 요청은 아님 |
+| POST /{code}/rollback | reason 필수·version 선택, 이전 승격 이력이 있는 검증 모델 복귀 접수 202. 대상이 없으면 422 |
+
+학습·감시·재학습·복귀는 일반 `/api/v1/jobs/{id}`로 완료·실패를 확인합니다. 실제 API 작업 kind는 `train_api_feed`, `monitor_api_feed`, `retrain_api_feed`, `rollback_api_feed`, 외부 수집 작업은 `refresh_api_feed`입니다. namespace가 다른 기본 작업·모델·이벤트 목록에 나타나지 않을 수 있으므로 실제 API pipeline의 목록을 사용합니다. 이벤트 확인·조치는 기존 `/api/v1/events/{id}/ack`·`resolve`에 reason을 보냅니다.
+
+`data_source.observed_through`·`observed_date`는 공급자 관측일, `collected_at`은 서버 수집 시각, `input_end_date`는 마지막 입력일, `forecast_date`는 그 다음 날, `issued_at`은 예측 발행 시각입니다. 공급자 자료가 지연되면 예측 대상일도 오늘보다 과거일 수 있습니다. `quality_status=stale_data`와 모델 준비는 함께 성립할 수 있습니다.
+
+`api_model`에는 입력 해시·모델 버전·학습 종료일·시간순 splits·평가 metrics·강수 대체값과 결측 일수 등이 있습니다. `input_readiness.longest_consecutive_days`는 수위와 강수가 모두 숫자인 원자료 진단입니다. 이 값이 20 미만이어도 별도 결측 처리 모델은 준비될 수 있습니다. `model_contract_verified`는 구현한 특성 계약이며 물리적 수위 단위 확인 완료를 뜻하지 않습니다.
+
+이력의 `prediction_kind=held_out_test`는 과거 시험 구간 평가, `issued`는 저장 발행 예측, `next_available_day`는 최신 입력 다음 날 예측입니다. 마지막 예측점의 수위·강수 정답은 null입니다. 시험 예측은 운영 드리프트 표본에 포함하지 않습니다. 발행 입력 해시로 예측을 중복 방지하고, 발행 당시 없던 정답이 이후 수집된 경우에만 평가합니다. 최초 수신 정답으로 결정을 고정하며 이후 원자료 정정으로 과거 경보를 다시 만들지 않습니다.

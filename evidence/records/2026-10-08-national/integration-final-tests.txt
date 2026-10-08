@@ -1,0 +1,5 @@
+Final integration image: groundwatch-national-check-serving-app
+Command: python -m serving_app.worker_runtime --state-root /app/runtime/groundwatch --locked-command python -m pytest tests -q
+245 passed, 1 skipped in 56.40s
+Frontend: npm test: 32 passed; npm run build: passed
+Initial merge regression: 2 native API promotion failures; corrected by immutable snapshot gate recomputation.

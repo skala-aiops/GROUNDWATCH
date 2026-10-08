@@ -41,6 +41,10 @@ export const labels: Record<string, string> = {
   evaluation_passed: "평가 기준 충족",
   synthetic: "합성 자료",
   observed: "실측 자료",
+  observed_api: "외부 API 관측",
+  unit_verification_required: "수위 기준 대조 필요",
+  blocked: "준비 조건 미충족",
+  quality_rejected: "품질 기준 미달",
 };
 export const label = (s: unknown) =>
   labels[String(s || "").toLowerCase()] || String(s || "—");
@@ -249,4 +253,12 @@ export function stationDataStatus(row: Row): string {
 
 export function selectedNetworkStationId(rows: Row[], selected: string): string | null {
  return rows.some(row => row.station_id === selected) ? selected : null;
+}
+
+// Bridge native API observations into the existing Seoul selection contract.
+export function nativeApiStation(row: Row): Row {
+  return {...row, station_id: "seoul:" + row.district_code, provider: "seoul",
+    legacy_district_code: row.district_code, region_code: "서울특별시", region_name: "서울특별시",
+    level_reference: "unverified_api_native", model_ready: number(row.prediction),
+    prediction_method: number(row.prediction) ? "lstm" : null};
 }

@@ -14,6 +14,12 @@ export function sourceLabel(kind: unknown) {
 
 export function SourceInfo({ row }: { row: Row }) {
   const s = row.data_source || {};
+  if (s.kind === "observed_api") return <details>
+    <summary>{row.district_name || "선택 관측소"} · API 관측 출처</summary>
+    <p>서울시 VTsSec · 최근 관측일 {s.observed_through || "수집 대기"} · 수집 시각 {s.collected_at || "수집 대기"}</p>
+    <p>강수: 기상청 ASOS 서울 108 · 같은 날짜로 결합 · 빈 강수는 결측으로 유지합니다.</p>
+    <p>수위는 API 원값 그대로 별도 모델로 학습·예측하며 기존 gl.-m와 혼합하지 않습니다. 강수 결측은 모델 입력에서만 학습 구간 중앙값과 결측 표시로 처리합니다. 관측일·예측 대상일·수집 시각을 구분합니다.</p>
+  </details>;
   if (row.provider === "groundwatch_simulation")
     return <details><summary>{row.station_name || row.name} · 시뮬레이션 출처</summary><p>합성 수위·강수 · 기준일 {row.observed_date || "확인 필요"} · 시뮬레이션 상대 기준면(m)</p><p>실제 관측·해발 높이·관정 시공 도면이 아닙니다. 생성 시나리오의 모델·이력을 실측과 분리하며 운영 승인으로 해석하지 않습니다.</p></details>;
   if (row.provider === "kwater")

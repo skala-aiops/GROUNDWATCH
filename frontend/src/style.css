@@ -672,6 +672,57 @@ tr.selected {
 .evaluation-svg .threshold-label {
   fill: #edbf7a;
 }
+.candidate-evaluation {
+  margin-top: 16px;
+}
+.candidate-chart {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #29463f;
+  border-radius: 8px;
+  background: #10211f;
+}
+.candidate-bar-row {
+  display: grid;
+  grid-template-columns: 92px minmax(80px, 1fr) 76px;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.candidate-bar-name {
+  color: var(--muted);
+}
+.candidate-bar-track {
+  height: 13px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #263431;
+}
+.candidate-bar-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+.candidate-bar-track i.champion {
+  background: #8ab8ff;
+}
+.candidate-bar-track i.candidate {
+  background: #73e5c2;
+}
+.candidate-bar-row strong {
+  color: #e1eee9;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.candidate-result {
+  color: #f2c778;
+  font-size: 12px;
+}
+.candidate-result.passed {
+  color: #73e5c2;
+}
+
 .legend {
   display: flex;
   gap: 18px;

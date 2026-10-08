@@ -2,13 +2,19 @@
 
 최종 제출본의 동작 검증 진입점입니다. 원문 응답·실패 결과·합성/실측 구분을 보존합니다.
 
-## 제출본 기준 최종 검증 — 2026-10-08
+## 제출본 기준 통합 검증
+
+- [통합 실제 HTTP](records/2026-10-08-national/integration-final-http.json): 생존200·화면200·목록/이력/파이프라인200. ready503은 관측일·모델 준비 조건 미충족이며 Docker health와 구분합니다. 10월9일 확인에서 서울 실제 API는 키 미준비로 관측/예측0곳, 전날 입력은 STALE로 표시했습니다.
+- [실제 API 대기 화면](records/2026-10-08-national/integration-native-api.png): 미준비 수치와7단계 대기 상태를 표시합니다.
+- [dev 통합 후 전체 테스트](records/2026-10-08-national/integration-final-tests.txt): Python245통과·1skip, 프런트32통과·production build. 실제 API 모델 승격과 기존 전국 모델을 함께 검증했습니다. 아래226/30은 전국 기능 통합 당시의 이전 검증입니다.
+
+## 전국 기능 검증 — 2026-10-08
 
 - [통합 최종 검증](records/2026-10-08-national/simulation-final-verification.json): Python226통과·1skip, 프런트30통과·production build, Docker healthy·HTTP·화면·재기동·자료 보존.
 - [최종 테스트 원문](records/2026-10-08-national/simulation-final-tests.txt), [실제 HTTP](records/2026-10-08-national/simulation-final-http.json).
 - [서울25개 기본 화면](records/2026-10-08-national/final-seoul-overview.png), [전국 합성 별도 범위](records/2026-10-08-national/final-national-simulation.png), [실제 전국 강수](records/2026-10-08-national/final-national-rainfall.png), [모바일 수위 비교](records/2026-10-08-national/final-mobile-water.png).
 - [합성 다년 평가](records/2026-10-08-national/synthetic-seasonal-summary.json):17개 시나리오·34모델,5%개선0곳, 장마·강한 강수 pooled RMSE 악화. 실측 성능이나 운영 승격 증거가 아님.
-- 실제3곳과 합성17개를 분리합니다. 모델 준비는 서울23/25·전국 실측1/3·합성16/17개이며 미준비를 완료로 표시하지 않습니다.
+- 실제3곳과 합성17개를 분리합니다. 2026-10-08 검증 당시 모델 준비는 서울23/25·전국 실측1/3·합성16/17개였으며 미준비를 완료로 표시하지 않습니다.
 
 ## 과제 필수 동작 증거
 

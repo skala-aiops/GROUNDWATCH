@@ -114,3 +114,18 @@ it("waits for an exact listed network station before requesting station endpoint
  expect(selectedNetworkStationId(rows,"sim-gims-11")).toBe("sim-gims-11");
  expect(selectedNetworkStationId(rows,"unknown")).toBeNull();
 });
+
+import { nativeApiStation } from "./api";
+it("keeps native API datum unverified while sharing Seoul selection", () => {
+  const row = nativeApiStation({district_code: "11110", unit: "API 원값", prediction: 0,
+    observed_date: "2026-08-31", source_kind: "observed_api", rainfall_mm: null});
+  expect(row.station_id).toBe("seoul:11110");
+  expect(row.legacy_district_code).toBe("11110");
+  expect(row.level_reference).toBe("unverified_api_native");
+  expect(row.model_ready).toBe(true);
+  expect(row.rainfall_mm).toBeNull();
+  expect(row.observed_date).toBe("2026-08-31");
+});
+it("does not claim native model readiness without a prediction", () => {
+  expect(nativeApiStation({district_code:"11350",prediction:null}).model_ready).toBe(false);
+});
