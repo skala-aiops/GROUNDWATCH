@@ -8,8 +8,10 @@
 - [발표·시연](demo.md): 20분 이내 진행과 실패 시 보존된 증거를 사용하는 순서입니다.
 - [운영 정책](operations.md), [API 계약](docs/contracts.md), [팀 협업 규칙](AGENTS.md)을 함께 관리합니다.
 
-검수한 읽기용 PDF는 output/pdf에 둡니다. 최종 제출 형식·마감 공지는 아직 확인되지 않아 final/을 제출 완료로 표시하지 않습니다. 실제 발표·교수자 평가·제출은 별도 확인 사항입니다.
+최신 제출 준비본은 [발표·기획 자료 안내](output/skill-comparison/README.md)와 output/AIOps_조별 과제_광주_3반_GroundWatch.zip입니다. 편집형 발표 2종(26·25장), 이미지형 발표 1종(14장), 공통 기획서 11쪽을 검수했습니다. 각 기획서 복사본은 같은 내용입니다.
 
-최신 검수본은 [기획 PDF](output/pdf/groundwatch-proposal.pdf)입니다. 이전 기획 PDF는 output/pdf/archive에 보존했습니다. 기존 발표 PDF와 API 전환 PDF는 이전 방향의 기록이며 최신 기획으로 사용하지 않습니다. 현재 발표 순서는 demo.md입니다. B2B 과제 조건과 B2G 판매 방향의 인정 여부, 최종 제출 형식·마감·실제 발표 결과는 미확인입니다.
+파일명과 마지막 팀원 페이지 형식은 교수자 전달 지시를 반영했습니다. 사진은 사용자 요청에 따라 자리만 마련했습니다. 실제 발표·제출, 제출 마감, B2G 방향의 B2B 필수 조건 인정 여부는 확인되지 않았습니다.
 
-공급 시뮬레이션 설계·구현·시연은 [설계 문서](docs/supply-simulation-design.md)와 최신 기획 PDF에 포함됩니다. 최신 실제 자료 확보를 완료했다는 뜻은 아닙니다.
+output/pdf 및 output/pdf/archive의 기존 PDF와 output/archive의 이전 발표본은 과거 기록입니다. 최신 제출본으로 사용하지 않습니다. 원본 자료·소스·검증 증거는 삭제하지 않습니다. 공급 시연의 기존 설계는 [설계 문서](docs/supply-simulation-design.md), 현재 기본 경로는 [합성 확장 설계](docs/current-extension-design.md)를 따릅니다.
+
+발표 디자인은 인터넷 공식 가이드와 템플릿 사례를 참고해 화이트·코발트 / 화이트·블랙 / 화이트·블랙 세 방향으로 다시 제작했습니다. 상세 색상·서체·배치와 프롬프트는 각 스킬 폴더의 디자인_프롬프트.md, 비교는 output/skill-comparison/디자인_비교.md에 있습니다.

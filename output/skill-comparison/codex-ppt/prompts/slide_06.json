@@ -1,0 +1,43 @@
+{
+  "slide": 6,
+  "title": "시간 순서와 입력 품질을 지킵니다",
+  "prompt": "# Codex PPT Slide Image Prompt\n\n## Canvas\n{\n  \"type\": \"16:9 full-slide PowerPoint image\",\n  \"language\": \"Korean\",\n  \"slide_number\": 6,\n  \"render_slide_number\": false\n}\n\n## Deck Goal\n20분 이내 팀 발표, 정확한 근거와 운영 경계 설명\n\n## Required Background\n{\n  \"slide_local_context\": {\n    \"parent_edit_generated_source\": \"/Users/baggeon-u/.codex/generated_images/01a118d5-d86b-7761-a150-2fa97e717cbf/exec-9e72a45a-6e75-43fa-b190-b93b289be4f7.png\",\n    \"provenance\": \"Built-inimageeditofpreviousbuilt-inimage; parentvisuallyreviewed\"\n  }\n}\n\n## Global Style\n{\n  \"name\": \"흰색·검정 단색 기술 발표\",\n  \"color_palette\": \"#FFFFFF #111111 #666666 #E5E5E5\",\n  \"typography\": \"Korean neutral sans-serif, strong hierarchy, short headline and22–26pt-equivalentbody\",\n  \"visual_direction\": \"Flat linework and precise grids. No color, texture, illustrations, gradients, shadows,3D, decorativeicons.\"\n}\n\n## Input Images\n\n- Image 1: /Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team/output/skill-comparison/codex-ppt/origin_image/slide_05.png — style-only reference; Match palette and typography, vary layout\n\n\n## Slide\n{\n  \"number\": 6,\n  \"title\": \"시간 순서와 입력 품질을 지킵니다\",\n  \"role\": \"content\",\n  \"intent\": null\n}\n\n## Text\n{\n  \"title\": \"시간 순서와 입력 품질을 지킵니다\",\n  \"key_points\": [\n    \"학습 최대 730개 유효 구간 → 검증 60일 → 테스트 60일\",\n    \"scaler는 학습 자료로만 맞춤\",\n    \"결측을 0으로 채우거나 날짜 간격을 보간하지 않음\",\n    \"테스트는 개발 중 확인 · 외부 평가와 구분\"\n  ],\n  \"speaker_focus\": null\n}\n\n## Layout\n{\n  \"composition\": \"Preserve final monochrome layout and exact facts; use short grouped text, thin diagrams and whitespace.\"\n}\n\n## Constraints\n[\n  \"Pure white andblackgray only. Korean sansserif. No cropping, fakeUI, newclaims, page numbers.\"\n]\n\n## Style Reference Rule\nUse Image 1 as the approved sample-slide style reference. Match its palette, typography mood, density, texture, and overall visual identity. Do not copy its exact layout unless this slide's layout explicitly asks for it.\n\n## Input Image Handling Rules\nFor any input image marked as a strict input asset, include it visibly and preserve its content. Do not redraw, replace, relabel, or invent a similar figure. Scale and crop only as needed for composition while keeping the important labels, arrows, data, and relationships recognizable.\n\n## Universal Constraints\n- The final image itself must contain the title and key points.\n- Render Chinese text exactly and legibly; avoid garbled characters.\n- Keep the confirmed deck style consistent while varying layout by slide role.\n- No watermark, unrelated logo, or extra slide number.\n",
+  "out": "slide_06.png",
+  "input_images": [
+    {
+      "path": "/Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team/output/skill-comparison/codex-ppt/origin_image/slide_05.png",
+      "role": "style-only reference",
+      "fidelity": "Match palette and typography, vary layout"
+    }
+  ],
+  "requires_context_images": true,
+  "expected_backend": "built-in image tool",
+  "sample_generation_method": {
+    "backend_used": "built-in image tool",
+    "tool_name": "image_gen__imagegen",
+    "mode": "edit",
+    "prompt_source": "디자인_프롬프트.md; user-directed full-deck monochrome edit",
+    "approved_sample_path": "/Users/baggeon-u/Desktop/skala/skala-tasks/w14-model-serving-aiops/team/output/skill-comparison/codex-ppt/origin_image/slide_05.png",
+    "input_context_preparation": "view_image sample before referenced_image_paths",
+    "handoff_rule": "Explicit user/parent workflow change: all14images directly edited by parent, no newworkeragents",
+    "size": "built-in default 16:9",
+    "quality": "built-in default",
+    "original_selected_source": "/Users/baggeon-u/.codex/generated_images/01a118d5-d86b-7761-a150-2fa97e717cbf/exec-a047b085-c05f-4a63-88a6-146f93a853d2.png"
+  },
+  "generation_contract": {
+    "must_use_selected_image_backend": true,
+    "must_match_sample_generation_method": true,
+    "forbidden_final_image_methods": [
+      "local drawing/rendering scripts",
+      "Pillow-generated slides",
+      "SVG/HTML/CSS/canvas screenshots",
+      "python-pptx/PptxGenJS/native PPT layout screenshots",
+      "manually composited text/image overlays"
+    ],
+    "must_return": [
+      "backend_used",
+      "selected_source",
+      "qa_note"
+    ]
+  }
+}

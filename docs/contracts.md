@@ -2,6 +2,12 @@
 
 프론트·백엔드·데이터·AI 파드가 현재 구현을 연결할 때 사용하는 계약입니다. 실제 스키마는 `/docs`에서 확인합니다. 대표 관측소는 사용자가 위임한 공개 원천 조사·품질 비교로 고정했습니다. 선정 근거와 출처는 data/README.md 및 evidence의 자료 감사 기록을 확인합니다.
 
+## 2026-10-08 현재 날짜 과제 시연 변경
+
+기본 화면은 `/forecasts?mode=current`를 사용합니다. 원관측 2024-03-18 이후~서울 오늘의 합성 확장 자료를 별도 synthetic namespace로 학습합니다. CSV의 선택 열 `origin`은 `observed`/`synthetic`이며 기존 원관측 값·날짜는 보존합니다. 원본 CSV의 기본 6열 계약은 유지합니다. 전체 합성 혼합 자료의 manifest는 `source_kind=synthetic`로 격리합니다. `/forecasts`의 `provenance`는 생성식·seed·원본해시·관측소별 실측/합성 경계를 제공하며, 행의 `input_origin`은 마지막 입력 출처입니다. 이력은 행별 `origin`과 다음날의 실제 저장된 예측점(정답·강수는 null)을 제공합니다.
+
+기존 공급 재생과 외부 `/live` API는 내부 보존 기능이며 오늘 화면의 자료 공급 경로가 아닙니다. 합성 확장 모델 성능은 실제 서울 최신 관측 성능으로 설명하지 않습니다. 상세 설계는 `current-extension-design.md`입니다.
+
 ## 자료와 예측의 의미
 
 서울 25개 구에서 승인된 고정 관측소를 각각 하나 사용합니다. 예측 대상은 직전 **연속 20일의 수위·강수량으로 구한 다음 달력 날짜의 관측소 수위**입니다. 구 전체 평균·싱크홀 확률·현장 안전 등급을 뜻하지 않습니다. 대상 날짜의 미래 강수량은 입력하지 않습니다.
@@ -44,7 +50,7 @@ Canonical CSV는 UTF-8 또는 UTF-8 BOM이며 다음 열을 갖습니다.
 | GET `/replays` | `{replays}`, 진행 기준일 `as_of` 포함 |
 | POST `/replays/{id}/advance` | JSON `{days:1}`; 1~180일 진행 작업 접수 |
 
-`mode`는 `historical_replay` 또는 `current`입니다. 기존 `/forecasts`의 `current`는 과거 CSV 경로의 오늘 조회이며 외부 수집을 실행하지 않습니다. 현재 화면은 과거 `/forecasts`를 사용합니다. `/live/forecasts`와 외부 수집은 보류한 확장 계약입니다. `replay_id`가 있으면 재생 시계보다 미래인 기준일을 조회할 수 없습니다. 재생은 `historical` 또는 `level_shift` 시나리오이며, 후자는 `shift_start` 이후 수위에 `shift_amount`를 더한 모의 자료입니다. 변화 시작일은 재생 시작일 이후여야 합니다.
+`mode`는 `historical_replay` 또는 `current`입니다. `/forecasts`의 `current`는 현재 선택 자료(기본은 공식 과거 관측과 합성 확장 자료)의 오늘 입력으로 내일을 예측하며 외부 수집을 실행하지 않습니다. 현재 화면은 위 변경에 따라 `/forecasts?mode=current`를 사용합니다. `/live/forecasts`와 외부 수집은 보류한 확장 계약입니다. `replay_id`가 있으면 재생 시계보다 미래인 기준일을 조회할 수 없습니다. 재생은 `historical` 또는 `level_shift` 시나리오이며, 후자는 `shift_start` 이후 수위에 `shift_amount`를 더한 모의 자료입니다. 변화 시작일은 재생 시작일 이후여야 합니다.
 
 예측 행에는 `district_code`, `district_name`, 관측소 정보, `observed_date`, `forecast_date`, `prediction`, `unit`, `model_version`, `dataset_version`, `mapping_version`, `source_kind`, `quality_status`, `inspection_status`, `reason`이 포함됩니다. 준비가 안 되면 `prediction: null`이며, 25행을 반환했다고 25개 예측이 준비된 것은 아닙니다. `DATA_REQUIRED`, `MODEL_NOT_READY`, `DATA_GAP`, `STALE_DATA`, `NORMAL`, `WARN`을 구분합니다. 이벤트 상태는 `OPEN`, `ACKNOWLEDGED`, `RESOLVED`입니다. 모델 생성·평가 등 정보 기록은 `RECORDED`이며 사람의 조치 버튼을 제공하지 않습니다.
 
@@ -249,3 +255,5 @@ GET /api/v1/events, 본문 없음 →200, {events:[...]}에 감지·재학습·�
 새 namespace에서 초기 검증 모델을 복사하거나 기존 초기 학습을 실행하고25개 준비 후 하루씩 진행합니다. /replays/{id}/advance의 days는 시뮬레이션에서1만 허용합니다. 진행은 기존 worker가 예측 저장→정답 공개→오차 감시·필요시 재학습 순으로 수행합니다. 다음 날 예측만 있는 history 행은 관측·강수 null입니다. SQLite의 세션 시작일을 보존하므로 새로고침·재시작에도 시연 시계가 유지됩니다. 설계는 [공급 시뮬레이션 설계](supply-simulation-design.md), 실제 결과는 [HTTP 검증](../evidence/supply-simulation-http.json)을 따릅니다.
 
 최종 시연 구성(2026-10-07): 교수자 시뮬레이션 허용은 사용자 전달로 확인했습니다. 메인에는 작은 시연 환경 표시를 유지하고 시작·하루 공급 제어는 운영 화면에 둡니다. 공급만 재현하며 예측·오차 감시·재학습·후보 평가는 실제 실행합니다. 팀 설명은 [팀 로직 설명](team-logic-guide.md)의 확정 범위를 따릅니다.
+
+`GET /metrics/summary` 및 `/api/v1/metrics/summary`는 실제 요청 로그의 `mean_seconds`(산술 평균 응답시간, 초), `p95_seconds`, `error_rate`(5xx 비율), `throughput_per_second`를 반환합니다. 요청이 없으면 평균과 p95는 null입니다. 평균은 강의의 기본 집계이며 기존 p95 경보 조건은 유지합니다.

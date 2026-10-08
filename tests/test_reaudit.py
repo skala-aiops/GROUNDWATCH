@@ -208,3 +208,19 @@ class PipelineCycleTests(unittest.TestCase):
             self.assertEqual(actual['stages'][4]['status'],'pending')
             self.assertEqual(actual['stages'][5]['status'],'pending')
             self.assertIn('v3',actual['stages'][4]['detail'])
+
+
+class MeanLatencyTests(unittest.TestCase):
+    def test_mean_is_distinct_from_p95_and_persists_across_store_reopen(self):
+        from serving_app.groundwater_store import Store
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'metrics.sqlite3'
+            store=Store(path)
+            self.assertIsNone(store.metric_summary()['mean_seconds'])
+            for i,(status,latency) in enumerate([(200,.1),(422,.3),(500,2.0)]):
+                store.request_metric('GET','/measured',status,latency,str(i))
+            measured=Store(path).metric_summary(300)
+            self.assertAlmostEqual(measured['mean_seconds'],.8)
+            self.assertEqual(measured['p95_seconds'],2.0)
+            self.assertAlmostEqual(measured['error_rate'],1/3)
+            self.assertEqual(measured['http_4xx_count'],1)
