@@ -1,0 +1,5 @@
+2026-10-08 isolated Docker regression
+Ran 103 tests in 34.817s
+OK (skipped=1)
+Frontend vitest: 5 passed
+TypeScript/Vite and standard Docker Compose build passed.

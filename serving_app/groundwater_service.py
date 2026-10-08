@@ -461,6 +461,17 @@ class GroundwaterService:
 
     def run_job(self, job):
         kind, payload = job['kind'], job['payload']
+        if kind in ('monitor_api_feed','retrain_api_feed','rollback_api_feed'):
+            from serving_app.api_feed_ops import ApiFeedOperations
+            operations=ApiFeedOperations(self)
+            if kind == 'monitor_api_feed':
+                from serving_app.api_observation_feed import ApiObservationFeed
+                return operations.cycle(ApiObservationFeed(self.root))
+            return operations.execute_job(job)
+        if kind == 'train_api_feed':
+            from serving_app.api_feed_models import ApiFeedTraining
+            from serving_app.api_observation_feed import ApiObservationFeed
+            return ApiFeedTraining(self.root).execute(payload['feed_hash'], ApiObservationFeed(self.root).stations)
         if kind in ('train_live','predict_live','fine_tune_live'):
             from serving_app.live_observations import LiveObservations
             return LiveObservations(self).execute_job(job)
