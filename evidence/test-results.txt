@@ -1,0 +1,72 @@
+test_empty_service_200_with_25_null_predictions_and_no_observation_date (test_groundwater_api.ApiTests.test_empty_service_200_with_25_null_predictions_and_no_observation_date) ... ok
+test_invalid_date_district_and_extra_body_fields_422 (test_groundwater_api.ApiTests.test_invalid_date_district_and_extra_body_fields_422) ... ok
+test_pre_evaluation_forecast_is_unavailable_not_leaked_training_result (test_groundwater_api.ApiTests.test_pre_evaluation_forecast_is_unavailable_not_leaked_training_result) ... ok
+test_predict_200_actual_version_and_422_invalid_length_rain_gap_identity (test_groundwater_api.ApiTests.test_predict_200_actual_version_and_422_invalid_length_rain_gap_identity) ... ok
+test_predict_valid_input_without_model_returns_503 (test_groundwater_api.ApiTests.test_predict_valid_input_without_model_returns_503) ... ok
+test_replay_future_query_and_invalid_advance_return_422 (test_groundwater_api.ApiTests.test_replay_future_query_and_invalid_advance_return_422) ... ok
+test_rollback_rejects_unvalidated_version_without_changing_champion (test_groundwater_api.ApiTests.test_rollback_rejects_unvalidated_version_without_changing_champion) ... ok
+test_train_job_duplicate_and_retry_validation (test_groundwater_api.ApiTests.test_train_job_duplicate_and_retry_validation) ... ok
+test_upload_202_durable_validation_and_duplicate_409 (test_groundwater_api.ApiTests.test_upload_202_durable_validation_and_duplicate_409) ... ok
+test_upload_schema_and_malformed_manifest_return_422 (test_groundwater_api.ApiTests.test_upload_schema_and_malformed_manifest_return_422) ... ok
+test_bom_zero_and_negative_level_are_valid_missing_rain_is_not_zero (test_groundwater_data.GroundwaterDataTest.test_bom_zero_and_negative_level_are_valid_missing_rain_is_not_zero) ... ok
+test_conflicting_group_fully_quarantined_exact_duplicates_collapsed (test_groundwater_data.GroundwaterDataTest.test_conflicting_group_fully_quarantined_exact_duplicates_collapsed) ... ok
+test_conversion_joins_explicit_rain_station_and_quarantines_water_conflict (test_groundwater_data.GroundwaterDataTest.test_conversion_joins_explicit_rain_station_and_quarantines_water_conflict) ... ok
+test_gap_aware_split_never_bridges_gap_or_leaks_replay (test_groundwater_data.GroundwaterDataTest.test_gap_aware_split_never_bridges_gap_or_leaks_replay) ... ok
+test_gap_cannot_be_treated_as_twenty_days (test_groundwater_data.GroundwaterDataTest.test_gap_cannot_be_treated_as_twenty_days) ... ok
+test_malformed_manifest_is_validation_error (test_groundwater_data.GroundwaterDataTest.test_malformed_manifest_is_validation_error) ... ok
+test_manifest_needs_explicit_approval_and_no_station_switch (test_groundwater_data.GroundwaterDataTest.test_manifest_needs_explicit_approval_and_no_station_switch) ... ok
+test_official_chart_parser_retains_negative_level_and_excludes_missing_rain (test_groundwater_data.GroundwaterDataTest.test_official_chart_parser_retains_negative_level_and_excludes_missing_rain) ... ok
+test_split_targets_ordered_and_scaler_fits_only_training (test_groundwater_data.GroundwaterDataTest.test_split_targets_ordered_and_scaler_fits_only_training) ... ok
+test_clone_reuses_only_initial_weights_and_isolates_registry_cache (test_groundwater_models.ModelTests.test_clone_reuses_only_initial_weights_and_isolates_registry_cache) ... ok
+test_failed_promotion_preserves_actual_champion (test_groundwater_models.ModelTests.test_failed_promotion_preserves_actual_champion) ... ok
+test_gap_aware_training_cap_is_applied_before_scaler_fit (test_groundwater_models.ModelTests.test_gap_aware_training_cap_is_applied_before_scaler_fit) ... ok
+test_gap_aware_training_preserves_daily_windows_and_excludes_future_scaler (test_groundwater_models.ModelTests.test_gap_aware_training_preserves_daily_windows_and_excludes_future_scaler) ... ok
+test_initial_failed_gate_does_not_serve_registered_candidate (test_groundwater_models.ModelTests.test_initial_failed_gate_does_not_serve_registered_candidate) ... ok
+test_missing_model_has_no_sample_fallback (test_groundwater_models.ModelTests.test_missing_model_has_no_sample_fallback) ... ok
+test_mlflow_missing_champion_alias_distinguished_from_registry_failure (test_groundwater_models.ModelTests.test_mlflow_missing_champion_alias_distinguished_from_registry_failure) ... ok
+test_rejects_unapproved_metadata_and_calendar_gaps (test_groundwater_models.ModelTests.test_rejects_unapproved_metadata_and_calendar_gaps) ... ok
+test_residual_architecture_is_explicitly_selected_and_recorded (test_groundwater_models.ModelTests.test_residual_architecture_is_explicitly_selected_and_recorded) ... ok
+test_restart_alias_and_district_isolation (test_groundwater_models.ModelTests.test_restart_alias_and_district_isolation) ... ok
+test_rollback_cannot_promote_unvalidated_registered_candidate (test_groundwater_models.ModelTests.test_rollback_cannot_promote_unvalidated_registered_candidate) ... ok
+test_shadow_waits_for_new_labels_and_frozen_scaler (test_groundwater_models.ModelTests.test_shadow_waits_for_new_labels_and_frozen_scaler) ... ok
+test_stale_finetuning_is_rejected (test_groundwater_models.ModelTests.test_stale_finetuning_is_rejected) ... ok
+test_temporal_split_scaler_and_identity (test_groundwater_models.ModelTests.test_temporal_split_scaler_and_identity) ... ok
+test_residual_model_trains_serializes_and_reloads_without_lambda (test_groundwater_models.TensorFlowGraphTests.test_residual_model_trains_serializes_and_reloads_without_lambda) ... skipped 'opt-in actual TensorFlow training smoke'
+test_durable_jobs_atomic_claim_duplicate_and_explicit_recovery (test_groundwater_service.ServiceTests.test_durable_jobs_atomic_claim_duplicate_and_explicit_recovery) ... ok
+test_failed_training_job_keeps_existing_champion_available (test_groundwater_service.ServiceTests.test_failed_training_job_keeps_existing_champion_available) ... ok
+test_forecast_cache_separates_actual_champion_versions (test_groundwater_service.ServiceTests.test_forecast_cache_separates_actual_champion_versions) ... ok
+test_forecasts_deduplicate_and_labels_reveal_after_clock_advance (test_groundwater_service.ServiceTests.test_forecasts_deduplicate_and_labels_reveal_after_clock_advance) ... ok
+test_future_replay_queries_rejected_and_history_hides_future (test_groundwater_service.ServiceTests.test_future_replay_queries_rejected_and_history_hides_future) ... ok
+test_missing_data_returns_25_rows_without_fabricated_values (test_groundwater_service.ServiceTests.test_missing_data_returns_25_rows_without_fabricated_values) ... ok
+test_modified_replay_is_marked_synthetic_without_changing_source (test_groundwater_service.ServiceTests.test_modified_replay_is_marked_synthetic_without_changing_source) ... ok
+test_multi_day_advance_executes_finetune_before_shadow_future (test_groundwater_service.ServiceTests.test_multi_day_advance_executes_finetune_before_shadow_future) ... ok
+test_retrained_champion_cannot_generate_new_forecasts_before_its_cutoff (test_groundwater_service.ServiceTests.test_retrained_champion_cannot_generate_new_forecasts_before_its_cutoff) ... ok
+test_two_workers_cannot_claim_same_durable_job (test_groundwater_service.ServiceTests.test_two_workers_cannot_claim_same_durable_job) ... ok
+test_failed_gate_does_not_reload (test_pipeline.PipelineTests.test_failed_gate_does_not_reload) ... [WARN] drift detected - triggering retrain
+ok
+test_predict_scaling_and_lazy_cache (test_pipeline.PipelineTests.test_predict_scaling_and_lazy_cache) ... ok
+test_retrain_failure_preserves_serving_cache (test_pipeline.PipelineTests.test_retrain_failure_preserves_serving_cache) ... [lazy] model loaded in 0.000s on first request
+[WARN] drift detected - triggering retrain
+[ERROR] retraining failed - keeping current serving model
+Traceback (most recent call last):
+  File "/app/serving_app/monitoring/retrain_trigger.py", line 24, in check_and_trigger
+    result = fine_tune(rows=rows)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+RuntimeError: training failed
+ok
+test_rmse_and_threshold (test_pipeline.PipelineTests.test_rmse_and_threshold) ... ok
+test_successful_gate_reloads (test_pipeline.PipelineTests.test_successful_gate_reloads) ... [WARN] drift detected - triggering retrain
+ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 4.230s
+
+OK (skipped=1)

@@ -1,0 +1,2698 @@
+{
+  "models": [
+    {
+      "district_code": "11110",
+      "station_id": "SU-JNO-G1-0007",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "99a550365902e4a587119430f10ecee3b7d180f3ee9169b8864970fb5365abbb",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-03-12",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.06998228291374492,
+      "metrics": {
+        "validation": {
+          "rmse": 0.032518672077274054,
+          "mae": 0.026902567327022748,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.03405877273185283,
+          "mae": 0.02866666666666671,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.019257592430736648,
+          "mae": 0.016318597947557006,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.01979057014506306,
+          "mae": 0.016499999999999855,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -24.42,
+          0.0
+        ],
+        "maximum": [
+          -20.43,
+          0.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-02-20",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 830,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-12",
+          "last_target": "2023-08-21",
+          "input_start": "2021-02-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11140",
+      "station_id": "SU-JGS-G1-0008",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "fba38b80880d71e474598d2ef14d898db4687bde295f354016f0d6e9722d4dd6",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.007342714897391083,
+      "metrics": {
+        "validation": {
+          "rmse": 0.003425361784003513,
+          "mae": 0.0012945643166701317,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.003415650255319864,
+          "mae": 0.001166666666666666,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.020708782040814867,
+          "mae": 0.010405384000390767,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.02073644135332773,
+          "mae": 0.010333333333333335,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -0.56,
+          0.0
+        ],
+        "maximum": [
+          -0.27,
+          142.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11170",
+      "station_id": "SU-YSN-G1-0007",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "071c3ea226b38a721f6156d4bd2d4f62aaba61ae22e4da131f19a1747744ddea",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-02",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.06323130545791121,
+      "metrics": {
+        "validation": {
+          "rmse": 0.03799506383330409,
+          "mae": 0.03086489853262906,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.0369007678330229,
+          "mae": 0.029499999999999905,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.06802371503767987,
+          "mae": 0.045323721975088,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.06809307355867153,
+          "mae": 0.04499999999999984,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -17.55,
+          0.0
+        ],
+        "maximum": [
+          -13.06,
+          251.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-12",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11200",
+      "station_id": "SU-SDG-G1-0003",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "5b67d5eb683562a8aeea0e951289b0ff171ff2246e0e38f8c5da95df4ab77639",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-01",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.04024328091154739,
+      "metrics": {
+        "validation": {
+          "rmse": 0.02484025999682605,
+          "mae": 0.019267373303572363,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.02645751311064591,
+          "mae": 0.019666666666666707,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.03927137160825746,
+          "mae": 0.026174646471937502,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.03995831160930936,
+          "mae": 0.026666666666666648,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -8.18,
+          0.0
+        ],
+        "maximum": [
+          -6.07,
+          177.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-07-12",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11215",
+      "station_id": "SU-GJI-G1-0007",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "65729932741a7aaadf76fecc3f0c23767da43677e1a3ac3e5993e17194d95feb",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-01-30",
+          "end": "2023-06-01",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-06-02",
+          "end": "2023-07-31",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.12618233208821295,
+      "metrics": {
+        "validation": {
+          "rmse": 0.051966112169985604,
+          "mae": 0.030074412226676787,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.05139714648369757,
+          "mae": 0.029499999999999964,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.014145195385431217,
+          "mae": 0.010734051982561698,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.014433756729740729,
+          "mae": 0.010166666666666687,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -14.51,
+          0.0
+        ],
+        "maximum": [
+          -11.11,
+          208.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-01-10",
+      "scaler_fit_end": "2023-06-01",
+      "scaler_fit_observations": 810,
+      "trained_through": "2023-06-01",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-30",
+          "last_target": "2023-06-01",
+          "input_start": "2021-01-10"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-02",
+          "last_target": "2023-07-31",
+          "input_start": "2023-05-13"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11230",
+      "station_id": "SU-DDM-G1-0003",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "277b69e5242666aeceb698374cca7e64ecbd289c0f2ea150a223397590769a25",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-18",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.02324346424041991,
+      "metrics": {
+        "validation": {
+          "rmse": 0.012727499733338395,
+          "mae": 0.008021000449856312,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.01297433363735242,
+          "mae": 0.007833333333333359,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.010516685353360594,
+          "mae": 0.006062272831797936,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.0107238052947636,
+          "mae": 0.0058333333333333275,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -8.13,
+          0.0
+        ],
+        "maximum": [
+          -6.11,
+          184.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-28",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11260",
+      "station_id": "SU-JNG-G1-0002",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "3d245282354ccf290008d4b589ed8cec19cd85ee89bd9000f71fdf00effb0d23",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.19357846064202644,
+      "metrics": {
+        "validation": {
+          "rmse": 0.09043064015242358,
+          "mae": 0.05757120974858603,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.09048020041239217,
+          "mae": 0.05866666666666662,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.1385021350597693,
+          "mae": 0.04776600617170336,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.13876839217439488,
+          "mae": 0.04799999999999995,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -9.28,
+          0.0
+        ],
+        "maximum": [
+          -4.86,
+          0.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11290",
+      "station_id": "SU-SBK-G1-0002",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "2bf6152f1e3480b4e69167d6d77725be56c66f05c6de456d4d879798335eb163",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-04",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.0692574571819764,
+      "metrics": {
+        "validation": {
+          "rmse": 0.035676627359351815,
+          "mae": 0.022394697164495905,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.0360786178597056,
+          "mae": 0.023500000000000017,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.014555914415639542,
+          "mae": 0.010009407150248843,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.014200938936093872,
+          "mae": 0.008833333333333337,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -5.34,
+          0.0
+        ],
+        "maximum": [
+          -3.79,
+          197.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-14",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-04",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-14"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11305",
+      "station_id": "SU-GBK-G1-0005",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "f8c1e744e3bf1da79c9b9b062bcbe2e3a2b33631e32cbb9542d8b97bf6962f90",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-05-10",
+          "end": "2023-05-30",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-05-31",
+          "end": "2023-07-29",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-07-30",
+          "end": "2023-09-27",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.41965472001052617,
+      "metrics": {
+        "validation": {
+          "rmse": 0.20188303910730296,
+          "mae": 0.15156028238932293,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.20961870145576228,
+          "mae": 0.15000000000000002,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.12310943004294683,
+          "mae": 0.06929115804036458,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.1217784874269672,
+          "mae": 0.071,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -8.0,
+          0.0
+        ],
+        "maximum": [
+          -2.88,
+          206.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-04-20",
+      "scaler_fit_end": "2023-05-30",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-05-30",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-10",
+          "last_target": "2023-05-30",
+          "input_start": "2021-04-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-05-31",
+          "last_target": "2023-07-29",
+          "input_start": "2023-05-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-07-30",
+          "last_target": "2023-09-27",
+          "input_start": "2023-07-10"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11320",
+      "station_id": "SU-DBG-G1-0006",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "e94e34065ea9f4bcdbe4cab602495b8f307bb50194f21643edad56ae0c1a2909",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-05-09",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.04881939835684691,
+      "metrics": {
+        "validation": {
+          "rmse": 0.024414203143487866,
+          "mae": 0.017243739416201838,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.02997220935021876,
+          "mae": 0.01916666666666673,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.026883602896474935,
+          "mae": 0.01911652506887907,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.03052321520853698,
+          "mae": 0.01949999999999991,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -16.14,
+          0.0
+        ],
+        "maximum": [
+          -13.55,
+          238.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-04-19",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 790,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-09",
+          "last_target": "2023-08-21",
+          "input_start": "2021-04-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11350",
+      "station_id": "SU-NWN-G1-0008",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "be9413bb0e839000362a6faecc83fc03e91ca395f601640483a78f8b3d7951ab",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-02",
+          "end": "2023-07-01",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-07-02",
+          "end": "2023-08-30",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-08-31",
+          "end": "2023-10-29",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 2.335700006394123,
+      "metrics": {
+        "validation": {
+          "rmse": 0.9225856122078623,
+          "mae": 0.21192522642016387,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.9225797165195719,
+          "mae": 0.21200000000000002,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.02711268108255687,
+          "mae": 0.021425214986006358,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.027202941017470846,
+          "mae": 0.021333333333333294,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -15.67,
+          0.0
+        ],
+        "maximum": [
+          -7.25,
+          136.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-12",
+      "scaler_fit_end": "2023-07-01",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-07-01",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-07-01",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-07-02",
+          "last_target": "2023-08-30",
+          "input_start": "2023-06-12"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-31",
+          "last_target": "2023-10-29",
+          "input_start": "2023-08-11"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11380",
+      "station_id": "SU-UPG-G1-0003",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "b4c2ac3caed03ef73a20bc58aa473ceb113cd51a844088c0921a99d273e0e553",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 1.676395086380718,
+      "metrics": {
+        "validation": {
+          "rmse": 0.7817375912945526,
+          "mae": 0.5660794465144475,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 1.0480784003753407,
+          "mae": 0.6128333333333337,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.5434606911765392,
+          "mae": 0.3131591733892762,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.6957274370518003,
+          "mae": 0.28200000000000003,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -14.32,
+          0.0
+        ],
+        "maximum": [
+          -9.23,
+          198.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11410",
+      "station_id": "SU-SDM-G1-0006",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "f6ee487b251d5af10f5a02093c1bd3cff941524562970d696fbc9eee0389432e",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-05-25",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.021283208717451155,
+      "metrics": {
+        "validation": {
+          "rmse": 0.012384801520732501,
+          "mae": 0.010400529980659427,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.016532795690182994,
+          "mae": 0.012333333333333337,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.013297836071321659,
+          "mae": 0.010587191581726036,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.013102162671355713,
+          "mae": 0.01016666666666668,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -4.8,
+          0.0
+        ],
+        "maximum": [
+          -2.98,
+          169.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-05-05",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 790,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-25",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-05"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11440",
+      "station_id": "SU-MPO-G1-0005",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "dffa70b21416ee674314790350cec14703d5d7119d5e0b8d9524e029e353c0eb",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.01898340680841796,
+      "metrics": {
+        "validation": {
+          "rmse": 0.012218158210536057,
+          "mae": 0.0077830027043819545,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.012382783747337972,
+          "mae": 0.00766666666666674,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.023744793437996386,
+          "mae": 0.018506694907943308,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.023380903889000455,
+          "mae": 0.018000000000000148,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -12.47,
+          0.0
+        ],
+        "maximum": [
+          -10.9,
+          160.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11470",
+      "station_id": "SU-YGC-G1-0008",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "874ce1d0bcfac678ff9058f6d52eaf24da77c116b4bacad025200825acd08c7c",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2020-08-09",
+          "end": "2023-01-30",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-01-31",
+          "end": "2023-03-31",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.06709269222217995,
+      "metrics": {
+        "validation": {
+          "rmse": 0.03827505857779452,
+          "mae": 0.03185213283697778,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.038622100754188246,
+          "mae": 0.03250000000000013,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.0206379171004194,
+          "mae": 0.016208032359679752,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.019874606914351934,
+          "mae": 0.013833333333333482,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -13.67,
+          0.0
+        ],
+        "maximum": [
+          -5.69,
+          185.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2020-07-20",
+      "scaler_fit_end": "2023-01-30",
+      "scaler_fit_observations": 830,
+      "trained_through": "2023-01-30",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-08-09",
+          "last_target": "2023-01-30",
+          "input_start": "2020-07-20"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-01-31",
+          "last_target": "2023-03-31",
+          "input_start": "2023-01-11"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11500",
+      "station_id": "SU-GSS-G1-0002",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "7aec13f3d175d82ec19eb412085f528109ded95ac0beaa8b2e468c78d158abba",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-01",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.029139676953944413,
+      "metrics": {
+        "validation": {
+          "rmse": 0.016901373029204473,
+          "mae": 0.01280264993508684,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.01693123346560061,
+          "mae": 0.012666666666666842,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.035271594654027544,
+          "mae": 0.026539379159609577,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.03533176097130359,
+          "mae": 0.026499999999999968,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -14.48,
+          0.0
+        ],
+        "maximum": [
+          -13.08,
+          173.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-07-12",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-01",
+          "last_target": "2023-08-21",
+          "input_start": "2021-07-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11530",
+      "station_id": "SU-GRO-G1-0006",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "55600407bdf81d4e59cbf9266c30ca6a2313af72d851947dc801aeafccc42c97",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2020-06-20",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.07141196416008311,
+      "metrics": {
+        "validation": {
+          "rmse": 0.03662845238767573,
+          "mae": 0.026086590210596745,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.04275901464408804,
+          "mae": 0.030833333333333313,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.043439322096083866,
+          "mae": 0.030569499572118186,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.047451729859581245,
+          "mae": 0.031833333333333394,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -8.56,
+          0.0
+        ],
+        "maximum": [
+          -3.48,
+          289.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2020-05-31",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 790,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2020-06-20",
+          "last_target": "2023-08-21",
+          "input_start": "2020-05-31"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11545",
+      "station_id": "SU-GCN-G1-0002",
+      "model_version": "3",
+      "namespace": "historical",
+      "training_hash": "507c13e13adccb2211781a406b6a3745314d8ec33c4adeed3ff1e1127c880d35",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-05-31",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.03810838729740844,
+      "metrics": {
+        "validation": {
+          "rmse": 0.02091393571861499,
+          "mae": 0.01594923225045172,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.020936411663256254,
+          "mae": 0.015833333333333262,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.051980570419416734,
+          "mae": 0.032200541545947856,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.052153619241621096,
+          "mae": 0.03233333333333326,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 1e-05,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -39.81,
+          0.0
+        ],
+        "maximum": [
+          -7.9,
+          342.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-05-11",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 790,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-05-31",
+          "last_target": "2023-08-21",
+          "input_start": "2021-05-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11560",
+      "station_id": "SU-YDP-G1-0001",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "16f604d230699205b7f7c1fa99d0dbd184da6f84835947af95d2dc64e8814798",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.21463462768022332,
+      "metrics": {
+        "validation": {
+          "rmse": 0.09263895914955522,
+          "mae": 0.04680822205543563,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.09123230422023419,
+          "mae": 0.03933333333333338,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.09867927558697281,
+          "mae": 0.04381117947896354,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.09709102258533868,
+          "mae": 0.03766666666666687,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -29.64,
+          0.0
+        ],
+        "maximum": [
+          -15.32,
+          158.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11590",
+      "station_id": "SU-DJK-G1-0005",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "ebc414be65b027eb77e3eeef83c2f72476e529088431935f5e11342b473e40ad",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-01-31",
+          "end": "2023-06-12",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-06-13",
+          "end": "2023-08-11",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-08-12",
+          "end": "2023-10-10",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 2.4338032400530323,
+      "metrics": {
+        "validation": {
+          "rmse": 1.010585389351938,
+          "mae": 0.48815668279429275,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 1.010438848553769,
+          "mae": 0.48733333333333323,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.6492654830285554,
+          "mae": 0.21452580150961864,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.6492161940884305,
+          "mae": 0.21383333333333324,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -11.0,
+          0.0
+        ],
+        "maximum": [
+          -2.95,
+          0.0
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-01-11",
+      "scaler_fit_end": "2023-06-12",
+      "scaler_fit_observations": 790,
+      "trained_through": "2023-06-12",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-01-31",
+          "last_target": "2023-06-12",
+          "input_start": "2021-01-11"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-06-13",
+          "last_target": "2023-08-11",
+          "input_start": "2023-05-24"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-08-12",
+          "last_target": "2023-10-10",
+          "input_start": "2023-07-23"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11620",
+      "station_id": "SU-GNK-G1-0008",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "8c3ca49b3fe607df62f218f093687191d4b21dc3e9d3eb888c99c919f1241554",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-18",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.04368075750522554,
+      "metrics": {
+        "validation": {
+          "rmse": 0.02636865154654,
+          "mae": 0.020853818913300425,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.02633122354417536,
+          "mae": 0.0206666666666667,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.032261281387711796,
+          "mae": 0.0258444895048943,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.03296462750686966,
+          "mae": 0.026333333333333334,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -42.23,
+          0.0
+        ],
+        "maximum": [
+          -3.34,
+          305.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-28",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-18",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-28"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11650",
+      "station_id": "SU-SCO-G1-0010",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "eac01bd27cf3c85747eb471b98eddda143877252c8d4d9f67e17cadc2cec66e2",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-07-02",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 1.5826453612682974,
+      "metrics": {
+        "validation": {
+          "rmse": 0.7993251538890978,
+          "mae": 0.44708076313138,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.9376006612625654,
+          "mae": 0.47050000000000003,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.7625021740268402,
+          "mae": 0.4671317937026423,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.9098443090258173,
+          "mae": 0.5626666666666668,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -16.3,
+          0.0
+        ],
+        "maximum": [
+          -5.63,
+          354.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-06-12",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-07-02",
+          "last_target": "2023-08-21",
+          "input_start": "2021-06-12"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11680",
+      "station_id": "SU-GNM-G1-0005",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "9a63897d319b98a7291a989c2f64c39ac78d2da4bcc77e9ef34f1acef1023966",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.047306358083801806,
+      "metrics": {
+        "validation": {
+          "rmse": 0.026056642533671844,
+          "mae": 0.020486013655861158,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.026076809620810566,
+          "mae": 0.020333333333333346,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.03888299173297819,
+          "mae": 0.022023926849166802,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.03888015775002306,
+          "mae": 0.02183333333333334,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -10.6,
+          0.0
+        ],
+        "maximum": [
+          -9.51,
+          326.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11710",
+      "station_id": "SU-SPA-G1-0009",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "eb4ed530beb48ae435b58b697f66c69a3aabf3c011d4639d064655457c509b0d",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-08-22",
+          "end": "2023-08-21",
+          "count": 730,
+          "target_dates_continuous": true
+        },
+        "validation": {
+          "start": "2023-08-22",
+          "end": "2023-10-20",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-10-21",
+          "end": "2023-12-19",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 0.01639598164978955,
+      "metrics": {
+        "validation": {
+          "rmse": 0.008934450969448893,
+          "mae": 0.005782205849886128,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 0.00912870929175277,
+          "mae": 0.004666666666666656,
+          "count": 60
+        },
+        "test": {
+          "rmse": 0.014471232120574828,
+          "mae": 0.010252440849939948,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 0.014719601443879534,
+          "mae": 0.009999999999999846,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -13.35,
+          0.0
+        ],
+        "maximum": [
+          -11.64,
+          307.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-08-02",
+      "scaler_fit_end": "2023-08-21",
+      "scaler_fit_observations": 750,
+      "trained_through": "2023-08-21",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-08-22",
+          "last_target": "2023-08-21",
+          "input_start": "2021-08-02"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-08-22",
+          "last_target": "2023-10-20",
+          "input_start": "2023-08-02"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-10-21",
+          "last_target": "2023-12-19",
+          "input_start": "2023-10-01"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    },
+    {
+      "district_code": "11740",
+      "station_id": "SU-GDG-G1-0019",
+      "model_version": "2",
+      "namespace": "historical",
+      "training_hash": "2b9adee1c652dd7ef848480de8327200dab9a1011d58bcea486ad027ccded58b",
+      "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+      "mapping_version": "groundwatch-seoul-v1",
+      "splits": {
+        "train": {
+          "start": "2021-03-11",
+          "end": "2023-04-04",
+          "count": 730,
+          "target_dates_continuous": false
+        },
+        "validation": {
+          "start": "2023-04-05",
+          "end": "2023-06-03",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "test": {
+          "start": "2023-06-04",
+          "end": "2023-08-02",
+          "count": 60,
+          "target_dates_continuous": true
+        },
+        "replay": {
+          "start": "2023-12-20",
+          "end": "2024-03-18",
+          "count": 90,
+          "target_dates_continuous": true
+        }
+      },
+      "threshold": 3.8766809837858154,
+      "metrics": {
+        "validation": {
+          "rmse": 2.322670446380293,
+          "mae": 1.2991646850903835,
+          "count": 60
+        },
+        "validation_persistence": {
+          "rmse": 2.869069826035377,
+          "mae": 1.5228333333333333,
+          "count": 60
+        },
+        "test": {
+          "rmse": 1.7356318008899003,
+          "mae": 1.0000159180959067,
+          "count": 60
+        },
+        "test_persistence": {
+          "rmse": 2.0666966395675974,
+          "mae": 1.0935000000000001,
+          "count": 60
+        }
+      },
+      "model_architecture": "residual_lstm",
+      "learning_rate": 0.0001,
+      "seed": 42,
+      "window": 20,
+      "feature_order": [
+        "groundwater_level",
+        "rainfall_mm"
+      ],
+      "scaler": {
+        "minimum": [
+          -36.83,
+          0.0
+        ],
+        "maximum": [
+          -4.03,
+          224.5
+        ],
+        "fit_scope": "train_only"
+      },
+      "scaler_fit_start": "2021-02-19",
+      "scaler_fit_end": "2023-04-04",
+      "scaler_fit_observations": 770,
+      "trained_through": "2023-04-04",
+      "partitions": {
+        "train": {
+          "target_count": 730,
+          "first_target": "2021-03-11",
+          "last_target": "2023-04-04",
+          "input_start": "2021-02-19"
+        },
+        "validation": {
+          "target_count": 60,
+          "first_target": "2023-04-05",
+          "last_target": "2023-06-03",
+          "input_start": "2023-03-16"
+        },
+        "test": {
+          "target_count": 60,
+          "first_target": "2023-06-04",
+          "last_target": "2023-08-02",
+          "input_start": "2023-05-15"
+        },
+        "replay": {
+          "target_count": 90,
+          "first_target": "2023-12-20",
+          "last_target": "2024-03-18",
+          "input_start": "2023-11-30"
+        }
+      }
+    }
+  ],
+  "ready_count": 25,
+  "macro_metrics": {
+    "validation": {
+      "rmse": 0.26576408624499265,
+      "mae": 0.1430562378887336
+    },
+    "test": {
+      "rmse": 0.18262456276332026,
+      "mae": 0.10056012196535873
+    },
+    "validation_persistence": {
+      "rmse": 0.30480219010072884,
+      "mae": 0.15480000000000002
+    },
+    "test_persistence": {
+      "rmse": 0.2081057882408524,
+      "mae": 0.10654666666666666
+    }
+  }
+}

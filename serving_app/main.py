@@ -1,37 +1,69 @@
-"""샘플 API·대시보드·AIOps 로그를 등록하는 서버 진입점."""
+"""GroundWatch 도메인 API와 정적 대시보드."""
+import asyncio
+import contextlib
+import json
 import logging
-import os
-
-from fastapi import FastAPI
+import time
+import uuid
+from contextlib import asynccontextmanager
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+from serving_app.groundwater_api import router_for
+from serving_app.groundwater_service import GroundwaterService
 
-from serving_app import model_loader
-from serving_app.routers import data, health, logs, predict
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("groundwatch.http").setLevel(logging.INFO)
 
-_LOG_DIR = "logs"
-os.makedirs(_LOG_DIR, exist_ok=True)
-_aiops_logger = logging.getLogger("aiops")
-_aiops_logger.setLevel(logging.INFO)
-if not _aiops_logger.handlers:
-    _handler = logging.FileHandler(os.path.join(_LOG_DIR, "aiops.log"), encoding="utf-8")
-    _handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(message)s"))
-    _aiops_logger.addHandler(_handler)
-    _aiops_logger.addHandler(logging.StreamHandler())
+def create_app(service=None):
+    instance = service or GroundwaterService()
+    @asynccontextmanager
+    async def lifespan(app):
+        async def collect():
+            while True:
+                await asyncio.sleep(60)
+                try:
+                    await asyncio.to_thread(instance.evaluate_service_health)
+                except Exception:
+                    logging.exception('service metrics evaluation failed')
+        task = asyncio.create_task(collect())
+        yield
+        task.cancel()
+        with contextlib.suppress(asyncio.CancelledError):
+            await task
+    app = FastAPI(lifespan=lifespan,title="GroundWatch", version="1.0.0", description="서울 25개 구 대표 관측소 예측과 모델 품질 감시")
+    app.state.service = instance
+    @app.middleware('http')
+    async def observe(request: Request, call_next):
+        started, request_id, status = time.perf_counter(), uuid.uuid4().hex, 500
+        try:
+            response = await call_next(request)
+            status = response.status_code
+            response.headers['X-Request-ID'] = request_id
+            return response
+        finally:
+            if request.url.path.startswith('/api/v1/') and 'metrics/summary' not in request.url.path:
+                route = getattr(request.scope.get('route'),'path','unmatched')
+                latency = time.perf_counter()-started
+                try:
+                    await asyncio.to_thread(instance.store.request_metric,request.method,route,status,latency,request_id)
+                except Exception:
+                    logging.exception('request metric persistence failed')
+                logging.getLogger('groundwatch.http').info(json.dumps({'request_id':request_id,'method':request.method,
+                    'route':route,'status':status,'latency_seconds':round(latency,6)}))
 
-app = FastAPI(title="GroundWatch Development Baseline (HAIC sample)")
+    @app.exception_handler(KeyError)
+    async def missing(request: Request, exc: KeyError):
+        return JSONResponse(status_code=404, content={"detail": str(exc)})
+    @app.exception_handler(ValueError)
+    async def invalid(request: Request, exc: ValueError):
+        status = 409 if "이미 대기" in str(exc) or "초기화가 완료" in str(exc) else 422
+        return JSONResponse(status_code=status, content={"detail": str(exc)})
+    app.include_router(router_for(app.state.service))
+    static = str(Path(__file__).parent / "static")
+    app.mount("/static", StaticFiles(directory=static), name="assets")
+    app.mount("/", StaticFiles(directory=static, html=True), name="dashboard")
+    return app
 
-app.include_router(predict.router)
-app.include_router(health.router)
-app.include_router(data.router)
-app.include_router(logs.router)
-
-_STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
-app.mount("/", StaticFiles(directory=_STATIC_DIR, html=True), name="static")
-
-@app.on_event("startup")
-def startup():
-
-    if os.getenv("LOADING_MODE", "lazy") == "eager":
-        model_loader.load_eager()
-    else:
-        print("[lazy] 모델은 첫 /predict 요청이 들어올 때 로드됩니다.")
+app = create_app()

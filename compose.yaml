@@ -7,13 +7,16 @@ services:
     ports:
       - "${GROUNDWATCH_PORT:-8100}:8099"
     environment:
-      MODEL_SOURCE: mlflow
-      LOADING_MODE: eager
-      MLFLOW_TRACKING_URI: sqlite:////app/runtime/mlflow.db
+      GROUNDWATCH_STATE_DIR: /app/runtime/groundwatch
+      GROUNDWATCH_CURRENT_EXTENSION: ${GROUNDWATCH_CURRENT_EXTENSION:-true}
+      GROUNDWATCH_TRAIN_EPOCHS: "100"
       TF_NUM_INTRAOP_THREADS: "1"
       TF_NUM_INTEROP_THREADS: "1"
       OMP_NUM_THREADS: "1"
       TF_CPP_MIN_LOG_LEVEL: "2"
+      SEOUL_OPEN_DATA_KEY: ${SEOUL_OPEN_DATA_KEY:-}
+      KMA_ASOS_SERVICE_KEY: ${KMA_ASOS_SERVICE_KEY:-}
+      GROUNDWATCH_COLLECTION_ENABLED: ${GROUNDWATCH_COLLECTION_ENABLED:-true}
     volumes:
       - tracking:/app/runtime
       - artifacts:/app/mlruns
@@ -21,10 +24,10 @@ services:
       - uploads:/app/data/uploads
       - logs:/app/logs
     healthcheck:
-      test: ["CMD", "python", "-c", "import json,urllib.request; r=json.load(urllib.request.urlopen('http://localhost:8099/health',timeout=5)); assert r['model_loaded']"]
+      test: ["CMD", "python", "-c", "import json,urllib.request; r=json.load(urllib.request.urlopen('http://localhost:8099/health/live',timeout=5)); assert r['status']=='alive'"]
       interval: 15s
       timeout: 10s
-      start_period: 10m
+      start_period: 30s
       retries: 4
 volumes:
   tracking:

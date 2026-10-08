@@ -1,0 +1,13 @@
+{
+  "after_container_recreation": true,
+  "ready_count": 25,
+  "simulation": {
+    "enabled": true,
+    "presentation_as_of": "2026-10-09",
+    "presentation_forecast_date": "2026-10-10",
+    "source_as_of": "2023-12-21",
+    "source_forecast_date": "2023-12-22",
+    "elapsed_days": 2
+  },
+  "replay_id": "0c255b5e3a6248478df0b0d947b19546"
+}

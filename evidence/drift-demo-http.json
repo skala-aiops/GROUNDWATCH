@@ -1,0 +1,805 @@
+{
+  "request": {
+    "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+    "start_date": "2026-07-10",
+    "end_date": "2026-10-08",
+    "shift_start": "2026-08-03",
+    "shift_amount": 0.2,
+    "scenario": "level_shift"
+  },
+  "replay": {
+    "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+    "as_of": "2026-07-10",
+    "start_date": "2026-07-10",
+    "end_date": "2026-10-08",
+    "scenario": "level_shift",
+    "presentation_start_date": null,
+    "shift_start": "2026-08-03",
+    "shift_amount": 0.2,
+    "status": "initializing",
+    "created_at": "2026-10-08T01:50:29.842313+00:00",
+    "synthetic": true,
+    "id": "178022c0179643eb8875919e60f46916",
+    "job_id": "733b3c60fee341e6a326d0bcd9bbc5f1"
+  },
+  "snapshots": [
+    {
+      "namespace": "178022c0179643eb8875919e60f46916",
+      "district_code": "11110",
+      "replay_id": "178022c0179643eb8875919e60f46916",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-07-31",
+      "replay_status": "ready",
+      "remaining_days": 69,
+      "latest_advance_job": {
+        "id": "a87c8e1328124bd49d29c34c819ec422",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "178022c0179643eb8875919e60f46916",
+          "as_of": "2026-07-31"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 21일 · 21일 창 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "pending",
+          "detail": "21일 오차 기준 연속 0/2회 초과 · 정답 21일 확보 후 판정"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "pending",
+          "detail": "드리프트 감지 후 자동 접수"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "pending",
+          "detail": "새 정답30일 · 개선5% · guard110%"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "pending",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-07-31"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T01:51:14.771589+00:00",
+          "kind": "advance",
+          "message": "a87c8e1328124bd49d29c34c819ec422",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:39.461200+00:00",
+          "kind": "train",
+          "message": "733b3c60fee341e6a326d0bcd9bbc5f1",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:33.204556+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": null,
+      "evaluation": null,
+      "drift_demo": {
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2,
+        "applied": false,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    },
+    {
+      "namespace": "178022c0179643eb8875919e60f46916",
+      "district_code": "11110",
+      "replay_id": "178022c0179643eb8875919e60f46916",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-08-21",
+      "replay_status": "ready",
+      "remaining_days": 48,
+      "latest_advance_job": {
+        "id": "0ece5fd7843844f2b480d68c48672956",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "178022c0179643eb8875919e60f46916",
+          "as_of": "2026-08-21"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 42일 · 21일 창 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "completed",
+          "detail": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "completed",
+          "detail": "후보 학습 완료 · 이후 정답으로 평가"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "pending",
+          "detail": "후보 v2 · 후속 정답 19/30일 대기"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "pending",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-08-21"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T01:52:37.537205+00:00",
+          "kind": "advance",
+          "message": "0ece5fd7843844f2b480d68c48672956",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.282174+00:00",
+          "kind": "fine_tune",
+          "message": "3d09a9bff62143dea7a2cef50bc8714c",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.278197+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:51:28.079220+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:51:14.771589+00:00",
+          "kind": "advance",
+          "message": "a87c8e1328124bd49d29c34c819ec422",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:39.461200+00:00",
+          "kind": "train",
+          "message": "733b3c60fee341e6a326d0bcd9bbc5f1",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:33.204556+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": "2",
+      "evaluation": null,
+      "drift_demo": {
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2,
+        "applied": true,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    },
+    {
+      "namespace": "178022c0179643eb8875919e60f46916",
+      "district_code": "11110",
+      "replay_id": "178022c0179643eb8875919e60f46916",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-09-11",
+      "replay_status": "ready",
+      "remaining_days": 27,
+      "latest_advance_job": {
+        "id": "124ec3d9a00a4157a1b3fd659f6c5662",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "178022c0179643eb8875919e60f46916",
+          "as_of": "2026-09-11"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 63일 · 21일 창 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "completed",
+          "detail": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "completed",
+          "detail": "후보 학습 완료 · 이후 정답으로 평가"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "rejected",
+          "detail": "후보 평가: rejected"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "rejected",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-09-11"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T01:54:49.251648+00:00",
+          "kind": "advance",
+          "message": "124ec3d9a00a4157a1b3fd659f6c5662",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:53:38.936506+00:00",
+          "kind": "model",
+          "message": "후보 평가: rejected",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:52:37.537205+00:00",
+          "kind": "advance",
+          "message": "0ece5fd7843844f2b480d68c48672956",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.282174+00:00",
+          "kind": "fine_tune",
+          "message": "3d09a9bff62143dea7a2cef50bc8714c",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.278197+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:51:28.079220+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:51:14.771589+00:00",
+          "kind": "advance",
+          "message": "a87c8e1328124bd49d29c34c819ec422",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:39.461200+00:00",
+          "kind": "train",
+          "message": "733b3c60fee341e6a326d0bcd9bbc5f1",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:33.204556+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": null,
+      "evaluation": {
+        "status": "rejected",
+        "candidate_version": "2",
+        "gate_passed": false,
+        "metrics": {
+          "shadow_candidate": {
+            "rmse": 0.04940473217079894,
+            "mae": 0.022880610868894518,
+            "count": 30
+          },
+          "shadow_champion": {
+            "rmse": 0.05067881284994322,
+            "mae": 0.02520036014437821,
+            "count": 30
+          },
+          "historical_guard": {
+            "rmse": 0.010240141652949569,
+            "mae": 0.008199378749559531,
+            "count": 60
+          }
+        },
+        "shadow_start": "2026-08-03",
+        "shadow_end": "2026-09-01"
+      },
+      "drift_demo": {
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2,
+        "applied": true,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    },
+    {
+      "namespace": "178022c0179643eb8875919e60f46916",
+      "district_code": "11110",
+      "replay_id": "178022c0179643eb8875919e60f46916",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-10-02",
+      "replay_status": "ready",
+      "remaining_days": 6,
+      "latest_advance_job": {
+        "id": "773425c0a268409a9940202731bde317",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "178022c0179643eb8875919e60f46916",
+          "as_of": "2026-10-02"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 84일 · 21일 창 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "completed",
+          "detail": "21일 RMSE 0.0187071 > 임계값 0.0172312: 재학습 요청"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "completed",
+          "detail": "후보 학습 완료 · 이후 정답으로 평가"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "pending",
+          "detail": "후보 v3 · 후속 정답 10/30일 대기"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "pending",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-10-02"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T01:55:47.970970+00:00",
+          "kind": "advance",
+          "message": "773425c0a268409a9940202731bde317",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:55:23.465494+00:00",
+          "kind": "fine_tune",
+          "message": "377d1ad512d14748ad2aaacce8e8ee13",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:55:23.460508+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:55:21.656661+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0187071 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:54:49.251648+00:00",
+          "kind": "advance",
+          "message": "124ec3d9a00a4157a1b3fd659f6c5662",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:53:38.936506+00:00",
+          "kind": "model",
+          "message": "후보 평가: rejected",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:52:37.537205+00:00",
+          "kind": "advance",
+          "message": "0ece5fd7843844f2b480d68c48672956",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.282174+00:00",
+          "kind": "fine_tune",
+          "message": "3d09a9bff62143dea7a2cef50bc8714c",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.278197+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:51:28.079220+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:51:14.771589+00:00",
+          "kind": "advance",
+          "message": "a87c8e1328124bd49d29c34c819ec422",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:39.461200+00:00",
+          "kind": "train",
+          "message": "733b3c60fee341e6a326d0bcd9bbc5f1",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:33.204556+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": "3",
+      "evaluation": {
+        "status": "rejected",
+        "candidate_version": "2",
+        "gate_passed": false,
+        "metrics": {
+          "shadow_candidate": {
+            "rmse": 0.04940473217079894,
+            "mae": 0.022880610868894518,
+            "count": 30
+          },
+          "shadow_champion": {
+            "rmse": 0.05067881284994322,
+            "mae": 0.02520036014437821,
+            "count": 30
+          },
+          "historical_guard": {
+            "rmse": 0.010240141652949569,
+            "mae": 0.008199378749559531,
+            "count": 60
+          }
+        },
+        "shadow_start": "2026-08-03",
+        "shadow_end": "2026-09-01"
+      },
+      "drift_demo": {
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2,
+        "applied": true,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    },
+    {
+      "namespace": "178022c0179643eb8875919e60f46916",
+      "district_code": "11110",
+      "replay_id": "178022c0179643eb8875919e60f46916",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-10-08",
+      "replay_status": "ready",
+      "remaining_days": 0,
+      "latest_advance_job": {
+        "id": "053543b763cd4a8a98660f7a7cb9a356",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "178022c0179643eb8875919e60f46916",
+          "as_of": "2026-10-08"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 90일 · 21일 창 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "completed",
+          "detail": "21일 RMSE 0.0187071 > 임계값 0.0172312: 재학습 요청"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "completed",
+          "detail": "후보 학습 완료 · 이후 정답으로 평가"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "pending",
+          "detail": "후보 v3 · 후속 정답 16/30일 대기"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "pending",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-10-08"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T01:56:00.308553+00:00",
+          "kind": "advance",
+          "message": "053543b763cd4a8a98660f7a7cb9a356",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:55:47.970970+00:00",
+          "kind": "advance",
+          "message": "773425c0a268409a9940202731bde317",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:55:23.465494+00:00",
+          "kind": "fine_tune",
+          "message": "377d1ad512d14748ad2aaacce8e8ee13",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:55:23.460508+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:55:21.656661+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0187071 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:54:49.251648+00:00",
+          "kind": "advance",
+          "message": "124ec3d9a00a4157a1b3fd659f6c5662",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:53:38.936506+00:00",
+          "kind": "model",
+          "message": "후보 평가: rejected",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:52:37.537205+00:00",
+          "kind": "advance",
+          "message": "0ece5fd7843844f2b480d68c48672956",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.282174+00:00",
+          "kind": "fine_tune",
+          "message": "3d09a9bff62143dea7a2cef50bc8714c",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:51:30.278197+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T01:51:28.079220+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0188548 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T01:51:14.771589+00:00",
+          "kind": "advance",
+          "message": "a87c8e1328124bd49d29c34c819ec422",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:39.461200+00:00",
+          "kind": "train",
+          "message": "733b3c60fee341e6a326d0bcd9bbc5f1",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T01:50:33.204556+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": "3",
+      "evaluation": {
+        "status": "rejected",
+        "candidate_version": "2",
+        "gate_passed": false,
+        "metrics": {
+          "shadow_candidate": {
+            "rmse": 0.04940473217079894,
+            "mae": 0.022880610868894518,
+            "count": 30
+          },
+          "shadow_champion": {
+            "rmse": 0.05067881284994322,
+            "mae": 0.02520036014437821,
+            "count": 30
+          },
+          "historical_guard": {
+            "rmse": 0.010240141652949569,
+            "mae": 0.008199378749559531,
+            "count": 60
+          }
+        },
+        "shadow_start": "2026-08-03",
+        "shadow_end": "2026-09-01"
+      },
+      "drift_demo": {
+        "shift_start": "2026-08-03",
+        "shift_amount": 0.2,
+        "applied": true,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    }
+  ],
+  "scope": "별도 합성 확장 자료 + 수위 변화 시연. 실제 서울 최신 실측 성능 검증 아님.",
+  "interpretation": "첫 후보는 변화 적용 전 정상 구간 오차로 감지됨. 수위 변화가 경보 원인이라고 단정하지 않음. 후속 후보는 자료 종료로 평가 대기.",
+  "original_csv_sha256": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870"
+}

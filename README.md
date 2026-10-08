@@ -1,4 +1,18 @@
-# GROUNDWATCH 팀 협업 안내
+# GROUNDWATCH
+
+## 처음 보는 팀원을 위한 설명
+
+GroundWatch는 **지하안전 업무 담당자가 관측소별 지하수위 자료와 다음 날 예측을 확인하고, 서비스 운영자가 예측 오차와 모델 상태를 관리하는 과제 시제품**입니다. 싱크홀 발생 확률이나 현장 안전 등급을 판정하지 않습니다. 공공기관 직접 구매는 B2G이므로 과제의 B2B 조건 인정 여부는 별도 확인이 필요합니다.
+
+- **업무 담당자**: ‘관측소 현황’에서 자료 날짜·예측을 보고 ‘상세 보기’ 상단의 예측 날짜·값·마지막 입력과의 차이를 읽고 최근 수위·강수량 흐름을 확인합니다.
+- **서비스 운영자**: ‘모델 관리 · 시연’에서 오차 경보·재학습·새 모델 평가·이전 모델 복귀를 확인합니다.
+- **발표자·팀원**: 같은 화면의 ‘시연 상황 선택 · 자료 진행’에서 기본 상황과 드리프트 시연을 비교합니다. 드리프트 시연은 원본을 보존하고 지정일 이후 수위에 +0.2를 더합니다. 시작 후 ‘남은 자료 끝까지 진행’으로 실제 감지·자동 재학습·후속 평가를 확인할 수 있습니다. 일반 조회와 기본 시연에는 CSV 업로드가 필요하지 않습니다.
+
+기본 자료는 공식 과거 관측과 이후의 과제용 합성 확장입니다. 학습·예측·오차 감시 작업은 실제 실행하지만, 오늘의 실제 서울 관측값을 확보한 서비스는 아닙니다.
+
+사용 순서와 쉬운 용어 설명은 [화면 사용법과 발표 순서](demo.md), 데이터가 어떻게 연결되는지는 [팀 로직 설명](docs/team-logic-guide.md)을 읽어주세요.
+
+## 팀 협업 안내
 
 작업 전 [AGENTS.md](AGENTS.md)를 읽어주세요. 브랜치·커밋·병합 규칙과 AI 공용 프롬프트가 들어 있습니다.
 
@@ -64,13 +78,18 @@ docker compose up --build
 종료는 `Ctrl+C`, 생성한 컨테이너 정리는 `docker compose down`을 사용합니다.
 Docker가 설치되어 실행 중이어야 합니다. 실제 Secret이 필요한 경우 `.env.example`을 바탕으로 로컬 `.env`를 먼저 준비하고 Git에는 올리지 않습니다.
 
-- 샘플 대시보드: http://localhost:8100/
+- GroundWatch 대시보드: http://localhost:8100/
 - API 문서: http://localhost:8100/docs
-- 상태 확인: http://localhost:8100/health
+- 프로세스 상태: http://localhost:8100/health/live
+- 자료·모델 준비 수: http://localhost:8100/health/ready
 
-최초 실행은 의존성 다운로드와 샘플 모델 학습·등록으로 시간이 걸립니다. 이후에는 Docker 볼륨에 저장된 모델·MLflow DB·업로드·로그를 재사용합니다. 초기 평가 게이트를 통과하지 못하면 서버를 시작하지 않고 로그에 원인을 남깁니다. 학습 실패 시 `docker compose logs serving-app`으로 확인하세요.
+최초 실행은 의존성을 내려받고 API·화면·영속 학습 worker를 시작합니다. 저장소에 포함한 서울시 공식 관측자료와 고정 대표 관측소 JSON을 자동 검증하고 25개 모델을 학습합니다. 초기 학습 중에는 준비 수를 표시하며 완료 시간은 환경에 따라 다릅니다. 자료 준비와 최초 학습은 자동이며, 추가 CSV와 manifest 등록·수동 학습은 운영 화면의 접힌 수동 자료 관리에서 요청할 수 있습니다. 학습·재생은 작업 ID를 반환하고 별도 프로세스에서 실행합니다. Docker 볼륨에 자료·모델·MLflow DB·작업·이벤트·예측 이력을 보존합니다. 초기 게이트를 통과하지 못한 구는 예측 미준비로 표시하며 기존 모델이 있으면 유지합니다.
 
-현재 화면·데이터·모델은 제공된 **HAIC 샘플 기준 개발용 baseline**입니다. 개인 실습 빈칸과 수업 진행 안내를 정리한 상태이며 GroundWatch 지하수위·강수량 기능은 아직 구현하지 않았습니다. 파드별 제품 구현의 출발점으로 사용하세요.
+기본 화면은 **실측 과거 자료 + 합성 확장 자료의 오늘 기준 다음 날 예측**입니다. 짧은 ‘시연 데이터 · 합성 자료 포함’ 표시를 두고, 원관측 종료일·합성 기간·생성 방법은 상세 설명과 문서에서 안내합니다. GIMS 활용신청은 제출 후 시스템 오류로 접수·발급 여부가 미확인이며 추가 신청은 보류했습니다. 사용 불가한 현재 API 모드·외부 수집 화면은 노출하지 않습니다. 서버 진단 코드·기존 자료·모델은 보존합니다.
+
+현재 진입점은 **25개 구별 지하수 예측·품질 감시**입니다. 구마다 대표 관측소 1곳과 독립 LSTM·scaler·모델 버전을 사용합니다. 수위 변화는 싱크홀 확률이 아니며, 모델 품질 알림과 현장 확인을 구분합니다. 자료·모델이 준비되지 않으면 가짜 숫자를 표시하지 않습니다. 과거 재생 기준일과 실제 실행 시각도 구분합니다.
+
+현재 구현·실행 범위와 남은 데이터 조건은 [검증 기록](evidence/README.md), 현재 설계는 [서비스 정리 설계](docs/public-agency-service-review.md), 입력·API 형식은 [공통 계약](docs/contracts.md), 다음 작업은 [TODO](TODO.md)를 확인하세요. 합성 검증 자료는 실제 서울시 관측·성능과 별도 namespace에 저장합니다.
 
 출처·정리 범위와 샘플의 한계는 [기본 코드 설명](docs/source-and-scope.md)을 확인하세요.
 
@@ -78,4 +97,34 @@ Docker가 설치되어 실행 중이어야 합니다. 실제 Secret이 필요한
 
 ## 기본 코드 검증
 
-컨테이너가 준비된 뒤 회귀 테스트는 `docker compose exec serving-app python -m unittest discover -s tests -v`로 실행합니다. 실제 실행 결과와 한계는 [검증 기록](docs/baseline-verification.md)에 정리합니다.
+컨테이너가 준비된 뒤 회귀 테스트는 `docker compose exec serving-app python -m unittest discover -s tests -v`로 실행합니다. 이전 HAIC 기반 검증은 [기반 코드 검증](docs/baseline-verification.md), 현재 도메인 검증은 [실행 증거](evidence/README.md)에 구분합니다.
+
+## 데이터와 모델
+
+정규 CSV는 `station_id,district_code,date,groundwater_level,rainfall_mm,level_unit`을 사용합니다. 단위와 관측소 ID는 출처로 확인해야 하며, 대표 25곳은 승인 manifest로 고정합니다. 원본 한글 CSV 변환기 `scripts/convert_groundwater.py`는 명시한 수위·강수 관측소를 연결하고 충돌·결측을 격리합니다. 서울시 공식 관측자료의 표기는 수위 `gl.-m`, 강수량 `mm`이며 원본 값의 부호를 임의로 바꾸지 않습니다.
+
+학습은 20일 입력→다음 날 수위, 시간순 train/validation/test/replay, train-only scaler를 사용합니다. 최초 모델은 persistence 기준과 비교합니다. 운영은 정답 도착 후 21일 RMSE를 감시하고, 41일 자료로 fine-tuning한 후보를 이후 30일 정답으로 기존 모델과 비교합니다. 통과한 후보만 champion으로 교체하며 실제 응답 버전을 확인합니다. 실패·중단 작업은 자동 반복하지 않고 명시적 재시도로 처리합니다.
+
+`scripts/create_demo_dataset.py`는 합성 검증 CSV를 명시적으로 생성하는 도구입니다. 서버가 실제 자료 대신 자동 사용하지 않습니다. `scripts/audit_groundwater.py`, `scripts/select_representatives.py`, `scripts/import_official_groundwater.py`는 원본 감사·후보 선정·공식 자료 복구 도구이며, 원본과 실제 모델 파일은 Git에 무조건 추가하지 않습니다.
+
+## 최신 문서와 제출 자료
+
+팀원은 [원본과 현재 로직 비교](docs/team-logic-guide.md)를 먼저 읽습니다. 현재 데이터 생성·학습 흐름은 [오늘 기준 확장 설계](docs/current-extension-design.md), 입력·API는 [공통 계약](docs/contracts.md), 검증 원문과 화면은 [실행 증거](evidence/README.md)를 따릅니다. [공공기관 서비스 검토](docs/public-agency-service-review.md)와 `docs/archive/`는 이전 설계 판단을 보존한 기록이며, 당시의 화면 설명을 현재 상태로 해석하지 않습니다.
+
+최신 발표·기획 자료는 [output/skill-comparison](output/skill-comparison/README.md)에 있습니다. 3종 발표자료와 공통 기획서를 관리하며, 제출 묶음은 [AIOps_조별 과제_광주_3반_GroundWatch.zip](output/AIOps_조별%20과제_광주_3반_GroundWatch.zip)입니다. 이전 `output/pdf/` 문서는 과거 검증·설계 기록입니다. 준비 완료와 실제 발표·제출 완료는 구분합니다. B2G 방향의 B2B 필수 조건 인정 여부는 [남은 확인 사항](TODO.md)에 남아 있습니다.
+
+## 오늘 기준 예측의 자료 흐름
+
+기본 기동은 공식 원관측 52,591행을 보존하고 마지막 관측 다음 날짜부터 서울 오늘까지 과제용 합성 일별 자료를 별도로 생성·검증·학습합니다. 2026-10-08 기준 합성 23,350행을 더한 총 75,941행이며, 기본 화면은 오늘까지의 연속 20일 수위·강수로 내일 수위를 예측합니다. 최신 서울 실측 API 관측이 확보된 것은 아닙니다. 행별 출처·생성식·원관측 경계는 자료와 상세 설명에 보존합니다. 모델과 평가는 별도 synthetic namespace로 격리하며 합성 평가를 현장 성능으로 해석하지 않습니다.
+
+생성은 기동 시 수행하므로 날짜가 바뀐 계속 실행 환경은 재기동해야 새 날짜 자료가 준비됩니다. 동일 날짜 재기동은 이미 통과한 모델을 재사용합니다. 원래 과거 자료만 사용할 때는 `.env`의 `GROUNDWATCH_CURRENT_EXTENSION=false`와 기존 확장 자료가 등록되지 않은 별도 상태 볼륨을 사용합니다. 이 옵션은 이미 등록된 자료를 삭제하지 않습니다.
+
+관측소 현황 → 관측소 상세 → 모델 관리 · 시연이 기본 동선입니다. 일반 조회에는 CSV 등록이 필요하지 않습니다. CSV 등록·초기 학습은 접힌 관리자 도구에 있으며, 이전 공급 재생의 중복 시작 UI는 제외하고 API·기록을 보존합니다. `GET /metrics/summary`와 `GET /api/v1/monitoring`은 서비스 응답 지표와 구별 모델 품질 상태를 제공합니다. 사용자 권한은 아직 구현하지 않은 내부 과제 시제품입니다.
+
+## 보존한 과거 재생과 외부 API 경로
+
+**저장 자료로 검증**은 선택한 실측 또는 합성 자료의 날짜를 하루씩 진행하며 예측 저장→정답 공개→오차 감시→후보 재학습·평가를 검증하는 내부 도구입니다. 화면에서 제외한 이전 공급 시연 API는 원관측일과 별도 표시용 시연일을 함께 관리합니다. 기본 오늘 예측의 합성 확장과 다른 경로이며, [공급 재생 설계](docs/supply-simulation-design.md)에 당시 동작을 보존했습니다.
+
+**외부 API 수집** 코드는 보존했으나 기본 화면의 자료 공급 경로가 아닙니다. 로컬 `.env`의 `SEOUL_OPEN_DATA_KEY`와 `KMA_ASOS_SERVICE_KEY`를 서버에만 주입합니다. 서울시 API 원천 의미·단위·관측소 매핑 검증이 남아 있으며 외부 `/live` 경로는 준비 미완료입니다. 오늘 기준 합성 예측 25/25와 외부 실측 API 준비 상태를 혼동하지 않습니다. 정기 수집은 미적용입니다.
+
+API 설계의 관측 revision·품질·불변 snapshot·정정 평가 코드는 별도 SQLite `runtime/groundwatch/external/observations.sqlite3`에 보존합니다. [API 전환 설계](docs/api-transition-redesign.md)는 후속 참고 기록입니다. 백업은 `scripts/backup_groundwatch.py`, 근거가 확보된 매핑 등록은 `scripts/register_api_mapping.py`를 사용합니다. 임의 승인·단위 변환·결측 강수 0 채움은 하지 않습니다. 이 보류 경로의 전일까지 입력→오늘 대상 계약은 기본 합성 확장의 오늘 입력→내일 대상 계약과 다릅니다.

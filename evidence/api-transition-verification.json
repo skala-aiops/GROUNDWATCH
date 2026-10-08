@@ -1,0 +1,78 @@
+{
+  "tests": {
+    "executed": 86,
+    "passed": 85,
+    "skipped": 1,
+    "result": "OK",
+    "seconds": 26.999,
+    "log": "api-transition-tests.txt",
+    "live_model_test": "deterministic isolated fixture, not actual API forecast accuracy"
+  },
+  "http": {
+    "freshness": {
+      "http_status": 200
+    },
+    "live": {
+      "http_status": 200,
+      "total": 25,
+      "ready_count": 0
+    },
+    "historical": {
+      "http_status": 200,
+      "total": 25,
+      "ready_count": 25
+    },
+    "pipeline": {
+      "http_status": 200
+    },
+    "sources": {
+      "http_status": 200
+    }
+  },
+  "preservation": {
+    "original_artifacts": 1014,
+    "unchanged": 1014,
+    "database_integrity": [
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  "browser": {
+    "historical_ready": 25,
+    "today_ready": 0,
+    "today_date": "2026-10-07",
+    "operations_source_status_verified": true
+  },
+  "live_operational": false,
+  "blockers": [
+    "Seoul well identity/date filter and level unit/datum verification",
+    "ASOS mapping and blank rainfall semantics",
+    "verified continuous snapshots and compatible observed_api_v1 model"
+  ],
+  "original_files_removed": false,
+  "pdf": {
+    "file": "../output/pdf/groundwatch-api-transition-proposal.pdf",
+    "pages": 10,
+    "rendered": true,
+    "text_bounds_valid": true,
+    "artifact_relocated_to": "../output/pdf/archive/groundwatch-api-transition-proposal.pdf"
+  },
+  "security": {
+    "env_mode": "0600",
+    "env_git_ignored": true,
+    "env_docker_ignored": true
+  },
+  "review": {
+    "independent_read_only_review": true,
+    "fixed": [
+      "late-label daily checkpoint",
+      "model job scope",
+      "success membership cutoff",
+      "failed actual exclusion",
+      "page completeness",
+      "stop old champion monitoring after promotion",
+      "mode-response isolation"
+    ]
+  }
+}

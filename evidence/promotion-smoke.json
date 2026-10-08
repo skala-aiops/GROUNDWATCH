@@ -1,0 +1,128 @@
+{
+  "purpose": "synthetic actual-TensorFlow successful-promotion smoke; not observed Seoul performance",
+  "seed": 42,
+  "attempts": [
+    {
+      "number": 1,
+      "slope": 0.02,
+      "synthetic_rule": "After original410days, deterministic linearlevel change; candidate trains41days, shadow only next30 new actual labels.",
+      "candidate": {
+        "status": "awaiting_shadow",
+        "candidate_version": "2",
+        "model_version": "1",
+        "trained_through": "2021-03-26",
+        "required_shadow_targets": 30
+      },
+      "before30labels": {
+        "status": "pending",
+        "count": 19,
+        "required": 30
+      },
+      "evaluation": {
+        "status": "promoted",
+        "candidate_version": "2",
+        "gate_passed": true,
+        "metrics": {
+          "shadow_candidate": {
+            "rmse": 0.02941612997712992,
+            "mae": 0.029291938414970176,
+            "count": 30
+          },
+          "shadow_champion": {
+            "rmse": 0.03577758314611168,
+            "mae": 0.03570674438074839,
+            "count": 30
+          },
+          "historical_guard": {
+            "rmse": 0.2471440914533525,
+            "mae": 0.19730387661001045,
+            "count": 60
+          }
+        },
+        "shadow_start": "2021-03-27",
+        "shadow_end": "2021-04-25",
+        "model_version": "2",
+        "previous_version": "1"
+      },
+      "actual_prediction_after_promotion": {
+        "district_code": "11110",
+        "station_id": "synthetic-well",
+        "prediction": 11.344145040963703,
+        "model_version": "2",
+        "unit": "synthetic_level",
+        "level_unit": "synthetic_level",
+        "dataset_version": "synthetic-ar1-trend-v1",
+        "mapping_version": "synthetic-fixed-v1",
+        "observed_date": "2021-04-25",
+        "forecast_date": "2021-04-26",
+        "namespace": "trend_1",
+        "threshold": 0.4335178283589931
+      },
+      "initial_prediction_same_input": {
+        "district_code": "11110",
+        "station_id": "synthetic-well",
+        "prediction": 11.337824767974466,
+        "model_version": "1",
+        "unit": "synthetic_level",
+        "level_unit": "synthetic_level",
+        "dataset_version": "synthetic-ar1-trend-v1",
+        "mapping_version": "synthetic-fixed-v1",
+        "observed_date": "2021-04-25",
+        "forecast_date": "2021-04-26",
+        "namespace": "initial",
+        "threshold": 0.4335178283589931
+      }
+    }
+  ],
+  "initial": {
+    "status": "promoted",
+    "version": "1",
+    "model_version": "1",
+    "metrics": {
+      "validation": {
+        "rmse": 0.2467950122511823,
+        "mae": 0.19631292279953963,
+        "count": 60
+      },
+      "validation_persistence": {
+        "rmse": 0.24800536368226478,
+        "mae": 0.19766728198659317,
+        "count": 60
+      },
+      "test": {
+        "rmse": 0.22323525539326405,
+        "mae": 0.1830538933213848,
+        "count": 60
+      },
+      "test_persistence": {
+        "rmse": 0.22498125021994506,
+        "mae": 0.1836458560694525,
+        "count": 60
+      }
+    },
+    "splits": {
+      "train": {
+        "start": "2020-01-21",
+        "end": "2020-07-18",
+        "count": 180
+      },
+      "validation": {
+        "start": "2020-07-19",
+        "end": "2020-09-16",
+        "count": 60
+      },
+      "test": {
+        "start": "2020-09-17",
+        "end": "2020-11-15",
+        "count": 60
+      },
+      "replay": {
+        "start": "2020-11-16",
+        "end": "2021-02-13",
+        "count": 90
+      }
+    },
+    "threshold": 0.4335178283589931,
+    "gate_passed": true
+  }
+}

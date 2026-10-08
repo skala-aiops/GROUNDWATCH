@@ -1,0 +1,58 @@
+{
+  "namespace": "observed_api_v1",
+  "district_code": "11110",
+  "replay_id": null,
+  "as_of": "2026-10-07",
+  "source_kind": "observed_api",
+  "stages": [
+    {
+      "key": "data",
+      "title": "API 수집·검증·결합·발행",
+      "status": "pending",
+      "detail": "서울시 식별·단위·ASOS 매핑 검증이 필요합니다."
+    },
+    {
+      "key": "monitor",
+      "title": "오차 감시",
+      "status": "pending",
+      "detail": "실제 발행 예측의 정답21일 연속 창"
+    },
+    {
+      "key": "drift",
+      "title": "품질 경보",
+      "status": "pending",
+      "detail": "자료 장애와 모델 오차 경보 분리"
+    },
+    {
+      "key": "retrain",
+      "title": "재학습",
+      "status": "pending",
+      "detail": "검증41일로 후보 생성"
+    },
+    {
+      "key": "evaluate",
+      "title": "후보 평가",
+      "status": "pending",
+      "detail": "후보 없음 · 후속30일 정답 대기"
+    },
+    {
+      "key": "promote",
+      "title": "모델 교체",
+      "status": "pending",
+      "detail": "5% 개선·guard110%·실제 로딩 게이트"
+    },
+    {
+      "key": "serve",
+      "title": "현재 모델 서빙",
+      "status": "pending",
+      "detail": "실제 발행 버전 없음"
+    }
+  ],
+  "defaults": null,
+  "evaluation": null,
+  "remaining_days": 0,
+  "advance_active": false,
+  "replay_status": null,
+  "log": [],
+  "note": "API 일별 운영입니다. 매핑·단위·연속 입력·호환 모델이 확인되지 않으면 예측을 발행하지 않습니다. 과거 재생 기록과 혼합하지 않습니다."
+}
