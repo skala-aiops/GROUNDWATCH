@@ -6,9 +6,9 @@
 
 - 이 저장소는 GroundWatch 팀 개발용입니다. 팀 방향은 지하수위 변화 감시이며 싱크홀 발생 확률 예측을 완료했다고 설명하지 않습니다.
 - 실행 진입점은 GroundWatch 지하수 도메인 API입니다. 교수자 HAIC 파일은 출처 보존용으로 남아 있으며 앱 라우터와 시작 스크립트에서 사용하지 않습니다.
-- 작업 전 `docs/team-logic-guide.md`, `docs/public-agency-service-review.md`, `docs/contracts.md`, `TODO.md`를 함께 읽습니다. 실제 실행·평가 상태는 `evidence/README.md`에서 확인하고 구현 파일 존재만으로 학습·과제 완료를 주장하지 않습니다.
+- 작업 전 `docs/team-guide.md`, `proposal.md`, `docs/contracts.md`, `TODO.md`를 함께 읽습니다. 실제 실행·평가 상태는 `evidence/README.md`에서 확인하고 구현 파일 존재만으로 학습·과제 완료를 주장하지 않습니다.
 - 확인되지 않은 단위·관측소를 확정하거나 결측 강수를 0으로 채우지 않습니다. 합성 검증 자료와 실제 관측 자료의 모델·이력을 분리합니다. 대표 관측소 manifest의 승인 상태를 임의 변경하지 않습니다.
-- 출처와 직접 변경 범위는 `docs/source-and-scope.md`를 확인합니다.
+- 출처와 직접 변경 범위는 `docs/team-guide.md#교수님-원본과-달라진-점`를 확인합니다.
 
 ## 1. 팀과 브랜치 구조
 
@@ -224,3 +224,9 @@ GROUNDWATCH 저장소 AGENTS.md를 읽고 병합 절차를 따라주세요.
 - `.env.example`에는 변수명과 안전한 예시만 기록합니다. 실제 Secret은 이미지·Git에 포함하지 않습니다.
 - 완료 기준은 실제 빌드·기동, 서비스 health, 화면→API→모델의 실제 요청, 종료·재기동 확인입니다. Compose 구문 검사만 통과하면 설정 검증으로만 보고합니다.
 - README에는 팀 프로젝트의 실제 시작 명령·접속 주소·필수 사전 준비·종료 방법을 기록합니다. 수업 Day별 실습 실행 순서를 공용 실행 절차에 섞지 않습니다.
+
+## 문서 기준과 변경 규칙
+
+README는 소개·실행·문서/제출자료 진입점, proposal.md는 과제 필수 6항목과 팀원, docs/team-guide.md는 사용법·전체 로직·원본 비교, docs/operations.md는 정책·장애 대응, docs/contracts.md는 API·날짜 계약, data/README.md는 원천·단위·합성 생성식의 기준입니다. evidence/README.md는 최신 결과의 짧은 목록이고 과거 기록은 evidence/records/에 보존합니다. TODO.md에는 미완료 다음 행동만 둡니다.
+
+변경 때 새 설명 파일을 추가하지 않고 기준 문서를 갱신합니다. 다른 문서에는 요약과 링크를 사용합니다. 과거 설계는 docs/archive/에 두고 현재 실행 지침으로 참조하지 않습니다. output/final/에는 제출 파일, output/source/에는 발표 편집 원문을 두며 버전별로 동일 기획서를 복사하지 않습니다. 이동·통합 후 Markdown 링크와 과제 필수 항목·팀원·증거를 확인합니다.

@@ -1,0 +1,22 @@
+{
+  "archive": "archive/team-test-before-removal-2026-10-08.zip",
+  "preserved_files": 772,
+  "archive_integrity": "all archived files SHA256 matched",
+  "frontend_files_missing": [],
+  "excluded_generated_directories": [
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "dist",
+    "node_modules"
+  ],
+  "folder_removed": true,
+  "duplicate_8102_container": "stopped and removed; named volumes retained",
+  "presentation_pages": 16,
+  "updated_slides": [
+    5,
+    13,
+    15
+  ]
+}

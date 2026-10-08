@@ -261,6 +261,35 @@ class PipelineCycleTests(unittest.TestCase):
             self.assertEqual(actual['stages'][4]['status'],'pending')
             self.assertEqual(actual['stages'][5]['status'],'pending')
             self.assertIn('v3',actual['stages'][4]['detail'])
+            replay=service.store.get('replay',replay['id'])
+            replay['as_of']=str(START+timedelta(days=345))
+            service.store.put('replay',replay,replay['id'])
+            forecast=service.forecasts(replay_id=replay['id'])['forecasts'][0]
+            self.assertEqual(forecast['input_origin'],'synthetic')
+            source=forecast['data_source']
+            self.assertEqual(source['synthetic_from'],replay['shift_start'])
+            self.assertEqual(source['synthetic_through'],replay['as_of'])
+            self.assertEqual(source['observed_through'],str(START+timedelta(days=343)))
+            self.assertEqual(source['original_observed_through'],replay['as_of'])
+
+
+    def test_rejection_detail_identifies_failed_gate_without_claiming_replacement(self):
+        with tempfile.TemporaryDirectory() as folder:
+            managers={}
+            service=GroundwaterService(folder,lambda ns:managers.setdefault(ns,FakeManager()))
+            dataset=upload_fixture(service)
+            replay=service.create_replay(dataset,str(START+timedelta(days=320)))
+            service.execute_one()
+            service.store.event(FIRST,'model','후보 평가: rejected',replay['id'],result={
+                'status':'rejected','candidate_version':'2',
+                'metrics':{'shadow_candidate':{'rmse':1},'shadow_champion':{'rmse':1}},
+                'gates':{'future_improvement':{'passed':False},'historical_guard':{'passed':True}}})
+            pipeline=service.pipeline(FIRST,replay['id'])
+            self.assertEqual(pipeline['stages'][4]['status'],'rejected')
+            self.assertIn('향후 구간 5% 개선 미충족',pipeline['stages'][4]['detail'])
+            self.assertNotIn('110% 조건 미충족',pipeline['stages'][4]['detail'])
+            self.assertEqual(pipeline['stages'][5]['status'],'rejected')
+            self.assertEqual(service.manager(replay['id']).models[FIRST]['model_version'],'1')
 
 
 class MeanLatencyTests(unittest.TestCase):
