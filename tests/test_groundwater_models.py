@@ -214,6 +214,23 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(restored.predict('11110', rows()[-20:]), before)
         self.assertEqual(restored.list_models()[0]['versions'][candidate]['shadow_result']['status'], 'rejected')
 
+    def test_zero_error_tie_is_not_five_percent_improvement_or_promotable(self):
+        observed=[{**r,'groundwater_level':1.0} for r in rows()]
+        self.manager.train('11110',observed,META)
+        candidate=self.manager.fine_tune('11110',observed[-41:])['candidate_version']
+        future=[{**r,'groundwater_level':1.0} for r in self.shadow_rows()]
+        result=self.manager.evaluate_candidate('11110',candidate,future)
+        self.assertEqual(result['metrics']['shadow_candidate']['rmse'],0.)
+        self.assertEqual(result['metrics']['shadow_champion']['rmse'],0.)
+        self.assertEqual(result['status'],'rejected')
+        self.assertFalse(result['gates']['future_improvement']['passed'])
+        # A forged saved pass flag must not bypass the recomputed zero-error rule.
+        result.update(status='gate_passed',gate_passed=True,previous_version='1')
+        bundle=self.manager._loaded('11110',candidate)[1]
+        with self.assertRaisesRegex(ModelNotReady,'shadow quality gate'):
+            self.manager._validate_shadow_gate(bundle,candidate,result)
+        self.assertEqual(self.manager.current_version('11110'),'1')
+
     def test_future_improvement_cannot_bypass_historical_guard(self):
         self.train()
         before = self.manager.predict('11110', rows()[-20:])

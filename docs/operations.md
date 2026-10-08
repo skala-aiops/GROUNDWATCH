@@ -2,6 +2,8 @@
 
 모델 품질 정책의 기준 문서입니다. 특정 실행 결과는 [실행 증거](../evidence/README.md)를 따릅니다. 아래 설정은 과제 운영 가설이며 지반 안전 기준이 아닙니다.
 
+아래 기존 학습·감지·복귀 설명은 서울 `/api/v1` 기준입니다. 추가 실험 경로 `/api/v2`의 정책과 준비 조건은 [전국 실험 경로](#전국-실험-경로-apiv2)를 따릅니다. 전국 경로의 구현이 팀 공통 계약 합의·전국 현장 검증 완료를 뜻하지 않습니다.
+
 
 ## 기동과 준비 확인
 
@@ -57,3 +59,62 @@ RMSE는 수위와 같은 단위로 오차를 비교할 수 있고 큰 오차를 
 모델 품질 이벤트는 OPEN → ACKNOWLEDGED → RESOLVED로 처리합니다. 외부 SMS·현장 점검 알림 발송은 구현 범위가 아닙니다. 서버 진단은 요청 ID·로그 → 준비 상태 → 작업·worker → 자료·모델 순서로 확인합니다. `/metrics/summary`의 p95 1초·5xx 비율 1%는 운영 목표이며 실측 결과는 증거에 따릅니다.
 
 외부 수집은 승인 매핑·원천·단위·20일 입력·별도 모델을 갖춰야 합니다. 기본 화면과 별도 namespace를 사용하고 실패·부분 수집으로 정답을 만들지 않습니다. 상세 경로는 [API 계약](contracts.md)과 자동 API 명세를 확인합니다. 과거 외부 원천·날짜 이동 공급 재생 설계는 archive의 기록입니다.
+
+## 전국 실험 경로 `/api/v2`
+
+전국 확장은 기존 지하수 관제 서비스의 같은 관측소 선택·상세·모델 관리 흐름에서 제공합니다. `NationalService`·전국 worker·`national_observed_v1`은 원천 계약이 다른 서울 모델·DB와 내부 이력을 분리합니다. 전국 강수 자료나 지하수 관측소 목록을 확보한 것, 관측소를 등록한 것, 그 관측소의 수위·강수·모델·발행 예측이 준비된 것은 각각 다른 상태입니다. 실제 확보·학습·연결 결과는 [실행 증거](../evidence/README.md)를 확인합니다. M2 강수 예보 입력과 호우특보 자동 수집은 아직 활성화하지 않았습니다.
+
+### 자료·모델 준비
+
+- 작업 실행은 `source_kind=observed`이며 `verified=true`인 관측소 또는 근거·매핑 버전이 있는 `source_contract_verified=true`, `mapping_status=experimental`, `operational_approved=false` 관측소에 허용합니다. 실험 작업 허용과 운영 승격 승인은 구분합니다. 단위·수위 기준면·근거를 확인해야 하며, registry 플래그 입력 자체가 외부 승인이나 단위 검증을 대신하지 않습니다. 합성 관측소를 등록할 수 있어도 전국 실측 학습·예측 작업에는 사용할 수 없습니다.
+- 학습은 최신 연속 유효 구간을 선택합니다. 공백·충돌·다른 단위·기준면을 가로질러 연결하지 않으며, 구간이 짧으면 작업이 실패합니다. 예측에는 마감시각 이전에 공개되고 수집된 완전한 일자료 20일이 필요합니다.
+- M0는 residual LSTM 32 → Dense 16 → 수위 변화량과 직전 수위 합산입니다. M1은 같은 20일 수위·강수 시계열에 예측 시점의 3/7/14일 누적강수·최대20일 연속강수일수·연중 날짜 sin/cos를 별도 벡터로 추가합니다. 20개 timestep마다 추가 14일 문맥을 붙이는 방식이 아니므로 동일 계약 파인튜닝은 41일을 유지합니다.
+- scaler는 학습 구간에서만 적합합니다. 기본 분할은 최소 학습 정답 60개, tuning validation 30개, 별도 holdout 30개이며, 최소 140일이 필요합니다. validation 최소21개·holdout 최소30개를 지키며 요청에서 기간을 늘릴 수 있습니다. validation은 early stopping용이고 holdout은 학습·early stopping에 사용하지 않습니다.
+- 최초 M0만 holdout RMSE ≤ 같은 날짜 persistence RMSE × 1.10이면 활성화할 수 있습니다. M1 최초 등록은 `baseline_required`이며 기존 M0가 필요합니다. 기존 활성 모델이 있으면 새 M0/M1을 등록해도 즉시 교체하지 않습니다.
+
+### 감지·후보·발행 증거
+
+전국 감지 임계값은 **최초 해당 모델 계열의 동결 holdout**에서 rolling21 RMSE P95 × 1.5, 하한 1e-6으로 산출합니다. 서울의 초기 validation 기준과 다릅니다. `initial_reference_version`으로 기준 모델을 보존하고 파인튜닝 때 최근 오차로 임계값을 다시 높이지 않습니다. `national_reference`에 기준 버전·정책·자료 해시를 저장합니다.
+
+감시는 같은 관측소·namespace·활성 모델의 실제 발행 예측과 이후 공개된 정답으로 연속21일 RMSE를 매일 계산합니다. 최초 사용한 정답 revision을 보존하고 수정 자료로 기존 감지 근거를 조용히 덮어쓰지 않습니다. 날짜 공백은 연속 초과 횟수를 초기화하며 같은 날짜 재처리는 표본을 늘리지 않습니다. 임계값 연속2회 초과, cooldown21일 경과, 최근 연속 유효41일 확보, 평가 중 후보 없음이 모두 충족되면 작업을 등록합니다. 상태와 작업은 같은 SQLite transaction에서 기록합니다.
+
+동일 계약 파인튜닝은 기존 모델·scaler를 유지해 20일 문맥과21개 새 정답으로 10 epochs·LR0.0001 학습합니다. 정답21개는 기존 학습·평가 자료의 마지막 날짜 이후여야 합니다. 모델 입력 계약을 바꾸는 M0→M1은 이 파인튜닝 경로가 아닌 새 초기학습으로 처리합니다.
+
+후보 학습·초기 평가 cutoff 직후 **첫 연속30일**이 후속 평가 구간입니다. 두 모델은 같은 대상 날짜·입력 snapshot·발행시각으로 예측을 저장해야 하며, 발행시각은 정답 공개시각보다 앞서야 합니다. 기존 예측을 재조회한 뒤 후보가 당시 함께 발행된 것처럼 증거를 만들지 않습니다. 과거 자료 재예측만 있으면 `retrospective_evaluation`이고 교체할 수 없습니다. 일부 사전 발행 증거만 있으면 `awaiting_issued_predictions`로 남습니다.
+
+전국 교체 게이트는 후속 RMSE5% 개선과 동결 holdout에서 동일 날짜 기존 모델 대비 RMSE 악화10% 이내입니다. holdout 정답이 비교 모델의 학습 정답과 겹치면 차단합니다. M1은 추가로 장마 RMSE5% 개선, 비장마·강한 강수 RMSE 악화10% 이내, 각 구간 정답 최소30개를 요구합니다. 강한 강수 기준은 학습 자료 일강수 P95로 동결하며 강수량0인 날은 강한 강수로 분류하지 않습니다. 장마 연도·지역 자료가 없으면 미분류로 남깁니다. 기본 holdout30일만으로 장마·비장마 각각30개를 채울 수 없으며, 표본이 부족하면 `insufficient_seasonal_evidence`로 대기합니다. 이 수치들은 추가 실험의 운영 가설이며 최적값·팀 합의 완료를 뜻하지 않습니다.
+
+교체·복귀는 로딩·시험 예측을 먼저 확인하고 관측소별 파일 잠금과 활성 generation 비교 후 모델·scaler·입력 계약 묶음의 활성 참조를 변경합니다. 복귀는 이전 활성 이력에 있는 버전과 사유가 필요합니다. 이 잠금은 단일 호스트의 공유 로컬 볼륨 기준이며 분산 저장소·외부 다중 Registry 변경까지 보장하지 않습니다.
+
+### 전국 worker의 자동 실행
+
+`GROUNDWATCH_NATIONAL_SCHEDULER_ENABLED`는 기본 Compose에서 `true`입니다. worker 모듈을 직접 실행할 때 환경변수를 생략하면 `false`입니다. 수동 접수 작업을 처리하는 worker와 일별 자동 실행 활성화는 별개입니다. `true`이면 worker가 30초마다 확인하고 KST11:30 이후 검증된 실측 관측소의 발행 예측 감시·준비된 입력 예측·후보 평가를 순차 접수합니다. 자동 평가가 모든 게이트와 운영 승인 조건을 통과하면 교체합니다. 실험 모니터링 활성화는 운영 승인이나 승격 차단 해제를 뜻하지 않습니다. 관측소별 작업 scope와 일별 접수 기록으로 중복 작업을 막습니다.
+
+최초 모델 학습·단위 승인·관측소 등록·외부 자료 자동 수집은 이 scheduler가 수행하지 않습니다. 키 부족·단위 미확인·자료 공백·입력 지연·모델 미준비 상태를 합성 자료나 추정값으로 대체하지 않습니다. 재기동 시 실행 중 작업은 `interrupted`로 남겨 명시적으로 재시도하며, 실패 이력을 성공으로 바꾸지 않습니다. `pipeline.monitor`와 작업 결과에서 감시 이유·cooldown·후보 대기·실패를 확인합니다.
+
+### 별도 기상 관측 수집 worker
+
+`serving_app.weather_worker`는 지하수 모델 scheduler와 분리한 기상청 API허브 관측 수집기입니다. `GROUNDWATCH_WEATHER_COLLECTION_ENABLED`는 기본 Compose에서 `true`이며, 모듈을 직접 실행하고 환경변수를 생략하면 `false`입니다. 실제 수집에는 서버의 `KMA_APIHUB_KEY`가 필요합니다. AWS 분자료의 지점·좌표 검증에는 `GROUNDWATCH_AWS_METADATA_PATH`를 사용하며 기본 파일은 `data/kma_station_metadata.csv`입니다. metadata가 없으면 분자료는 차단하고, 응답 자체에 지점 좌표가 있는 완료일 강수는 별도로 처리합니다. 이 worker가 지하수 관측소 매핑을 승인하거나 모델을 학습하지는 않습니다.
+
+worker는30초마다 로컬 일정을 확인하지만 외부 요청은 AWS 분자료10분 간격, 완료일 강수는 KST11:30 이후 전일D-1에 하루1회입니다. 분자료는 현재 시각보다10분 앞선 완료 시각을10분 단위로 내림해 조회합니다. 요청·성공 checkpoint를 영속화하여 재기동 직후 중복 호출을 막고, 실패한 외부 요청은 최소10분 뒤 다시 시도합니다. 관측소별 요청을 수백 번 보내는 방식이 아니라 공식 전체 지점 응답을 한 번 수집합니다.
+
+저장 경로는 `${GROUNDWATCH_STATE_DIR}/weather/`입니다. `national_aws_snapshot.json`은 최근 분자료 누적 강수, `national_aws_daily.json`은 완료된 일강수이며 서로 합치지 않습니다. 분자료의 `RN-DAY`는 진행 중 해당 날짜 누적값이므로 완료일 학습 정답·강수로 대체하지 않습니다. `raw/`에 기존 수집 함수가 비밀키를 제거한 원본과 해시를 보존하고, `archive/{snapshot|daily}/`에 요청 시각·날짜별 검증 결과를 저장합니다. 최신 JSON·archive·`weather_state.json`은 임시 파일에서 원자적으로 교체합니다.
+
+공급자·파싱·단위·시각 검증이 실패하면 최신 정상 관측 파일을 유지하며 `weather_state.json`에 failed/blocked와 민감정보 없는 이유를 기록합니다. checkpoint가 collecting에서 중단된 경우도 재기동 backoff를 적용합니다. 화면·API는 정상 파일이 존재한다는 사실과 최신 수집 성공을 구분하고 observed_at·관측 날짜·collected_at·worker 상태를 함께 확인해야 합니다. 이 worker의 단위 테스트는 가짜 공급자·시계로 주기·재기동·실패 보존을 확인한 것이며, 실제 API 응답 성공은 별도 실행 증거로 기록합니다.
+
+2026-10-08 별도 Compose 검증에서는 수집을 명시적으로 활성화해 실제 worker→원천→runtime 파일→HTTP 연결을 확인했습니다. `/api/v2/rainfall/collection-status`에서 AWS2026-10-08 18:10 분자료736개, 완료일2026-10-07 강수723개와 두 stream의 collected·전체ready 상태를 확인했습니다. 이 결과는 해당 검증 실행의 확보 상태입니다. 현재 기본 Compose는 수집 설정을 `true`로 전달하고, 직접 모듈 실행 시 환경변수 미지정 fallback은 `false`입니다. 지속 운영 SLA·지하수 모델 학습·전국 예측 성능을 입증한 결과는 아닙니다. API의 runtime 우선·bundled fallback·실패 시 last-good 유지도 가짜 공급자와 실제 router를 연결한 테스트로 별도 확인합니다.
+
+
+### Compose와 직접 실행의 자동 기능 설정
+
+팀 공용 실행 기준은 루트 `docker compose up --build`입니다. 기존 지하수 관제를 전국 관측소로 확장한 하나의 서비스이며, 수집·학습·감시 프로세스는 내부 책임을 나누어 실행합니다.
+
+| 환경변수 | 기본 Compose | 환경변수 없이 모듈 직접 실행 | 기능 |
+|---|---|---|---|
+| `GROUNDWATCH_WEATHER_COLLECTION_ENABLED` | true | false | 기상청 분자료·완료일 강수 수집 |
+| `GROUNDWATCH_NATIONAL_OBSERVATION_COLLECTION_ENABLED` | true | false | 명시적 등록 매핑의 전날 수위·강수 결합 수집 |
+| `GROUNDWATCH_NATIONAL_SCHEDULER_ENABLED` | true | false | 준비된 관측소의 일별 모델 작업 접수 |
+| `GROUNDWATCH_EXPERIMENTAL_MODELS_ENABLED` | true | false | 확보된 공식 실험 결합 자료로 초기 모델 준비 |
+| `GROUNDWATCH_EXPERIMENTAL_MONITORING_ENABLED` | true | false | 명시적 실험 매핑의 발행 예측 감시 허용 |
+
+`.env`에서 false를 명시하면 Compose의 해당 기본값을 덮어씁니다. 설정 true와 실제 수집·학습 성공은 구분합니다. 키 부족·자료 미확보·입력 지연·모델 게이트 실패에서는 상태와 기존 정상 자료를 유지하며, 미등록 관측소를 자동 승인하거나 합성 관측으로 대신하지 않습니다. 실험 모니터링을 켜도 `operational_approved=false` 모델의 운영 승격은 허용하지 않습니다.

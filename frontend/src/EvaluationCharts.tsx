@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { fmt, number, type Row } from "./api";
 
-export function RainfallChart({ rows }: { rows: Row[] }) {
+export function RainyBands({ periods, first, last, x }: { periods: Row[]; first: number; last: number; x: (day: number) => number }) {
+  return <>{periods.map((p) => {
+    const start = Math.max(first, Date.parse(p.start_date + "T00:00:00Z"));
+    const end = Math.min(last, Date.parse(p.end_date + "T00:00:00Z"));
+    if (!Number.isFinite(start) || !Number.isFinite(end) || start > end) return null;
+    return <rect key={`${p.year}-${p.start_date}`} x={x(start)} y="28" width={Math.max(2, x(end) - x(start))} height="157" fill="#edbf7a" opacity="0.14"><title>{p.year}년 공식 장마 기간 · 사후 평가용</title></rect>;
+  })}</>;
+}
+
+export function RainfallChart({ rows, periods = [] }: { rows: Row[]; periods?: Row[] }) {
   const [selected, select] = useState<string | null>(null);
   const dates = rows.map((row) => Date.parse(row.date + "T00:00:00Z"));
   const observed = rows.flatMap((row, i) =>
@@ -47,6 +56,7 @@ export function RainfallChart({ rows }: { rows: Row[] }) {
           role="img"
           aria-label="관측일별 일 강수량"
         >
+          <RainyBands periods={periods} first={first} last={last} x={x} />
           {[0, 1, 2, 3].map((i) => (
             <g key={i}>
               <line

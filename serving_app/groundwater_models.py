@@ -567,7 +567,7 @@ class ModelManager:
             and candidate.get('count') == champion.get('count') == 30
             and isinstance(guard.get('count'), int) and guard['count'] > 0
             and dates_valid and all(self._valid_rmse(value) for value in values)
-            and candidate['rmse'] <= champion['rmse'] * .95
+            and champion['rmse'] > 0 and candidate['rmse'] <= champion['rmse'] * .95
             and guard['rmse'] <= reference * 1.10 + 1e-12
         ):
             raise ModelNotReady('shadow quality gate was not passed')
@@ -692,10 +692,10 @@ class ModelManager:
         guard = bundle['guard_rows']
         guard_actual = [r['groundwater_level'] for r in guard[20:]]
         guard_score = metrics(guard_actual, [self._predict(candidate, bundle, guard[i-20:i]) for i in range(20, len(guard))])
-        passed = candidate_score['rmse'] <= champion_score['rmse'] * .95 and guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12
+        passed = (champion_score['rmse'] > 0 and candidate_score['rmse'] <= champion_score['rmse'] * .95) and guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12
         result = {'status': 'gate_passed' if passed else 'rejected', 'candidate_version': version, 'gate_passed': passed,
                   'gates': {'future_improvement': {
-                      'passed': candidate_score['rmse'] <= champion_score['rmse'] * .95,
+                      'passed': (champion_score['rmse'] > 0 and candidate_score['rmse'] <= champion_score['rmse'] * .95),
                       'rmse': candidate_score['rmse'], 'limit': champion_score['rmse'] * .95},
                       'historical_guard': {
                           'passed': guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12,

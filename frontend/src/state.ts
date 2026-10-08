@@ -1,6 +1,8 @@
 import { atom } from "jotai";
 export const viewAtom = atom<"overview" | "detail" | "operations">("overview");
 export const districtAtom = atom("11110");
+export const regionAtom = atom("");
+export const mapLayerAtom = atom("groundwater");
 export const modeAtom = atom("current");
 export const replayAtom = atom(
   new URLSearchParams(location.search).get("replay_id") || "",

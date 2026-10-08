@@ -1,6 +1,6 @@
 # GroundWatch
 
-서울 25개 구 대표 관측소의 다음 날 지하수위를 예측하고, 서비스 운영자가 모델 오차와 재학습 상태를 확인하는 SKALA 팀 과제 시제품입니다. 기본 자료는 공식 과거 관측과 과제용 합성 확장입니다. 현장 안전 등급이나 싱크홀 발생 확률을 제공하지 않습니다.
+서울25개 구별 대표 관측소의 수위·강수와 모델 품질을 확인하는 SKALA 팀 과제 시제품입니다. 기본은 서울25개 구 관제이며 종로구 대표 관측소를 먼저 선택합니다. 전국 광주도척·무안무안·제주조천3곳의 공식 수위·강수280일은 추가 자료 확장 옵션입니다. 서울 과거 실측·합성 시연·전국 추가 실측의 기간과 모델 이력을 구분합니다. 현장 안전 등급이나 싱크홀 발생 확률을 제공하지 않습니다.
 
 ## 실행
 
@@ -18,6 +18,10 @@ docker compose up --build
 
 Docker 빌드에서 `frontend/`의 React·TypeScript·Vite 화면을 Node 단계로 빌드하고 FastAPI가 정적 파일을 제공합니다. 프론트 개발용 API 프록시는 8100을 사용합니다. 최초 자료 검증과 구별 학습은 자동입니다. 준비가 끝나기 전에는 수치를 만들지 않습니다. 일반 조회와 기본 시연에는 CSV 업로드나 외부 API 키가 필요하지 않습니다. 외부 수집 설정은 로컬 `.env`에 두고 Git에 올리지 않습니다. 포트 변경은 `GROUNDWATCH_PORT`로 지정합니다. 종료는 `docker compose down`이며 모델·자료가 든 볼륨은 유지합니다.
 
+기본 화면은 ‘서울25개 구별 대표 관측소’ 범위의 현재 조회이며, 종로구(11110)가 기본 선택입니다. 3D 구 경계 지도에서 구를 선택하고 GL 기준 개념 단면·수위·강수·장마 정보와 모델 관리를 확인합니다. 현재 서울 원천 실측은2024년까지의 과거 자료이므로 오늘 기준 입력이 오래되면 `STALE`과 예측 미준비를 표시합니다. ‘저장 자료 검증’에서는 확보된 자료 날짜의25개 모델을 확인하며, 합성 재학습 시연은 실제 관측과 구분합니다.
+
+전국3곳은 자료 범위에서 선택하는 추가 실측 옵션이며 기존 해발 수위 비교도·실제 강수 지도·3곳 장마 성능 비교를 유지합니다. 위치 원천 목록1,048개는 확보 카탈로그 수이고 모든 지점의 실측·예측 제공을 뜻하지 않습니다. 미연결 예보·특보·원천 진단 패널은 제외하고 원본은 보존합니다. 기본 Compose는 설정된 수집·스케줄러를 실행하되 키나 유효 자료가 없으면 기존 정상 자료를 유지합니다. 외부 수집에는 로컬 `.env`의 승인된 `KMA_APIHUB_KEY`·`GIMS_API_KEY`가 필요하며, 모듈 직접 실행 시 환경변수 미지정 fallback은 false입니다. 자세한 원천·기간은 [자료 안내](data/README.md)를 따릅니다.
+
 ## 읽는 순서
 
 | 알고 싶은 내용 | 기준 문서 |
@@ -32,7 +36,7 @@ Docker 빌드에서 `frontend/`의 React·TypeScript·Vite 화면을 Node 단계
 
 ## 제출 자료
 
-발표용 [GroundWatch_발표기획서.pdf](output/final/GroundWatch_발표기획서.pdf), 편집 가능한 [PPTX 원문](output/source/GroundWatch_발표기획서.pptx), [페이지별 대본](output/source/발표대본.md)을 관리합니다. [요구사항 검수](output/source/proposal.md)에서 여섯 필수 흐름과 페이지를 확인합니다. 과제 기획의 기준 문서는 [proposal.md](proposal.md)입니다. `건우짱.pdf`는 위 최종 파일명으로 정리했습니다. 실제 제출·발표 완료는 별도로 확인합니다.
+발표용 [GroundWatch_발표기획서.pdf](output/final/GroundWatch_발표기획서.pdf), 편집 가능한 [PPTX 원문](output/source/GroundWatch_발표기획서.pptx), [페이지별 대본](output/source/발표대본.md), [발표 예상 질문·답변 PDF](output/final/GroundWatch_발표_예상질문과답변.pdf)을 관리합니다. 최종 발표는37쪽(기존 필수 흐름1~28, 전국 확장29~36, 팀원37)이며 예상 질문·답변은44문항입니다. [요구사항 검수](output/source/proposal.md)에서 여섯 필수 흐름과 페이지를 확인합니다. 과제 기획의 기준 문서는 [proposal.md](proposal.md)입니다. `건우짱.pdf`는 위 최종 파일명으로 정리했습니다. 실제 제출·발표 완료는 별도로 확인합니다.
 
 ## 협업과 문서 관리
 
@@ -40,4 +44,13 @@ Docker 빌드에서 `frontend/`의 React·TypeScript·Vite 화면을 Node 단계
 
 기능 변경은 해당 기준 문서의 기존 내용을 수정합니다. 같은 설명을 여러 파일에 복제하거나 변경 때마다 새 설계 문서를 만들지 않습니다. 과거 검토는 `docs/archive/`, 날짜별 실행 기록은 `evidence/records/`에 보존합니다. 현행 문서에는 과거 상태를 현재처럼 섞어 쓰지 않습니다.
 
-검증 명령은 `docker compose exec serving-app python -m unittest discover -s tests -v`와 `node tests/replay_ui.test.cjs`입니다. 프론트 검증은 `frontend/`에서 `npm ci`, `npm test`, `npm run build`입니다. 공용 Docker 기동에는 호스트 npm 설치가 필요하지 않습니다. 최근 저장된 실행 결과와 환경 제한은 실행 증거에서 확인합니다.
+검증 명령은 `docker compose exec serving-app python -m pytest tests -q`와 `node tests/replay_ui.test.cjs`입니다. 프론트 검증은 `frontend/`에서 `npm ci`, `npm test`, `npm run build`입니다. 공용 Docker 기동에는 호스트 npm 설치가 필요하지 않습니다. 최근 저장된 실행 결과와 환경 제한은 실행 증거에서 확인합니다.
+
+확보된 3개 지하수 관측소는 공식 제원명의 기상지점과 실험 매핑으로 연결해 수위·강수 학습과 장마 구간 평가를 수행합니다. 기본 Compose는 출처가 기록된 이 자료로 초기 실험 모델을 준비합니다(`GROUNDWATCH_EXPERIMENTAL_MODELS_ENABLED`, 기본 true). 원천·단위 확인과 운영 승인은 구분하며 실험 예측에는 범위를 표시하고 운영 승인 없는 모델 승격은 차단합니다.
+
+
+전국 추가 자료 통합은 격리 Compose의 실제 기동·HTTP·지도·상세·모델 화면으로 확인했습니다. [컨테이너 전체 테스트](evidence/records/2026-10-08-national/integrated-container-tests.txt)는 **201통과·1skip**이며, 프런트23개 테스트와 production build가 통과했습니다. [실측 계절 평가](evidence/records/2026-10-08-national/seasonal-evaluation.json)에서 M1의 M0 대비 전체 RMSE 감소율은 제주조천 +29.43%, 무안무안 −12.17%, 광주도척 −15.92%였습니다. 제주 장마 +52.27%는19정답의 결과이며 승격 최소 표본30개에 미달합니다. 현재3곳은 운영 미승인 실험이며 과거 평가를 미래 발행 예측30일의 운영 승격 증거로 사용하지 않습니다.
+
+M0에도 강수가 입력되며 M1은6개 강수·계절 요약 특징을 추가한 비교 모델입니다. 제주 M1은 M0 대비 개선됐지만 같은 평가의 persistence보다 RMSE가0.71% 높았습니다. 전국 자동 발행은 D−1 입력으로 D일11:30 이후 D일 값을 제공하는 당일 추정이며, 미래일 사전 예측 검증으로 설명하지 않습니다.
+
+전국 상세의 Three.js 수위 비교도는 원천 해발 수위 축을 사용하고 지표 높이를 가정하지 않습니다. 실측·당일 추정·persistence 비교값의 날짜와 라벨을 구분합니다. 서울 과거 GL 수위는3D 개념 단면이며,3D 해제 또는 WebGL 미지원·오류 시2D 비교도로 전환합니다. 실제 지층·관정 시공 도면은 확보하지 않아 지층 두께·관정 깊이·지하수 공간 분포를 표시하지 않습니다.

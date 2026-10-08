@@ -45,6 +45,10 @@ def main():
         service.store.put('dataset', entry, dataset_id)
     children = [subprocess.Popen([sys.executable, '-m', 'serving_app.groundwater_worker']),
                 subprocess.Popen([sys.executable, '-m', 'serving_app.external_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.national_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.weather_worker']),
+                subprocess.Popen([sys.executable, '-m', 'serving_app.national_observation_worker']),
+                subprocess.Popen([sys.executable, 'scripts/evaluate_national_seasons.py', '--worker']),
                 subprocess.Popen([sys.executable, '-m', 'uvicorn', 'serving_app.main:app',
                                   '--host', '0.0.0.0', '--port', '8099', '--workers', '1'])]
     stopping = False

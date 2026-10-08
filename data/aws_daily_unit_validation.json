@@ -1,0 +1,294 @@
+{
+  "date": "2026-07-01",
+  "raw_sha256": "d0370d1fd0cefcea7e4acbed064838be275836951c6719d1952f9d8722f18ccd",
+  "pairs": [
+    {
+      "station_id": "101",
+      "asos_mm": 0.0,
+      "aws_value": 0.0
+    },
+    {
+      "station_id": "108",
+      "asos_mm": 0.8,
+      "aws_value": 0.8
+    },
+    {
+      "station_id": "112",
+      "asos_mm": 0.0,
+      "aws_value": 0.0
+    },
+    {
+      "station_id": "127",
+      "asos_mm": 1.7,
+      "aws_value": 1.7
+    },
+    {
+      "station_id": "130",
+      "asos_mm": 1.1,
+      "aws_value": 1.1
+    },
+    {
+      "station_id": "131",
+      "asos_mm": 1.0,
+      "aws_value": 1.0
+    },
+    {
+      "station_id": "133",
+      "asos_mm": 2.1,
+      "aws_value": 2.1
+    },
+    {
+      "station_id": "135",
+      "asos_mm": 1.3,
+      "aws_value": 1.3
+    },
+    {
+      "station_id": "136",
+      "asos_mm": 0.5,
+      "aws_value": 0.5
+    },
+    {
+      "station_id": "138",
+      "asos_mm": 7.7,
+      "aws_value": 7.7
+    },
+    {
+      "station_id": "140",
+      "asos_mm": 2.7,
+      "aws_value": 2.7
+    },
+    {
+      "station_id": "143",
+      "asos_mm": 7.0,
+      "aws_value": 7.0
+    },
+    {
+      "station_id": "146",
+      "asos_mm": 1.3,
+      "aws_value": 1.3
+    },
+    {
+      "station_id": "152",
+      "asos_mm": 26.5,
+      "aws_value": 26.5
+    },
+    {
+      "station_id": "155",
+      "asos_mm": 50.2,
+      "aws_value": 50.2
+    },
+    {
+      "station_id": "156",
+      "asos_mm": 70.4,
+      "aws_value": 70.4
+    },
+    {
+      "station_id": "159",
+      "asos_mm": 52.3,
+      "aws_value": 52.3
+    },
+    {
+      "station_id": "162",
+      "asos_mm": 45.6,
+      "aws_value": 45.6
+    },
+    {
+      "station_id": "165",
+      "asos_mm": 56.3,
+      "aws_value": 56.3
+    },
+    {
+      "station_id": "168",
+      "asos_mm": 48.8,
+      "aws_value": 48.8
+    },
+    {
+      "station_id": "170",
+      "asos_mm": 83.2,
+      "aws_value": 83.2
+    },
+    {
+      "station_id": "184",
+      "asos_mm": 42.1,
+      "aws_value": 42.1
+    },
+    {
+      "station_id": "185",
+      "asos_mm": 73.0,
+      "aws_value": 73.0
+    },
+    {
+      "station_id": "188",
+      "asos_mm": 112.8,
+      "aws_value": 112.8
+    },
+    {
+      "station_id": "189",
+      "asos_mm": 103.7,
+      "aws_value": 103.7
+    },
+    {
+      "station_id": "192",
+      "asos_mm": 40.4,
+      "aws_value": 40.4
+    },
+    {
+      "station_id": "201",
+      "asos_mm": 5.8,
+      "aws_value": 5.8
+    },
+    {
+      "station_id": "212",
+      "asos_mm": 0.0,
+      "aws_value": 0.0
+    },
+    {
+      "station_id": "216",
+      "asos_mm": 2.3,
+      "aws_value": 2.3
+    },
+    {
+      "station_id": "221",
+      "asos_mm": 0.5,
+      "aws_value": 0.5
+    },
+    {
+      "station_id": "226",
+      "asos_mm": 1.7,
+      "aws_value": 1.7
+    },
+    {
+      "station_id": "232",
+      "asos_mm": 1.5,
+      "aws_value": 1.5
+    },
+    {
+      "station_id": "235",
+      "asos_mm": 1.3,
+      "aws_value": 1.3
+    },
+    {
+      "station_id": "236",
+      "asos_mm": 2.7,
+      "aws_value": 2.7
+    },
+    {
+      "station_id": "238",
+      "asos_mm": 0.7,
+      "aws_value": 0.7
+    },
+    {
+      "station_id": "243",
+      "asos_mm": 2.5,
+      "aws_value": 2.5
+    },
+    {
+      "station_id": "244",
+      "asos_mm": 4.7,
+      "aws_value": 4.7
+    },
+    {
+      "station_id": "245",
+      "asos_mm": 3.5,
+      "aws_value": 3.5
+    },
+    {
+      "station_id": "247",
+      "asos_mm": 20.0,
+      "aws_value": 20.0
+    },
+    {
+      "station_id": "248",
+      "asos_mm": 4.3,
+      "aws_value": 4.3
+    },
+    {
+      "station_id": "260",
+      "asos_mm": 71.2,
+      "aws_value": 71.2
+    },
+    {
+      "station_id": "261",
+      "asos_mm": 62.2,
+      "aws_value": 62.2
+    },
+    {
+      "station_id": "262",
+      "asos_mm": 54.5,
+      "aws_value": 54.5
+    },
+    {
+      "station_id": "271",
+      "asos_mm": 0.8,
+      "aws_value": 0.8
+    },
+    {
+      "station_id": "272",
+      "asos_mm": 1.3,
+      "aws_value": 1.3
+    },
+    {
+      "station_id": "273",
+      "asos_mm": 2.5,
+      "aws_value": 2.5
+    },
+    {
+      "station_id": "277",
+      "asos_mm": 8.0,
+      "aws_value": 8.0
+    },
+    {
+      "station_id": "278",
+      "asos_mm": 3.9,
+      "aws_value": 3.9
+    },
+    {
+      "station_id": "279",
+      "asos_mm": 1.7,
+      "aws_value": 1.7
+    },
+    {
+      "station_id": "281",
+      "asos_mm": 6.5,
+      "aws_value": 6.5
+    },
+    {
+      "station_id": "284",
+      "asos_mm": 8.1,
+      "aws_value": 8.1
+    },
+    {
+      "station_id": "285",
+      "asos_mm": 22.5,
+      "aws_value": 22.5
+    },
+    {
+      "station_id": "288",
+      "asos_mm": 19.9,
+      "aws_value": 19.9
+    },
+    {
+      "station_id": "289",
+      "asos_mm": 39.2,
+      "aws_value": 39.2
+    },
+    {
+      "station_id": "294",
+      "asos_mm": 53.4,
+      "aws_value": 53.4
+    },
+    {
+      "station_id": "295",
+      "asos_mm": 76.1,
+      "aws_value": 76.1
+    },
+    {
+      "station_id": "95",
+      "asos_mm": 11.1,
+      "aws_value": 11.1
+    }
+  ],
+  "compared": 57,
+  "all_exact_match": true,
+  "aws_rows": 722
+}
