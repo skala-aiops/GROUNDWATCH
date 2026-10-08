@@ -319,12 +319,23 @@ class GroundwaterService:
         pending_days=0
         if pending and replay and monitor.get('candidate_as_of'):
             pending_days=sum(r['date']>monitor['candidate_as_of'] and r['date']<=replay['as_of'] for r in self.records(replay['dataset_id'],district_code,replay))
+        evaluation_detail = current_evaluation['message'] if current_evaluation else '새 정답30일 · 개선5% · guard110%'
+        if current_evaluation:
+            scores = current_evaluation['result'].get('metrics', {})
+            candidate_rmse = scores.get('shadow_candidate', {}).get('rmse')
+            champion_rmse = scores.get('shadow_champion', {}).get('rmse')
+            if candidate_rmse is not None and champion_rmse is not None:
+                outcome = '기준 통과' if cycle_promoted else '기준 미충족 · 기존 모델 유지'
+                evaluation_detail = f'새 모델 RMSE {candidate_rmse:.4g} · 기존 {champion_rmse:.4g} · {outcome}'
+        retrain_detail = '드리프트 감지 후 자동 접수'
+        if fine:
+            retrain_detail = fine['error'] or ('후보 학습 완료 · 이후 정답으로 평가' if fine['status']=='completed' else fine['id'])
         stages=[
             {'key':'data','title':'자료 검증','status':'completed' if entry and entry['status']=='ready' else 'pending','detail':entry['id'][:12] if entry else '자료 등록 필요'},
             {'key':'monitor','title':'오차 감시','status':'completed' if monitor.get('rmse') is not None else 'pending','detail':f"정답 {len({f['forecast_date'] for f in labelled})}일 · 21일 창 · 임계값 {model.get('threshold','미정')}"},
-            {'key':'drift','title':'품질 경보','status':'completed' if quality else 'pending','detail':quality['message'] if quality else '연속2회 초과 시 감지'},
-            {'key':'retrain','title':'재학습','status':fine['status'] if fine else 'pending','detail':fine['error'] or fine['id'] if fine else '경보 후 자동 접수'},
-            {'key':'evaluate','title':'후보 평가','status':'pending' if pending else current_evaluation['result']['status'] if current_evaluation else 'pending','detail':f"후보 v{pending} · 후속 정답 {pending_days}/30일 대기" if pending else current_evaluation['message'] if current_evaluation else '새 정답30일 · 개선5% · guard110%'},
+            {'key':'drift','title':'드리프트 감지','status':'completed' if quality else 'pending','detail':quality['message'] if quality else f"21일 오차 기준 연속 {monitor.get('breaches',0)}/2회 초과 · 정답 21일 확보 후 판정"},
+            {'key':'retrain','title':'자동 재학습','status':fine['status'] if fine else 'pending','detail':retrain_detail},
+            {'key':'evaluate','title':'후보 평가','status':'pending' if pending else current_evaluation['result']['status'] if current_evaluation else 'pending','detail':f"후보 v{pending} · 후속 정답 {pending_days}/30일 대기" if pending else evaluation_detail},
             {'key':'promote','title':'모델 교체','status':'completed' if cycle_promoted else 'rejected' if current_evaluation and current_evaluation['result']['status']=='rejected' else 'pending','detail':f"후보 v{cycle_version} 게이트 통과·교체" if cycle_promoted else f"현재 후보 미교체 · 현재 서빙 v{version or '없음'}"},
             {'key':'serve','title':'현재 모델 서빙','status':'completed' if served else 'pending','detail':f"실제 예측 v{version} · {served[-1]['forecast_date']}" if served else '조회 후 실제 응답 버전 확인'}]
         defaults=None
@@ -334,15 +345,19 @@ class GroundwaterService:
             start=metadata.get('replay_start') or (rows[-90]['date'] if len(rows)>=410 else None)
             if start:
                 defaults={'dataset_id':entry['id'],'start_date':str(date.fromisoformat(start)-timedelta(days=1)),
-                          'end_date':rows[-1]['date'],'shift_start':str(date.fromisoformat(start)+timedelta(days=23)),
+                          'end_date':rows[-1]['date'],'shift_start':str(date.fromisoformat(start)+timedelta(days=21)),
                           'shift_amount':.2}
         return {'namespace':namespace,'district_code':district_code,'replay_id':replay_id,
                 'simulation': self.simulation_clock(replay),
                 'as_of':replay['as_of'] if replay else (max((r['date'] for r in self.records(entry['id'],district_code)),default=None) if entry else None),'replay_status':replay['status'] if replay else None,
                 'remaining_days':(date.fromisoformat(replay.get('end_date') or defaults['end_date'])-date.fromisoformat(replay['as_of'])).days if replay and defaults else 0,
+                'latest_advance_job':next(({k:j[k] for k in ('id','kind','status','result','error')} for j in jobs if j['kind']=='advance'),None),
+                'active_jobs':[{k:j[k] for k in ('id','kind','status','result','error')} for j in jobs if j['status'] in ('queued','running')],
                 'advance_active':any(j['kind']=='advance' and j['status'] in ('queued','running') for j in jobs),'stages':stages,'defaults':defaults,
                 'log':sorted([{'at':e['created_at'],'kind':e['kind'],'message':e['message'],'status':e['status']} for e in events]+[{'at':j['updated_at'],'kind':j['kind'],'message':j['error'] or j['id'],'status':j['status']} for j in jobs],key=lambda x:x['at'],reverse=True)[:50],
                 'candidate_version':pending,'evaluation':evaluation.get('result') if evaluation else None,
+                'drift_demo':{'shift_start':replay['shift_start'],'shift_amount':replay['shift_amount'],'applied':replay['as_of']>=replay['shift_start'],
+                    'monitoring_note':'정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가'} if replay and replay['scenario']=='level_shift' else None,
                 'source_kind':('synthetic' if replay and replay.get('synthetic') else entry.get('source_kind')) if entry else None,
                 'note':'현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다.'}
 
@@ -488,8 +503,11 @@ class GroundwaterService:
         if kind == 'advance':
             replay = self.store.get('replay', payload['replay_id'])
             target = payload.get('target_date') or (date.fromisoformat(replay['as_of']) + timedelta(days=payload['days'])).isoformat()
+            start = date.fromisoformat(replay['as_of'])
+            total = (date.fromisoformat(target)-start).days
             while replay['as_of'] < target:
                 self.advance_day(replay)
+                self.store.progress(job['id'], {'processed':(date.fromisoformat(replay['as_of'])-start).days, 'total':total, 'as_of':replay['as_of']})
                 # Process training at the triggering replay date, before revealing
                 # further labels. One worker retains serial TensorFlow execution.
                 while followup := self.store.claim('fine_tune'):

@@ -4,7 +4,7 @@ import hashlib
 import json
 import tempfile
 import unittest
-from datetime import timedelta
+from datetime import date, timedelta
 from pathlib import Path
 from fastapi.testclient import TestClient
 from data.groundwater import load_canonical
@@ -177,6 +177,18 @@ class PipelineViewTests(unittest.TestCase):
                 self.assertEqual(served['stages'][2]['status'],'pending')
                 self.assertEqual(served['stages'][5]['status'],'pending')
                 self.assertEqual(served['defaults']['shift_amount'],.2)
+                self.assertEqual(served['defaults']['shift_start'],str(date.fromisoformat(served['defaults']['start_date'])+timedelta(days=22)))
+                advance=service.advance_job(replay['id'],2)
+                active=client.get(endpoint).json()
+                self.assertTrue(active['advance_active'])
+                self.assertEqual(active['active_jobs'][0]['id'],advance['id'])
+                service.store.progress(advance['id'],{'processed':1,'total':2})
+                self.assertEqual(client.get(endpoint).json()['latest_advance_job']['result']['processed'],1)
+                service.store.finish(advance['id'],error='worker failed')
+                failed=client.get(endpoint).json()
+                self.assertFalse(failed['advance_active'])
+                self.assertEqual(failed['replay_status'],'ready')
+                self.assertEqual(failed['latest_advance_job']['error'],'worker failed')
 
     def test_namespace_jobs_are_filtered_before_limit(self):
         from serving_app.groundwater_store import Store
@@ -205,6 +217,13 @@ class PipelineCycleTests(unittest.TestCase):
             service.store.put('monitor',{'district_code':FIRST,'candidate':'3','candidate_as_of':replay['as_of']},replay['id']+':'+FIRST)
             actual=service.pipeline(FIRST,replay['id'])
             self.assertEqual(actual['source_kind'],'synthetic')
+            self.assertFalse(actual['drift_demo']['applied'])
+            self.assertEqual(actual['drift_demo']['shift_start'],replay['shift_start'])
+            original_rows=service.records(dataset,FIRST)
+            shifted_rows=service.records(dataset,FIRST,replay)
+            self.assertAlmostEqual(shifted_rows[344]['groundwater_level']-original_rows[344]['groundwater_level'],.2)
+            self.assertEqual(shifted_rows[343]['groundwater_level'],original_rows[343]['groundwater_level'])
+            self.assertNotIn('drift_demo',original_rows[344])
             self.assertEqual(actual['stages'][4]['status'],'pending')
             self.assertEqual(actual['stages'][5]['status'],'pending')
             self.assertIn('v3',actual['stages'][4]['detail'])
