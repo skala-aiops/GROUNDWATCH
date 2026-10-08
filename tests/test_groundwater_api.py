@@ -62,6 +62,53 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.client.post('/api/v1/jobs/train', json={'dataset_id':'x','district_code':'99999'}).status_code, 422)
         self.assertEqual(self.client.post('/api/v1/jobs/train', json={'dataset_id':'x','hidden_gate_override':True}).status_code, 422)
 
+    def test_readiness_requires_models_and_continuous_inputs_and_recovers(self):
+        dataset = upload_fixture(self.service)
+        manager = self.service.manager(self.service.default_namespace())
+        for district in self.service.districts(dataset)['districts']:
+            code = district['district_code']
+            manager.train(code, self.service.records(dataset, code), {}, 1)
+        # A historical fixture is ready without pretending to contain today's data.
+        self.assertEqual(self.client.get('/health/ready').status_code, 200)
+
+        original = self.service.records
+        rows = original(dataset, FIRST)
+        for changed, reason in ((rows[:-2]+rows[-1:], 'input_date_gap'),
+                                (rows[:-1], 'input_end_mismatch'),
+                                (rows[-10:], 'input_insufficient')):
+            self.service.records = lambda ds, code: changed if code == FIRST else original(ds, code)
+            response = self.client.get('/health/ready')
+            self.assertEqual(response.status_code, 503)
+            self.assertEqual(response.json()['forecast_ready_count'], 24)
+            detail = next(x for x in response.json()['districts'] if x['district_code']==FIRST)
+            self.assertEqual(detail['reason'], reason)
+            self.assertEqual(self.client.get('/health/live').status_code, 200)
+        self.service.records = original
+        self.assertEqual(self.client.get('/health/ready').status_code, 200)
+        model = manager.models.pop(FIRST)
+        self.assertEqual(self.client.get('/health/ready').status_code, 503)
+        manager.models[FIRST] = model
+        self.assertEqual(self.client.get('/health/ready').status_code, 200)
+
+    def test_forecast_provenance_preserves_station_boundaries_and_unknown_time(self):
+        dataset = upload_fixture(self.service)
+        original = self.service.records
+        last = original(dataset, FIRST)[-1]['date']
+        def mixed(ds, code, replay=None):
+            rows = original(ds, code, replay)
+            boundary = len(rows)-2 if code==FIRST else len(rows)-1
+            return [{**r, 'origin':'synthetic' if i>=boundary else 'observed'} for i,r in enumerate(rows)]
+        self.service.records = mixed
+        response = self.client.get('/api/v1/forecasts').json()
+        first, second = response['forecasts'][:2]
+        self.assertNotEqual(first['data_source']['observed_through'],second['data_source']['observed_through'])
+        self.assertEqual(first['data_source']['input_through'],last)
+        self.assertTrue(first['data_source']['contains_synthetic'])
+        self.assertEqual(first['data_source']['synthetic_through'],last)
+        self.assertIsNone(first['data_source']['generated_at'])
+        self.assertIsNotNone(first['data_source']['registered_at'])
+        self.assertFalse(first['data_source']['external_api_applied'])
+
     def test_upload_schema_and_malformed_manifest_return_422(self):
         parts = self.upload_parts()
         bad_manifest = {'approved':True, 'mapping_version':'bad', 'stations':[1]}

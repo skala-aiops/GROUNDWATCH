@@ -629,6 +629,13 @@ class ModelManager:
         guard_score = metrics(guard_actual, [self._predict(candidate, bundle, guard[i-20:i]) for i in range(20, len(guard))])
         passed = candidate_score['rmse'] <= champion_score['rmse'] * .95 and guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12
         result = {'status': 'rejected', 'candidate_version': version, 'gate_passed': passed,
+                  'gates': {'future_improvement': {
+                      'passed': candidate_score['rmse'] <= champion_score['rmse'] * .95,
+                      'rmse': candidate_score['rmse'], 'limit': champion_score['rmse'] * .95},
+                      'historical_guard': {
+                          'passed': guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12,
+                          'rmse': guard_score['rmse'],
+                          'limit': old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12}},
                   'metrics': {'shadow_candidate': candidate_score, 'shadow_champion': champion_score, 'historical_guard': guard_score},
                   'shadow_start': rows[selected[0]]['date'], 'shadow_end': rows[selected[-1]]['date']}
         state = self._state(district_code)

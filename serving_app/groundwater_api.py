@@ -74,7 +74,7 @@ def router_for(service):
 
     @router.get('/api/v1/external-sources', tags=['external-data'])
     def external_sources():
-        return external.status()
+        return external.status(live_service)
 
     @router.post('/api/v1/ingestions', status_code=202, tags=['external-data'])
     def ingest(body: IngestionRequest):

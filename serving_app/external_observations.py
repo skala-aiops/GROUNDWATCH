@@ -146,14 +146,27 @@ class ExternalObservations:
                 self.observations.record_collection(job['id'],source,station,p['start_date'],p['end_date'],
                     result,saved['accepted'],saved['quarantined'],result['raw_sha256'])
 
-    def status(self):
+    def status(self, live_service=None):
         jobs = self.store.jobs()
+        try:
+            worker = self.store.get('worker', 'external')
+        except KeyError:
+            worker = None
+        with self.observations.connect() as db:
+            timing = {source:{
+                'last_success_at':db.execute("SELECT MAX(collected_at) FROM collection_runs WHERE source=? AND status='collected'",(source,)).fetchone()[0],
+                'last_failure_at':db.execute("SELECT MAX(collected_at) FROM collection_runs WHERE source=? AND status='failed'",(source,)).fetchone()[0]
+            } for source in ('seoul','kma')}
+        publication = live_service.publication_status() if live_service else None
         return {'sources':{
             'seoul':{'configured':bool(os.getenv('SEOUL_OPEN_DATA_KEY')),'service':'VTsSec',
                      'transport':'HTTP (official endpoint; TLS not verified)'},
             'kma':{'configured':bool(os.getenv('KMA_ASOS_SERVICE_KEY')),'service':'ASOS DAY','available_until':'D-1'}},
             'jobs':jobs[:20], 'observation_store':self.observations.summary(),
-            'forecast_integration':'blocked_pending_identity_unit_rain_mapping_and_model_validation',
+            'forecast_integration':publication,
+            'collection':{'enabled':os.getenv('GROUNDWATCH_COLLECTION_ENABLED','false').lower()=='true',
+                          'timezone':'Asia/Seoul','schedule_hour':10,'lookback_days':7,
+                          'input_until':'D-1','worker':worker,'timing':timing},
             'note':'수집 성공과 예측 자료 적용은 다릅니다. 기존 CSV·모델은 유지합니다.'}
 
     def enqueue(self, start, end, seoul_station, weather_station, shared_weather_day=None):

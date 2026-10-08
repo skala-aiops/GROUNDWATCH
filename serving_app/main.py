@@ -7,7 +7,7 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from serving_app.groundwater_api import router_for
@@ -63,7 +63,16 @@ def create_app(service=None):
     app.include_router(router_for(app.state.service))
     static = str(Path(__file__).parent / "static")
     app.mount("/static", StaticFiles(directory=static), name="assets")
-    app.mount("/", StaticFiles(directory=static, html=True), name="dashboard")
+    # Preserve the original dashboard while serving the React production build.
+    dashboard = Path(__file__).parent / "dashboard"
+    if (dashboard / "index.html").exists():
+        @app.get("/", include_in_schema=False)
+        async def dashboard_entry(request: Request):
+            query = "?" + request.url.query if request.url.query else ""
+            return RedirectResponse("/dashboard/" + query)
+        app.mount("/dashboard", StaticFiles(directory=str(dashboard), html=True), name="dashboard")
+    app.mount("/legacy", StaticFiles(directory=static, html=True), name="legacy-dashboard")
+    app.mount("/", StaticFiles(directory=static, html=True), name="fallback-dashboard")
     return app
 
 app = create_app()

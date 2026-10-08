@@ -25,3 +25,8 @@ proposal.md
 operations.md
 demo.md
 TODO.md
+
+# Frontend build dependencies are installed inside the build stage
+**/node_modules
+**/dist
+output

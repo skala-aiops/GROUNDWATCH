@@ -1,8 +1,8 @@
-> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](../public-agency-service-review.md)와 [팀 로직 설명](../team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
+> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](2026-10-08-before-cleanup/public-agency-service-review.md)와 [팀 로직 설명](2026-10-08-before-cleanup/team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
 
 # GroundWatch 팀 구현 설계 및 과제 기준 사전 점검
 
-2026-10-07 API 운영 전환의 최신 변경 기준은 [재설계](../api-transition-redesign.md)와 [현재 계약](../contracts.md)입니다. 아래 기존 과거25구 설계·평가 정책은 보존하며, 공급·DB·live 날짜·모델 입력 버전은 새 경로에서 분리했습니다. 실제 API 매핑은 미승인 상태이고 today 예측 활성화는 완료되지 않았습니다.
+2026-10-07 API 운영 전환의 최신 변경 기준은 [재설계](2026-10-08-before-cleanup/api-transition-redesign.md)와 [현재 계약](../contracts.md)입니다. 아래 기존 과거25구 설계·평가 정책은 보존하며, 공급·DB·live 날짜·모델 입력 버전은 새 경로에서 분리했습니다. 실제 API 매핑은 미승인 상태이고 today 예측 활성화는 완료되지 않았습니다.
 
 작성 기준: 2026-10-07. 구현을 진행하며 확인한 데이터 조건을 반영했습니다. 완료 기준과 실제 실행 결과는 구분하며, 최종 실행 상태는 `../evidence/README.md`를 따릅니다.
 

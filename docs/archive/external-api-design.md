@@ -1,8 +1,8 @@
-> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](../public-agency-service-review.md)와 [팀 로직 설명](../team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
+> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](2026-10-08-before-cleanup/public-agency-service-review.md)와 [팀 로직 설명](2026-10-08-before-cleanup/team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
 
 # 외부 관측 API 연결 설계 초안
 
-이 문서는 최초 조사 초안으로 보존합니다. 키 저장·활용승인·수집 및 관측DB/live 경로는 이후 구현했으며 최신 기준은 [전면 재설계](../api-transition-redesign.md)·[계약](../contracts.md)·evidence/api-source-readiness.json입니다. 아래 미구현 설명을 현재 상태로 읽지 않습니다.
+이 문서는 최초 조사 초안으로 보존합니다. 키 저장·활용승인·수집 및 관측DB/live 경로는 이후 구현했으며 최신 기준은 [전면 재설계](2026-10-08-before-cleanup/api-transition-redesign.md)·[계약](../contracts.md)·evidence/api-source-readiness.json입니다. 아래 미구현 설명을 현재 상태로 읽지 않습니다.
 
 조사일: 2026-10-07. 구현 전 설계이며 인증키를 사용한 호출, 최신 관측일, 25개 관측소 매칭은 아직 확인하지 않았습니다. 기존 코드와 데이터는 변경하지 않았습니다.
 

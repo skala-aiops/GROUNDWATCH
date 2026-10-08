@@ -38,6 +38,11 @@ def main():
         except KeyError:
             service.queue_upload(content, mapping, generated.name, auto_train=True)
             print('[GroundWatch] 오늘까지 합성 확장 자료를 별도 검증·학습합니다.', flush=True)
+        import json
+        stamp = json.loads((generated.parent/'generation.json').read_text())
+        entry = service.store.get('dataset', dataset_id)
+        entry['generated_at'] = stamp['generated_at']
+        service.store.put('dataset', entry, dataset_id)
     children = [subprocess.Popen([sys.executable, '-m', 'serving_app.groundwater_worker']),
                 subprocess.Popen([sys.executable, '-m', 'serving_app.external_worker']),
                 subprocess.Popen([sys.executable, '-m', 'uvicorn', 'serving_app.main:app',

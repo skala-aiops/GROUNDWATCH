@@ -1,0 +1,180 @@
+- complementary:
+  - link "GROUND WATCH":
+    - /url: "#overview"
+    - generic: GW
+    - strong:
+      - text: GROUND
+      - text: WATCH
+  - paragraph: 선정 관측소 25곳
+  - navigation "주 메뉴":
+    - button "01 관측소 현황"
+    - button "02 관측소 상세"
+    - button "03 모델 관리 · 시연" [active]
+  - paragraph:
+    - text: 관측소 단위 예측입니다.
+    - text: 안전 등급은 제공하지 않습니다.
+  - link "API 명세 ↗":
+    - /url: /docs
+- main:
+  - heading "모델 관리 · 시연" [level=1]
+  - text: 입력 기준일
+  - textbox "조회 기준일": 2026-10-08
+  - text: 조회 모드
+  - combobox "조회 모드":
+    - option "오늘 기준 예측"
+    - option "저장 자료로 검증" [selected]
+  - text: 검증 기록 선택
+  - combobox "검증 기록 선택":
+    - option "기본 등록 자료"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · 581fa088"
+    - option "드리프트 시연 · 입력일 2026-10-08 · 1b0302eb" [selected]
+    - option "기존 자료 시연 · 입력일 2026-07-10 · d487b4c0"
+    - option "기존 자료 시연 · 입력일 2026-07-31 · 45fc476f"
+    - option "드리프트 시연 · 입력일 2026-10-08 · 178022c0"
+    - option "드리프트 시연 · 입력일 2026-07-10 · e5535789"
+    - option "드리프트 시연 · 입력일 2026-07-10 · 5c7537e7"
+    - option "기존 자료 시연 · 입력일 2026-08-01 · 18a8e292"
+    - option "드리프트 시연 · 입력일 2026-07-10 · 0bca2991"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · 67f3317b"
+    - option "드리프트 시연 · 입력일 2026-08-21 · fdf0b3c8"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · 6d76f8e4"
+    - option "드리프트 시연 · 입력일 2026-07-11 · 4e86631f"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · e94fd46d"
+    - option "드리프트 시연 · 입력일 2026-07-10 · 638144f5"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · 02f96029"
+    - option "드리프트 시연 · 입력일 2026-07-10 · 4098f8dc"
+    - option "기존 자료 시연 · 입력일 2026-07-10 · 2130156f"
+    - option "드리프트 시연 · 입력일 2026-07-10 · e7a8440b"
+    - option "이전 공급 시연 · 입력일 2023-12-19 · edd072c1"
+    - option "이전 공급 시연 · 입력일 2023-12-21 · 0c255b5e"
+    - option "기존 자료 시연 · 입력일 2023-12-22 · 5a265c72"
+    - option "드리프트 시연 · 입력일 2024-03-18 · 386386a7"
+    - option "기존 자료 시연 · 입력일 2024-03-18 · f26d5207"
+  - button "새로고침 ↻"
+  - button "오늘 예측으로 돌아가기"
+  - note "실제 관측과 합성 자료의 기간을 구분합니다. 입력 종료일은 실시간 수집을 뜻하지 않습니다.": "합성 자료 포함 · 실제 관측 종료: 2024-03-18 · 예측 입력 종료: 2026-10-08 · 합성 입력: 2024-03-19부터 2026-10-08까지 · 자료 생성 시각: 2026-10-08T03:37:48.572448+00:00 · 외부 API 실측은 기본 화면에 적용하지 않습니다."
+  - text: 서비스 운영자 · 발표 시연용
+  - paragraph: 드리프트 감지 → 자동 재학습 → 평가 → 기준 통과 시 모델 교체
+  - article:
+    - heading "예측 모델 품질 현황" [level=3]
+    - text: 관측소
+    - combobox "파이프라인 관측소":
+      - option "종로구 · 홍익대대학로캠퍼스" [selected]
+      - option "중구 · 장충단공원"
+      - option "용산구 · 신세기한덕"
+      - option "성동구 · 행당초등학교"
+      - option "광진구 · 신양중학교"
+      - option "동대문구 · 군자초등학교"
+      - option "중랑구 · 경남아파트"
+      - option "성북구 · 국세청 우편물 자동화센터(구.동대문세무서)"
+      - option "강북구 · 제일경로당"
+      - option "도봉구 · 도봉산노인정"
+      - option "노원구 · 롯데캐슬아파트"
+      - option "은평구 · 팀비전센타"
+      - option "서대문구 · 북가좌놀이터"
+      - option "마포구 · 양화공원"
+      - option "양천구 · 파리공원"
+      - option "강서구 · 강서구청"
+      - option "구로구 · 고척삼명아파트"
+      - option "금천구 · 군인아파트"
+      - option "영등포구 · 당산공원"
+      - option "동작구 · 성남중고등학교"
+      - option "관악구 · 락성주유소"
+      - option "서초구 · 서울교육대학교"
+      - option "강남구 · 신구초등학교"
+      - option "송파구 · 부리근린공원"
+      - option "강동구 · 둔촌지하수"
+    - status: "현재 선택: 드리프트 시연 · 자료 진행 종료 · 시연 1b0302eb"
+    - generic "시연 상황 선택 · 자료 진행"
+    - paragraph: 상황을 선택하면 새 시연을 준비합니다. 선택된 상황에서 자료를 진행하면 감지·재학습·평가가 실행됩니다.
+    - button "기본 상황 선택"
+    - button "드리프트 시연 · 선택됨" [pressed]
+    - button "선택한 상황으로 처음부터"
+    - generic: 기본 상황은 추가 수위 변화 없음 · 드리프트의 변화 날짜·양은 아래 서버 설정을 따릅니다. 원본은 보존하며 진행 버튼으로 정답을 공개합니다.
+    - button "저장 자료 1일 진행" [disabled]
+    - button "저장 자료 21일 진행" [disabled]
+    - button "남은 자료 끝까지 진행" [disabled]
+    - paragraph: 드리프트 시연 · 2026-08-01부터 수위 +0.2 적용 (자료의 수위 단위) · 원본 보존. 현재 변화 적용 구간 · 정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가
+    - paragraph: 검증 시연 · 기준일 2026-10-08 · 합성 자료 포함
+    - status: 시연 자료 입력 종료 · 아래 실제 평가 결과를 확인하세요.
+    - list:
+      - generic: "01"
+      - strong: 자료 검증
+      - generic: 완료
+      - paragraph: 선택한 자료 검증 완료
+      - generic: "02"
+      - strong: 예측 오차 확인
+      - generic: 완료
+      - paragraph: 정답 90일 · 21일 창 · RMSE 0.0126 · 경보 기준 0.0172
+      - generic: "03"
+      - strong: 드리프트 감지
+      - generic: 완료
+      - paragraph: "21일 RMSE 0.0549 > 경보 기준 0.0172: 재학습 요청"
+      - generic: "04"
+      - strong: 자동 재학습
+      - generic: 완료
+      - paragraph: 새 모델 학습 완료 · 이후 정답으로 평가
+      - generic: "05"
+      - strong: 새 모델 평가
+      - generic: 교체 완료
+      - paragraph: 새 모델 RMSE 0.0210 · 기존 0.0232 · 기준 통과
+      - generic: "06"
+      - strong: 모델 교체
+      - generic: 완료
+      - paragraph: 새 모델 v2 게이트 통과·교체
+      - generic: "07"
+      - strong: 현재 사용 모델
+      - generic: 완료
+      - paragraph: 실제 예측 v2 · 2026-10-09
+    - paragraph: "드리프트 감지: 최근 21일 예측 오차가 기준을 연속 2회 초과하면 자동 재학습합니다. 후보는 이후 30일 정답으로 평가하며 실패하면 기존 모델을 유지합니다. 현장 위험 경보가 아닙니다."
+    - generic "드리프트 감지 · 재학습 · 교체 기록"
+    - generic "새 모델의 상세 평가 결과"
+  - generic "최근 알림"
+  - generic "학습 작업"
+  - generic "사용 중인 모델 · 이전 모델로 복귀"
+  - generic "서버 진단과 요청 지표"
+  - generic "관리자용 · 자료 등록과 학습"
+  - option "자료를 선택하세요"
+  - option "da1d9aa8ddab · 합성 검증 자료 · 준비 완료" [selected]
+  - option "38a5ef2d183d · 실제 관측 자료 · 준비 완료"
+  - option "3d2b45c8301e · 실제 관측 자료 · 준비 완료"
+  - option "a48096aea08c · 실제 관측 자료 · 준비 완료"
+  - option "489f10b61368 · 합성 검증 자료 · 준비 완료"
+  - option "전체 고정 관측소" [selected]
+  - option "종로구 · 홍익대대학로캠퍼스"
+  - option "중구 · 장충단공원"
+  - option "용산구 · 신세기한덕"
+  - option "성동구 · 행당초등학교"
+  - option "광진구 · 신양중학교"
+  - option "동대문구 · 군자초등학교"
+  - option "중랑구 · 경남아파트"
+  - option "성북구 · 국세청 우편물 자동화센터(구.동대문세무서)"
+  - option "강북구 · 제일경로당"
+  - option "도봉구 · 도봉산노인정"
+  - option "노원구 · 롯데캐슬아파트"
+  - option "은평구 · 팀비전센타"
+  - option "서대문구 · 북가좌놀이터"
+  - option "마포구 · 양화공원"
+  - option "양천구 · 파리공원"
+  - option "강서구 · 강서구청"
+  - option "구로구 · 고척삼명아파트"
+  - option "금천구 · 군인아파트"
+  - option "영등포구 · 당산공원"
+  - option "동작구 · 성남중고등학교"
+  - option "관악구 · 락성주유소"
+  - option "서초구 · 서울교육대학교"
+  - option "강남구 · 신구초등학교"
+  - option "송파구 · 부리근린공원"
+  - option "강동구 · 둔촌지하수"
+  - generic "관리자용 · 시연 기간 설정과 기록"
+  - option "자료를 선택하세요"
+  - option "da1d9aa8ddab · 합성 검증 자료 · 준비 완료" [selected]
+  - option "38a5ef2d183d · 실제 관측 자료 · 준비 완료"
+  - option "3d2b45c8301e · 실제 관측 자료 · 준비 완료"
+  - option "a48096aea08c · 실제 관측 자료 · 준비 완료"
+  - option "489f10b61368 · 합성 검증 자료 · 준비 완료"
+  - option "등록된 자료 그대로" [selected]
+  - option "수위 변화 상황"
+  - generic: GROUNDWATCH
+- button "현재 탭을 시크릿 모드에서 열기":
+  - button "위젯 숨기기": ×
