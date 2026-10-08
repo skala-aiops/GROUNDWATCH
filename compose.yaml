@@ -1,9 +1,9 @@
 name: groundwatch
 services:
-  serving-app:
+  backend:
     build:
       context: .
-      dockerfile: serving_app/Dockerfile
+      dockerfile: backend/Dockerfile
     ports:
       - "${GROUNDWATCH_PORT:-8100}:8099"
     environment:
@@ -33,7 +33,7 @@ services:
     volumes:
       - tracking:/app/runtime
       - artifacts:/app/mlruns
-      - models:/app/serving_app/models
+      - models:/app/backend/models
       - uploads:/app/data/uploads
       - logs:/app/logs
     healthcheck:

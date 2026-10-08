@@ -10,6 +10,14 @@
 - 확인되지 않은 단위·관측소를 확정하거나 결측 강수를 0으로 채우지 않습니다. 합성 검증 자료와 실제 관측 자료의 모델·이력을 분리합니다. 대표 관측소 manifest의 승인 상태를 임의 변경하지 않습니다.
 - 출처와 직접 변경 범위는 `docs/team-guide.md#교수님-원본과-달라진-점`를 확인합니다.
 
+## 경로별 작업 지침
+
+루트 지침은 저장소 전체에 적용합니다. 아래 폴더를 수정할 때는 해당 지침을 함께 읽습니다. 폴더별 지침은 구현·검증에 필요한 사항만 보완하며, 브랜치·커밋·병합·공통 계약 규칙은 이 파일에서 관리합니다.
+
+- [프론트엔드 지침](frontend/AGENTS.md): React 화면·상태·API 클라이언트·스타일
+- [백엔드·AIOps 지침](backend/AGENTS.md): API·서빙·저장소·학습·감시 worker
+- `data/`·`scripts/`·`tests/`에서 데이터·모델 동작을 변경할 때도 백엔드·AIOps 지침을 읽습니다. 폴더 이름으로 파드 소유권을 단정하지 않습니다.
+
 ## 1. 팀과 브랜치 구조
 
 두 파드로 운영합니다. 파드는 함께 기능을 개발하고 통합하는 작은 팀입니다.
@@ -227,6 +235,8 @@ GROUNDWATCH 저장소 AGENTS.md를 읽고 병합 절차를 따라주세요.
 
 ## 문서 기준과 변경 규칙
 
-README는 소개·실행·문서/제출자료 진입점, output/source/의 제출명 PPTX는 과제 필수 6항목과 팀원을 담은 제안서 편집 기준이고 output/final/의 동일 이름 PDF는 제출본이며, docs/team-guide.md는 사용법·전체 로직·원본 비교, docs/operations.md는 정책·장애 대응, docs/contracts.md는 API·날짜 계약, data/README.md는 원천·단위·합성 생성식의 기준입니다. evidence/README.md는 최신 결과의 짧은 목록이고 과거 기록은 evidence/records/에 보존합니다. 미완료 사항은 docs/operations.md의 ‘운영 전 추가 확인’에 통합합니다. 별도 proposal.md·TODO.md는 만들지 않습니다.
+README는 소개·실행·문서/제출자료 진입점, deliverables/source/의 제출명 PPTX는 과제 필수 6항목과 팀원을 담은 제안서 편집 기준이고 deliverables/final/의 동일 이름 PDF는 제출본이며, docs/team-guide.md는 사용법·전체 로직·원본 비교, docs/operations.md는 정책·장애 대응, docs/contracts.md는 API·날짜 계약, data/README.md는 원천·단위·합성 생성식의 기준입니다. evidence/README.md는 최신 결과의 짧은 목록이고 과거 기록은 evidence/records/에 보존합니다. 미완료 사항은 docs/operations.md의 ‘운영 전 추가 확인’에 통합합니다. 별도 proposal.md·TODO.md는 만들지 않습니다.
 
-변경 때 새 설명 파일을 추가하지 않고 기준 문서를 갱신합니다. 다른 문서에는 요약과 링크를 사용합니다. 과거 설계는 docs/archive/에 두고 현재 실행 지침으로 참조하지 않습니다. output/final/에는 제출 파일, output/source/에는 발표 편집 원문을 두며 버전별로 동일 기획서를 복사하지 않습니다. 이동·통합 후 Markdown 링크와 과제 필수 항목·팀원·증거를 확인합니다.
+파트별 개발·컨벤션·테스트 안내는 frontend/README.md와 backend/README.md, AI 작업 시 필수 확인은 각 폴더의 AGENTS.md에서 관리합니다. README의 개발 규칙을 AGENTS.md에 복사하지 않고 링크합니다. 루트 README에는 전체 실행·테스트 진입점과 공통 구조를 둡니다.
+
+변경 때 위 기준 문서를 갱신하고 같은 목적의 설명 파일을 추가하지 않습니다. 다른 문서에는 요약과 링크를 사용합니다. 교체된 설계 문서 사본은 제출 소스에 누적하지 않고 Git 이력으로 확인합니다. 실행 증거와 출처·라이선스는 보존합니다. deliverables/final/에는 제출 파일, deliverables/source/에는 발표 편집 원문을 두며 버전별로 동일 기획서를 복사하지 않습니다. 이동·통합 후 Markdown 링크와 과제 필수 항목·팀원·증거를 확인합니다.
