@@ -67,6 +67,15 @@ class ModelTests(unittest.TestCase):
     def train(self, code='11110'):
         return self.manager.train(code, rows(code=code), META)
 
+    def passing_candidate(self, manager=None):
+        manager = manager or self.manager
+        scaler = manager.list_models()[0]['scaler']
+        manager.backend.train_offset = .1 / (scaler['maximum'][0]-scaler['minimum'][0])
+        return manager.fine_tune('11110', rows()[-41:])
+
+    def shadow_rows(self):
+        return rows(50, start=date(2021, 1, 25))
+
     def test_live_contract_allows_new_snapshot_but_rejects_changed_source_and_legacy(self):
         live_meta={**META,'training_snapshot_id':'training-v1','feature_contract_id':'contract-v1',
             'preprocessing_version':'strict-v1','rain_source':'kma_asos_sumRn','weather_station_id':'108'}
@@ -110,19 +119,22 @@ class ModelTests(unittest.TestCase):
         self.train('11140')
         restored = ModelManager(self.directory.name, backend=self.backend)
         self.assertEqual(restored.predict('11110', rows()[-20:])['model_version'], '1')
-        candidate = self.manager.fine_tune('11110', rows()[-41:])
-        self.manager.promote('11110', candidate['candidate_version'])
+        candidate = self.passing_candidate()
+        self.manager.evaluate_candidate('11110', candidate['candidate_version'], self.shadow_rows())
         self.assertEqual(self.manager.predict('11110', rows()[-20:])['model_version'], '2')
         self.assertEqual(self.manager.predict('11140', rows(code='11140')[-20:])['model_version'], '1')
         self.assertEqual(self.manager.rollback('11110')['model_version'], '1')
 
     def test_failed_promotion_preserves_actual_champion(self):
         self.train()
-        candidate = self.manager.fine_tune('11110', rows()[-41:])
+        candidate = self.passing_candidate()
         self.backend.fail_alias = True
         with self.assertRaises(RuntimeError):
-            self.manager.promote('11110', candidate['candidate_version'])
+            self.manager.evaluate_candidate('11110', candidate['candidate_version'], self.shadow_rows())
         self.assertEqual(self.manager.predict('11110', rows()[-20:])['model_version'], '1')
+        restored = ModelManager(self.directory.name, backend=self.backend)
+        restored.promote('11110', candidate['candidate_version'])
+        self.assertEqual(restored.predict('11110', rows()[-20:])['model_version'], '2')
 
     def test_shadow_waits_for_new_labels_and_frozen_scaler(self):
         self.train()
@@ -181,6 +193,151 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(len(self.manager.list_models()[0]['versions']), 1)
         with self.assertRaises(ModelNotReady):
             self.manager.predict('11110', rows()[-20:])
+        with self.assertRaisesRegex(ModelNotReady, 'initial quality gate'):
+            self.manager.promote('11110', result['version'])
+
+    def test_unevaluated_pending_and_rejected_candidate_cannot_replace_champion(self):
+        self.train()
+        before = self.manager.predict('11110', rows()[-20:])
+        # A worse model must not change the live weights while being trained.
+        self.backend.train_offset = -.01
+        candidate = self.manager.fine_tune('11110', rows()[-41:])['candidate_version']
+        for observations in (None, rows()[-50:], self.shadow_rows()):
+            if observations is not None:
+                self.manager.evaluate_candidate('11110', candidate, observations)
+            with self.assertRaisesRegex(ModelNotReady, 'shadow quality gate'):
+                self.manager.promote('11110', candidate)
+            self.assertEqual(self.manager.predict('11110', rows()[-20:]), before)
+        restored = ModelManager(self.directory.name, backend=self.backend)
+        with self.assertRaises(ModelNotReady):
+            restored.promote('11110', candidate)
+        self.assertEqual(restored.predict('11110', rows()[-20:]), before)
+        self.assertEqual(restored.list_models()[0]['versions'][candidate]['shadow_result']['status'], 'rejected')
+
+    def test_zero_error_tie_is_not_five_percent_improvement_or_promotable(self):
+        observed=[{**r,'groundwater_level':1.0} for r in rows()]
+        self.manager.train('11110',observed,META)
+        candidate=self.manager.fine_tune('11110',observed[-41:])['candidate_version']
+        future=[{**r,'groundwater_level':1.0} for r in self.shadow_rows()]
+        result=self.manager.evaluate_candidate('11110',candidate,future)
+        self.assertEqual(result['metrics']['shadow_candidate']['rmse'],0.)
+        self.assertEqual(result['metrics']['shadow_champion']['rmse'],0.)
+        self.assertEqual(result['status'],'rejected')
+        self.assertFalse(result['gates']['future_improvement']['passed'])
+        # A forged saved pass flag must not bypass the recomputed zero-error rule.
+        result.update(status='gate_passed',gate_passed=True,previous_version='1')
+        bundle=self.manager._loaded('11110',candidate)[1]
+        with self.assertRaisesRegex(ModelNotReady,'shadow quality gate'):
+            self.manager._validate_shadow_gate(bundle,candidate,result)
+        self.assertEqual(self.manager.current_version('11110'),'1')
+
+    def test_future_improvement_cannot_bypass_historical_guard(self):
+        self.train()
+        before = self.manager.predict('11110', rows()[-20:])
+        scaler = self.manager.list_models()[0]['scaler']
+        self.backend.train_offset = .3 / (scaler['maximum'][0]-scaler['minimum'][0])
+        candidate = self.manager.fine_tune('11110', rows()[-41:])['candidate_version']
+        future = self.shadow_rows()
+        for i, row in enumerate(future):
+            row['groundwater_level'] = i * .3 - 5
+        result = self.manager.evaluate_candidate('11110', candidate, future)
+        self.assertEqual(result['status'], 'rejected')
+        self.assertTrue(result['gates']['future_improvement']['passed'])
+        self.assertFalse(result['gates']['historical_guard']['passed'])
+        with self.assertRaises(ModelNotReady):
+            self.manager.promote('11110', candidate)
+        self.assertEqual(self.manager.predict('11110', rows()[-20:]), before)
+
+    def test_incomplete_or_failed_metrics_cannot_be_promoted_by_pass_flag(self):
+        self.train()
+        candidate = self.passing_candidate()['candidate_version']
+        # Interrupt activation after a real successful evaluation to retain evidence.
+        self.backend.fail_alias = True
+        with self.assertRaises(RuntimeError):
+            self.manager.evaluate_candidate('11110', candidate, self.shadow_rows())
+        original = self.manager._state('11110')
+        changes = (
+            lambda result: result.update(status='rejected'),
+            lambda result: result.update(previous_version='999'),
+            lambda result: result.update(shadow_start='2020-01-01'),
+            lambda result: result['metrics']['shadow_candidate'].update(count=29),
+            lambda result: result['metrics']['shadow_candidate'].update(rmse=1),
+            lambda result: result['metrics']['historical_guard'].update(rmse=1),
+        )
+        for change in changes:
+            with self.subTest(change=change):
+                state = copy.deepcopy(original)
+                change(state['versions'][candidate]['shadow_result'])
+                self.manager._save('11110', state)
+                with self.assertRaises(ModelNotReady):
+                    self.manager.promote('11110', candidate)
+                self.assertEqual(self.manager.current_version('11110'), '1')
+
+    def test_champion_change_during_evaluation_rejects_stale_candidate(self):
+        self.train()
+        candidate = self.passing_candidate()['candidate_version']
+        original_predict = self.backend.predict
+        def switch_champion(model, inputs):
+            self.backend.predict = original_predict
+            self.train()  # Independently validated initial v3 wins during evaluation.
+            return original_predict(model, inputs)
+        self.backend.predict = switch_champion
+        result = self.manager.evaluate_candidate('11110', candidate, self.shadow_rows())
+        self.assertEqual(result['reason'], 'champion_changed')
+        self.assertEqual(self.manager.current_version('11110'), '3')
+        restored = ModelManager(self.directory.name, backend=self.backend)
+        self.assertEqual(restored.list_models()[0]['versions'][candidate]['shadow_result'], result)
+        with self.assertRaises(ModelNotReady):
+            restored.promote('11110', candidate)
+
+    def test_champion_is_rechecked_after_smoke_before_alias_write(self):
+        self.train()
+        candidate = self.passing_candidate()['candidate_version']
+        original_predict = self.backend.predict
+        def switch_during_smoke(model, inputs):
+            self.backend.predict = original_predict
+            self.train()
+            return original_predict(model, inputs)
+        def record(name, version, result):
+            if result['status'] == 'gate_passed':
+                self.backend.predict = switch_during_smoke
+        self.backend.record_evaluation = record
+        result = self.manager.evaluate_candidate('11110', candidate, self.shadow_rows())
+        self.assertEqual(result['reason'], 'champion_changed')
+        self.assertEqual(self.manager.current_version('11110'), '3')
+
+    def test_history_write_failure_restores_alias_cache_and_prediction(self):
+        self.train()
+        before = self.manager.predict('11110', rows()[-20:])
+        candidate = self.passing_candidate()['candidate_version']
+        original_save = self.manager._save
+        def fail_history(code, state):
+            if state['champion'] == candidate:
+                raise OSError('history unavailable')
+            return original_save(code, state)
+        self.manager._save = fail_history
+        with self.assertRaisesRegex(OSError, 'history unavailable'):
+            self.manager.evaluate_candidate('11110', candidate, self.shadow_rows())
+        self.assertEqual(self.manager.predict('11110', rows()[-20:]), before)
+        self.assertEqual(self.manager._state('11110')['champion'], '1')
+
+    def test_successful_promotion_is_idempotent_and_previous_candidate_can_be_rolled_back(self):
+        self.train()
+        candidate = self.passing_candidate()['candidate_version']
+        result = self.manager.evaluate_candidate('11110', candidate, self.shadow_rows())
+        self.assertEqual(result['status'], 'promoted')
+        before = self.manager.predict('11110', rows()[-20:])
+        restored = ModelManager(self.directory.name, backend=self.backend)
+        self.assertEqual(restored.predict('11110', rows()[-20:]), before)
+        self.assertEqual(restored.evaluate_candidate('11110', candidate, self.shadow_rows()), result)
+        restored.promote('11110', candidate)
+        self.assertEqual(len(restored._state('11110')['history']), 2)
+        restored.train('11110', rows(), META)
+        self.assertEqual(restored.current_version('11110'), '3')
+        with self.assertRaisesRegex(ModelNotReady, 'champion_changed'):
+            restored.promote('11110', candidate)
+        self.assertEqual(restored.rollback('11110', candidate)['status'], 'rolled_back')
+        self.assertEqual(restored.predict('11110', rows()[-20:]), before)
 
     def test_stale_finetuning_is_rejected(self):
         self.train()
@@ -221,8 +378,8 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(target_backend.calls, [])
         self.assertEqual(len(self.backend.calls), 1)
         self.assertEqual(target.predict('11110', rows()[-20:])['prediction'], self.manager.predict('11110', rows()[-20:])['prediction'])
-        candidate = target.fine_tune('11110', rows()[-41:])
-        target.promote('11110', candidate['candidate_version'])
+        candidate = self.passing_candidate(target)
+        target.evaluate_candidate('11110', candidate['candidate_version'], self.shadow_rows())
         self.assertEqual(target.predict('11110', rows()[-20:])['model_version'], '2')
         self.assertEqual(self.manager.predict('11110', rows()[-20:])['model_version'], '1')
         with self.assertRaisesRegex(ValueError, 'initial champion'):

@@ -1,0 +1,41 @@
+[
+  {
+    "station_id": "kwater:11775",
+    "rows": 280,
+    "water_rows": 280,
+    "rain_rows": 280,
+    "latest": {
+      "date": "2026-10-07",
+      "groundwater_level": 20.35,
+      "rainfall_mm": 0.0,
+      "level_unit": "m",
+      "level_reference": "elevation"
+    }
+  },
+  {
+    "station_id": "kwater:601739",
+    "rows": 280,
+    "water_rows": 280,
+    "rain_rows": 280,
+    "latest": {
+      "date": "2026-10-07",
+      "groundwater_level": 108.15,
+      "rainfall_mm": 0.0,
+      "level_unit": "m",
+      "level_reference": "elevation"
+    }
+  },
+  {
+    "station_id": "kwater:95537",
+    "rows": 280,
+    "water_rows": 280,
+    "rain_rows": 280,
+    "latest": {
+      "date": "2026-10-07",
+      "groundwater_level": 89.364,
+      "rainfall_mm": 0.0,
+      "level_unit": "m",
+      "level_reference": "elevation"
+    }
+  }
+]

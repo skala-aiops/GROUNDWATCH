@@ -1,0 +1,19 @@
+{
+  "environment": "localhost:18104 isolated Compose",
+  "frontend_tests_passed": 19,
+  "frontend_build": "passed",
+  "default_observation_stations": 3,
+  "historical_seoul_stations": 25,
+  "after_view_roundtrip_marker_count": 3,
+  "desktop_selected": "kwater:95537",
+  "mobile_selected": "kwater:601739",
+  "mobile_viewport_width": 390,
+  "mobile_document_width": 390,
+  "empty_search_detail_disabled": true,
+  "raw_catalog_retained": 1048,
+  "operational_promotion_approved": false,
+  "unused_weather_panels_removed": 2,
+  "map_controls_hidden_in_list": true,
+  "map_controls_hidden_in_history": true,
+  "final_compose_health": "healthy"
+}

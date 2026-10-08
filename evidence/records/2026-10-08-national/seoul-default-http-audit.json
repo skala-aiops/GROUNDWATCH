@@ -1,0 +1,28 @@
+{
+  "seoul_count": 25,
+  "seoul_unique_gu": 25,
+  "seoul_current_ready": 0,
+  "national_data_backed": [
+    {
+      "station_id": "kwater:11775",
+      "name": "무안무안",
+      "actual": 20.35,
+      "date": "2026-10-07"
+    },
+    {
+      "station_id": "kwater:601739",
+      "name": "광주도척",
+      "actual": 108.15,
+      "date": "2026-10-07"
+    },
+    {
+      "station_id": "kwater:95537",
+      "name": "제주조천",
+      "actual": 89.364,
+      "date": "2026-10-07"
+    }
+  ],
+  "seoul_rainy_periods": 54,
+  "seoul_rainy_reference": "kma_asos:108",
+  "seoul_rain_source_override": null
+}

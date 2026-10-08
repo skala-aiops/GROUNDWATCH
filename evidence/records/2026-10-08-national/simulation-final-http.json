@@ -1,0 +1,77 @@
+{
+  "health": {
+    "status": "alive",
+    "service": "GroundWatch"
+  },
+  "counts": {
+    "seoul": 25,
+    "synthetic": 17,
+    "observed": 3
+  },
+  "model_ready": {
+    "seoul": 23,
+    "synthetic": 16,
+    "observed": 1
+  },
+  "samples": {
+    "seoul": {
+      "station_id": "seoul:SU-JNO-G1-0007",
+      "source_kind": "synthetic",
+      "observed_date": "2026-10-08",
+      "data_source": {
+        "kind": "synthetic",
+        "observed_through": "2026-09-30",
+        "input_through": "2026-10-08",
+        "contains_synthetic": true,
+        "synthetic_from": "2026-10-01",
+        "synthetic_through": "2026-10-08",
+        "original_observed_through": "2026-09-30",
+        "generated_at": "2026-10-08T13:46:40.663490+00:00",
+        "registered_at": "2026-10-08T13:46:40.681146+00:00",
+        "external_api_applied": false
+      },
+      "history_keys": [
+        "station",
+        "history",
+        "weather_context"
+      ]
+    },
+    "synthetic": {
+      "station_id": "sim-gims-11775",
+      "source_kind": "synthetic",
+      "observed_date": "2026-10-07",
+      "data_source": null,
+      "history_keys": [
+        "station",
+        "history",
+        "weather_context"
+      ]
+    },
+    "observed": {
+      "station_id": "kwater:11775",
+      "source_kind": "observed",
+      "observed_date": "2026-10-07",
+      "data_source": null,
+      "history_keys": [
+        "station",
+        "history",
+        "weather_context"
+      ]
+    }
+  },
+  "synthetic_pipeline": {
+    "monitoring_policy": {
+      "prediction_scope": "synthetic",
+      "experimental_enabled": true,
+      "window_days": 21,
+      "consecutive_breaches": 2,
+      "cooldown_days": 21,
+      "fine_tuning_days": 41,
+      "candidate_shadow_days": 30,
+      "operational_promotion_allowed": false,
+      "candidate_timeout_days": 90
+    },
+    "seasonal_status": "completed",
+    "seasonal_scope": "synthetic_scenario"
+  }
+}

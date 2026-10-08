@@ -1,0 +1,471 @@
+{
+  "requested_start": "2026-09-07",
+  "requested_end": "2026-10-07",
+  "applied_to_service": false,
+  "region_count": 17,
+  "candidates": [
+    {
+      "candidate_region": "강원특별자치도",
+      "source_station_id": "82007",
+      "catalog_name": "정선동면 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "0251e34fe592f5aacd77db147d858d34277e041fa39355c1d6e6c7f04194ad05",
+      "metadata_file": "runtime/official/national-region-probe/metadata-0251e34fe592f5aacd77db147d858d34277e041fa39355c1d6e6c7f04194ad05.json",
+      "metadata_name": "정선동면",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "a7d81e21cec41bec8af4d1a48482e800e1e5679c1c9fa1386cf4f2ba595c4c51",
+          "file": "kwater-a7d81e21cec41bec8af4d1a48482e800e1e5679c1c9fa1386cf4f2ba595c4c51.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:38.206007+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "경기도",
+      "source_station_id": "601739",
+      "catalog_name": "광주도척 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "f54ee2236a83a8319aeafbc09f05cdaef7a335c33e1f75f3fac57391fcf67362",
+      "metadata_file": "runtime/official/national-region-probe/metadata-f54ee2236a83a8319aeafbc09f05cdaef7a335c33e1f75f3fac57391fcf67362.json",
+      "metadata_name": "광주도척",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "87b761f0758ee39ef6c4dd77c0e653a14be591f088e398c13e5262382c0e03fb",
+          "file": "kwater-87b761f0758ee39ef6c4dd77c0e653a14be591f088e398c13e5262382c0e03fb.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:39.335648+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "경상남도",
+      "source_station_id": "718265",
+      "catalog_name": "함안군북 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "f1a9c663b6682ab2f1cdea1a5eef0c6ac1e4a6fbfb43d66cfd4d25f5d1382555",
+      "metadata_file": "runtime/official/national-region-probe/metadata-f1a9c663b6682ab2f1cdea1a5eef0c6ac1e4a6fbfb43d66cfd4d25f5d1382555.json",
+      "metadata_name": "함안군북",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "933075125546f712bab18e11b1f183559662c336f2d85a3e87a5afd1f593eca1",
+          "file": "kwater-933075125546f712bab18e11b1f183559662c336f2d85a3e87a5afd1f593eca1.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:39.769996+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "경상북도",
+      "source_station_id": "65600",
+      "catalog_name": "문경영순 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "84339329e58e536ede28001d0fd9608f828343d86df65d6ae41507576a47b2b7",
+      "metadata_file": "runtime/official/national-region-probe/metadata-84339329e58e536ede28001d0fd9608f828343d86df65d6ae41507576a47b2b7.json",
+      "metadata_name": "문경영순",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "f277d27f0d7fdfe0da1f91a600dbcbe72b99e8d7bd150a3ba82c4c412e92bb83",
+          "file": "kwater-f277d27f0d7fdfe0da1f91a600dbcbe72b99e8d7bd150a3ba82c4c412e92bb83.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:40.812234+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "광주광역시",
+      "source_station_id": "443",
+      "catalog_name": "광주유덕 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "9a28dae0491acb75074e8479d2036512c9f0fbb5408e3df275dc8f11e1af2b9c",
+      "metadata_file": "runtime/official/national-region-probe/metadata-9a28dae0491acb75074e8479d2036512c9f0fbb5408e3df275dc8f11e1af2b9c.json",
+      "metadata_name": "광주유덕",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "8ad457609d46d4a44d4e349b6da42fb73e0b231197d9bfe76692fcebb03ca842",
+          "file": "kwater-8ad457609d46d4a44d4e349b6da42fb73e0b231197d9bfe76692fcebb03ca842.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:42.063140+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "대구광역시",
+      "source_station_id": "9856",
+      "catalog_name": "대구현풍 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "bd4487fcf62b8dee569bf85f5c043ffc9a15ad0d8d892396d060224a79f0ad47",
+      "metadata_file": "runtime/official/national-region-probe/metadata-bd4487fcf62b8dee569bf85f5c043ffc9a15ad0d8d892396d060224a79f0ad47.json",
+      "metadata_name": "대구현풍",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "b8e3f476e6938b9ccb4e279be69cb7e48dce3cb500f7c4011afa0007b18c4cbd",
+          "file": "kwater-b8e3f476e6938b9ccb4e279be69cb7e48dce3cb500f7c4011afa0007b18c4cbd.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:43.292048+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "대전광역시",
+      "source_station_id": "65016",
+      "catalog_name": "대전태평 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "aa9c4e85ef31c8b3a5f455e8eebb5ac4b2c167c6917c6f9d9aa901e1f03cf354",
+      "metadata_file": "runtime/official/national-region-probe/metadata-aa9c4e85ef31c8b3a5f455e8eebb5ac4b2c167c6917c6f9d9aa901e1f03cf354.json",
+      "metadata_name": "대전태평",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "b8ff6be8790f18caefee5b289f2c5eadcef6b0867b9c0ef61b269a56232408dd",
+          "file": "kwater-b8ff6be8790f18caefee5b289f2c5eadcef6b0867b9c0ef61b269a56232408dd.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:44.479875+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "부산광역시",
+      "source_station_id": "9855",
+      "catalog_name": "부산동대신 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "74fe922084978a00d77761784a12945db5a5fe1d21580cff613f942593af8431",
+      "metadata_file": "runtime/official/national-region-probe/metadata-74fe922084978a00d77761784a12945db5a5fe1d21580cff613f942593af8431.json",
+      "metadata_name": "부산동대신",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "4599b5356cf75c3c24cd3c7f31034148a8e1a2df1994a86e6fa24b28cb930ec4",
+          "file": "kwater-4599b5356cf75c3c24cd3c7f31034148a8e1a2df1994a86e6fa24b28cb930ec4.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:45.645345+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "서울특별시",
+      "source_station_id": "84002",
+      "catalog_name": "서울마곡 (충적)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "eb4c7516656a8de24fc9fcddb7a7b44f5545279e52fbe53e2a8578145e28597f",
+      "metadata_file": "runtime/official/national-region-probe/metadata-eb4c7516656a8de24fc9fcddb7a7b44f5545279e52fbe53e2a8578145e28597f.json",
+      "metadata_name": "서울마곡",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "6caf83be79f901aac583c70ccb8c233acccd4c86f0a984a304334e27e93c5b15",
+          "file": "kwater-6caf83be79f901aac583c70ccb8c233acccd4c86f0a984a304334e27e93c5b15.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:46.809843+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "세종특별자치시",
+      "source_station_id": "65593",
+      "catalog_name": "세종조치원 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "884819ffcca476cdfbfa2a29875be5f2b39426ddacc56e383816be327e7de9d3",
+      "metadata_file": "runtime/official/national-region-probe/metadata-884819ffcca476cdfbfa2a29875be5f2b39426ddacc56e383816be327e7de9d3.json",
+      "metadata_name": "세종조치원",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "f66414fc82733e26e19a235b5414a6b06df01a32fc6987dc3b52ffb3e009e72b",
+          "file": "kwater-f66414fc82733e26e19a235b5414a6b06df01a32fc6987dc3b52ffb3e009e72b.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:48.109899+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "울산광역시",
+      "source_station_id": "9864",
+      "catalog_name": "울산온양 (충적)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "4f95569740d49ffaa74ceba3ee257b11da94b2832af17f13f39a0c55d065f98e",
+      "metadata_file": "runtime/official/national-region-probe/metadata-4f95569740d49ffaa74ceba3ee257b11da94b2832af17f13f39a0c55d065f98e.json",
+      "metadata_name": "울산온양",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "80dd6caf4a7eff13ebab173eb7dfad52d0d5a68a978067623830725b1fd094bb",
+          "file": "kwater-80dd6caf4a7eff13ebab173eb7dfad52d0d5a68a978067623830725b1fd094bb.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:49.309653+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "인천광역시",
+      "source_station_id": "95504",
+      "catalog_name": "인천연수 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "9f7374fc30b02dd5a7b24706f8f088e00fe2a469bc73fa3df452122049581243",
+      "metadata_file": "runtime/official/national-region-probe/metadata-9f7374fc30b02dd5a7b24706f8f088e00fe2a469bc73fa3df452122049581243.json",
+      "metadata_name": "인천연수",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "b9a1df21ed8404ae1c6ca88e3f9d2b2badd07145711bc5e0e5c9f272718027e6",
+          "file": "kwater-b9a1df21ed8404ae1c6ca88e3f9d2b2badd07145711bc5e0e5c9f272718027e6.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:50.437430+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "전라남도",
+      "source_station_id": "11775",
+      "catalog_name": "무안무안 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "ffe99403e27b3a81570e7ea012b92004e7f42e1c6ede1d52660da5b55d1c857f",
+      "metadata_file": "runtime/official/national-region-probe/metadata-ffe99403e27b3a81570e7ea012b92004e7f42e1c6ede1d52660da5b55d1c857f.json",
+      "metadata_name": "무안무안",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "ea81e2ccc33ef93f0588098903fecc05ff7ebd4ef9a4f2e022811c36418cd13e",
+          "file": "kwater-ea81e2ccc33ef93f0588098903fecc05ff7ebd4ef9a4f2e022811c36418cd13e.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:51.691570+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "전북특별자치도",
+      "source_station_id": "73524",
+      "catalog_name": "장수번암 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "676999b8bd60a5ec7d67cc75c31535c2678cce764c9190c01640e7cdc728c8d4",
+      "metadata_file": "runtime/official/national-region-probe/metadata-676999b8bd60a5ec7d67cc75c31535c2678cce764c9190c01640e7cdc728c8d4.json",
+      "metadata_name": "장수번암",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "d3642434924841ad0302916bb18ed8350b7f051de1e036fb22f7125d4bd19f96",
+          "file": "kwater-d3642434924841ad0302916bb18ed8350b7f051de1e036fb22f7125d4bd19f96.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:52.027965+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "제주특별자치도",
+      "source_station_id": "95537",
+      "catalog_name": "제주조천 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "1176a76a054babccaefb1ce564ea0048c66512fc66c6a2364cfe71e10fd99c97",
+      "metadata_file": "runtime/official/national-region-probe/metadata-1176a76a054babccaefb1ce564ea0048c66512fc66c6a2364cfe71e10fd99c97.json",
+      "metadata_name": "제주조천",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "3d2282e903f5166c594652e2e0e7208b754afd5b66c51bad1766a3bb48c75def",
+          "file": "kwater-3d2282e903f5166c594652e2e0e7208b754afd5b66c51bad1766a3bb48c75def.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:53.226506+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "충청남도",
+      "source_station_id": "87249",
+      "catalog_name": "보령청라 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "ec09c1c7859752f9df07070624e781f66a8485adbcd1e7919f95fe9183e1c1d6",
+      "metadata_file": "runtime/official/national-region-probe/metadata-ec09c1c7859752f9df07070624e781f66a8485adbcd1e7919f95fe9183e1c1d6.json",
+      "metadata_name": "보령청라",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "1b353100aea63a6052219e780f81ddf62a3932526ced0a144ba39f8bd622b7f4",
+          "file": "kwater-1b353100aea63a6052219e780f81ddf62a3932526ced0a144ba39f8bd622b7f4.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:53.552258+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    },
+    {
+      "candidate_region": "충청북도",
+      "source_station_id": "514302",
+      "catalog_name": "보은회인 (암반)",
+      "mapping_approved": false,
+      "training_approved": false,
+      "metadata_sha256": "e40bff5881e4f41e89e03237e49e2211a43709b286be66f0e86164f3d9bfcb64",
+      "metadata_file": "runtime/official/national-region-probe/metadata-e40bff5881e4f41e89e03237e49e2211a43709b286be66f0e86164f3d9bfcb64.json",
+      "metadata_name": "보은회인",
+      "metadata_base_name_match": true,
+      "metadata_result_code": "Success",
+      "metadata_rows": 1,
+      "metadata_name_match": false,
+      "observation_rows": 31,
+      "matching_station_rows": 31,
+      "latest_raw_date": "20261007",
+      "raw_pages": [
+        {
+          "raw_sha256": "5f59628522c72f2984c3ec0bfee502379281b091ad825e88c2c613acc401c93c",
+          "file": "kwater-5f59628522c72f2984c3ec0bfee502379281b091ad825e88c2c613acc401c93c.json",
+          "start_date": "2026-09-07",
+          "end_date": "2026-10-07",
+          "collected_at": "2026-10-08T13:26:54.635578+00:00"
+        }
+      ],
+      "status": "source_probe_complete"
+    }
+  ],
+  "limitations": [
+    "제원 기본명 일치는 암반/충적 관측정 구분과 좌표 이력의 운영 승인을 대신하지 않습니다.",
+    "31일 자료 확보는 41일 재학습 자료 또는 전국 모델 지원 완료를 뜻하지 않습니다."
+  ]
+}
