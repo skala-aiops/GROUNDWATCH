@@ -53,6 +53,42 @@ function Badge({ status }: { status: unknown }) {
 function Json({ value }: { value: unknown }) {
   return <pre>{JSON.stringify(value, null, 2)}</pre>;
 }
+function CandidateEvaluation({ value }: { value: unknown }) {
+  const result = value && typeof value === "object" ? (value as Row) : {};
+  const metrics = result.metrics && typeof result.metrics === "object" ? result.metrics as Row : {};
+  const candidate = number((metrics.shadow_candidate as Row | undefined)?.rmse)
+    ? Number((metrics.shadow_candidate as Row).rmse) : null;
+  const champion = number((metrics.shadow_champion as Row | undefined)?.rmse)
+    ? Number((metrics.shadow_champion as Row).rmse) : null;
+  if (candidate === null || champion === null) {
+    return <p className="footnote">평가가 완료되면 새 모델과 기존 모델의 오차를 그래프로 비교합니다. 현재 상태: {typeof result.status === "string" ? label(result.status) : "평가 기록 없음"}</p>;
+  }
+  const max = Math.max(candidate, champion, Number.EPSILON);
+  const improvement = champion > 0 ? ((champion - candidate) / champion) * 100 : null;
+  const passed = result.gate_passed === true;
+  const improvementText = improvement === null
+    ? "기존 오차가 0이므로 개선율을 계산하지 않습니다"
+    : improvement >= 0 ? `후보 오차 ${improvement.toFixed(1)}% 감소` : `후보 오차 ${Math.abs(improvement).toFixed(1)}% 증가`;
+  return (
+    <div className="candidate-evaluation" aria-label="후보 모델과 기존 모델의 RMSE 비교">
+      <p className="footnote">저장된 평가 · 후보 v{result.candidate_version || "—"} · {result.shadow_start || "—"}~{result.shadow_end || "—"}</p>
+      <div className="candidate-chart" role="img" aria-label={`기존 모델 RMSE ${champion.toFixed(5)}, 후보 모델 RMSE ${candidate.toFixed(5)}. ${passed ? "평가 기준 충족" : "평가 기준 미충족 또는 추가 확인 필요"}`}>
+        {[
+          { name: "기존 모델", score: champion, className: "champion" },
+          { name: "후보 모델", score: candidate, className: "candidate" },
+        ].map((item) => (
+          <div className="candidate-bar-row" key={item.name}>
+            <span className="candidate-bar-name">{item.name}</span>
+            <div className="candidate-bar-track"><i className={item.className} style={{ width: `${item.score === 0 ? 0 : Math.max(2, (item.score / max) * 100)}%` }} /></div>
+            <strong>{item.score.toFixed(5)}</strong>
+          </div>
+        ))}
+      </div>
+      <p className={"candidate-result " + (passed ? "passed" : "")}>{improvementText} · {passed ? "교체 기준 충족" : "교체 기준 미충족 · 기존 모델 유지"}</p>
+      <details><summary>평가 근거 보기</summary><Json value={result} /></details>
+    </div>
+  );
+}
 function Chart({ rows, rain = false }: { rows: Row[]; rain?: boolean }) {
   const values = rows
     .flatMap((r) =>
@@ -75,6 +111,9 @@ function Chart({ rows, rain = false }: { rows: Row[]; rain?: boolean }) {
     span = Math.max(86400000, times.at(-1)! - first);
   const x = (i: number) => 64 + ((times[i] - first) / span) * 800;
   const y = (v: number) => 185 - ((v - min) / (max - min)) * 150;
+  const rainDates = rain ? rows.flatMap((r, i) => number(r.rainfall_mm) ? [i] : []) : [];
+  const rainLabelStep = Math.max(1, Math.ceil(rainDates.length / 14));
+  const visibleRainDates = rainDates.filter((_, i) => i % rainLabelStep === 0);
   const segments = (key: string) =>
     chartSegments(rows, key).map((points) =>
       points
@@ -85,7 +124,7 @@ function Chart({ rows, rain = false }: { rows: Row[]; rain?: boolean }) {
     <>
       <svg
         className="chart"
-        viewBox="0 0 920 230"
+        viewBox={rain ? "0 0 920 290" : "0 0 920 230"}
         role="img"
         aria-label={rain ? "일 강수량 차트" : "입력 수위와 저장 예측 차트"}
       >
@@ -181,12 +220,14 @@ function Chart({ rows, rain = false }: { rows: Row[]; rain?: boolean }) {
             )}
           </>
         )}
-        <text x="64" y="218">
-          {rows[0]?.date}
-        </text>
-        <text x="870" y="218" textAnchor="end">
-          {rows.at(-1)?.date}
-        </text>
+        {rain ? visibleRainDates.map((i) => (
+          <text key={`rain-date-${i}`} x={x(i)} y="218" textAnchor="end" transform={`rotate(-55 ${x(i)} 218)`}>
+            {rows[i].date.slice(5)}
+          </text>
+        )) : <>
+          <text x="64" y="218">{rows[0]?.date}</text>
+          <text x="870" y="218" textAnchor="end">{rows.at(-1)?.date}</text>
+        </>}
       </svg>
       <details>
         <summary>차트 원자료 보기</summary>
@@ -1088,7 +1129,7 @@ function App() {
                 </details>
                 <details>
                   <summary>후보 모델 상세 평가</summary>
-                  <Json value={p.evaluation || "평가 기록 없음"} />
+                  <CandidateEvaluation value={p.evaluation} />
                 </details>
               </section>
               <Operations
