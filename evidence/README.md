@@ -1,6 +1,14 @@
 # 실행 증거
 
-이 문서는 최신 검증의 진입점입니다. 과거 상태와 실패·검수 이력은 [날짜별 원문](records/2026-10-08.md)에 보존합니다. 이번 문서 정리에서는 저장된 결과를 대조했으며 학습·서비스 테스트를 재실행하지 않았습니다.
+이 문서는 최신 검증의 진입점입니다. 과거 상태와 실패·검수 이력은 [날짜별 원문](records/2026-10-08.md)에 보존합니다. 아래 항목은 각각 당시 환경의 기록입니다.
+
+## 발표 전후 캡처·그래프 개선 — 2026-10-08
+
+- [실제 요청·응답](records/presentation-demo-http.json): 동일 합성 세션 6d00ba의 v1 예측, +0.2 변화, 품질 경보, 후보 생성, 정답 30일 평가, v2 실제 예측. RMSE 0.0232006162→0.0210488850, 9.274457% 감소 및 guard 통과.
+- 직접 캡처: [요청 전](records/presentation-predict-before.png)·[감지](records/presentation-trigger.png)·[알림](records/presentation-alert-log.png)·[재학습 작업](records/presentation-retrain-log.png)·[평가 그래프](records/presentation-evaluation.png)·[교체 후](records/presentation-after.png)·[요청 후](records/presentation-predict-after.png)·[컨테이너](records/presentation-container.png).
+- 기존 8100 컨테이너 제거 후 원본 tracking 볼륨을 읽기 전용 복사하여 별도 18103 컨테이너·5174 화면 프리뷰에서 이어갔습니다. interrupted 이력과 이어간 요청을 원문에 남겼습니다. 최신 UI의 표준 Compose 배포 검증과 구분합니다.
+- [강수 그래프](records/presentation-rainfall.png): 관측 날짜 표시·0mm 점·결측 공백·가로 이동. 후보 비교는 동일 평가 구간 RMSE와 실제 평가 상태를 사용합니다.
+- 프론트 테스트 10개·TypeScript/Vite 빌드 통과. [실제 추론 200·입력 오류 422](records/chart-feedback-http.json)와 [발표 필수 항목 검수](../output/source/proposal.md)를 연결했습니다.
 
 ## React 프론트 채택 — 2026-10-08
 
