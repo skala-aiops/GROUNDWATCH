@@ -1,7 +1,7 @@
 import { type Row, useResource } from "./api";
 
 export function sourceLabel(kind: unknown) {
-  return ({ observed: "저장 관측 자료", synthetic: "합성 자료 포함", observed_api: "외부 API 실측" } as Record<string, string>)[String(kind)] || "출처 확인 필요";
+  return ({ observed: "저장 관측 자료", synthetic: "시연 자료", observed_api: "외부 API 실측" } as Record<string, string>)[String(kind)] || "출처 확인 필요";
 }
 
 export function SourceInfo({ row }: { row: Row }) {

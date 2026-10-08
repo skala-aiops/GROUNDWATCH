@@ -37,6 +37,7 @@ import {
 import "./style.css";
 import { SourceInfo, CollectionStatus, sourceLabel } from "./SourceInfo";
 import ServiceGuide, { GuideButton } from "./ServiceGuide";
+import { CandidateEvaluation, RainfallChart } from "./EvaluationCharts";
 const Scene = lazy(() => import("./Scene"));
 const titles = {
   overview: "관측소 현황",
@@ -54,6 +55,7 @@ function Json({ value }: { value: unknown }) {
   return <pre>{JSON.stringify(value, null, 2)}</pre>;
 }
 function Chart({ rows, rain = false }: { rows: Row[]; rain?: boolean }) {
+  if (rain) return <RainfallChart rows={rows} />;
   const values = rows
     .flatMap((r) =>
       rain ? [r.rainfall_mm] : [r.groundwater_level, r.prediction],
@@ -538,12 +540,7 @@ function App() {
           </div>
           <div className="provenance">
             <span className="dot" />
-            과제 시연 환경 ·{" "}
-            {rows.some((r) => r.source_kind === "synthetic") ||
-            p.source_kind === "synthetic"
-              ? "합성 자료 포함"
-              : "자료 출처는 관측소 상세에서 확인"}
-            <span className="provenance-right">최신 실측 API 연결 미완료</span>
+            과제 시연 환경
             <SourceInfo row={row} />
           </div>
           {message && (
@@ -899,11 +896,6 @@ function App() {
                 )}
                 <p className="footnote">
                   단위 {history.data?.unit || row.unit || "미확인"} ·{" "}
-                  {(history.data?.history || []).some(
-                    (r: Row) => r.origin === "synthetic",
-                  )
-                    ? "합성 자료 포함 · "
-                    : " "}
                   결측값을 이어 그리지 않습니다.
                 </p>
               </section>
@@ -974,8 +966,10 @@ function App() {
                     ? `드리프트 시연: ${p.drift_demo.shift_start}부터 수위 +${p.drift_demo.shift_amount} 적용 (${row.unit || row.level_unit || "자료의 수위 단위"}).`
                     : replay
                       ? "기본 상황은 추가 수위 변화 없이 저장 자료를 공개합니다. 기본 자료에서도 오차 경보가 발생할 수 있습니다."
-                      : `새 드리프트 시연 설정: ${p.defaults?.shift_start || "자료 준비 후 확인"}부터 +${p.defaults?.shift_amount ?? "—"} 적용.`}
-                  {" "}원본은 보존합니다. 정답 21일 → 연속 2회 초과 → 재학습 → 후속 정답 30일 평가 후 기준 통과 시 교체합니다. 21일 진행만으로 경보·교체를 보장하지 않습니다.
+                      : `새 드리프트 시연 설정: ${p.defaults?.shift_start || "자료 준비 후 확인"}부터 +${p.defaults?.shift_amount ?? "—"} 적용.`}{" "}
+                  원본은 보존합니다. 정답 21일 → 연속 2회 초과 → 재학습 → 후속
+                  정답 30일 평가 후 기준 통과 시 교체합니다. 21일 진행만으로
+                  경보·교체를 보장하지 않습니다.
                 </p>
                 <div className="button-row">
                   <button
@@ -1047,7 +1041,10 @@ function App() {
                 </details>
                 <details>
                   <summary>후보 모델 상세 평가</summary>
-                  <Json value={p.evaluation || "평가 기록 없음"} />
+                  <CandidateEvaluation
+                    evaluation={p.evaluation}
+                    unit={row.unit}
+                  />
                 </details>
               </section>
               <Operations

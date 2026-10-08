@@ -622,6 +622,56 @@ tr.selected {
   fill: #8eae9e;
   font-size: 10px;
 }
+.chart-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-color: #48766b #102c23;
+  border-radius: 4px;
+}
+.chart-scroll:focus-visible,
+.rain-svg g:focus-visible {
+  outline: 2px solid #73e5c2;
+  outline-offset: 2px;
+}
+.rain-svg {
+  display: block;
+  height: 280px;
+}
+.rain-svg text,
+.evaluation-svg text {
+  fill: #b1cdbf;
+  font-size: 12px;
+}
+.chart-readout {
+  min-height: 2.8em;
+  color: #a4d8d6;
+  font-size: 12px;
+}
+.evaluation-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+.evaluation-heading h3 {
+  margin: 8px 0;
+}
+.evaluation-heading strong {
+  font-size: 19px;
+}
+.evaluation-heading .improvement {
+  color: #73e5c2;
+}
+.evaluation-svg {
+  width: 100%;
+  min-width: 620px;
+  display: block;
+}
+.evaluation-svg .threshold-label {
+  fill: #edbf7a;
+}
 .legend {
   display: flex;
   gap: 18px;
