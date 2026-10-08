@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from serving_app.national_sources import collect_asos, iso_day
+from backend.national_sources import collect_asos, iso_day
 
 
 def collect(stations_path, periods, output_dir, workers=3):

@@ -23,7 +23,7 @@ def build_extension(source, manifest_path, output_dir, end_date=None, observed_e
     rows, intervals = [], {}
     additional = None
     if observed_extension_dir is not None:
-        from serving_app.seoul_observation_extension import load_extension
+        from backend.seoul_observation_extension import load_extension
         additional = load_extension(observed_extension_dir)
         if additional is None:
             raise ValueError('추가 실측의 관측소·단위·해시 검증에 실패했습니다.')

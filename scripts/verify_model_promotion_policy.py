@@ -22,9 +22,9 @@ except SystemExit as exc:
         raise
 
 import uvicorn
-from serving_app.groundwater_models import ModelManager, ModelNotReady
-from serving_app.groundwater_service import GroundwaterService
-from serving_app.main import create_app
+from backend.groundwater_models import ModelManager, ModelNotReady
+from backend.groundwater_service import GroundwaterService
+from backend.main import create_app
 
 path = next(smoke_root.glob('*/results.json'))
 smoke = json.loads(path.read_text())
@@ -130,5 +130,5 @@ result = {'purpose': 'synthetic actual TensorFlow/MLflow and real loopback HTTP 
           'after_server_and_manager_restart': restarted,
           'rejected_direct_promotion_blocked_after_restart': rejected_blocked_after_restart,
           'source_hashes': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in
-                            (Path('serving_app/groundwater_models.py'), Path('tests/test_groundwater_models.py'), Path('tests/test_groundwater_api.py'))}}
+                            (Path('backend/groundwater_models.py'), Path('backend/tests/aiops/test_groundwater_models.py'), Path('backend/tests/integration/test_groundwater_api.py'))}}
 print('POLICY_HTTP_RESULT=' + json.dumps(result, ensure_ascii=False), flush=True)

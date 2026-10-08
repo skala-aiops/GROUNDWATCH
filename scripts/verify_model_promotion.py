@@ -15,7 +15,7 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--state-dir',type=Path,default=Path(os.getenv('GROUNDWATCH_STATE_DIR','runtime/groundwatch')).parent/'promotion-smoke')
 parser.add_argument('--verify-http',action='store_true',help='Also call isolated FastAPI TestClient; requires httpx2.')
 args=parser.parse_args()
-from serving_app.groundwater_models import ModelManager
+from backend.groundwater_models import ModelManager
 root=args.state_dir.resolve()/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8])
 root.mkdir(parents=True,exist_ok=True)
 results={'run_root':str(root),'purpose':'synthetic actual-TensorFlow successful-promotion smoke; not observed Seoul performance','seed':42,'attempts':[]}
@@ -49,9 +49,9 @@ if initial['status']=='promoted':
                 attempt['initial_prediction_same_input']=base.predict('11110',rows(newlevels,410)[-20:])
                 if args.verify_http:
                     from fastapi.testclient import TestClient
-                    from serving_app.groundwater_service import GroundwaterService
+                    from backend.groundwater_service import GroundwaterService
                     os.environ['GROUNDWATCH_STATE_DIR']=str(root/'http-module-state')
-                    from serving_app.main import create_app
+                    from backend.main import create_app
                     service=GroundwaterService(root/'http-service',manager_factory=lambda namespace:manager)
                     keys=('date','groundwater_level','rainfall_mm','station_id','level_unit')
                     sequence=[{k:r[k] for k in keys} for r in rows(newlevels,410)[-20:]]

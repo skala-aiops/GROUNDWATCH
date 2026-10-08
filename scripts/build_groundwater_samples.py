@@ -13,7 +13,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from serving_app.national_sources import KWATER_URL
+from backend.national_sources import KWATER_URL
 
 SOURCE_UNIT_EVIDENCE = [
     {'source_url':'https://www.gims.go.kr/opnDetail.do','request_form':{'ser':'APIR10'},

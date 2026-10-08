@@ -10,7 +10,7 @@ from pathlib import Path
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from serving_app.national_sources import join_daily
+from backend.national_sources import join_daily
 CANDIDATES={'601739':[('203','official_station_name'),('549','nearest_available_candidate')],
             '11775':[('165','official_station_name'),('699','nearest_available_candidate')],
             '95537':[('188','official_station_name'),('890','nearest_available_candidate')]}

@@ -9,8 +9,8 @@ root.mkdir(parents=True)
 slope=float(os.getenv('GROUNDWATCH_SYNTHETIC_SLOPE','.3'))
 os.environ['GROUNDWATCH_STATE_DIR']=str(root)
 os.environ['GROUNDWATCH_TRAIN_EPOCHS']='30'
-from serving_app.groundwater_service import GroundwaterService
-from serving_app.main import create_app
+from backend.groundwater_service import GroundwaterService
+from backend.main import create_app
 import uvicorn
 service=GroundwaterService(root)
 stop=threading.Event()

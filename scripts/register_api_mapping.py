@@ -5,7 +5,7 @@ import os
 import sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from serving_app.observation_repository import ObservationRepository
+from backend.observation_repository import ObservationRepository
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
