@@ -270,11 +270,12 @@
     },
     {
       "number": 12,
-      "title": "데모는 동작 순서대로 확인합니다",
+      "title": "사용 순서",
       "key_points": [
-        "전체 현황 → 관측소 상세 → 모델·품질 운영",
+        "관측소 현황 → 관측소 상세 → 모델 관리 · 시연",
+        "관측소 검색 · 다음 날 예측 · 저장 자료 진행",
         "원본 동작 스냅샷은 공통 기획서 PDF에 수록",
-        "개념도 · 오늘 합성 입력과 내일 예측 확인"
+        "과제용 합성 자료 포함 · 실제 최신 관측 아님"
       ],
       "role": "content",
       "layout": {
@@ -285,8 +286,8 @@
       ],
       "sample_approved": false,
       "local_context": {
-        "parent_edit_generated_source": "/Users/baggeon-u/.codex/generated_images/01a118d5-d86b-7761-a150-2fa97e717cbf/exec-97372b8d-287c-4dbb-99ee-bc8f9f6446dd.png",
-        "provenance": "Built-inimageeditofpreviousbuilt-inimage; parentvisuallyreviewed"
+        "selected_source": "/Users/baggeon-u/.codex/generated_images/01a11930-24dc-7933-a29b-10971651ef0a/exec-6680c830-f378-471b-9c09-26946828f08c.png",
+        "provenance": "built-in image edit; latest application labels"
       }
     },
     {
@@ -337,5 +338,6 @@
       }
     }
   ],
-  "workflow_override": "User explicitly requested parent direct14imageedits withoutnewworkers; builtinbackendunchanged."
+  "workflow_override": "User explicitly requested parent direct14imageedits withoutnewworkers; builtinbackendunchanged.",
+  "current_ui_comparison": "같은 날짜의 입력 수위와 저장된 예측이 모두 있으면 소수 셋째 자리로 비교합니다. 입력이 더 높으면 해당 숫자와 관측점만 빨강, 낮으면 파랑이며 같거나 비교 예측이 없으면 기본색입니다. 내일 예측은 주황을 유지합니다. 이 색은 위험도나 드리프트 판정이 아닙니다."
 }

@@ -166,6 +166,15 @@ class GroundwaterService:
                     value.update(observed_date=rows[-1]['date'], unit=rows[-1]['level_unit'],
                                  freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days,
                                  input_origin=rows[-1].get('origin', entry.get('source_kind', 'observed')))
+                value['latest_comparison'] = None
+                if rows:
+                    observed = rows[-1]
+                    saved = [p for p in self.store.forecasts(namespace, code, source_dataset_id=entry['id'])
+                             if p['forecast_date'] == observed['date']]
+                    chosen = max(saved, key=lambda p: p.get('generated_at') or '') if saved else {}
+                    value['latest_comparison'] = {
+                        'date': observed['date'], 'actual': observed['groundwater_level'],
+                        'prediction': chosen.get('prediction'), 'model_version': chosen.get('model_version')}
                 model = models.get(code)
                 if mode == 'current' and value['freshness_days'] is not None and value['freshness_days'] > 0:
                     value.update(quality_status='STALE_DATA', reason=f"오늘까지 관측 자료가 없습니다. 마지막 관측 후 {value['freshness_days']}일 경과했습니다.")
@@ -233,7 +242,7 @@ class GroundwaterService:
                             'prediction_model_version':chosen.get('model_version'), 'predictions':choices})
         # Display the actually stored next-day prediction without manufacturing
         # its observation or rainfall. Historical replay still reveals one day.
-        if not replay and rows:
+        if rows:
             next_date = (date.fromisoformat(rows[-1]['date'])+timedelta(days=1)).isoformat()
             choices = sorted(by_date.get(next_date, []), key=lambda p:p.get('generated_at') or '')
             if choices:
@@ -245,7 +254,7 @@ class GroundwaterService:
         if clock['enabled']:
             next_date = clock['source_forecast_date']
             choices = sorted(by_date.get(next_date, []), key=lambda p:p.get('generated_at') or '')
-            if choices:
+            if choices and not any(r['date'] == next_date for r in history):
                 chosen = choices[-1]
                 history.append({'date': next_date, 'groundwater_level': None, 'rainfall_mm': None,
                                 'prediction': chosen['prediction'], 'prediction_model_version': chosen['model_version'],

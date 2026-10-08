@@ -86,6 +86,40 @@ class ReauditTests(unittest.TestCase):
         self.assertNotEqual(selected['prediction'],99999)
         self.assertEqual(selected['prediction_model_version'],'2')
 
+    def test_latest_comparison_uses_same_date_dataset_and_namespace(self):
+        dataset = upload_fixture(self.service)
+        self.service.manager().train(FIRST,self.service.records(dataset,FIRST),{},100)
+        anchor = str(START+timedelta(days=350))
+        initial = self.service.forecasts(as_of=anchor,dataset_id=dataset)
+        row = next(r for r in initial['forecasts'] if r['district_code']==FIRST)
+        self.assertIsNone(row['latest_comparison']['prediction'])
+        future = row['forecast_date']
+        result = self.service.forecasts(as_of=future,dataset_id=dataset)
+        compared = next(r for r in result['forecasts'] if r['district_code']==FIRST)['latest_comparison']
+        self.assertEqual(compared['date'],future)
+        self.assertEqual(compared['prediction'],row['prediction'])
+        actual = next(r['groundwater_level'] for r in self.service.records(dataset,FIRST) if r['date']==future)
+        self.assertEqual(compared['actual'],actual)
+        self.service.store.forecast('historical',{**row,'source_dataset_id':'other','prediction':999})
+        self.service.store.forecast('other-scope',{**row,'prediction':888})
+        filtered = self.service.forecasts(as_of=future,dataset_id=dataset)
+        self.assertEqual(next(r for r in filtered['forecasts'] if r['district_code']==FIRST)['latest_comparison'],compared)
+        earlier = self.service.forecasts(as_of=anchor,dataset_id=dataset)
+        self.assertEqual(next(r for r in earlier['forecasts'] if r['district_code']==FIRST)['latest_comparison']['date'],anchor)
+
+    def test_replay_history_keeps_unlabelled_next_day_point(self):
+        dataset = upload_fixture(self.service)
+        replay = self.service.create_replay(dataset,str(START+timedelta(days=320)))
+        self.service.execute_one()
+        response = self.service.forecasts(replay_id=replay['id'])
+        forecast = next(r for r in response['forecasts'] if r['district_code']==FIRST)
+        history = self.service.history(FIRST,replay_id=replay['id'])['history']
+        future = [r for r in history if r['date']==forecast['forecast_date']]
+        self.assertEqual(len(future),1)
+        self.assertIsNone(future[0]['groundwater_level'])
+        self.assertIsNone(future[0]['rainfall_mm'])
+        self.assertEqual(future[0]['prediction'],forecast['prediction'])
+
     def test_current_mode_rejects_past_override_and_reports_stale_data(self):
         dataset = upload_fixture(self.service)
         with self.assertRaises(ValueError):
