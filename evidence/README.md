@@ -25,4 +25,4 @@
 - [전국3곳 실측 계절 비교](records/2026-10-08-national/seasonal-evaluation.json): 제주 개선·다른2곳 악화, 계절 표본 부족·운영 미승인.
 - [ASOS 원천 대조](records/2026-10-08-national/asos-hub-reconciliation.json): 활용 승인 후 실제 응답, 빈값을0으로 대체하지 않음.
 
-단계별 테스트·화면·환경 중단·재개와 과거 상태는 [날짜별 기록](records/2026-10-08.md)에 보존합니다. 현재 기획·API·자료·운영 기준은 각각 [기획서](../proposal.md), [API 계약](../docs/contracts.md), [데이터 설명](../data/README.md), [운영 기준](../docs/operations.md)을 따릅니다.
+단계별 테스트·화면·환경 중단·재개와 과거 상태는 [날짜별 기록](records/2026-10-08.md)에 보존합니다. 현재 기획·API·자료·운영 기준은 각각 [제안서 PDF](../output/final/AIOps_조별%20과제_광주_3반_GroundWatch.pdf), [API 계약](../docs/contracts.md), [데이터 설명](../data/README.md), [운영 기준](../docs/operations.md)을 따릅니다.
