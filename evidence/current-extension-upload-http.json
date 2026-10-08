@@ -1,0 +1,118 @@
+{
+  "passed": true,
+  "meaning": "Actual multipart re-upload of identical coursework extension is idempotent; validated ready dataset then explicit one-station training via HTTP; not API provider collection or automatic retrain claim.",
+  "upload_http_status": 202,
+  "upload": {
+    "id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+    "status": "ready",
+    "path": "/app/runtime/groundwatch/datasets/da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931/observations.csv",
+    "manifest_path": "/app/runtime/groundwatch/datasets/da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931/manifest.json",
+    "source_kind": "synthetic",
+    "namespace": "synthetic_da1d9aa8ddab",
+    "filename": "observations.csv",
+    "created_at": "2026-10-08T00:25:34.102489+00:00",
+    "report": {
+      "source_sha256": "1bcba9778b7fad41042c43a8b64806f953862dbe3e107207b3671b080bf8a349",
+      "source_rows": 75941,
+      "accepted_rows": 75941,
+      "invalid_rows": 0,
+      "error_examples": [],
+      "exact_duplicates_removed": 0,
+      "conflicting_groups": 0,
+      "conflict_examples": [],
+      "inconsistent_stations": [],
+      "manifest_approved": true,
+      "districts_with_data": 25
+    },
+    "sha256": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+    "dataset_version": "1bcba9778b7fad41042c43a8b64806f953862dbe3e107207b3671b080bf8a349",
+    "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+    "job_id": "dfcd2470de8f48a78422373919ecea42"
+  },
+  "dataset_status": "ready",
+  "dataset_source_kind": "synthetic",
+  "train_http_status": 202,
+  "train": {
+    "id": "63e8151f5ebe4eddae53ea04d123687f",
+    "kind": "train",
+    "scope": "model:synthetic_da1d9aa8ddab:11110",
+    "payload": {
+      "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+      "district_code": "11110",
+      "namespace": "synthetic_da1d9aa8ddab",
+      "reuse_existing": false
+    },
+    "status": "completed",
+    "result": {
+      "models": [
+        {
+          "district_code": "11110",
+          "status": "promoted",
+          "version": "2",
+          "model_version": "2",
+          "metrics": {
+            "validation": {
+              "rmse": 0.009514652746802101,
+              "mae": 0.007258874637338171,
+              "count": 60
+            },
+            "validation_persistence": {
+              "rmse": 0.009428218860328423,
+              "mae": 0.007139107833333232,
+              "count": 60
+            },
+            "test": {
+              "rmse": 0.015875968426507896,
+              "mae": 0.012691343171855133,
+              "count": 60
+            },
+            "test_persistence": {
+              "rmse": 0.016066327156020997,
+              "mae": 0.01284954099999999,
+              "count": 60
+            }
+          },
+          "splits": {
+            "train": {
+              "start": "2024-03-13",
+              "end": "2026-03-12",
+              "count": 730,
+              "target_dates_continuous": true
+            },
+            "validation": {
+              "start": "2026-03-13",
+              "end": "2026-05-11",
+              "count": 60,
+              "target_dates_continuous": true
+            },
+            "test": {
+              "start": "2026-05-12",
+              "end": "2026-07-10",
+              "count": 60,
+              "target_dates_continuous": true
+            },
+            "replay": {
+              "start": "2026-07-11",
+              "end": "2026-10-08",
+              "count": 90,
+              "target_dates_continuous": true
+            }
+          },
+          "threshold": 0.017231223668015223,
+          "split_policy": "gap_aware",
+          "gate_passed": true
+        }
+      ],
+      "promoted_count": 1,
+      "retained_count": 0,
+      "failed_districts": [],
+      "requested_count": 1,
+      "all_ready": true
+    },
+    "error": null,
+    "created_at": "2026-10-08T00:31:28.861921+00:00",
+    "updated_at": "2026-10-08T00:31:33.931256+00:00"
+  },
+  "ready_count_after": 25,
+  "as_of": "2026-10-08"
+}
