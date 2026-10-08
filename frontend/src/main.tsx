@@ -240,7 +240,7 @@ function App() {
   if (mode === "historical_replay" && replay) scope.set("replay_id", replay);
   const suffix = scope.toString();
   const pipeline = useResource(
-    "/pipeline?district_code=" + selected + (suffix ? "&" + suffix : ""),
+    mode === "api" ? "/api-observations/" + selected + "/pipeline" : "/pipeline?district_code=" + selected + (suffix ? "&" + suffix : ""),
     view === "operations" ? 3000 : 30000,
     revision,
   );
@@ -252,7 +252,7 @@ function App() {
   fq.set("mode", mode);
   if (date && mode !== "current") fq.set("as_of", date);
   const forecasts = useResource(
-    pending ? null : "/forecasts?" + fq,
+    pending ? null : mode === "api" ? "/api-observations" : "/forecasts?" + fq,
     30000,
     revision,
   );
@@ -266,7 +266,7 @@ function App() {
     hq.set("dataset_id", row.source_dataset_id);
   const history = useResource(
     view === "detail" && !pending
-      ? "/districts/" + selected + "/history?" + hq
+      ? mode === "api" ? "/api-observations/" + selected + "/history" : "/districts/" + selected + "/history?" + hq
       : null,
     30000,
     revision,
@@ -298,6 +298,7 @@ function App() {
       setBusy(false);
     }
   }
+  const collectionJobs = useResource(mode === "api" && view === "operations" ? "/api-observations/collection-jobs" : null, 3000, revision);
   const p = pipeline.data || {};
   const active =
     busy ||
@@ -499,14 +500,18 @@ function App() {
                     setMode(e.target.value);
                     setDate("");
                     setAll(false);
-                    if (e.target.value === "current") setSession("");
+                    if (e.target.value !== "historical_replay") {
+                      setReplay("");
+                      const url = new URL(location.href); url.searchParams.delete("replay_id"); historyReplace(url);
+                    }
                   }}
                 >
-                  <option value="current">오늘 기준 예측</option>
+                  <option value="api">실제 API 관측·예측</option>
+                  <option value="current">과제 시연 예측</option>
                   <option value="historical_replay">저장 자료로 검증</option>
                 </select>
               </label>
-              {mode !== "current" && (
+              {mode === "historical_replay" && (
                 <>
                   <label>
                     검증 기록
@@ -538,13 +543,14 @@ function App() {
           </div>
           <div className="provenance">
             <span className="dot" />
-            과제 시연 환경 ·{" "}
+            {mode === "api" ? "서울시 지하수 · 기상청 강수 API" : "과제 시연 환경"} ·{" "}
             {rows.some((r) => r.source_kind === "synthetic") ||
-            p.source_kind === "synthetic"
+            (mode !== "api" && p.source_kind === "synthetic")
               ? "합성 자료 포함"
               : "자료 출처는 관측소 상세에서 확인"}
-            <span className="provenance-right">최신 실측 API 연결 미완료</span>
+            <span className="provenance-right">{mode === "api" ? "실제 자료 학습·예측 · 관측 기준일 확인" : "저장 자료 기반 시연"}</span>
             <SourceInfo row={row} />
+            {mode === "api" && <p>공급자 관측일 {forecasts.data?.as_of || "수집 대기"} · 실제 자료 예측 준비 {forecasts.data?.ready_count ?? 0}/25곳 · 예측 대상일은 최신 가용 관측 다음 날이며 오늘과 다를 수 있습니다.</p>}
           </div>
           {message && (
             <div className="notice" role="status">
@@ -570,33 +576,33 @@ function App() {
             <>
               <div className="stats">
                 <article>
-                  <span>예측 준비 관측소</span>
+                  <span>{mode === "api" ? "API 관측 확보" : "예측 준비 관측소"}</span>
                   <strong>
-                    {forecasts.data?.ready_count ?? "—"}
+                    {(mode === "api" ? forecasts.data?.observation_count : forecasts.data?.ready_count) ?? "—"}
                     <small> / 25</small>
                   </strong>
                   <div className="track">
                     <i
                       style={{
                         width:
-                          ((forecasts.data?.ready_count || 0) / 25) * 100 + "%",
+                          (((mode === "api" ? forecasts.data?.observation_count : forecasts.data?.ready_count) || 0) / 25) * 100 + "%",
                       }}
                     />
                   </div>
                 </article>
                 <article>
-                  <span>입력 기준일</span>
+                  <span>{mode === "api" ? "지하수 관측 기준일" : "입력 기준일"}</span>
                   <strong className="date">
                     {forecasts.data?.as_of || "—"}
                   </strong>
                   <small>자료의 마지막 입력 날짜</small>
                 </article>
                 <article>
-                  <span>예측 대상일</span>
+                  <span>{mode === "api" ? "최근 강수 관측일" : "예측 대상일"}</span>
                   <strong className="date">
-                    {rows[0]?.forecast_date || "—"}
+                    {(mode === "api" ? forecasts.data?.collection?.rain_latest : rows[0]?.forecast_date) || "—"}
                   </strong>
-                  <small>연속 20일 입력 → 다음 날 수위</small>
+                  <small>{mode === "api" ? "ASOS 서울 108 · 숫자 강수 기록 기준" : "연속 20일 입력 → 다음 날 수위"}</small>
                 </article>
               </div>
               <div className="overview-grid">
@@ -647,7 +653,7 @@ function App() {
                     <p>{row.station_name || "관측소 정보 없음"}</p>
                   </div>
                   <div className="hero-value">
-                    <span>다음 날 예측 수위</span>
+                    <span>{mode === "api" ? "실제 자료 기반 다음 날 예측" : "다음 날 예측 수위"}</span>
                     <strong>{fmt(row.prediction)}</strong>
                     <small>{row.unit || "단위 미확인"}</small>
                   </div>
@@ -806,7 +812,7 @@ function App() {
                     <h2>관측정 · 수위 단면</h2>
                     <span className="pill">CONCEPT SECTION</span>
                   </div>
-                  {three ? (
+                  {three && mode !== "api" ? (
                     <Suspense
                       fallback={
                         <div className="empty">지하 단면을 준비합니다.</div>
@@ -816,13 +822,13 @@ function App() {
                     </Suspense>
                   ) : (
                     <div className="empty">
-                      입력 {fmt(row.latest_comparison?.actual)} / 다음 날 예측{" "}
+                      {mode === "api" ? "API 관측 원값" : "입력"} {fmt(row.latest_comparison?.actual)} / 다음 날 예측{" "}
                       {fmt(row.prediction)} {row.unit}
                     </div>
                   )}
                 </section>
                 <section className="panel station-card">
-                  <span className="eyebrow">NEXT DAY FORECAST</span>
+                  <span className="eyebrow">{mode === "api" ? "API NEXT AVAILABLE DAY FORECAST" : "NEXT DAY FORECAST"}</span>
                   <div className="hero-value">
                     <strong>{fmt(row.prediction)}</strong>
                     <small>{row.unit || "단위 미확인"}</small>
@@ -905,6 +911,7 @@ function App() {
                     ? "합성 자료 포함 · "
                     : " "}
                   결측값을 이어 그리지 않습니다.
+                  {mode === "api" && " 수위 차트의 예측은 시간 분리 시험 구간과 최신 가용 관측 다음 날의 결과입니다."}
                 </p>
               </section>
               <section className="panel">
@@ -918,7 +925,41 @@ function App() {
               </section>
             </>
           )}
-          {view === "operations" && (
+          {view === "operations" && mode === "api" && (
+            <section className="panel"><div className="panel-top"><h2>실제 API 학습·예측·드리프트 관리</h2>{choose}</div>
+              <p>최근 지하수 관측일 {forecasts.data?.as_of || "수집 대기"} · 관측 확보 {forecasts.data?.observation_count ?? 0}/25곳</p>
+              <p>현재 관측소: {row.reason || "수집 대기"}. 실제 수위 원값과 강수를 날짜별 결합해 별도 LSTM으로 학습합니다. 강수 결측은 학습 구간 중앙값과 결측 여부로 입력하며 원본은 보존합니다. 실제 발행 예측의 정답이 수집되면 드리프트 감지와 재학습·평가·교체가 자동 진행됩니다. 별도 시연은 ‘과제 시연 예측’ 모드에서 진행합니다.</p>
+              <p>예측 준비 {forecasts.data?.ready_count ?? 0}/25곳 · 학습 상태 {label(forecasts.data?.training?.status)}</p>
+              <button disabled={busy || forecasts.data?.training?.status === "running"}
+                onClick={() => action(() => post("/api-observations/train", {}))}>미준비 모델 학습 다시 시도</button>
+              <button disabled={busy || (collectionJobs.data?.jobs || []).some((j: Row) => ["queued", "running"].includes(j.status))}
+                onClick={() => action(() => post("/api-observations/refresh", {}))}>실제 API 자료 다시 수집</button>
+              <button disabled={busy} onClick={() => action(() => post("/api-observations/check", {}))}>새 정답·드리프트 확인</button>
+              <button disabled={busy || !p.can_rollback || (p.jobs || []).some((j: Row) => ["queued", "running"].includes(j.status))}
+                onClick={() => action(() => post("/api-observations/" + selected + "/rollback", {reason: "화면에서 이전 검증 API 모델 복귀 요청"}))}>이전 검증 API 모델로 복귀</button>
+              <p>{p.note || "운영 상태 확인 중"}</p>
+              {pipeline.error && <p role="alert">{pipeline.error}</p>}
+              <ol className="pipeline">{(p.stages || []).map((s: Row, i: number) => <li key={s.key} className={s.status}>
+                <span>{String(i + 1).padStart(2, "0")}</span><h3>{s.title}</h3><Badge status={s.status} /><p>{s.detail}</p>
+              </li>)}</ol>
+              <details><summary>드리프트·후보 평가 결과</summary><Json value={{monitor:p.monitor,evaluation:p.evaluation,policy:p.policy}} /></details>
+              <h3>실제 API 경보·운영 이력</h3>
+              {(p.events || []).map((e: Row) => <div className="record" key={e.id}><strong>{e.message}</strong><p>{e.created_at} · {label(e.status)}</p>
+                {e.kind === "quality" && e.status !== "RESOLVED" && <button disabled={busy} onClick={() => action(() => post("/events/" + e.id + (e.status === "OPEN" ? "/ack" : "/resolve"), {reason: "화면에서 실제 API 경보 확인", note: "자동 재학습·후보 평가 상태 확인"}))}>{e.status === "OPEN" ? "경보 확인" : "조치 완료"}</button>}
+              </div>)}
+              {!(p.events || []).length && <p>기록된 드리프트 경보가 없습니다. 발행 예측 정답이 연속 21일 쌓여야 오차를 판정합니다.</p>}
+              <details><summary>작업·수집 진행 상태</summary>{[...(p.jobs || []), ...(collectionJobs.data?.jobs || [])].map((j: Row) => <div key={j.id}>
+                <p>{j.kind} · {label(j.status)} · {j.error || j.id}</p>
+                {["failed", "interrupted"].includes(j.status) && j.kind !== "refresh_api_feed" && <button disabled={busy} onClick={() => action(() => post("/jobs/" + j.id + "/retry", {}))}>실패 작업 다시 시도</button>}
+              </div>)}</details>
+              <h3>현재 모델 평가</h3>
+              <p>학습 종료 {row.api_model?.trained_through || "—"} · 검증 RMSE {fmt(row.api_model?.metrics?.validation?.rmse, 5)} · 시험 RMSE {fmt(row.api_model?.metrics?.test?.rmse, 5)} ({row.api_model?.metrics?.test?.count ?? 0}일)</p>
+              <p>시험 구간의 전일 수위 유지 기준 RMSE {fmt(row.api_model?.metrics?.test_persistence?.rmse, 5)} · 최근 20일 중 강수 결측 입력 {row.api_model?.imputed_rain_days ?? "—"}일</p>
+              <details><summary>모델·평가 상세</summary><Json value={row.api_model || {status: "모델 준비 중"}} /></details>
+              <details><summary>수집 상태</summary><Json value={forecasts.data?.collection || {}} /></details>
+            </section>
+          )}
+          {view === "operations" && mode !== "api" && (
             <>
               <section className="panel">
                 <div className="panel-top">

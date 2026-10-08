@@ -1,0 +1,379 @@
+{
+  "verified_at": "2026-10-08T05:27:52.950022+00:00",
+  "base_url": "http://localhost:8100",
+  "overview": {
+    "mode": "api",
+    "source_kind": "observed_api",
+    "as_of": "2026-08-31",
+    "ready_count": 25,
+    "observation_count": 25,
+    "total": 25,
+    "note": "API 원값으로 학습한 별도 모델입니다. 강수 결측은 원본에 보존하고 모델에는 학습 구간 중앙값과 결측 표시를 입력합니다. 예측 대상일을 확인하세요."
+  },
+  "stations": [
+    {
+      "district_code": "11110",
+      "district_name": "종로구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 22.670985736846923,
+      "model_version": "2",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11140",
+      "district_name": "중구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 0.17999258041381838,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11170",
+      "district_name": "용산구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 14.932490663528442,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11200",
+      "district_name": "성동구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 7.139848321378231,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11215",
+      "district_name": "광진구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 12.419003098011016,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11230",
+      "district_name": "동대문구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 7.6390046073496345,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11260",
+      "district_name": "중랑구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 7.550187119841576,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11290",
+      "district_name": "성북구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 4.811733537316322,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11305",
+      "district_name": "강북구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 3.717485002875328,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11320",
+      "district_name": "도봉구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 14.990034610629083,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11350",
+      "district_name": "노원구",
+      "observed_date": "2026-07-31",
+      "forecast_date": "2026-08-01",
+      "prediction": 8.10034979686141,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11380",
+      "district_name": "은평구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 10.270680568516255,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11410",
+      "district_name": "서대문구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 4.099858810901642,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11440",
+      "district_name": "마포구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 11.566541252136231,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11470",
+      "district_name": "양천구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 13.688168997764587,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11500",
+      "district_name": "강서구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 12.677736112326382,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11530",
+      "district_name": "구로구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 4.479370420575142,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11545",
+      "district_name": "금천구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 11.455642266981302,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11560",
+      "district_name": "영등포구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 17.808481053709986,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11590",
+      "district_name": "동작구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 13.207203664779664,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11620",
+      "district_name": "관악구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 7.717434463500976,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11650",
+      "district_name": "서초구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 8.14147931754589,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11680",
+      "district_name": "강남구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 11.368213376849889,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11710",
+      "district_name": "송파구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 12.057426969930528,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    },
+    {
+      "district_code": "11740",
+      "district_name": "강동구",
+      "observed_date": "2026-08-31",
+      "forecast_date": "2026-09-01",
+      "prediction": 12.213615020811558,
+      "model_version": "1",
+      "quality_status": "stale_data"
+    }
+  ],
+  "jongno_model": {
+    "trained_through": "2026-04-15",
+    "splits": {
+      "train": {
+        "start": "2025-09-21",
+        "end": "2026-04-15",
+        "count": 207
+      },
+      "validation": {
+        "start": "2026-04-16",
+        "end": "2026-06-23",
+        "count": 69
+      },
+      "test": {
+        "start": "2026-06-24",
+        "end": "2026-08-31",
+        "count": 69
+      }
+    },
+    "metrics": {
+      "validation": {
+        "rmse": 0.013553222062337632,
+        "mae": 0.009776518586752736,
+        "count": 69
+      },
+      "validation_persistence": {
+        "rmse": 0.013242443839434504,
+        "mae": 0.009130434782608733,
+        "count": 69
+      },
+      "test": {
+        "rmse": 0.03471781412956173,
+        "mae": 0.020068735869033898,
+        "count": 69
+      },
+      "test_persistence": {
+        "rmse": 0.03436799994602329,
+        "mae": 0.019565217391304162,
+        "count": 69
+      }
+    },
+    "rain_fill_value": 1.25,
+    "imputed_rain_days": 9
+  },
+  "jongno_pipeline": {
+    "namespace": "api_native_masked_v1",
+    "district_code": "11110",
+    "stages": [
+      {
+        "key": "data",
+        "title": "실제 API 수집·입력 준비",
+        "status": "completed",
+        "detail": "최신 입력 2026-08-31 · 예측 대상 2026-09-01"
+      },
+      {
+        "key": "monitor",
+        "title": "발행 예측 오차 확인",
+        "status": "pending",
+        "detail": "정답 확보 0건 · 연속21일 창 · 경보 기준 0.020329833093506448"
+      },
+      {
+        "key": "drift",
+        "title": "드리프트 경보",
+        "status": "pending",
+        "detail": "연속 초과 0회 / 2회"
+      },
+      {
+        "key": "retrain",
+        "title": "자동 재학습",
+        "status": "pending",
+        "detail": "경보 후 자동 접수 · 실제41일 자료"
+      },
+      {
+        "key": "evaluate",
+        "title": "새 모델 평가",
+        "status": "pending",
+        "detail": "후보 이후 정답 0/30일 · 개선5% · 기존 오차110% 이내"
+      },
+      {
+        "key": "promote",
+        "title": "모델 교체·기존 유지",
+        "status": "pending",
+        "detail": "현재 모델 v2"
+      },
+      {
+        "key": "serve",
+        "title": "실제 예측 발행",
+        "status": "completed",
+        "detail": "발행 1건 · 관측일·예측일·발행 시각 분리"
+      }
+    ],
+    "monitor": {
+      "district_code": "11110",
+      "version": "2",
+      "breaches": 0,
+      "candidate": null,
+      "last_trigger": null,
+      "last_processed_target_date": "",
+      "rmse": null,
+      "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+      "threshold": 0.020329833093506448,
+      "id": "api_native_masked_v1:11110"
+    },
+    "evaluation": {},
+    "candidate": null,
+    "versions": [
+      {
+        "version": "1",
+        "kind": "initial",
+        "trained_through": "2026-08-03",
+        "evaluation": null,
+        "current": false
+      },
+      {
+        "version": "2",
+        "kind": "initial",
+        "trained_through": "2026-04-15",
+        "evaluation": null,
+        "current": true
+      }
+    ],
+    "jobs": [],
+    "events": [],
+    "can_rollback": false,
+    "source_errors": {},
+    "issued_count": 1,
+    "evaluated_count": 0,
+    "policy": {
+      "window_days": 21,
+      "consecutive_breaches": 2,
+      "retrain_days": 41,
+      "shadow_days": 30,
+      "minimum_improvement": 0.05,
+      "historical_limit": 1.1,
+      "label_policy": "first_received_after_issuance",
+      "forecast_timing": "latest_available_next_day"
+    },
+    "note": "시험 구간 예측은 감시에서 제외합니다. 발행 당시 미수신 정답이 새 API 수집에 들어와야 진행합니다."
+  }
+}

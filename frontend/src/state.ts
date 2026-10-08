@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 export const viewAtom = atom<"overview" | "detail" | "operations">("overview");
 export const districtAtom = atom("11110");
-export const modeAtom = atom("current");
+export const modeAtom = atom("api");
 export const replayAtom = atom(
   new URLSearchParams(location.search).get("replay_id") || "",
 );

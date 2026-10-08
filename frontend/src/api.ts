@@ -29,6 +29,10 @@ export const labels: Record<string, string> = {
   evaluation_passed: "평가 기준 충족",
   synthetic: "합성 자료",
   observed: "실측 자료",
+  observed_api: "외부 API 관측",
+  unit_verification_required: "수위 기준 대조 필요",
+  blocked: "준비 조건 미충족",
+  quality_rejected: "품질 기준 미달",
 };
 export const label = (s: unknown) =>
   labels[String(s || "").toLowerCase()] || String(s || "—");
