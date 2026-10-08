@@ -14,16 +14,26 @@ from data.groundwater import REQUIRED_COLUMNS, load_canonical
 SEED = 20261008
 
 
-def build_extension(source, manifest_path, output_dir, end_date=None):
+def build_extension(source, manifest_path, output_dir, end_date=None, observed_extension_dir=None):
     end = end_date or datetime.now(ZoneInfo('Asia/Seoul')).date()
     if end > datetime.now(ZoneInfo('Asia/Seoul')).date():
         raise ValueError('합성 입력도 오늘 이후 날짜에는 생성하지 않습니다.')
     ds = load_canonical(source, manifest_path, require_all=True)
     manifest = json.loads(Path(manifest_path).read_text())
     rows, intervals = [], {}
+    additional = None
+    if observed_extension_dir is not None:
+        from serving_app.seoul_observation_extension import load_extension
+        additional = load_extension(observed_extension_dir)
+        if additional is None:
+            raise ValueError('추가 실측의 관측소·단위·해시 검증에 실패했습니다.')
     for station in manifest['stations']:
         code = station['district_code']
         records = ds.rows_for_district(code)
+        if additional:
+            records.extend({k:r[k] for k in [*REQUIRED_COLUMNS, 'origin']}
+                           for r in additional['rows'].get(code, [])
+                           if r['station_id'] == station['station_id'] and date.fromisoformat(r['date']) <= end)
         records.sort(key=lambda r: r['date'])
         if not records:
             raise ValueError('원관측이 없는 관측소입니다: ' + code)
@@ -60,6 +70,7 @@ def build_extension(source, manifest_path, output_dir, end_date=None):
                     dataset_version='coursework-extension-'+end.isoformat(),
                     provenance={'kind':'observed_plus_synthetic_extension','seed':SEED,
                                 'original_sha256':ds.dataset_version,'generated_through':end.isoformat(),
+                                'additional_observation_snapshot_id':additional['id'] if additional else None,
                                 'intervals':intervals,
                                 'method':'Monthly empirical rain resampling; level += .03*(monthly median-level) + .015*(donor level-monthly median). Fixed per-station seed.',
                                 'limitation':'Coursework scenario only; not latest Seoul observations or validated hydrological forecasts.'})

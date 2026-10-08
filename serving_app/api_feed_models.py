@@ -10,7 +10,7 @@ import math
 from pathlib import Path
 import statistics
 
-from serving_app.groundwater_models import ModelManager, Scaler, metrics, _json
+from serving_app.groundwater_models import ModelManager, ModelNotReady, Scaler, metrics, _json
 from serving_app.groundwater_store import now
 
 NAMESPACE = 'api_native_masked_v1'
@@ -174,6 +174,7 @@ class ApiModelManager(ModelManager):
         bundle={**parent,'kind':'fine_tune','parent_version':parent_version,'trigger_id':trigger_id,
                 'training_snapshot_id':digest,'dataset_version':digest,'trained_through':recent[-1]['date'],
                 'candidate_training_start':windows[0][-1]['date'],'guard_windows':guard,
+                'shadow_after':recent[-1]['date'],
                 'metrics':{},'smoke_rows':prepare(recent[-20:],parent['rain_fill_value'])}
         version=self._register(code,model,bundle)
         return {'candidate_version':version,'candidate_as_of':recent[-1]['date']}
@@ -209,13 +210,53 @@ class ApiModelManager(ModelManager):
                          'historical_guard':{'passed':retention,'rmse':guard_score['rmse'],'limit':guard_champion['rmse']*1.10}},
                 'metrics':{'shadow_candidate':candidate_score,'shadow_champion':champion_score,
                            'historical_guard':guard_score,'guard_champion':guard_champion},
-                'shadow_start':required[0],'shadow_end':required[-1]}
+                'shadow_start':required[0],'shadow_end':required[-1],
+                'previous_version':bundle['parent_version'],
+                'evaluation_snapshot_id':self.save_observations(code,rows)}
         # Persist the gate result before alias mutation so a recovered promotion is identifiable.
         state=self._state(code);state['versions'][str(version)]['shadow_result']=dict(result,status='gate_passed' if result['gate_passed'] else 'rejected');self._save(code,state)
         if result['gate_passed']:
             result.update(self.promote(code,version))
         state=self._state(code);state['versions'][str(version)]['shadow_result']=result;self._save(code,state)
         return result
+
+    def _validate_shadow_gate(self, bundle, version, evaluation):
+        """Recompute native-contract gates from immutable observations before activation."""
+        try:
+            if (bundle.get('namespace') != NAMESPACE or bundle.get('feature_contract_id') != CONTRACT
+                    or evaluation.get('status') not in ('gate_passed','promoted')
+                    or evaluation.get('gate_passed') is not True
+                    or evaluation.get('candidate_version') != str(version)
+                    or evaluation.get('previous_version') != bundle['parent_version']):
+                raise ValueError('candidate identity mismatch')
+            code=bundle['district_code']
+            rows=self.observations(code,evaluation['evaluation_snapshot_id'])
+            cutoff=date.fromisoformat(bundle['trained_through'])
+            required=[(cutoff+timedelta(days=i)).isoformat() for i in range(1,31)]
+            if evaluation['shadow_start']!=required[0] or evaluation['shadow_end']!=required[-1]:
+                raise ValueError('shadow calendar mismatch')
+            windows={w[-1]['date']:w for w in water_windows(rows)}
+            selected=[windows[d] for d in required]
+            guard=bundle['guard_windows']
+            if len(guard)<10 or any(w[-1]['date']>=bundle['candidate_training_start'] for w in guard):
+                raise ValueError('guard overlaps candidate training')
+            actual=[w[-1]['groundwater_level'] for w in selected]
+            guard_actual=[w[-1]['groundwater_level'] for w in guard]
+            measured={
+                'shadow_candidate':metrics(actual,self.predict_windows(code,version,selected)),
+                'shadow_champion':metrics(actual,self.predict_windows(code,bundle['parent_version'],selected)),
+                'historical_guard':metrics(guard_actual,self.predict_windows(code,version,guard)),
+                'guard_champion':metrics(guard_actual,self.predict_windows(code,bundle['parent_version'],guard))}
+            for name,score in measured.items():
+                saved=evaluation['metrics'][name]
+                if (saved.get('count')!=score['count'] or not self._valid_rmse(saved.get('rmse'))
+                        or not math.isclose(saved['rmse'],score['rmse'],rel_tol=1e-9,abs_tol=1e-12)):
+                    raise ValueError('stored metric mismatch')
+            if (measured['shadow_candidate']['rmse']>measured['shadow_champion']['rmse']*.95
+                    or measured['historical_guard']['rmse']>measured['guard_champion']['rmse']*1.10+1e-12):
+                raise ValueError('native quality gate failed')
+        except (KeyError,TypeError,ValueError,IndexError) as exc:
+            raise ModelNotReady('native shadow quality gate was not passed') from exc
 
     def forecast_actual(self, code, station_id, rows):
         model,bundle,version = self._loaded(code)

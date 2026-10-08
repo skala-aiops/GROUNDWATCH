@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 from serving_app.main import create_app
 from serving_app.groundwater_models import ModelManager
 from serving_app.groundwater_service import GroundwaterService
-from tests.test_groundwater_models import Backend
+from tests.test_groundwater_models import Backend, META, rows
 from tests.test_groundwater_service import FakeManager, FIRST, START, upload_fixture
 
 
@@ -217,6 +217,36 @@ class ApiTests(unittest.TestCase):
         response = self.client.post(f'/api/v1/districts/{FIRST}/predict',json={'sequence':sequence})
         self.assertEqual(response.status_code,503,response.text)
         self.assertIn('model_not_ready',response.json()['detail'])
+
+    def test_candidate_gate_controls_actual_http_version_and_survives_reload(self):
+        from datetime import date
+        observations = rows()
+        keys = ('station_id', 'date', 'groundwater_level', 'rainfall_mm', 'level_unit')
+        sequence = [{k: row[k] for k in keys} for row in observations[-20:]]
+        endpoint = f'/api/v1/districts/{FIRST}/predict'
+        for change, expected in ((.004, 'rejected'), (.1, 'promoted')):
+            with self.subTest(expected=expected):
+                backend = Backend()
+                root = Path(self.directory.name) / expected
+                manager = ModelManager(root, backend=backend)
+                self.service._managers['historical'] = manager
+                manager.train(FIRST, observations, META)
+                before = self.client.post(endpoint, json={'sequence':sequence})
+                self.assertEqual(before.status_code, 200)
+                scaler = manager.list_models()[0]['scaler']
+                backend.train_offset = change / (scaler['maximum'][0]-scaler['minimum'][0])
+                candidate = manager.fine_tune(FIRST, observations[-41:])['candidate_version']
+                self.assertEqual(self.client.post(endpoint, json={'sequence':sequence}).json(), before.json())
+                result = manager.evaluate_candidate(FIRST, candidate, rows(50, start=date(2021, 1, 25)))
+                self.assertEqual(result['status'], expected)
+                self.service._managers['historical'] = ModelManager(root, backend=backend)
+                after = self.client.post(endpoint, json={'sequence':sequence})
+                self.assertEqual(after.status_code, 200)
+                self.assertEqual(after.json()['model_version'], '2' if expected == 'promoted' else '1')
+                if expected == 'rejected':
+                    self.assertEqual(after.json(), before.json())
+                else:
+                    self.assertNotEqual(after.json()['prediction'], before.json()['prediction'])
 
 
 if __name__ == '__main__':

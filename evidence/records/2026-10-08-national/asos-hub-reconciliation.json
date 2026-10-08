@@ -1,0 +1,52 @@
+{
+  "application_completed": true,
+  "http_status": 200,
+  "stations": [
+    {
+      "station_id": "203",
+      "valid": 819,
+      "excluded": 1373,
+      "extra_days": [],
+      "conflicting_dates": [],
+      "consecutive_21_day_windows": 0
+    },
+    {
+      "station_id": "165",
+      "valid": 937,
+      "excluded": 1255,
+      "extra_days": [
+        {
+          "date": "2023-11-28",
+          "source_station_id": "165",
+          "rainfall_mm": 0.0,
+          "raw_rainfall": "0.0",
+          "unit": "mm",
+          "raw_sha256": "74a7546f73f259355875d0833dbed6645a82e9d7de32d52f86896e0b5a406cdb",
+          "collected_at": "2026-10-08T13:39:25.398497+00:00",
+          "available_at": "2026-10-08T13:39:25.398497+00:00"
+        },
+        {
+          "date": "2023-11-29",
+          "source_station_id": "165",
+          "rainfall_mm": 0.0,
+          "raw_rainfall": "0.0",
+          "unit": "mm",
+          "raw_sha256": "74a7546f73f259355875d0833dbed6645a82e9d7de32d52f86896e0b5a406cdb",
+          "collected_at": "2026-10-08T13:39:25.398497+00:00",
+          "available_at": "2026-10-08T13:39:25.398497+00:00"
+        }
+      ],
+      "conflicting_dates": [],
+      "consecutive_21_day_windows": 0
+    },
+    {
+      "station_id": "188",
+      "valid": 975,
+      "excluded": 1217,
+      "extra_days": [],
+      "conflicting_dates": [],
+      "consecutive_21_day_windows": 0
+    }
+  ],
+  "applied_to_model": false
+}

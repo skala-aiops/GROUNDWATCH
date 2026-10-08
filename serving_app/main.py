@@ -16,7 +16,7 @@ from serving_app.groundwater_service import GroundwaterService
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("groundwatch.http").setLevel(logging.INFO)
 
-def create_app(service=None):
+def create_app(service=None, national_service=None):
     instance = service or GroundwaterService()
     @asynccontextmanager
     async def lifespan(app):
@@ -32,7 +32,7 @@ def create_app(service=None):
         task.cancel()
         with contextlib.suppress(asyncio.CancelledError):
             await task
-    app = FastAPI(lifespan=lifespan,title="GroundWatch", version="1.0.0", description="서울 25개 구 대표 관측소 예측과 모델 품질 감시")
+    app = FastAPI(lifespan=lifespan,title="GroundWatch", version="1.0.0", description="관측소별 지하수위 예측과 전국 관측 자료·모델 품질 감시")
     app.state.service = instance
     @app.middleware('http')
     async def observe(request: Request, call_next):
@@ -61,6 +61,14 @@ def create_app(service=None):
         status = 409 if "이미 대기" in str(exc) or "초기화가 완료" in str(exc) else 422
         return JSONResponse(status_code=status, content={"detail": str(exc)})
     app.include_router(router_for(app.state.service))
+    from serving_app.national_service import NationalService
+    from serving_app.national_api import router_for as national_router
+    app.state.national = national_service or NationalService(instance.root)
+    app.include_router(national_router(app.state.national))
+    from serving_app.network_service import NetworkService
+    from serving_app.network_api import router_for as network_router
+    app.state.network = NetworkService(instance, app.state.national)
+    app.include_router(network_router(app.state.network))
     static = str(Path(__file__).parent / "static")
     app.mount("/static", StaticFiles(directory=static), name="assets")
     # Preserve the original dashboard while serving the React production build.

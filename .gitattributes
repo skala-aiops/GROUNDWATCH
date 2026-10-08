@@ -1,0 +1,4 @@
+# Preserve official CSV bytes and allow their original CRLF line endings.
+data/*.csv whitespace=cr-at-eol
+# Official KMA station metadata is CP949, not UTF-8 source code.
+data/kma_station_metadata.csv -diff

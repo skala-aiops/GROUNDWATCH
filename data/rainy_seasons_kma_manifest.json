@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "kind": "rainy_seasons",
+  "source": "kma_station_rainy_csv",
+  "source_url": "https://data.kma.go.kr/climate/rainySeason/selectRainySeasonList.do",
+  "raw_sha256": "0d7b8f1e7ca1054498102c876e9bab92c21ecf15d1bf2f43ed4ab764bf4a8910",
+  "encoding": "cp949",
+  "collected_at": "2026-10-08T08:32:35.492881+00:00",
+  "quarantined": [],
+  "raw_rows": 3564,
+  "station_count": 66,
+  "yearly_coverage": {
+    "1973": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1974": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1975": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1976": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1977": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1978": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1979": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1980": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1981": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1982": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1983": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1984": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1985": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1986": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1987": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1988": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1989": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1990": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1991": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1992": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1993": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1994": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1995": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1996": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1997": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1998": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "1999": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2000": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2001": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2002": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2003": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2004": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2005": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2006": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2007": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2008": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2009": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2010": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2011": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2012": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2013": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2014": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2015": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2016": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2017": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2018": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2019": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2020": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2021": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2022": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2023": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2024": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2025": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    },
+    "2026": {
+      "accepted": 66,
+      "missing_from_export_union": []
+    }
+  },
+  "missing_rainfall_summary_rows": 90,
+  "coverage_note": "Export completeness only; does not establish historical station operation or rainfall coverage.",
+  "blockers": [
+    "groundwater_to_weather_station_mapping_not_approved"
+  ],
+  "raw_file": "../runtime/official/rainy/kma-rainy-0d7b8f1e7ca1054498102c876e9bab92c21ecf15d1bf2f43ed4ab764bf4a8910.csv",
+  "canonical_file": "rainy_seasons_kma.csv",
+  "canonical_sha256": "c9b47d86b4ce4ed081c6acc1834b0328b9586bf3482c72a8aae11a855fd500b6",
+  "accepted_rows": 3564,
+  "download_reported_ui_rows": 3478,
+  "row_count_note": "Actual downloaded CSV has 3564 data rows; UI count discrepancy is unverified."
+}

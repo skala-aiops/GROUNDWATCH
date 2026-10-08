@@ -622,6 +622,56 @@ tr.selected {
   fill: #8eae9e;
   font-size: 10px;
 }
+.chart-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-color: #48766b #102c23;
+  border-radius: 4px;
+}
+.chart-scroll:focus-visible,
+.rain-svg g:focus-visible {
+  outline: 2px solid #73e5c2;
+  outline-offset: 2px;
+}
+.rain-svg {
+  display: block;
+  height: 280px;
+}
+.rain-svg text,
+.evaluation-svg text {
+  fill: #b1cdbf;
+  font-size: 12px;
+}
+.chart-readout {
+  min-height: 2.8em;
+  color: #a4d8d6;
+  font-size: 12px;
+}
+.evaluation-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+.evaluation-heading h3 {
+  margin: 8px 0;
+}
+.evaluation-heading strong {
+  font-size: 19px;
+}
+.evaluation-heading .improvement {
+  color: #73e5c2;
+}
+.evaluation-svg {
+  width: 100%;
+  min-width: 620px;
+  display: block;
+}
+.evaluation-svg .threshold-label {
+  fill: #edbf7a;
+}
 .candidate-evaluation {
   margin-top: 16px;
 }
@@ -672,6 +722,7 @@ tr.selected {
 .candidate-result.passed {
   color: #73e5c2;
 }
+
 .legend {
   display: flex;
   gap: 18px;
@@ -1070,4 +1121,160 @@ footer b {
 .guide-trigger {
   font-size: 11px;
   padding: 7px 12px;
+}
+.network-map-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 20px 15px;
+}
+.network-map-tools label {
+  min-width: 140px;
+  flex: 1;
+}
+.map-panel .national-map {
+  height: 480px;
+}
+.overview-grid > .map-panel {
+  min-width: 0;
+}
+.content > .national-aws,
+.content > .national-weather-status {
+  margin-bottom: 20px;
+}
+.content .national-aws .national-section-title,
+.content .national-weather-status .national-section-title {
+  margin-top: 0;
+}
+.content .national-aws h2,
+.content .national-weather-status h2 {
+  font-size: 18px;
+}
+@media (max-width: 700px) {
+  .map-panel .national-map {
+    height: 400px;
+  }
+  .network-map-tools {
+    padding: 0 14px 14px;
+  }
+  .network-map-tools label {
+    min-width: 130px;
+  }
+}
+
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+  .rail {
+    position: static;
+    width: 100%;
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    font-size: 14px;
+  }
+  .brand small {
+    font-size: 7px;
+  }
+  .rail-caption,
+  .rail-foot {
+    display: none;
+  }
+  .rail nav {
+    display: flex;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .rail .nav {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    margin: 0;
+    padding: 12px 6px;
+    gap: 6px;
+  }
+  main {
+    margin-left: 0;
+    width: 100%;
+    min-width: 0;
+  }
+  header {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-tools {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .content {
+    padding: 22px 16px;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stats article {
+    min-width: 0;
+    padding: 14px;
+  }
+  .stats strong {
+    font-size: 26px;
+  }
+  .stats strong.date {
+    font-size: 16px;
+  }
+  .panel,
+  .record,
+  .record > div,
+  .heading,
+  .mode-panel,
+  .provenance,
+  .hero {
+    min-width: 0;
+  }
+  .record {
+    flex-wrap: wrap;
+  }
+  .record strong,
+  .record small,
+  .record p,
+  .hero small,
+  .footnote,
+  .provenance {
+    overflow-wrap: anywhere;
+  }
+  .record .button-row {
+    flex-wrap: wrap;
+  }
+  .pipeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mode-panel {
+    flex-wrap: wrap;
+  }
+  .mode-panel label {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .section-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .section-heading > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .section-heading select {
+    width: 100%;
+  }
 }

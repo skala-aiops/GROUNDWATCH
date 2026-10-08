@@ -102,6 +102,19 @@ class NativeOperationsTests(unittest.TestCase):
         self.assertEqual(len([j for j in self.service.store.jobs(NAMESPACE) if j['kind']=='retrain_api_feed']),1)
         self.assertEqual(restored.pipeline(CODE)['stages'][-1]['status'],'completed')
 
+    def test_forged_native_pass_cannot_activate_candidate(self):
+        from serving_app.groundwater_models import ModelNotReady
+        candidate=self.manager.create_candidate(CODE,observations(112),'forged-native')
+        version=candidate['candidate_version']
+        state=self.manager._state(CODE)
+        state['versions'][version]['shadow_result']={
+            'status':'gate_passed','gate_passed':True,'candidate_version':version,
+            'previous_version':'1','shadow_start':'2026-04-23','shadow_end':'2026-05-22',
+            'metrics':{'shadow_candidate':{'count':30,'rmse':0}}}
+        self.manager._save(CODE,state)
+        with self.assertRaises(ModelNotReady):self.manager.promote(CODE,version)
+        self.assertEqual(self.manager.current_version(CODE),'1')
+
     def test_historical_guard_rejection_keeps_serving_champion(self):
         self.backend.bad=True
         candidate=self.manager.create_candidate(CODE,observations(112),'bad-candidate')

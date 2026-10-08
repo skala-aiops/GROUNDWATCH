@@ -1,0 +1,66 @@
+{
+  "status": "verified",
+  "python_tests": {
+    "passed": 226,
+    "skipped": 1,
+    "scope": "final image isolated container with shared TensorFlow lock"
+  },
+  "frontend_tests": 30,
+  "build": "passed",
+  "isolated_project": "groundwatch-national-check",
+  "port": 18104,
+  "operational_promotion": false,
+  "previous_oom": {
+    "exit_code": 137,
+    "resolution": "per-job subprocess and shared TensorFlow lock",
+    "retest": "passed: full tests, healthy runtime and restart without recurrence"
+  },
+  "synthetic_seasonal_labels": {
+    "scope": "synthetic_scenario",
+    "rainy_days": 72,
+    "non_rainy_days": 568,
+    "holdout_days": 640
+  },
+  "commit_push_merge_performed": false,
+  "container_health": "healthy",
+  "oom_recurrence": false,
+  "restart": {
+    "synthetic_observations": 29597,
+    "national_jobs_before": 58,
+    "national_jobs_after": 58,
+    "seasonal_models": 34,
+    "seasonal_status": "completed"
+  },
+  "browser": {
+    "seoul_scope": 25,
+    "national_observed_scope": 3,
+    "national_synthetic_scope": 17,
+    "selection": "Jeju marker selects sim-gims-95537 and matching detail",
+    "three_js": "desktop and 390px mobile rendered",
+    "two_dimensional_fallback": "same20.124/20.122m values and dates",
+    "synthetic_labels": "explicit source and scenario monsoon",
+    "rainfall": "AWS2026-07-01 observed722points rendered"
+  },
+  "model_ready": {
+    "seoul": 23,
+    "national_observed": 1,
+    "national_synthetic": 16
+  },
+  "limitations": [
+    "Two Seoul stations have gaps in required historical replay targets; not filled",
+    "One synthetic initial model failed quality gate; persistence comparison retained",
+    "M1 did not reach 5 percent overall improvement and pooled rainy/heavy-rain metrics worsened",
+    "Real geology and well drawings unavailable; concept diagrams only"
+  ],
+  "presentation": {
+    "slides": 37,
+    "qa_questions": 44,
+    "qa_pages": 9,
+    "speech_sections": 37,
+    "visual_review": "passed"
+  },
+  "code_archive": {
+    "secret_guard": "pass",
+    "zip_integrity": "pass"
+  }
+}
