@@ -260,7 +260,7 @@ Compose의 `GROUNDWATCH_NATIONAL_SIMULATION_ENABLED=true`가 전국 시나리오
 
 학습 worker는 공통 파일 잠금으로 TensorFlow 작업을 직렬화하며 작업마다 새 프로세스를 사용합니다. 작업 중단 이력은 `interrupted`로 보존하고 자동으로 다시 학습하지 않습니다. 실패·중단 작업의 재요청은 작업 API에서 명시적으로 수행합니다. 합성 다년 비교는 `GROUNDWATCH_SYNTHETIC_SEASONAL_EVALUATION_ENABLED=true`일 때 일반 학습 큐가 비면 실행하며, 모델별 하위 프로세스와 결과 캐시를 사용합니다.
 
-API허브 ASOS 일자료 활용 승인과 실제 응답을 확인했습니다. 2020~2025년3지점 자료는 유효2,731행·결측3,845행이며 원천 음수 결측을0으로 채우지 않았습니다. 원천 확보를 연속6년 모델 입력이나 전국 실측 완비로 설명하지 않습니다. 원천·교차 대조는 [데이터 기준](../data/README.md)을 따릅니다. 이번 구현은 Python226개 통과·1skip, 프런트30개 통과와 production build를 확인했습니다. 전국 합성17개 시나리오의 M0·M1 총34개 다년 평가도 완료했습니다. 전체 pooled RMSE는0.04083→0.04066m로 소폭 감소했지만5%개선 관측소는0곳이며 장마·강한 강수 pooled RMSE는 악화됐습니다. 장마 정확도 개선이나 실측 운영 승격 성과로 설명하지 않습니다. [평가 근거](../evidence/records/2026-10-08-national/synthetic-seasonal-summary.json)를 확인하세요.
+API허브 ASOS 일자료 활용 승인과 실제 응답을 확인했습니다. 2020~2025년3지점 자료는 유효2,731행·결측3,845행이며 원천 음수 결측을0으로 채우지 않았습니다. 원천 확보를 연속6년 모델 입력이나 전국 실측 완비로 설명하지 않습니다. 원천·교차 대조는 [데이터 기준](../data/README.md)을 따릅니다. 이번 구현은 Python245개 통과·1skip, 프런트32개 통과와 production build를 확인했습니다. 전국 합성17개 시나리오의 M0·M1 총34개 다년 평가도 완료했습니다. 전체 pooled RMSE는0.04083→0.04066m로 소폭 감소했지만5%개선 관측소는0곳이며 장마·강한 강수 pooled RMSE는 악화됐습니다. 장마 정확도 개선이나 실측 운영 승격 성과로 설명하지 않습니다. [평가 근거](../evidence/records/2026-10-08-national/synthetic-seasonal-summary.json)를 확인하세요.
 
 
 ## 실제 API 관측 경로
