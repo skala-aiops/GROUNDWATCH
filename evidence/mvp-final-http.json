@@ -1,0 +1,1702 @@
+{
+  "/health/live": {
+    "http_status": 200,
+    "body": {
+      "status": "alive",
+      "service": "GroundWatch"
+    }
+  },
+  "/health/ready": {
+    "http_status": 200,
+    "body": {
+      "status": "ready",
+      "ready_count": 25,
+      "forecast_ready_count": 25,
+      "total": 25,
+      "dataset_ready": true,
+      "as_of": "2026-10-08",
+      "districts": [
+        {
+          "district_code": "11110",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11140",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11170",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11200",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11215",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11230",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11260",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11290",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11305",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11320",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11350",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11380",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11410",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11440",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11470",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11500",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11530",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11545",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11560",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11590",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11620",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11650",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11680",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11710",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        },
+        {
+          "district_code": "11740",
+          "model_ready": true,
+          "input_ready": true,
+          "reason": null,
+          "input_end_date": "2026-10-08"
+        }
+      ]
+    }
+  },
+  "/api/v1/forecasts?mode=current": {
+    "http_status": 200,
+    "body": {
+      "as_of": "2026-10-08",
+      "ready_count": 25,
+      "total": 25,
+      "mode": "current",
+      "replay_id": null,
+      "simulation": {
+        "enabled": false
+      },
+      "forecasts": [
+        {
+          "district_code": "11110",
+          "prediction": -21.510741191096773,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11140",
+          "prediction": -0.46544705972911893,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11170",
+          "prediction": -14.751277535948944,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11200",
+          "prediction": -7.144233721599182,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11215",
+          "prediction": -11.915320267032994,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11230",
+          "prediction": -7.005593748830964,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11260",
+          "prediction": -7.205415897472451,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11290",
+          "prediction": -4.584075054228692,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11305",
+          "prediction": -3.589034179542179,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11320",
+          "prediction": -14.532860463738569,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11350",
+          "prediction": -7.983274256456772,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11380",
+          "prediction": -9.848684659839488,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11410",
+          "prediction": -3.7611606429244984,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11440",
+          "prediction": -11.573110542216353,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11470",
+          "prediction": -12.38511775191808,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11500",
+          "prediction": -13.406953805912908,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11530",
+          "prediction": -4.265120052475456,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11545",
+          "prediction": -9.733676320785294,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11560",
+          "prediction": -20.07463383487693,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11590",
+          "prediction": -4.576663229465485,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11620",
+          "prediction": -9.359099253280233,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11650",
+          "prediction": -10.239097249311897,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11680",
+          "prediction": -9.44520491969243,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11710",
+          "prediction": -11.962237075647755,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11740",
+          "prediction": -10.489515234231948,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        }
+      ]
+    }
+  },
+  "/api/v1/external-sources": {
+    "http_status": 200,
+    "body": {
+      "sources": {
+        "seoul": {
+          "configured": false,
+          "service": "VTsSec",
+          "transport": "HTTP (official endpoint; TLS not verified)"
+        },
+        "kma": {
+          "configured": false,
+          "service": "ASOS DAY",
+          "available_until": "D-1"
+        }
+      },
+      "observation_store": {
+        "counts": {
+          "source_mappings": 25,
+          "collection_runs": 12,
+          "source_revisions": 7,
+          "quality_findings": 24,
+          "feature_snapshots": 0,
+          "live_predictions": 0,
+          "live_evaluations": 0
+        },
+        "active_snapshots": {},
+        "schema_version": 1
+      },
+      "forecast_integration": {
+        "target_date": "2026-10-08",
+        "input_end_date": "2026-10-07",
+        "counts": {
+          "mapping_required": 25,
+          "input_required": 0,
+          "model_required": 0,
+          "publish_ready": 0,
+          "published": 0
+        },
+        "stations": [
+          {
+            "district_code": "11110",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11140",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11170",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11200",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11215",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11230",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11260",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11290",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11305",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11320",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11350",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11380",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11410",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11440",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11470",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11500",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11530",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11545",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11560",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11590",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11620",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11650",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11680",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11710",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          },
+          {
+            "district_code": "11740",
+            "status": "mapping_required",
+            "input_status": "MAPPING_REQUIRED",
+            "issued_at": null
+          }
+        ],
+        "applied_to_default_forecasts": false
+      },
+      "collection": {
+        "enabled": false,
+        "timezone": "Asia/Seoul",
+        "schedule_hour": 10,
+        "lookback_days": 7,
+        "input_until": "D-1",
+        "worker": {
+          "checked_at": "2026-10-08T03:54:01.045500+00:00",
+          "schedule": {
+            "status": "disabled_or_before_schedule"
+          },
+          "cycle_status": "mapping_required",
+          "id": "external"
+        },
+        "timing": {
+          "seoul": {
+            "last_success_at": null,
+            "last_failure_at": null
+          },
+          "kma": {
+            "last_success_at": "2026-10-07T12:58:33.088470+00:00",
+            "last_failure_at": null
+          }
+        }
+      },
+      "note": "수집 성공과 예측 자료 적용은 다릅니다. 기존 CSV·모델은 유지합니다."
+    }
+  },
+  "/api/v1/pipeline?replay_id=1b0302eb60ca4b6faf5addaad1e6d82c": {
+    "http_status": 200,
+    "body": {
+      "namespace": "1b0302eb60ca4b6faf5addaad1e6d82c",
+      "district_code": "11110",
+      "replay_id": "1b0302eb60ca4b6faf5addaad1e6d82c",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-10-08",
+      "replay_status": "ready",
+      "remaining_days": 0,
+      "latest_advance_job": {
+        "id": "9c3155535cb04d08bc67d55f831c7697",
+        "kind": "advance",
+        "status": "completed",
+        "result": {
+          "replay_id": "1b0302eb60ca4b6faf5addaad1e6d82c",
+          "as_of": "2026-10-08"
+        },
+        "error": null
+      },
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "completed",
+          "detail": "정답 90일 · 21일 창 · RMSE 0.012608853740655597 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "completed",
+          "detail": "21일 RMSE 0.0549187 > 임계값 0.0172312: 재학습 요청"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "completed",
+          "detail": "후보 학습 완료 · 이후 정답으로 평가"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "promoted",
+          "detail": "새 모델 RMSE 0.02105 · 기존 0.0232 · 기준 통과"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "completed",
+          "detail": "후보 v2 게이트 통과·교체"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v2 · 2026-10-09"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-01",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T03:49:57.917380+00:00",
+          "kind": "advance",
+          "message": "9c3155535cb04d08bc67d55f831c7697",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T03:45:59.394480+00:00",
+          "kind": "model",
+          "message": "후보 평가: promoted",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T03:44:03.120016+00:00",
+          "kind": "fine_tune",
+          "message": "9e7024d74e684e198ed248d88dcf68fa",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T03:44:03.118752+00:00",
+          "kind": "model",
+          "message": "재학습 후보 생성, 후속 정답 30일 평가 대기",
+          "status": "RECORDED"
+        },
+        {
+          "at": "2026-10-08T03:43:59.970961+00:00",
+          "kind": "quality",
+          "message": "21일 RMSE 0.0549187 > 임계값 0.0172312: 재학습 요청",
+          "status": "OPEN"
+        },
+        {
+          "at": "2026-10-08T03:40:30.339162+00:00",
+          "kind": "advance",
+          "message": "15ac5fce42044116a2a010e9e516139e",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T02:21:16.906348+00:00",
+          "kind": "advance",
+          "message": "118b385b71e7431e863798bac759e91f",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T02:20:46.071472+00:00",
+          "kind": "train",
+          "message": "e663222e6ffa480ba1da21c7c09af21f",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T02:20:43.214555+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": null,
+      "evaluation": {
+        "status": "promoted",
+        "candidate_version": "2",
+        "gate_passed": true,
+        "metrics": {
+          "shadow_candidate": {
+            "rmse": 0.021048885048271414,
+            "mae": 0.016182209039292652,
+            "count": 30
+          },
+          "shadow_champion": {
+            "rmse": 0.023200616227536254,
+            "mae": 0.0185378374695631,
+            "count": 30
+          },
+          "historical_guard": {
+            "rmse": 0.010246957191661493,
+            "mae": 0.008207361687967325,
+            "count": 60
+          }
+        },
+        "shadow_start": "2026-08-03",
+        "shadow_end": "2026-09-01",
+        "model_version": "2",
+        "previous_version": "1"
+      },
+      "drift_demo": {
+        "shift_start": "2026-08-01",
+        "shift_amount": 0.2,
+        "applied": true,
+        "monitoring_note": "정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가"
+      },
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    }
+  },
+  "/api/v1/forecasts?replay_id=1b0302eb60ca4b6faf5addaad1e6d82c": {
+    "http_status": 200,
+    "body": {
+      "as_of": "2026-10-08",
+      "ready_count": 25,
+      "total": 25,
+      "mode": "historical_replay",
+      "replay_id": "1b0302eb60ca4b6faf5addaad1e6d82c",
+      "simulation": {
+        "enabled": false
+      },
+      "forecasts": [
+        {
+          "district_code": "11110",
+          "prediction": -21.30767211629058,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11140",
+          "prediction": -0.2660819406255579,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11170",
+          "prediction": -14.551911451030731,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11200",
+          "prediction": -6.942640740764398,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11215",
+          "prediction": -11.715516700838224,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11230",
+          "prediction": -6.805647415881445,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11260",
+          "prediction": -7.003566008524611,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11290",
+          "prediction": -4.38259937498775,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11305",
+          "prediction": -3.387147261550946,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11320",
+          "prediction": -14.332940956701872,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11350",
+          "prediction": -7.783647571441,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11380",
+          "prediction": -9.648702791579266,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11410",
+          "prediction": -3.5612214386338046,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11440",
+          "prediction": -11.3731483703558,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11470",
+          "prediction": -12.185521957371567,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11500",
+          "prediction": -13.207044535892347,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11530",
+          "prediction": -4.065567141166472,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11545",
+          "prediction": -9.533752968855472,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11560",
+          "prediction": -19.876454141346542,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11590",
+          "prediction": -4.3752944779396055,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11620",
+          "prediction": -9.156703876628576,
+          "model_version": "2",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11650",
+          "prediction": -10.039270445910516,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11680",
+          "prediction": -9.24643138140108,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11710",
+          "prediction": -11.762382562463516,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        },
+        {
+          "district_code": "11740",
+          "prediction": -10.290051169395447,
+          "model_version": "1",
+          "observed_date": "2026-10-08",
+          "forecast_date": "2026-10-09",
+          "input_origin": "synthetic",
+          "data_source": {
+            "kind": "synthetic",
+            "observed_through": "2024-03-18",
+            "input_through": "2026-10-08",
+            "contains_synthetic": true,
+            "synthetic_from": "2024-03-19",
+            "synthetic_through": "2026-10-08",
+            "original_observed_through": "2024-03-18",
+            "generated_at": "2026-10-08T03:37:48.572448+00:00",
+            "registered_at": "2026-10-08T00:25:34.102489+00:00",
+            "external_api_applied": false
+          }
+        }
+      ]
+    }
+  },
+  "/api/v1/pipeline?replay_id=581fa088b7d74d8ea36c0be5fb8354e7": {
+    "http_status": 200,
+    "body": {
+      "namespace": "581fa088b7d74d8ea36c0be5fb8354e7",
+      "district_code": "11110",
+      "replay_id": "581fa088b7d74d8ea36c0be5fb8354e7",
+      "simulation": {
+        "enabled": false
+      },
+      "as_of": "2026-07-10",
+      "replay_status": "ready",
+      "remaining_days": 90,
+      "latest_advance_job": null,
+      "active_jobs": [],
+      "advance_active": false,
+      "stages": [
+        {
+          "key": "data",
+          "title": "자료 검증",
+          "status": "completed",
+          "detail": "da1d9aa8ddab"
+        },
+        {
+          "key": "monitor",
+          "title": "오차 감시",
+          "status": "pending",
+          "detail": "정답 0일 · 21일 창 · RMSE 평가 대기 · 임계값 0.017231223668015223"
+        },
+        {
+          "key": "drift",
+          "title": "드리프트 감지",
+          "status": "pending",
+          "detail": "21일 오차 기준 연속 0/2회 초과 · 정답 21일 확보 후 판정"
+        },
+        {
+          "key": "retrain",
+          "title": "자동 재학습",
+          "status": "pending",
+          "detail": "드리프트 감지 후 자동 접수"
+        },
+        {
+          "key": "evaluate",
+          "title": "후보 평가",
+          "status": "pending",
+          "detail": "새 정답30일 · 개선5% · guard110%"
+        },
+        {
+          "key": "promote",
+          "title": "모델 교체",
+          "status": "pending",
+          "detail": "현재 후보 미교체 · 현재 서빙 v1"
+        },
+        {
+          "key": "serve",
+          "title": "현재 모델 서빙",
+          "status": "completed",
+          "detail": "실제 예측 v1 · 2026-07-11"
+        }
+      ],
+      "defaults": {
+        "dataset_id": "da1d9aa8ddab8ee371c3fc8700f8b47e8351e7e07e54a6d9d40ac9b14ef6f931",
+        "start_date": "2026-07-10",
+        "end_date": "2026-10-08",
+        "shift_start": "2026-08-01",
+        "shift_amount": 0.2
+      },
+      "log": [
+        {
+          "at": "2026-10-08T03:50:12.893692+00:00",
+          "kind": "train",
+          "message": "552a18b95319432dba7c352be3fd7d6c",
+          "status": "completed"
+        },
+        {
+          "at": "2026-10-08T03:50:01.532820+00:00",
+          "kind": "model",
+          "message": "초기 학습: promoted",
+          "status": "RECORDED"
+        }
+      ],
+      "candidate_version": null,
+      "evaluation": null,
+      "drift_demo": null,
+      "source_kind": "synthetic",
+      "note": "현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다."
+    }
+  }
+}

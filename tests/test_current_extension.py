@@ -21,6 +21,11 @@ class CurrentExtensionTests(unittest.TestCase):
             second, second_manifest = build_extension(source,mapping,Path(directory)/'b',end)
             self.assertEqual(path.read_bytes(),second.read_bytes())
             self.assertEqual(manifest.read_bytes(),second_manifest.read_bytes())
+            stamp = json.loads((path.parent/'generation.json').read_text())
+            build_extension(source,mapping,Path(directory)/'a',end)
+            self.assertEqual(json.loads((path.parent/'generation.json').read_text()),stamp)
+            self.assertTrue(stamp['generated_at'])
+            self.assertEqual(stamp['identity'],hashlib.sha256(path.read_bytes()+manifest.read_bytes()).hexdigest())
             original = load_canonical(source,mapping)
             extended = load_canonical(path,manifest)
             observed = [r for r in extended.records if r.origin=='observed']
