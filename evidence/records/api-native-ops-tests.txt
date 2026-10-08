@@ -1,0 +1,313 @@
+test_gaps_are_not_bridged_and_insufficient_real_labels_are_rejected (test_api_feed_models.ActualModelTests.test_gaps_are_not_bridged_and_insufficient_real_labels_are_rejected) ... ok
+test_mask_train_only_statistics_temporal_evaluation_and_native_forecast (test_api_feed_models.ActualModelTests.test_mask_train_only_statistics_temporal_evaluation_and_native_forecast) ... ok
+test_missing_rain_and_observed_zero_have_different_masks (test_api_feed_models.ActualModelTests.test_missing_rain_and_observed_zero_have_different_masks) ... ok
+test_quality_gate_does_not_serve_a_bad_model (test_api_feed_models.ActualModelTests.test_quality_gate_does_not_serve_a_bad_model) ... ok
+test_failed_candidate_load_cannot_change_champion (test_api_feed_ops.NativeOperationsTests.test_failed_candidate_load_cannot_change_champion) ... ok
+test_full_automatic_cycle_waits_30_days_promotes_and_serves_new_version (test_api_feed_ops.NativeOperationsTests.test_full_automatic_cycle_waits_30_days_promotes_and_serves_new_version) ... ok
+test_historical_guard_rejection_keeps_serving_champion (test_api_feed_ops.NativeOperationsTests.test_historical_guard_rejection_keeps_serving_champion) ... ok
+test_issuance_rejects_visible_target_and_snapshot_mismatch (test_api_feed_ops.NativeOperationsTests.test_issuance_rejects_visible_target_and_snapshot_mismatch) ... ok
+test_manual_rollback_allows_only_previous_validated_champion (test_api_feed_ops.NativeOperationsTests.test_manual_rollback_allows_only_previous_validated_champion) ... ok
+test_missing_future_day_cannot_be_replaced_by_later_day (test_api_feed_ops.NativeOperationsTests.test_missing_future_day_cannot_be_replaced_by_later_day) ... ok
+test_real_issuance_only_duplicate_cycles_and_first_received_labels (test_api_feed_ops.NativeOperationsTests.test_real_issuance_only_duplicate_cycles_and_first_received_labels) ... ok
+test_retry_candidate_job_does_not_register_second_candidate (test_api_feed_ops.NativeOperationsTests.test_retry_candidate_job_does_not_register_second_candidate) ... ok
+test_actual_lag_and_raw_values_are_kept_without_fabricating_predictions (test_api_observation_feed.ApiFeedTests.test_actual_lag_and_raw_values_are_kept_without_fabricating_predictions) ... ok
+test_changed_observations_never_serve_cached_prediction_from_old_inputs (test_api_observation_feed.ApiFeedTests.test_changed_observations_never_serve_cached_prediction_from_old_inputs) ... ok
+test_failed_refresh_retains_last_success_and_records_source_failure (test_api_observation_feed.ApiFeedTests.test_failed_refresh_retains_last_success_and_records_source_failure) ... ok
+test_incomplete_pages_do_not_replace_last_success (test_api_observation_feed.ApiFeedTests.test_incomplete_pages_do_not_replace_last_success) ... ok
+test_input_readiness_does_not_bridge_missing_calendar_days_or_rain (test_api_observation_feed.ApiFeedTests.test_input_readiness_does_not_bridge_missing_calendar_days_or_rain) ... ok
+test_unordered_dates_do_not_create_a_false_complete_window (test_api_observation_feed.ApiFeedTests.test_unordered_dates_do_not_create_a_false_complete_window) ... ok
+test_future_generation_is_rejected (test_current_extension.CurrentExtensionTests.test_future_generation_is_rejected) ... ok
+test_real_source_is_preserved_reproducible_and_synthetic_is_isolated (test_current_extension.CurrentExtensionTests.test_real_source_is_preserved_reproducible_and_synthetic_is_isolated) ... ok
+test_entry_keeps_replay_query_and_delivers_react_build (test_dashboard_delivery.DashboardDeliveryTests.test_entry_keeps_replay_query_and_delivers_react_build) ... INFO:httpx2:HTTP Request: GET http://testserver/?replay_id=example "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx2:HTTP Request: GET http://testserver/dashboard/ "HTTP/1.1 200 OK"
+ok
+test_legacy_api_and_geometry_remain_available (test_dashboard_delivery.DashboardDeliveryTests.test_legacy_api_and_geometry_remain_available) ... INFO:httpx2:HTTP Request: GET http://testserver/legacy/ "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/dashboard/geo/seoul.json "HTTP/1.1 200 OK"
+ok
+test_duplicate_job_and_restart_preserve_work (test_external_observations.ExternalTests.test_duplicate_job_and_restart_preserve_work) ... ok
+test_empty_seoul_and_failed_kma_never_replace_existing_dataset (test_external_observations.ExternalTests.test_empty_seoul_and_failed_kma_never_replace_existing_dataset) ... ok
+test_encoded_key_is_decoded_once_and_provider_error_is_safe (test_external_observations.ExternalTests.test_encoded_key_is_decoded_once_and_provider_error_is_safe) ... ok
+test_exception_never_echoes_key_url (test_external_observations.ExternalTests.test_exception_never_echoes_key_url) ... ok
+test_future_missing_and_conflicts_are_quarantined (test_external_observations.ExternalTests.test_future_missing_and_conflicts_are_quarantined) ... ok
+test_negative_groundwater_preserved_wrong_station_rejected (test_external_observations.ExternalTests.test_negative_groundwater_preserved_wrong_station_rejected) ... ok
+test_partial_pages_not_reported_complete (test_external_observations.ExternalTests.test_partial_pages_not_reported_complete) ... ok
+test_shared_weather_is_collected_once_per_schedule_day_and_completion_can_refresh (test_external_observations.ExternalTests.test_shared_weather_is_collected_once_per_schedule_day_and_completion_can_refresh) ... ok
+test_empty_service_200_with_25_null_predictions_and_no_observation_date (test_groundwater_api.ApiTests.test_empty_service_200_with_25_null_predictions_and_no_observation_date) ... INFO:groundwatch.http:{"request_id": "2e04a80ebd1c4cbab96395d7256330ba", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.007544}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+ok
+test_forecast_provenance_preserves_station_boundaries_and_unknown_time (test_groundwater_api.ApiTests.test_forecast_provenance_preserves_station_boundaries_and_unknown_time) ... INFO:groundwatch.http:{"request_id": "85d13eb949dc41d38be45ce3cda2515f", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.069266}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts "HTTP/1.1 200 OK"
+ok
+test_invalid_date_district_and_extra_body_fields_422 (test_groundwater_api.ApiTests.test_invalid_date_district_and_extra_body_fields_422) ... INFO:groundwatch.http:{"request_id": "95951f288d8d4751837d2006e55cddb1", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.006937}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?as_of=2020-02-31 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "2317fb894d754730be930e8a5076b81e", "method": "GET", "route": "/api/v1/districts/{code}/history", "status": 422, "latency_seconds": 0.000516}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts/99999/history "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "37aa84d1774a42a7847c9f94f4b7d446", "method": "POST", "route": "/api/v1/jobs/train", "status": 422, "latency_seconds": 0.000561}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "951a3f0aa4d542d591b0f0678cc26c4e", "method": "POST", "route": "/api/v1/jobs/train", "status": 422, "latency_seconds": 0.000297}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 422 Unprocessable Content"
+ok
+test_live_routes_are_isolated_and_do_not_fallback_to_csv (test_groundwater_api.ApiTests.test_live_routes_are_isolated_and_do_not_fallback_to_csv) ... INFO:groundwatch.http:{"request_id": "a36fcd6bf0c643728678e21433b48009", "method": "GET", "route": "/api/v1/live/forecasts", "status": 200, "latency_seconds": 0.034432}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/forecasts?target_date=2026-10-07 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "778b6461e06d4bc19026a5767da86b87", "method": "GET", "route": "/api/v1/data-freshness", "status": 200, "latency_seconds": 0.035079}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/data-freshness "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "7371ba16e2434681a0371282d1f7573b", "method": "GET", "route": "/api/v1/live/districts/{code}/history", "status": 200, "latency_seconds": 0.001575}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/districts/11110/history "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "30c25016119b4a5d91ebe752c55ef530", "method": "POST", "route": "/api/v1/live/prediction-jobs", "status": 404, "latency_seconds": 0.000895}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/live/prediction-jobs "HTTP/1.1 404 Not Found"
+INFO:groundwatch.http:{"request_id": "3ca4ccdedf0144a485300fb85fed052d", "method": "GET", "route": "/api/v1/live/forecasts", "status": 422, "latency_seconds": 0.000325}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/forecasts?target_date=bad "HTTP/1.1 422 Unprocessable Content"
+ok
+test_pre_evaluation_forecast_is_unavailable_not_leaked_training_result (test_groundwater_api.ApiTests.test_pre_evaluation_forecast_is_unavailable_not_leaked_training_result) ... INFO:groundwatch.http:{"request_id": "9b92d528de2745698b07bb87c1ae33ba", "method": "POST", "route": "/api/v1/jobs/train", "status": 202, "latency_seconds": 0.036634}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "ad39a2e64a5d4970a82755a6b0721568", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.070856}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?dataset_id=e977e8d309b28502eba5aa76d840ffe35ba73a186497520d6ef832a6fd5a0d0e&as_of=2020-07-19 "HTTP/1.1 200 OK"
+ok
+test_predict_200_actual_version_and_422_invalid_length_rain_gap_identity (test_groundwater_api.ApiTests.test_predict_200_actual_version_and_422_invalid_length_rain_gap_identity) ... INFO:groundwatch.http:{"request_id": "76b02d91f25e43e3a1830405af3a8b4d", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 200, "latency_seconds": 0.007554}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "394339739e4742a69771cc95f19b9bb1", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000424}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "ce96249e2d0242b5875ba5fb5b33672f", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000348}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "7e4b7cc6b9c6475e8d4c3dbca3c322da", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000811}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "2e33e59ba80f4a9a8b386595b1c12d9b", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 422, "latency_seconds": 0.000866}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 422 Unprocessable Content"
+ok
+test_predict_valid_input_without_model_returns_503 (test_groundwater_api.ApiTests.test_predict_valid_input_without_model_returns_503) ... INFO:groundwatch.http:{"request_id": "c51e7af0399e4ed0ba13acaef9404774", "method": "POST", "route": "/api/v1/districts/{code}/predict", "status": 503, "latency_seconds": 0.007389}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/districts/11110/predict "HTTP/1.1 503 Service Unavailable"
+ok
+test_readiness_requires_models_and_continuous_inputs_and_recovers (test_groundwater_api.ApiTests.test_readiness_requires_models_and_continuous_inputs_and_recovers) ... INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+INFO:httpx2:HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 200 OK"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+INFO:httpx2:HTTP Request: GET http://testserver/health/ready "HTTP/1.1 200 OK"
+ok
+test_replay_future_query_and_invalid_advance_return_422 (test_groundwater_api.ApiTests.test_replay_future_query_and_invalid_advance_return_422) ... INFO:groundwatch.http:{"request_id": "3810de9f452c43309c934c188956da04", "method": "POST", "route": "/api/v1/replays", "status": 202, "latency_seconds": 0.067258}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "55387b4e95d640a39244d190978782cf", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.001137}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?replay_id=46bbfbef1b24457983d4669cb75c6f27&as_of=2020-11-17 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "05ee4d8edee74b39ab72f51641b9acdb", "method": "POST", "route": "/api/v1/replays/{replay_id}/advance", "status": 422, "latency_seconds": 0.000472}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays/46bbfbef1b24457983d4669cb75c6f27/advance "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "7694d096253e4ef683b5fb6c1a73cf98", "method": "POST", "route": "/api/v1/replays/{replay_id}/advance", "status": 422, "latency_seconds": 0.000317}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/replays/46bbfbef1b24457983d4669cb75c6f27/advance "HTTP/1.1 422 Unprocessable Content"
+ok
+test_rollback_rejects_unvalidated_version_without_changing_champion (test_groundwater_api.ApiTests.test_rollback_rejects_unvalidated_version_without_changing_champion) ... INFO:groundwatch.http:{"request_id": "02e2e71681904bc292f688b5dd75671c", "method": "POST", "route": "/api/v1/models/{code}/rollback", "status": 202, "latency_seconds": 0.013023}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/models/11110/rollback "HTTP/1.1 202 Accepted"
+ok
+test_train_job_duplicate_and_retry_validation (test_groundwater_api.ApiTests.test_train_job_duplicate_and_retry_validation) ... INFO:groundwatch.http:{"request_id": "722559b309694514a24edd8d1491c9b7", "method": "POST", "route": "/api/v1/jobs/train", "status": 202, "latency_seconds": 0.077238}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "cecc7a7a80d54ec08913e18b3fd57a67", "method": "POST", "route": "/api/v1/jobs/train", "status": 409, "latency_seconds": 0.001009}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/train "HTTP/1.1 409 Conflict"
+INFO:groundwatch.http:{"request_id": "8970a6eb27394316b43a526bf6dd5c7d", "method": "POST", "route": "/api/v1/jobs/{job_id}/retry", "status": 409, "latency_seconds": 0.00073}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/b983641e25354d1c9a8a94441d12b201/retry "HTTP/1.1 409 Conflict"
+INFO:groundwatch.http:{"request_id": "7b3356d2aebb48efab4c495e1cf7c9a1", "method": "POST", "route": "/api/v1/jobs/{job_id}/retry", "status": 202, "latency_seconds": 0.00172}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/jobs/b983641e25354d1c9a8a94441d12b201/retry "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "e74fc85edbb54bacba43b8658290c690", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.00072}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/ad76731655d04a67afa79f83752356ec "HTTP/1.1 200 OK"
+ok
+test_upload_202_durable_validation_and_idempotent_repeat (test_groundwater_api.ApiTests.test_upload_202_durable_validation_and_idempotent_repeat) ... INFO:groundwatch.http:{"request_id": "73acb0439f0342f889ba17b3048ce4d3", "method": "POST", "route": "/api/v1/datasets", "status": 202, "latency_seconds": 0.016604}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "9f1261bf7a9f4fd984c0189747063d1b", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.000683}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/b9b8d8932c5141218fb9f01485755f31 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "123264fc13b84d319f54ca46bbe6bbe7", "method": "POST", "route": "/api/v1/datasets", "status": 202, "latency_seconds": 0.001268}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 202 Accepted"
+INFO:groundwatch.http:{"request_id": "7626cc74cb084709925180f7ff353bb7", "method": "GET", "route": "/api/v1/jobs/{job_id}", "status": 200, "latency_seconds": 0.000583}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/jobs/b9b8d8932c5141218fb9f01485755f31 "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "624cf59a03414a7aa0ad0f95c17bbca1", "method": "GET", "route": "/api/v1/datasets", "status": 200, "latency_seconds": 0.00064}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/datasets "HTTP/1.1 200 OK"
+ok
+test_upload_schema_and_malformed_manifest_return_422 (test_groundwater_api.ApiTests.test_upload_schema_and_malformed_manifest_return_422) ... INFO:groundwatch.http:{"request_id": "deb73b862f994e69893e0f9bdd4780ba", "method": "POST", "route": "/api/v1/datasets", "status": 422, "latency_seconds": 0.008005}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "a2f99417374c456589c1d334d7550bfa", "method": "POST", "route": "/api/v1/datasets", "status": 422, "latency_seconds": 0.000549}
+INFO:httpx2:HTTP Request: POST http://testserver/api/v1/datasets "HTTP/1.1 422 Unprocessable Content"
+ok
+test_bom_zero_and_negative_level_are_valid_missing_rain_is_not_zero (test_groundwater_data.GroundwaterDataTest.test_bom_zero_and_negative_level_are_valid_missing_rain_is_not_zero) ... ok
+test_conflicting_group_fully_quarantined_exact_duplicates_collapsed (test_groundwater_data.GroundwaterDataTest.test_conflicting_group_fully_quarantined_exact_duplicates_collapsed) ... ok
+test_conversion_joins_explicit_rain_station_and_quarantines_water_conflict (test_groundwater_data.GroundwaterDataTest.test_conversion_joins_explicit_rain_station_and_quarantines_water_conflict) ... ok
+test_gap_aware_split_never_bridges_gap_or_leaks_replay (test_groundwater_data.GroundwaterDataTest.test_gap_aware_split_never_bridges_gap_or_leaks_replay) ... ok
+test_gap_cannot_be_treated_as_twenty_days (test_groundwater_data.GroundwaterDataTest.test_gap_cannot_be_treated_as_twenty_days) ... ok
+test_malformed_manifest_is_validation_error (test_groundwater_data.GroundwaterDataTest.test_malformed_manifest_is_validation_error) ... ok
+test_manifest_needs_explicit_approval_and_no_station_switch (test_groundwater_data.GroundwaterDataTest.test_manifest_needs_explicit_approval_and_no_station_switch) ... ok
+test_official_chart_parser_retains_negative_level_and_excludes_missing_rain (test_groundwater_data.GroundwaterDataTest.test_official_chart_parser_retains_negative_level_and_excludes_missing_rain) ... ok
+test_split_targets_ordered_and_scaler_fits_only_training (test_groundwater_data.GroundwaterDataTest.test_split_targets_ordered_and_scaler_fits_only_training) ... ok
+test_calendar_gap_rejection_is_persisted_for_candidate (test_groundwater_models.ModelTests.test_calendar_gap_rejection_is_persisted_for_candidate) ... ok
+test_clone_reuses_only_initial_weights_and_isolates_registry_cache (test_groundwater_models.ModelTests.test_clone_reuses_only_initial_weights_and_isolates_registry_cache) ... ok
+test_failed_promotion_preserves_actual_champion (test_groundwater_models.ModelTests.test_failed_promotion_preserves_actual_champion) ... ok
+test_gap_aware_training_cap_is_applied_before_scaler_fit (test_groundwater_models.ModelTests.test_gap_aware_training_cap_is_applied_before_scaler_fit) ... ok
+test_gap_aware_training_preserves_daily_windows_and_excludes_future_scaler (test_groundwater_models.ModelTests.test_gap_aware_training_preserves_daily_windows_and_excludes_future_scaler) ... ok
+test_initial_failed_gate_does_not_serve_registered_candidate (test_groundwater_models.ModelTests.test_initial_failed_gate_does_not_serve_registered_candidate) ... ok
+test_live_contract_allows_new_snapshot_but_rejects_changed_source_and_legacy (test_groundwater_models.ModelTests.test_live_contract_allows_new_snapshot_but_rejects_changed_source_and_legacy) ... ok
+test_missing_model_has_no_sample_fallback (test_groundwater_models.ModelTests.test_missing_model_has_no_sample_fallback) ... ok
+test_mlflow_missing_champion_alias_distinguished_from_registry_failure (test_groundwater_models.ModelTests.test_mlflow_missing_champion_alias_distinguished_from_registry_failure) ... ok
+test_post_promotion_tracking_failure_preserves_success_and_shadow_result (test_groundwater_models.ModelTests.test_post_promotion_tracking_failure_preserves_success_and_shadow_result) ... ok
+test_rejects_unapproved_metadata_and_calendar_gaps (test_groundwater_models.ModelTests.test_rejects_unapproved_metadata_and_calendar_gaps) ... ok
+test_residual_architecture_is_explicitly_selected_and_recorded (test_groundwater_models.ModelTests.test_residual_architecture_is_explicitly_selected_and_recorded) ... ok
+test_restart_alias_and_district_isolation (test_groundwater_models.ModelTests.test_restart_alias_and_district_isolation) ... ok
+test_rollback_cannot_promote_unvalidated_registered_candidate (test_groundwater_models.ModelTests.test_rollback_cannot_promote_unvalidated_registered_candidate) ... ok
+test_shadow_waits_for_new_labels_and_frozen_scaler (test_groundwater_models.ModelTests.test_shadow_waits_for_new_labels_and_frozen_scaler) ... ok
+test_stale_finetuning_is_rejected (test_groundwater_models.ModelTests.test_stale_finetuning_is_rejected) ... ok
+test_temporal_split_scaler_and_identity (test_groundwater_models.ModelTests.test_temporal_split_scaler_and_identity) ... ok
+test_residual_model_trains_serializes_and_reloads_without_lambda (test_groundwater_models.TensorFlowGraphTests.test_residual_model_trains_serializes_and_reloads_without_lambda) ... skipped 'opt-in actual TensorFlow training smoke'
+test_durable_jobs_atomic_claim_duplicate_and_explicit_recovery (test_groundwater_service.ServiceTests.test_durable_jobs_atomic_claim_duplicate_and_explicit_recovery) ... ok
+test_failed_training_job_keeps_existing_champion_available (test_groundwater_service.ServiceTests.test_failed_training_job_keeps_existing_champion_available) ... ok
+test_forecast_cache_separates_actual_champion_versions (test_groundwater_service.ServiceTests.test_forecast_cache_separates_actual_champion_versions) ... ok
+test_forecasts_deduplicate_and_labels_reveal_after_clock_advance (test_groundwater_service.ServiceTests.test_forecasts_deduplicate_and_labels_reveal_after_clock_advance) ... ok
+test_future_replay_queries_rejected_and_history_hides_future (test_groundwater_service.ServiceTests.test_future_replay_queries_rejected_and_history_hides_future) ... ok
+test_missing_data_returns_25_rows_without_fabricated_values (test_groundwater_service.ServiceTests.test_missing_data_returns_25_rows_without_fabricated_values) ... ok
+test_modified_replay_is_marked_synthetic_without_changing_source (test_groundwater_service.ServiceTests.test_modified_replay_is_marked_synthetic_without_changing_source) ... ok
+test_multi_day_advance_executes_finetune_before_shadow_future (test_groundwater_service.ServiceTests.test_multi_day_advance_executes_finetune_before_shadow_future) ... ok
+test_retrained_champion_cannot_generate_new_forecasts_before_its_cutoff (test_groundwater_service.ServiceTests.test_retrained_champion_cannot_generate_new_forecasts_before_its_cutoff) ... ok
+test_two_workers_cannot_claim_same_durable_job (test_groundwater_service.ServiceTests.test_two_workers_cannot_claim_same_durable_job) ... ok
+test_late_labels_process_every_daily_window_once (test_live_observations.LiveTests.test_late_labels_process_every_daily_window_once) ... ok
+test_promotion_stops_old_champion_backlog_monitoring (test_live_observations.LiveTests.test_promotion_stops_old_champion_backlog_monitoring) ... ok
+test_unapproved_source_blocks_cycle_without_creating_training_or_predictions (test_live_observations.LiveTests.test_unapproved_source_blocks_cycle_without_creating_training_or_predictions) ... ok
+test_verified_fixture_snapshot_train_daily_issue_and_legacy_isolation (test_live_observations.LiveTests.test_verified_fixture_snapshot_train_daily_issue_and_legacy_isolation) ... INFO:groundwatch.http:{"request_id": "7693a1f7df1e40929390a65b98c26ac1", "method": "GET", "route": "/api/v1/live/districts/{code}/history", "status": 200, "latency_seconds": 0.011429}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/districts/11110/history "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "d0750a79c4e441f98dc8b5cec612b9f6", "method": "GET", "route": "/api/v1/live/districts/{code}/history", "status": 200, "latency_seconds": 0.003585}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/live/districts/11110/history "HTTP/1.1 200 OK"
+ok
+test_consistent_backup_and_repeat_migration (test_observation_repository.RepositoryTests.test_consistent_backup_and_repeat_migration) ... ok
+test_cutoff_excludes_later_available_observations (test_observation_repository.RepositoryTests.test_cutoff_excludes_later_available_observations) ... ok
+test_explicit_mapping_selection_and_daily_activation_preserve_training (test_observation_repository.RepositoryTests.test_explicit_mapping_selection_and_daily_activation_preserve_training) ... ok
+test_future_success_cannot_validate_past_partial_collection (test_observation_repository.RepositoryTests.test_future_success_cannot_validate_past_partial_collection) ... ok
+test_live_25_unready_never_uses_historical_models (test_observation_repository.RepositoryTests.test_live_25_unready_never_uses_historical_models) ... ok
+test_mapping_evidence_immutable_version_and_foreign_keys (test_observation_repository.RepositoryTests.test_mapping_evidence_immutable_version_and_foreign_keys) ... ok
+test_missing_revision_does_not_revive_previous_valid_rain (test_observation_repository.RepositoryTests.test_missing_revision_does_not_revive_previous_valid_rain) ... ok
+test_partial_collection_cannot_publish_snapshot (test_observation_repository.RepositoryTests.test_partial_collection_cannot_publish_snapshot) ... ok
+test_revisions_snapshot_and_original_values_are_immutable (test_observation_repository.RepositoryTests.test_revisions_snapshot_and_original_values_are_immutable) ... ok
+test_failed_gate_does_not_reload (test_pipeline.PipelineTests.test_failed_gate_does_not_reload) ... INFO:matplotlib.font_manager:generated new fontManager
+WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+ok
+test_predict_scaling_and_lazy_cache (test_pipeline.PipelineTests.test_predict_scaling_and_lazy_cache) ... ok
+test_retrain_failure_preserves_serving_cache (test_pipeline.PipelineTests.test_retrain_failure_preserves_serving_cache) ... [lazy] model loaded in 0.000s on first request
+WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+ERROR:aiops:[ERROR] retraining failed - keeping current serving model
+Traceback (most recent call last):
+  File "/app/serving_app/monitoring/retrain_trigger.py", line 24, in check_and_trigger
+    result = fine_tune(rows=rows)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1124, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/unittest/mock.py", line 1183, in _execute_mock_call
+    raise effect
+RuntimeError: training failed
+ok
+test_rmse_and_threshold (test_pipeline.PipelineTests.test_rmse_and_threshold) ... ok
+test_successful_gate_reloads (test_pipeline.PipelineTests.test_successful_gate_reloads) ... WARNING:aiops:[WARN] drift detected - triggering retrain
+INFO:aiops:[INFO] retrain triggered (window=last_21_days)
+INFO:aiops:[OK] new_rmse=2.00 - production promoted: HAIC_Predictor v2
+ok
+test_mean_is_distinct_from_p95_and_persists_across_store_reopen (test_reaudit.MeanLatencyTests.test_mean_is_distinct_from_p95_and_persists_across_store_reopen) ... ok
+test_conflicting_model_job_does_not_start_cooldown (test_reaudit.MonitoringFailureTests.test_conflicting_model_job_does_not_start_cooldown) ... ok
+test_metric_failure_does_not_break_successful_response (test_reaudit.MonitoringFailureTests.test_metric_failure_does_not_break_successful_response) ... ERROR:root:request metric persistence failed
+Traceback (most recent call last):
+  File "/app/serving_app/main.py", line 50, in observe
+    await asyncio.to_thread(instance.store.request_metric,request.method,route,status,latency,request_id)
+  File "/usr/local/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/tests/test_reaudit.py", line 182, in fail
+    def fail(*args):raise RuntimeError('metrics only failure')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: metrics only failure
+INFO:groundwatch.http:{"request_id": "14d1f6102026497c93f8789bc76c0411", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.007032}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+ok
+test_rejection_detail_identifies_failed_gate_without_claiming_replacement (test_reaudit.PipelineCycleTests.test_rejection_detail_identifies_failed_gate_without_claiming_replacement) ... ok
+test_shift_source_and_current_candidate_do_not_inherit_past_success (test_reaudit.PipelineCycleTests.test_shift_source_and_current_candidate_do_not_inherit_past_success) ... ok
+test_namespace_jobs_are_filtered_before_limit (test_reaudit.PipelineViewTests.test_namespace_jobs_are_filtered_before_limit) ... ok
+test_pipeline_reports_evidence_and_default_station_without_inventing_completion (test_reaudit.PipelineViewTests.test_pipeline_reports_evidence_and_default_station_without_inventing_completion) ... INFO:groundwatch.http:{"request_id": "c13bf80dcc5c43f7b9e1a25c0b0d124a", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.008554}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "7b109397bb7642e99cc3002a6092cc4e", "method": "GET", "route": "/api/v1/pipeline", "status": 422, "latency_seconds": 0.000382}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?district_code=99999 "HTTP/1.1 422 Unprocessable Content"
+INFO:groundwatch.http:{"request_id": "d214bf41ab8544f49a4a16ff61e32c53", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001593}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "9d013205447e4b53bb6ea1dec5de3377", "method": "GET", "route": "/api/v1/forecasts", "status": 200, "latency_seconds": 0.178988}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "2e5efdda1c994e7c9a8abba6f617b164", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001959}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "abd6255af822460e87558a4e3ade4c15", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001669}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "52e82bdd247348d5bcda3d24420cd8ff", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001574}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "f14a1710e5bf49e89830e2b89cd2e836", "method": "GET", "route": "/api/v1/pipeline", "status": 200, "latency_seconds": 0.001749}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/pipeline?replay_id=8d4aff0859d64fa6a557867f0283b12a "HTTP/1.1 200 OK"
+ok
+test_current_mode_rejects_past_override_and_reports_stale_data (test_reaudit.ReauditTests.test_current_mode_rejects_past_override_and_reports_stale_data) ... ok
+test_day_crash_retry_does_not_count_same_target_or_alert_twice (test_reaudit.ReauditTests.test_day_crash_retry_does_not_count_same_target_or_alert_twice) ... ok
+test_history_filters_other_dataset_and_preserves_all_prediction_versions (test_reaudit.ReauditTests.test_history_filters_other_dataset_and_preserves_all_prediction_versions) ... ok
+test_latest_comparison_uses_same_date_dataset_and_namespace (test_reaudit.ReauditTests.test_latest_comparison_uses_same_date_dataset_and_namespace) ... ok
+test_manifest_file_fingerprint_is_enforced (test_reaudit.ReauditTests.test_manifest_file_fingerprint_is_enforced) ... ok
+test_partial_replay_is_not_ready_and_cannot_advance (test_reaudit.ReauditTests.test_partial_replay_is_not_ready_and_cannot_advance) ... ok
+test_replay_history_keeps_unlabelled_next_day_point (test_reaudit.ReauditTests.test_replay_history_keeps_unlabelled_next_day_point) ... ok
+test_request_metrics_are_real_persisted_status_latency_and_alerts (test_reaudit.ReauditTests.test_request_metrics_are_real_persisted_status_latency_and_alerts) ... INFO:groundwatch.http:{"request_id": "746da7888fdf4ae2b2f6d8945a173c45", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.007231}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "f313b7fe067b4ca480450d4a0e2d7404", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000573}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "6cdfc101a3e54002b4493d8d5f0ae162", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000429}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "fb6430c265ab4dfb902a49152eb452cf", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000536}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "aa8299c88a454556a5cf6e2a70d6571a", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000491}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "e5d0fd9c91a64f25814509873a44e744", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000575}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "10863679de724cdca3ea26e2a46b24ba", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000444}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "b8fc2f2aa3b143989c3ce14fb20d3643", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000489}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "fc4af4b8a1a54455800c66fc195c1239", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000637}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "1338ad714a1944678dd136ec772b0141", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000505}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "76926c5d9ca94469ba34e59751e53813", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.003132}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "3fb5fac03f2948c4b744c99b7acf3e48", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000478}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "67a5f4a34f03464dac4119e950d34b86", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000437}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "d958f881ef4f4ad0bdce9971ffd6b6f2", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.00053}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "14f3d67f188744c0ba6f9baedbd69cfb", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000508}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "7e67e15cc3094d15b42640a767d4feac", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.00056}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "0e96e1afba5644539a55d361d00e12e4", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000546}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "363f26758d5d4d259bde9cbcbc353041", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000412}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "70e9400469e24a999a8c4c0484ee7ece", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000436}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "86b3013da67147d1ae61e8ddc8ad1603", "method": "GET", "route": "/api/v1/districts", "status": 200, "latency_seconds": 0.000433}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/districts "HTTP/1.1 200 OK"
+INFO:groundwatch.http:{"request_id": "f0d6cda3d0ff4cd5b3d7e3260a1855dc", "method": "GET", "route": "/api/v1/forecasts", "status": 422, "latency_seconds": 0.000484}
+INFO:httpx2:HTTP Request: GET http://testserver/api/v1/forecasts?as_of=invalid "HTTP/1.1 422 Unprocessable Content"
+INFO:httpx2:HTTP Request: GET http://testserver/metrics/summary "HTTP/1.1 200 OK"
+ok
+test_same_upload_is_idempotent_and_never_demotes_ready_data (test_reaudit.ReauditTests.test_same_upload_is_idempotent_and_never_demotes_ready_data) ... ok
+test_clock_persists_and_namespaces_are_independent (test_supply_simulation.SupplySimulationTests.test_clock_persists_and_namespaces_are_independent) ... ok
+test_original_replay_unchanged_and_synthetic_scenario_rejected (test_supply_simulation.SupplySimulationTests.test_original_replay_unchanged_and_synthetic_scenario_rejected) ... ok
+test_predict_before_reveal_and_advance_one_day (test_supply_simulation.SupplySimulationTests.test_predict_before_reveal_and_advance_one_day) ... ok
+
+----------------------------------------------------------------------
+Ran 117 tests in 35.867s
+
+OK (skipped=1)

@@ -6,11 +6,17 @@ export function sourceLabel(kind: unknown) {
 
 export function SourceInfo({ row }: { row: Row }) {
   const s = row.data_source || {};
+  if (s.kind === "observed_api") return <details>
+    <summary>{row.district_name || "선택 관측소"} · API 관측 출처</summary>
+    <p>서울시 VTsSec · 최근 관측일 {s.observed_through || "수집 대기"} · 수집 시각 {s.collected_at || "수집 대기"}</p>
+    <p>강수: 기상청 ASOS 서울 108 · 같은 날짜로 결합 · 빈 강수는 결측으로 유지합니다.</p>
+    <p>수위는 API 원값 그대로 별도 모델로 학습·예측하며 기존 gl.-m와 혼합하지 않습니다. 강수 결측은 모델 입력에서만 학습 구간 중앙값과 결측 표시로 처리합니다. 관측일·예측 대상일·수집 시각을 구분합니다.</p>
+  </details>;
   return <details>
     <summary>{row.district_name || "선택 관측소"} · 자료 출처와 기간</summary>
     <p>{sourceLabel(s.kind || row.source_kind)} · 실제 관측 종료 {s.observed_through || "확인 필요"} · 예측 입력 종료 {s.input_through || "확인 필요"}</p>
     <p>합성 입력 {s.synthetic_from && s.synthetic_through ? `${s.synthetic_from} ~ ${s.synthetic_through}` : "해당 기간 없음 또는 확인 필요"} · 자료 생성 시각 {s.generated_at || "확인 필요"}</p>
-    <p>외부 API 실측은 기본 예측 화면에 적용하지 않습니다. 입력 종료일은 실시간 수집을 뜻하지 않습니다.</p>
+    <p>이 시연 모델은 저장 자료를 사용합니다. 실제 API 학습·예측은 ‘실제 API 관측·예측’ 모드에서 확인하세요. 입력 종료일은 실시간 수집을 뜻하지 않습니다.</p>
   </details>;
 }
 

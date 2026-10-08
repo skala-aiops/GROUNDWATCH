@@ -71,6 +71,68 @@ def router_for(service):
     external = ExternalObservations(service.root)
     from serving_app.live_observations import LiveObservations
     live_service=LiveObservations(service)
+    from serving_app.api_observation_feed import ApiObservationFeed
+    feed=ApiObservationFeed(service.root)
+    from serving_app.api_feed_ops import ApiFeedOperations
+    native_ops=ApiFeedOperations(service)
+
+    @router.get('/api/v1/api-observations', tags=['external-data'])
+    def api_observations():
+        return feed.overview()
+
+    @router.get('/api/v1/api-observations/{code}/history', tags=['external-data'])
+    def api_observation_history(code: str):
+        code=checked_code(code)
+        result=feed.prediction_history(code)
+        rows={r['date']:r for r in result['history']}
+        for prediction in native_ops.records('api_forecast',code):
+            day=prediction['forecast_date']
+            if day not in rows:continue
+            row=rows[day]
+            row.setdefault('predictions',[]).append(prediction)
+            if day != result['history'][-1]['date']:
+                row.update(prediction=prediction['prediction'],prediction_kind='issued',
+                           prediction_model_version=prediction['model_version'])
+        return result
+
+    @router.get('/api/v1/api-observations/{code}/pipeline', tags=['external-data'])
+    def api_observation_pipeline(code: str):
+        return native_ops.pipeline(checked_code(code))
+
+    @router.post('/api/v1/api-observations/check', status_code=202, tags=['external-data'])
+    def check_api_observations():
+        return native_ops.enqueue_cycle()
+
+    @router.post('/api/v1/api-observations/refresh', status_code=202, tags=['external-data'])
+    def refresh_api_observations():
+        active=next((j for j in external.store.jobs() if j['kind']=='refresh_api_feed' and j['status'] in ('queued','running')),None)
+        return active or external.store.enqueue('refresh_api_feed',{},'api-feed-refresh')
+
+    @router.get('/api/v1/api-observations/collection-jobs', tags=['external-data'])
+    def api_collection_jobs():
+        return {'jobs':[j for j in external.store.jobs() if j['kind']=='refresh_api_feed']}
+
+    @router.post('/api/v1/api-observations/{code}/rollback', status_code=202, tags=['external-data'])
+    def rollback_api_observations(code: str, body: ReasonRequest):
+        code=checked_code(code)
+        import json
+        from serving_app.api_feed_models import NAMESPACE
+        path=service.root/'models'/NAMESPACE/f'{code}.json'
+        if not path.exists():raise HTTPException(422,'등록된 실제 API 모델이 없습니다.')
+        state=json.loads(path.read_text())
+        previous={h['to'] for h in state['history'] if h['to']!=state['champion']}
+        if not previous or (body.version and body.version not in previous):
+            raise HTTPException(422,'복귀할 이전 검증 모델이 없습니다.')
+        return service.store.enqueue('rollback_api_feed',{'namespace':NAMESPACE,'district_code':code,
+                      'version':body.version,'reason':body.reason},f'model:{NAMESPACE}:{code}')
+
+    @router.post('/api/v1/api-observations/train', tags=['external-data'])
+    def train_api_observations():
+        from serving_app.api_feed_models import ApiFeedTraining
+        trainer = ApiFeedTraining(service.root)
+        job = trainer.enqueue_if_due(service, feed, retry_failed=True)
+        return JSONResponse(status_code=202 if job else 200,
+                            content=job or {'status':'up_to_date', 'training':trainer.read().get('status','data_required')})
 
     @router.get('/api/v1/external-sources', tags=['external-data'])
     def external_sources():
