@@ -6,7 +6,7 @@
 
 - 이 저장소는 GroundWatch 팀 개발용입니다. 팀 방향은 지하수위 변화 감시이며 싱크홀 발생 확률 예측을 완료했다고 설명하지 않습니다.
 - 실행 진입점은 GroundWatch 지하수 도메인 API입니다. 미사용 교수자 HAIC 실습 코드·샘플·전용 테스트는 사용자 요청으로 팀 저장소에서 제거했습니다. 원본 출처와 별도 보존 위치는 docs/team-guide.md에서 확인합니다.
-- 작업 전 `docs/team-guide.md`, `proposal.md`, `docs/contracts.md`, `TODO.md`를 함께 읽습니다. 실제 실행·평가 상태는 `evidence/README.md`에서 확인하고 구현 파일 존재만으로 학습·과제 완료를 주장하지 않습니다.
+- 작업 전 `README.md`, `docs/team-guide.md`, `docs/contracts.md`, `docs/operations.md`를 함께 읽습니다. 실제 실행·평가 상태는 `evidence/README.md`에서 확인하고 구현 파일 존재만으로 학습·과제 완료를 주장하지 않습니다.
 - 확인되지 않은 단위·관측소를 확정하거나 결측 강수를 0으로 채우지 않습니다. 합성 검증 자료와 실제 관측 자료의 모델·이력을 분리합니다. 대표 관측소 manifest의 승인 상태를 임의 변경하지 않습니다.
 - 출처와 직접 변경 범위는 `docs/team-guide.md#교수님-원본과-달라진-점`를 확인합니다.
 
@@ -227,6 +227,6 @@ GROUNDWATCH 저장소 AGENTS.md를 읽고 병합 절차를 따라주세요.
 
 ## 문서 기준과 변경 규칙
 
-README는 소개·실행·문서/제출자료 진입점, proposal.md는 과제 필수 6항목과 팀원, docs/team-guide.md는 사용법·전체 로직·원본 비교, docs/operations.md는 정책·장애 대응, docs/contracts.md는 API·날짜 계약, data/README.md는 원천·단위·합성 생성식의 기준입니다. evidence/README.md는 최신 결과의 짧은 목록이고 과거 기록은 evidence/records/에 보존합니다. TODO.md에는 미완료 다음 행동만 둡니다.
+README는 소개·실행·문서/제출자료 진입점, output/source/의 제출명 PPTX는 과제 필수 6항목과 팀원을 담은 제안서 편집 기준이고 output/final/의 동일 이름 PDF는 제출본이며, docs/team-guide.md는 사용법·전체 로직·원본 비교, docs/operations.md는 정책·장애 대응, docs/contracts.md는 API·날짜 계약, data/README.md는 원천·단위·합성 생성식의 기준입니다. evidence/README.md는 최신 결과의 짧은 목록이고 과거 기록은 evidence/records/에 보존합니다. 미완료 사항은 docs/operations.md의 ‘운영 전 추가 확인’에 통합합니다. 별도 proposal.md·TODO.md는 만들지 않습니다.
 
 변경 때 새 설명 파일을 추가하지 않고 기준 문서를 갱신합니다. 다른 문서에는 요약과 링크를 사용합니다. 과거 설계는 docs/archive/에 두고 현재 실행 지침으로 참조하지 않습니다. output/final/에는 제출 파일, output/source/에는 발표 편집 원문을 두며 버전별로 동일 기획서를 복사하지 않습니다. 이동·통합 후 Markdown 링크와 과제 필수 항목·팀원·증거를 확인합니다.
