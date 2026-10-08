@@ -137,6 +137,9 @@ class ModelTests(unittest.TestCase):
         result = self.manager.evaluate_candidate('11110', version, new)
         self.assertEqual(result['status'], 'rejected')
         self.assertEqual(result['metrics']['shadow_candidate']['count'],30)
+        self.assertFalse(result['gates']['future_improvement']['passed'])
+        self.assertEqual(result['gates']['future_improvement']['limit'],
+                         result['metrics']['shadow_champion']['rmse']*.95)
         self.assertEqual(self.manager.predict('11110', rows()[-20:])['model_version'], '1')
 
     def test_post_promotion_tracking_failure_preserves_success_and_shadow_result(self):
@@ -151,6 +154,7 @@ class ModelTests(unittest.TestCase):
         self.backend.record_evaluation=record
         result=self.manager.evaluate_candidate('11110',candidate['candidate_version'],rows(50,start=date(2021,1,25)))
         self.assertEqual(result['status'],'promoted')
+        self.assertTrue(all(g['passed'] for g in result['gates'].values()))
         self.assertEqual(self.manager.current_version('11110'),'2')
         self.assertIn('tracking_warning',result)
         self.assertEqual(self.manager.list_models()[0]['versions']['2']['shadow_result']['status'],'promoted')

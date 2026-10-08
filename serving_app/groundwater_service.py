@@ -162,10 +162,26 @@ class GroundwaterService:
             value['source_kind'] = ('synthetic' if replay and replay.get('synthetic') else entry.get('source_kind', 'observed')) if entry else None
             if entry:
                 rows = [r for r in self.records(entry['id'], code, replay) if r['date'] <= as_of]
+                provenance = self.dataset(entry['id']).manifest.get('provenance', {})
+                interval = provenance.get('intervals', {}).get(code, {})
+                def modified(r):
+                    return bool(replay and replay['scenario']=='level_shift' and r['date']>=replay['shift_start'])
+                observed = [r['date'] for r in rows if r.get('origin', entry.get('source_kind')) == 'observed' and not modified(r)]
+                synthetic = [r['date'] for r in rows if r.get('origin', entry.get('source_kind')) == 'synthetic' or modified(r)]
+                value['data_source'] = {
+                    'kind': value['source_kind'], 'observed_through': max(observed, default=None),
+                    'input_through': rows[-1]['date'] if rows else None,
+                    'contains_synthetic': bool(synthetic) or bool(replay and replay.get('synthetic')),
+                    'synthetic_from': min(synthetic, default=None),
+                    'synthetic_through': max(synthetic, default=None),
+                    'original_observed_through': interval.get('observed_through') or max(
+                        (r['date'] for r in rows if r.get('origin', entry.get('source_kind'))=='observed'), default=None),
+                    'generated_at': provenance.get('generated_at') or entry.get('generated_at'), 'registered_at': entry.get('created_at'),
+                    'external_api_applied': False}
                 if rows:
                     value.update(observed_date=rows[-1]['date'], unit=rows[-1]['level_unit'],
                                  freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days,
-                                 input_origin=rows[-1].get('origin', entry.get('source_kind', 'observed')))
+                                 input_origin='synthetic' if modified(rows[-1]) else rows[-1].get('origin', entry.get('source_kind', 'observed')))
                 value['latest_comparison'] = None
                 if rows:
                     observed = rows[-1]
@@ -290,10 +306,13 @@ class GroundwaterService:
                 continuous = len(rows)==20 and rows[-1]['date']==latest and all(
                     date.fromisoformat(rows[i+1]['date'])-date.fromisoformat(rows[i]['date'])==timedelta(days=1) for i in range(19))
                 forecast_count += int(continuous)
-                details.append({'district_code':code,'model_ready':True,'input_ready':continuous})
+                reason = None if continuous else ('input_insufficient' if len(rows)<20 else
+                         'input_end_mismatch' if rows[-1]['date']!=latest else 'input_date_gap')
+                details.append({'district_code':code,'model_ready':True,'input_ready':continuous,
+                                'reason':reason,'input_end_date':rows[-1]['date'] if rows else None})
             except Exception as error:
-                details.append({'district_code':code,'model_ready':False,'reason':str(error)})
-        return {'status':'ready' if count==25 else 'data_or_model_required','ready_count':count,
+                details.append({'district_code':code,'model_ready':False,'input_ready':False,'reason':str(error)})
+        return {'status':'ready' if count==25 and forecast_count==25 else 'data_or_model_required','ready_count':count,
                 'forecast_ready_count':forecast_count,'total':25,'dataset_ready':True,'as_of':latest,'districts':details}
 
     def monitoring(self, replay_id=None):
@@ -336,12 +355,18 @@ class GroundwaterService:
             if candidate_rmse is not None and champion_rmse is not None:
                 outcome = '기준 통과' if cycle_promoted else '기준 미충족 · 기존 모델 유지'
                 evaluation_detail = f'새 모델 RMSE {candidate_rmse:.4g} · 기존 {champion_rmse:.4g} · {outcome}'
+                failed_gates = [label for key,label in (
+                    ('future_improvement','향후 구간 5% 개선 미충족'),
+                    ('historical_guard','기존 구간 오차 110% 조건 미충족'))
+                    if current_evaluation['result'].get('gates',{}).get(key,{}).get('passed') is False]
+                if failed_gates:
+                    evaluation_detail += ' · ' + ' · '.join(failed_gates)
         retrain_detail = '드리프트 감지 후 자동 접수'
         if fine:
             retrain_detail = fine['error'] or ('후보 학습 완료 · 이후 정답으로 평가' if fine['status']=='completed' else fine['id'])
         stages=[
             {'key':'data','title':'자료 검증','status':'completed' if entry and entry['status']=='ready' else 'pending','detail':entry['id'][:12] if entry else '자료 등록 필요'},
-            {'key':'monitor','title':'오차 감시','status':'completed' if monitor.get('rmse') is not None else 'pending','detail':f"정답 {len({f['forecast_date'] for f in labelled})}일 · 21일 창 · 임계값 {model.get('threshold','미정')}"},
+            {'key':'monitor','title':'오차 감시','status':'completed' if monitor.get('rmse') is not None else 'pending','detail':f"정답 {len({f['forecast_date'] for f in labelled})}일 · 21일 창 · RMSE {monitor.get('rmse','평가 대기')} · 임계값 {model.get('threshold','미정')}"},
             {'key':'drift','title':'드리프트 감지','status':'completed' if quality else 'pending','detail':quality['message'] if quality else f"21일 오차 기준 연속 {monitor.get('breaches',0)}/2회 초과 · 정답 21일 확보 후 판정"},
             {'key':'retrain','title':'자동 재학습','status':fine['status'] if fine else 'pending','detail':retrain_detail},
             {'key':'evaluate','title':'후보 평가','status':'pending' if pending else current_evaluation['result']['status'] if current_evaluation else 'pending','detail':f"후보 v{pending} · 후속 정답 {pending_days}/30일 대기" if pending else evaluation_detail},

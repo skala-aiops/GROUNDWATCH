@@ -69,4 +69,12 @@ def build_extension(source, manifest_path, output_dir, end_date=None):
     path, mapping = folder/'observations.csv', folder/'manifest.json'
     path.write_bytes(content)
     mapping.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+    # Keep timestamps outside the deterministic CSV/manifest identity. Reusing
+    # identical generated content must not enqueue another training job.
+    stamp_path = folder/'generation.json'
+    identity = hashlib.sha256(content+mapping.read_bytes()).hexdigest()
+    stamp = json.loads(stamp_path.read_text()) if stamp_path.exists() else {}
+    if stamp.get('identity') != identity:
+        stamp_path.write_text(json.dumps({'identity':identity,
+            'generated_at':datetime.now(ZoneInfo('UTC')).isoformat()},indent=2)+'\n')
     return path, mapping

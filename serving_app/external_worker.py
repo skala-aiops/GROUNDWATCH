@@ -1,4 +1,4 @@
-"""학습 worker와 분리한 외부 관측 수집 worker. 정기 수집은 검증 뒤 추가합니다."""
+"""학습 worker와 분리한 외부 관측 수집·일별 발행 worker. 검증 매핑만 사용합니다."""
 import os
 import signal
 import time
