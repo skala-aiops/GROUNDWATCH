@@ -11,7 +11,7 @@ def main():
     # Only the explicitly approved, bundled official data may bootstrap training.
     # A failed/interrupted job is retained and never silently retried on restart.
     import hashlib
-    from serving_app.groundwater_service import GroundwaterService
+    from backend.groundwater_service import GroundwaterService
     source = Path('data/groundwater_observations.csv')
     manifest = Path('data/representatives.json')
     if source.exists() and manifest.exists():
@@ -45,15 +45,15 @@ def main():
         entry = service.store.get('dataset', dataset_id)
         entry['generated_at'] = stamp['generated_at']
         service.store.put('dataset', entry, dataset_id)
-    children = [subprocess.Popen([sys.executable, '-m', 'serving_app.groundwater_worker']),
-                subprocess.Popen([sys.executable, '-m', 'serving_app.external_worker']),
-                subprocess.Popen([sys.executable, '-m', 'serving_app.national_worker']),
-                subprocess.Popen([sys.executable, '-m', 'serving_app.weather_worker']),
-                subprocess.Popen([sys.executable, '-m', 'serving_app.national_observation_worker']),
+    children = [subprocess.Popen([sys.executable, '-m', 'backend.groundwater_worker']),
+                subprocess.Popen([sys.executable, '-m', 'backend.external_worker']),
+                subprocess.Popen([sys.executable, '-m', 'backend.national_worker']),
+                subprocess.Popen([sys.executable, '-m', 'backend.weather_worker']),
+                subprocess.Popen([sys.executable, '-m', 'backend.national_observation_worker']),
                 subprocess.Popen([sys.executable, 'scripts/evaluate_national_seasons.py', '--worker']),
                 subprocess.Popen([sys.executable, 'scripts/evaluate_national_seasons.py', '--worker', '--source-kind', 'synthetic',
                                   '--max-epochs', os.getenv('GROUNDWATCH_SIMULATION_TRAIN_EPOCHS', '10')]),
-                subprocess.Popen([sys.executable, '-m', 'uvicorn', 'serving_app.main:app',
+                subprocess.Popen([sys.executable, '-m', 'uvicorn', 'backend.main:app',
                                   '--host', '0.0.0.0', '--port', '8099', '--workers', '1'])]
     stopping = False
     requested_stop = False

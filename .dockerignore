@@ -16,8 +16,8 @@ data/uploads/*.csv
 docs
 
 # Models are initialized inside the persistent Docker volume
-serving_app/models/*
-!serving_app/models/.gitkeep
+backend/models/*
+!backend/models/.gitkeep
 
 # Review documents and captured evidence are not application runtime inputs
 evidence
@@ -29,4 +29,16 @@ TODO.md
 # Frontend build dependencies are installed inside the build stage
 **/node_modules
 **/dist
-output
+deliverables
+
+# Development/test caches and browser reports are not image inputs
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.tsbuildinfo
+**/coverage
+**/playwright-report
+**/blob-report
+**/test-results
+**/.test-results
+**/playwright/.auth

@@ -18,7 +18,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from serving_app.national_sources import collect_aws_daily, parse_aws_daily
+from backend.national_sources import collect_aws_daily, parse_aws_daily
 
 CANDIDATES = {'601739':'549','11775':'699','95537':'890'}
 

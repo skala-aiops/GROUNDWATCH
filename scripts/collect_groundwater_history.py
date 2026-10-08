@@ -3,7 +3,7 @@ import argparse,json,os,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from serving_app.national_sources import collect_kwater
+from backend.national_sources import collect_kwater
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

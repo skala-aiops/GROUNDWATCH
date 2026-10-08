@@ -2,7 +2,20 @@
 
 최종 제출본의 동작 검증 진입점입니다. 원문 응답·실패 결과·합성/실측 구분을 보존합니다.
 
-## 제출본 기준 통합 검증
+## 최신 구조 개편 검증 — 2026-10-09
+
+- [최종 검증 결과](records/2026-10-09-final/verification.json): Python245통과·1skip, 프론트 단위35·통합5·Chrome E2E4통과, 호환 화면·production build 통과.
+- [실제 UI·API](records/2026-10-09-final/live-ui.json): 최신 Docker 이미지, 별도 복사 볼륨, 서울25개 고정 관측소·3D/2D·모델 관리·모바일 확인. 페이지 오류0건.
+- [관측소 현황](records/2026-10-09-final/overview-slide.png) · [저장 모델 수위 비교](records/2026-10-09-final/detail-slide.png) · [모바일](records/2026-10-09-final/mobile.png).
+- 생존200·현재 준비503을 구분하고 저장 자료 모드(2026-07-31 입력 → 08-01 예측)의 모델v1·실제 예측을 확인했습니다. 재기동 후 같은 버전·예측·자료를 유지했습니다. 신규 실측 성능이나 미래30일 승격의 증거는 아닙니다.
+
+## 최신 제출 소스 검증 — 2026-10-09
+
+- [최신 검증 결과](records/2026-10-09-final/verification.json): 백엔드245통과·1skip(선택적 실제 TensorFlow 학습 smoke), 프론트 단위35·통합5·E2E4통과, 호환 화면·production build 통과.
+- [최신 관제 화면](records/2026-10-09-final/overview-slide.png): 복사한 격리 볼륨에서 실제 HTTP·화면·모바일·3D/2D 확인. 외부 수집·추가 학습은 비활성화한 검증이며 새 성능 평가가 아님.
+- Docker 빌드·기동·재기동 후 저장된 과거 예측의 버전·값 일치 확인. live200·ready503으로 현재 입력·모델 준비 부족을 유지.
+
+## 이전 통합 검증 — 2026-10-08
 
 - [통합 실제 HTTP](records/2026-10-08-national/integration-final-http.json): 생존200·화면200·목록/이력/파이프라인200. ready503은 관측일·모델 준비 조건 미충족이며 Docker health와 구분합니다. 10월9일 확인에서 서울 실제 API는 키 미준비로 관측/예측0곳, 전날 입력은 STALE로 표시했습니다.
 - [실제 API 대기 화면](records/2026-10-08-national/integration-native-api.png): 미준비 수치와7단계 대기 상태를 표시합니다.
@@ -25,4 +38,8 @@
 - [전국3곳 실측 계절 비교](records/2026-10-08-national/seasonal-evaluation.json): 제주 개선·다른2곳 악화, 계절 표본 부족·운영 미승인.
 - [ASOS 원천 대조](records/2026-10-08-national/asos-hub-reconciliation.json): 활용 승인 후 실제 응답, 빈값을0으로 대체하지 않음.
 
-단계별 테스트·화면·환경 중단·재개와 과거 상태는 [날짜별 기록](records/2026-10-08.md)에 보존합니다. 현재 기획·API·자료·운영 기준은 각각 [제안서 PDF](../output/final/AIOps_조별%20과제_광주_3반_GroundWatch.pdf), [API 계약](../docs/contracts.md), [데이터 설명](../data/README.md), [운영 기준](../docs/operations.md)을 따릅니다.
+단계별 테스트·화면·환경 중단·재개와 과거 상태는 [날짜별 기록](records/2026-10-08.md)에 보존합니다. 현재 기획·API·자료·운영 기준은 각각 [제안서 PDF](../deliverables/final/AIOps_조별%20과제_광주_3반_GroundWatch.pdf), [API 계약](../docs/contracts.md), [데이터 설명](../data/README.md), [운영 기준](../docs/operations.md)을 따릅니다.
+
+## 기록 보존 기준
+
+문서에서 참조하는 검증 결과와 과거 실패·한계 기록은 보존합니다. 참조 없는 동일 내용의 캡처 `reaudit-pipeline.png`는 제거하고 동일 원본 `reaudit-operations.png`를 유지했습니다. 특정 로컬 DB namespace에 고정된 일회성 분석 도구 `scripts/analyze_monitor_policy.py`는 제거했으며 기존 검증 결과는 변경하지 않았습니다.

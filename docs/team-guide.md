@@ -64,18 +64,24 @@ Jotai는 조회·관측소 선택 상태를 관리하고 Three.js 장면은 별�
 
 기반은 사용자 제공 `project.zip`의 학습용 HAIC 스켈레톤입니다. 팀 저장소에서는 미사용 HAIC 가격 예측 코드·샘플·전용 테스트를 제거했습니다. 원본의 가격 임계값·41행 실습 성능을 지하수 성능으로 설명하지 않습니다. 원본 위치는 과제 루트의 `individual/practice/project/`이며 팀 코드와 구분합니다. 팀 역할 배정과 각자의 직접 작성 성과도 구분합니다.
 
-## 파일별 책임
+## 개발 문서
 
-| 위치 | 책임 |
+코드 배치·컨벤션·테스트 명령은 [프론트엔드 README](../frontend/README.md)와 [백엔드 README](../backend/README.md)를 따릅니다. 전체 디렉터리 구조는 [루트 README](../README.md#디렉터리-구조)에 있습니다. 이 문서는 사용자 흐름·도메인 로직·원본과의 차이를 설명합니다.
+
+## 과제 요구사항과 확인 위치
+
+통합 가이드의 조별 평가 기준(7쪽)과 기획서 필수 6항목(18~19쪽)에 맞춰 확인합니다. 개인 HAIC 실습 증거는 팀 과제 완료 근거로 합치지 않습니다.
+
+| 필수 항목 | 확인 위치 |
 | --- | --- |
-| `scripts/start_container.py` | 기동 시 자료 준비와 API·worker 실행 |
-| `data/groundwater.py`, `data/current_extension.py` | 정규 자료 검증·윈도우·합성 확장 |
-| `serving_app/groundwater_api.py` | HTTP 입력 검증과 응답 |
-| `groundwater_service.py`, `groundwater_store.py` | 예측·작업·시연·이력 저장 |
-| `groundwater_models.py`, `groundwater_worker.py` | 학습·서빙·후보 평가·작업 실행 |
-| `external_*`, `live_observations.py` | 기본 경로와 분리된 외부 원천 진단·수집 |
-| `frontend/` | React 사용자 화면·3D·안내·진행·비교 표시 |
-| `serving_app/static/` | /legacy/에 보존한 이전 화면 |
+| ① 이해관계자·Pain Point | 루트 README의 프로젝트 소개, 제출 제안서 |
+| ② AI 솔루션·운영 목표 | README의 AIOps·주요 기능, operations의 운영 목표·서비스 지표 |
+| ③ 게이트·임계값·자동 대응 | operations의 초기 게이트·감지·후보 평가·교체·복귀 |
+| ④ 데이터부터 재학습까지 구성도 | README 전체 구조도, 제출 제안서 |
+| ⑤ 실제 API와 오류 응답 | contracts와 실행 중 `/docs` |
+| ⑥ 상태 변화가 드러나는 동작 증거 | evidence의 실제 HTTP·화면·승격·탈락 기록 |
+
+AIOps의 핵심 확인은 관찰(서비스 지표·정답 오차) → 판단(임계값·연속 초과·게이트) → 행동(알림·재학습·승격 또는 유지)이 연결되는지입니다. MLflow 등록과 Docker 실행은 이 루프의 기반이며, 그것만으로 자동 대응 완료를 판단하지 않습니다. 증거의 실측·합성 구분과 남은 확인은 [실행 증거](../evidence/README.md)와 [운영 전 추가 확인](operations.md#운영-전-추가-확인)을 따릅니다.
 
 ## 발표에서 설명할 순서
 
@@ -260,7 +266,7 @@ Compose의 `GROUNDWATCH_NATIONAL_SIMULATION_ENABLED=true`가 전국 시나리오
 
 학습 worker는 공통 파일 잠금으로 TensorFlow 작업을 직렬화하며 작업마다 새 프로세스를 사용합니다. 작업 중단 이력은 `interrupted`로 보존하고 자동으로 다시 학습하지 않습니다. 실패·중단 작업의 재요청은 작업 API에서 명시적으로 수행합니다. 합성 다년 비교는 `GROUNDWATCH_SYNTHETIC_SEASONAL_EVALUATION_ENABLED=true`일 때 일반 학습 큐가 비면 실행하며, 모델별 하위 프로세스와 결과 캐시를 사용합니다.
 
-API허브 ASOS 일자료 활용 승인과 실제 응답을 확인했습니다. 2020~2025년3지점 자료는 유효2,731행·결측3,845행이며 원천 음수 결측을0으로 채우지 않았습니다. 원천 확보를 연속6년 모델 입력이나 전국 실측 완비로 설명하지 않습니다. 원천·교차 대조는 [데이터 기준](../data/README.md)을 따릅니다. 이번 구현은 Python245개 통과·1skip, 프런트32개 통과와 production build를 확인했습니다. 전국 합성17개 시나리오의 M0·M1 총34개 다년 평가도 완료했습니다. 전체 pooled RMSE는0.04083→0.04066m로 소폭 감소했지만5%개선 관측소는0곳이며 장마·강한 강수 pooled RMSE는 악화됐습니다. 장마 정확도 개선이나 실측 운영 승격 성과로 설명하지 않습니다. [평가 근거](../evidence/records/2026-10-08-national/synthetic-seasonal-summary.json)를 확인하세요.
+API허브 ASOS 일자료 활용 승인과 실제 응답을 확인했습니다. 2020~2025년3지점 자료는 유효2,731행·결측3,845행이며 원천 음수 결측을0으로 채우지 않았습니다. 원천 확보를 연속6년 모델 입력이나 전국 실측 완비로 설명하지 않습니다. 원천·교차 대조는 [데이터 기준](../data/README.md)을 따릅니다. 2026-10-08 전국 통합 당시 Python245개 통과·1skip, 프런트32개 통과와 production build를 확인했습니다. 최신 구조 개편과 테스트 결과는 [실행 증거](../evidence/README.md)를 따릅니다. 전국 합성17개 시나리오의 M0·M1 총34개 다년 평가도 완료했습니다. 전체 pooled RMSE는0.04083→0.04066m로 소폭 감소했지만5%개선 관측소는0곳이며 장마·강한 강수 pooled RMSE는 악화됐습니다. 장마 정확도 개선이나 실측 운영 승격 성과로 설명하지 않습니다. [평가 근거](../evidence/records/2026-10-08-national/synthetic-seasonal-summary.json)를 확인하세요.
 
 
 ## 실제 API 관측 경로

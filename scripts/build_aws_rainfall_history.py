@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from serving_app.national_sources import parse_aws_daily
+from backend.national_sources import parse_aws_daily
 
 
 def build(cache_root, *, root=ROOT, start=None, end=None):

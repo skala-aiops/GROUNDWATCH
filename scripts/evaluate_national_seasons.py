@@ -8,8 +8,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from serving_app.national_models import NationalModelManager, _score
-from serving_app.national_service import NationalService
+from backend.national_models import NationalModelManager, _score
+from backend.national_service import NationalService
 
 
 def _hash(value):
@@ -73,7 +73,7 @@ def _run(service, state_root, max_epochs=30, manager_factory=NationalModelManage
     split_config=dict(split_config or {})
     root=Path(state_root); report_path=root/('synthetic_seasonal_evaluation.json' if source_kind=='synthetic' else 'seasonal_evaluation.json')
     code_hash=_hash({name:hashlib.sha256((Path(__file__).resolve().parents[1]/name).read_bytes()).hexdigest()
-        for name in ('serving_app/national_models.py','scripts/evaluate_national_seasons.py')})
+        for name in ('backend/national_models.py','scripts/evaluate_national_seasons.py')})
     report=json.loads(report_path.read_text()) if report_path.exists() else {}
     if report.get('model_code_sha256') != code_hash or report.get('max_epochs') != max_epochs or report.get('source_kind','observed') != source_kind or report.get('split_config',{}) != split_config or report.get('station_ids') != station_ids:
         if report:
@@ -174,7 +174,7 @@ def run(service,state_root,max_epochs=30,manager_factory=NationalModelManager,
     # One experiment writer across startup, manual container checks and restarts.
     import fcntl
     root=Path(state_root);root.mkdir(parents=True,exist_ok=True)
-    from serving_app.worker_runtime import tensorflow_worker_lock
+    from backend.worker_runtime import tensorflow_worker_lock
     with tensorflow_worker_lock(root), (root/('synthetic_seasonal_evaluation.lock' if source_kind=='synthetic' else 'seasonal_evaluation.lock')).open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX)
         return _run(service,state_root,max_epochs,manager_factory,source_kind,split_config,station_ids,max_variants)
@@ -192,7 +192,7 @@ def mark_interrupted(report_path):
 
 
 def run_variant_child(state_root,max_epochs,source_kind,split_config,station_ids,stop_requested=lambda:False):
-    from serving_app.worker_runtime import run_isolated
+    from backend.worker_runtime import run_isolated
     command=[sys.executable,str(Path(__file__).resolve()),'--once','--state-root',str(state_root),
              '--max-epochs',str(max_epochs),'--source-kind',source_kind]
     for key,value in (split_config or {}).items():command.extend(['--'+key.replace('_','-'),value])
@@ -215,7 +215,7 @@ def worker(state_root,max_epochs,source_kind='observed',split_config=None,statio
         page=service.repo.list_stations(limit=200)
         stations=[s for s in page['items'] if s.get('source_contract_verified') and s.get('mapping_status')==('synthetic' if source_kind=='synthetic' else 'experimental') and s.get('source_kind','observed')==source_kind and (station_ids is None or s['station_id'] in station_ids)]
         # Bootstrap's ordinary model jobs take precedence over this isolated experiment.
-        from serving_app.worker_runtime import has_pending_jobs
+        from backend.worker_runtime import has_pending_jobs
         busy=has_pending_jobs(service.store)
         complete=len(stations)>=(len(station_ids) if station_ids else 17 if source_kind=='synthetic' else 3)
         if complete:

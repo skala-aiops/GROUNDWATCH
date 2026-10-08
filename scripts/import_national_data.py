@@ -6,8 +6,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from serving_app.national_sources import import_csv, collect_asos, collect_kwater, import_kma_rainy_csv
-from serving_app.external_observations import SourceError
+from backend.national_sources import import_csv, collect_asos, collect_kwater, import_kma_rainy_csv
+from backend.external_observations import SourceError
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         elif args.command=='kma-rainy':
             result=import_kma_rainy_csv(args.path,output_dir=args.output_dir)
             if args.repository:
-                from serving_app.national_repository import NationalRepository
+                from backend.national_repository import NationalRepository
                 repo=NationalRepository(args.repository)
                 for item in result['accepted']:repo.add_rainy_period(item)
                 result['imported_rows']=len(result['accepted'])

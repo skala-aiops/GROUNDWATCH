@@ -2,7 +2,7 @@
 import argparse,json,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from serving_app.national_sources import collect_forecast_pages,parse_forecast_pages
+from backend.national_sources import collect_forecast_pages,parse_forecast_pages
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

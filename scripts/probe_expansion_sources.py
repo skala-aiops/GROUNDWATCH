@@ -8,7 +8,7 @@ import requests
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from scripts.import_official_groundwater import parse_chart
-from serving_app.national_sources import collect_kwater
+from backend.national_sources import collect_kwater
 SEOUL_URL='https://swo.seoul.go.kr/ugrwtr/retrieveAsstnObsrDta.do'
 
 
