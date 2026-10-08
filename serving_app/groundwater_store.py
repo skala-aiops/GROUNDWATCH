@@ -165,6 +165,7 @@ class Store:
                 'error_rate':errors/len(rows) if rows else None,
                 'success_rate':1-errors/len(rows) if rows else None,
                 'throughput_per_second':len(rows)/seconds,
+                'mean_seconds':sum(values)/len(values) if values else None,
                 'p95_seconds':values[max(0,math.ceil(len(values)*.95)-1)] if values else None}
 
     @staticmethod

@@ -6,7 +6,8 @@ import hashlib
 import json
 import math
 from dataclasses import asdict, dataclass, field
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 _NAMES = ('종로구','중구','용산구','성동구','광진구','동대문구','중랑구','성북구','강북구','도봉구','노원구','은평구','서대문구','마포구','양천구','강서구','구로구','금천구','영등포구','동작구','관악구','서초구','강남구','송파구','강동구')
@@ -25,6 +26,7 @@ class Observation:
     rainfall_mm: float
     level_unit: str
     dataset_version: str
+    origin: str = "observed"
 
     def to_dict(self):
         value = asdict(self)
@@ -51,7 +53,9 @@ class CanonicalDataset:
                 'level_unit': records[0].level_unit if records else station.get('level_unit'),
                 'dataset_version': self.dataset_version,
                 'mapping_version': self.manifest.get('mapping_version'),
-                'manifest_approved': self.manifest.get('approved') is True}
+                'manifest_approved': self.manifest.get('approved') is True,
+                'source_kind': self.manifest.get('source_kind', 'observed'),
+                'provenance': self.manifest.get('provenance', {})}
 
 
 def validate_manifest(manifest, require_all=True):
@@ -114,7 +118,7 @@ def load_canonical(path, manifest_path=None, *, require_all=False):
                 day = date.fromisoformat(row['date'])
                 if day.isoformat() != row['date']:
                     raise ValueError('Expected ISO YYYY-MM-DD')
-                if day > date.today():
+                if day > datetime.now(ZoneInfo("Asia/Seoul")).date():
                     raise ValueError('Future observation date')
                 code = row['district_code'].strip()
                 if code not in DISTRICT_CODES:
@@ -122,7 +126,12 @@ def load_canonical(path, manifest_path=None, *, require_all=False):
                 level, rain = float(row['groundwater_level']), float(row['rainfall_mm'])
                 if not math.isfinite(level) or not math.isfinite(rain) or rain < 0:
                     raise ValueError('Values must be finite and rainfall nonnegative')
-                record = Observation(row['station_id'].strip(), code, day, level, rain, row['level_unit'].strip(), version)
+                origin = row.get('origin') or manifest.get('source_kind', 'observed')
+                if origin not in ('observed', 'synthetic'):
+                    raise ValueError('origin must be observed or synthetic')
+                if manifest.get('source_kind', 'observed') == 'observed' and origin != 'observed':
+                    raise ValueError('Synthetic rows require synthetic dataset namespace')
+                record = Observation(row['station_id'].strip(), code, day, level, rain, row['level_unit'].strip(), version, origin)
                 groups.setdefault((record.station_id, day), []).append(record)
             except (ValueError, TypeError) as exc:
                 if len(errors) < 100:
@@ -262,7 +271,7 @@ def convert_korean_source(source_path, output_path, manifest, rainfall_path=None
                 day = date(int(raw[:4]),int(raw[4:6]),int(raw[6:8]))
                 rain = float(row['일일강수량'])
                 name = row.get('강수량_측정소이름','').strip()
-                if name and day <= date.today() and math.isfinite(rain) and rain >= 0:
+                if name and day <= datetime.now(ZoneInfo("Asia/Seoul")).date() and math.isfinite(rain) and rain >= 0:
                     rain_groups.setdefault((name,day),set()).add(rain)
             except (ValueError,TypeError):
                 continue
@@ -275,7 +284,7 @@ def convert_korean_source(source_path, output_path, manifest, rainfall_path=None
                 try:
                     day = date.fromisoformat(row['date'])
                     rain = float(row['rainfall_mm'])
-                    if day <= date.today() and math.isfinite(rain) and rain >= 0:
+                    if day <= datetime.now(ZoneInfo("Asia/Seoul")).date() and math.isfinite(rain) and rain >= 0:
                         rain_groups.setdefault((row['rainfall_station_id'],day),set()).add(rain)
                 except (ValueError,TypeError):
                     continue
@@ -299,7 +308,7 @@ def convert_korean_source(source_path, output_path, manifest, rainfall_path=None
                     raise ValueError('Expected YYYYMMDD')
                 day = date(int(raw[:4]),int(raw[4:6]),int(raw[6:8]))
                 level = float(row['지하수위'])
-                if day > date.today() or not math.isfinite(level):
+                if day > datetime.now(ZoneInfo("Asia/Seoul")).date() or not math.isfinite(level):
                     raise ValueError('Invalid value/date')
             except (ValueError,TypeError):
                 skipped['invalid_water_or_date'] += 1

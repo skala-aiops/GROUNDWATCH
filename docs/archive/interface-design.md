@@ -1,4 +1,4 @@
-> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](../public-agency-service-review.md)와 [팀 로직 설명](../team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
+> 이전 설계·검수 기록입니다. 현재 기준은 [서비스 정리 설계](2026-10-08-before-cleanup/public-agency-service-review.md)와 [팀 로직 설명](2026-10-08-before-cleanup/team-logic-guide.md), 실제 계약·실행 증거를 확인하세요.
 
 # 화면 설계 방향
 

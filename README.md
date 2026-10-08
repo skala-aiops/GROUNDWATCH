@@ -1,120 +1,52 @@
-# GROUNDWATCH 팀 협업 안내
+# GroundWatch
 
-작업 전 [AGENTS.md](AGENTS.md)를 읽어주세요. 브랜치·커밋·병합 규칙과 AI 공용 프롬프트가 들어 있습니다.
+서울 25개 구 대표 관측소의 최신 가용 관측 다음 날 지하수위를 예측하고, 서비스 운영자가 모델 오차와 재학습 상태를 확인하는 SKALA 팀 과제 시제품입니다. 기본 화면은 서울시 지하수·기상청 강수 API 자료로 학습한 별도 모델을 사용합니다. 공식 과거 CSV와 과제용 합성 확장은 별도 시연 모드에 보존합니다. 현장 안전 등급이나 싱크홀 발생 확률을 제공하지 않습니다.
 
-- 웹 파드(프론트·백엔드): `pod/web`
-- 데이터·AI 파드: `pod/aiops`
-- 통합 순서: 개인 작업 브랜치 → 해당 파드 → `dev` → `main`
-- 커밋: `feat: 관측소 조회 기능 추가`처럼 타입만 영어, 제목은 한국어
-- 이슈·PR 없이 담당자가 검증 후 병합합니다.
+## 실행
 
-AI에게 작업을 맡길 때는 [팀원 공용 프롬프트](AGENTS.md#6-팀원-공용-ai-프롬프트)를 복사하고 파드·이름·작업 내용을 채워주세요.
-처음 참여하면 저장소를 클론한 뒤 AI에게 이 지침을 읽고 해당 파드에서 개인 브랜치를 만들도록 요청하세요.
-키·토큰은 입력하거나 커밋하지 마세요. `.env.example`에는 실제 값 대신 변수명과 예시만 작성합니다.
-
-## 브랜치와 커밋 빠른 안내
-
-```text
-main ← dev ← pod/web   ← feat/web/영문이름/영문-작업명
-           ← pod/aiops ← feat/aiops/영문이름/영문-작업명
-```
-
-`main`은 최종본, `dev`는 전체 통합본입니다. 두 파드 브랜치는 각각 `dev`에서 만들었습니다. 개인 작업은 최신 해당 파드에서 시작합니다.
-
-| 항목 | 규칙·예시 |
-| --- | --- |
-| 개인 브랜치 | `feat/web/geonwoo/dashboard`, `fix/aiops/jiyun/missing-rain` |
-| 커밋 제목 | `영어타입: 한국어 제목` |
-| 커밋 타입 | `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `merge`, `revert` |
-| 좋은 제목 | `fix: 강수량 누락값 처리 오류 수정` |
-| 병합 순서 | 개인 → 해당 파드 → dev → main |
-| 병합 담당 | 개인 → 파드는 파드 담당자, dev·main은 전체 담당자 |
-| 병합 방법 | 이슈·PR 없이 채팅으로 순서 조율 → `--no-ff` 병합 → 검증 → 푸시 |
-
-공유 브랜치에 직접 기능을 커밋하거나 강제 푸시하지 않습니다. API·데이터 형식 변경은 양쪽 파드 담당자가 먼저 합의합니다.
-
-## AI에게 처음 알려줄 내용
-
-저장소 폴더를 AI 도구에서 열고 아래를 한 번 전달하세요. 대괄호를 본인 정보로 바꾸세요. 새 대화에서는 다시 전달하는 것이 안전합니다.
-
-```text
-이 저장소의 AGENTS.md를 먼저 읽고 모든 작업에 적용해줘.
-내 파드는 [web 또는 aiops], 브랜치에 사용할 영문 이름은 [이름]이야.
-앞으로 브랜치 생성·커밋·푸시 요청에도 이 저장소 규칙을 적용해줘.
-읽을 수 없으면 알려주고, 파드·이름·작업 목적이 부족하면 물어봐줘.
-```
-
-이후에는 다음처럼 요청하면 됩니다.
-
-- `관측소 조회 기능 작업용 브랜치 만들어줘.` → 해당 파드에서 개인 브랜치 생성
-- `변경 확인하고 커밋해줘.` → 개인 브랜치에서 한국어 제목으로 커밋, 푸시는 제외
-- `커밋하고 푸시해줘.` → 확인한 변경만 커밋하고 해당 개인 브랜치만 푸시
-- `이 브랜치를 파드에 합치고 푸시해줘.` → 담당자·대상 확인 후 검증·병합·푸시
-
-AGENTS.md는 AI가 따라야 할 지침입니다. 모든 AI 도구의 자동 로딩이나 Git의 규칙 위반 차단을 보장하지 않습니다. 자동으로 읽지 않는 도구에는 위 문구로 파일을 읽게 해주세요. 현재 Git hook·CI 검사·GitHub 브랜치 보호는 설치하지 않았습니다.
-
-## 프로젝트 실행
-
-팀 공용 실행 명령은 저장소 루트에서 다음 하나로 통일합니다.
+Docker를 실행한 뒤 저장소 루트에서 다음 명령을 사용합니다.
 
 ```bash
 docker compose up --build
 ```
 
-종료는 `Ctrl+C`, 생성한 컨테이너 정리는 `docker compose down`을 사용합니다.
-Docker가 설치되어 실행 중이어야 합니다. 실제 Secret이 필요한 경우 `.env.example`을 바탕으로 로컬 `.env`를 먼저 준비하고 Git에는 올리지 않습니다.
+- 화면: http://localhost:8100/ (React 대시보드 `/dashboard/`로 이동)
+- 기존 화면: http://localhost:8100/legacy/
+- API 명세: http://localhost:8100/docs
+- 생존 확인: http://localhost:8100/health/live
+- 기존 시연 경로 입력·모델 준비: http://localhost:8100/health/ready
+- 실제 API 관측·예측 준비: http://localhost:8100/api/v1/api-observations (`observation_count`, `ready_count`)
 
-- GroundWatch 대시보드: http://localhost:8100/
-- API 문서: http://localhost:8100/docs
-- 프로세스 상태: http://localhost:8100/health/live
-- 자료·모델 준비 수: http://localhost:8100/health/ready
+Docker 빌드에서 `frontend/`의 React·TypeScript·Vite 화면을 Node 단계로 빌드하고 FastAPI가 정적 파일을 제공합니다. 프론트 개발용 API 프록시는 8100을 사용합니다. 실제 API 수집에는 서버 `.env`의 키와 `GROUNDWATCH_COLLECTION_ENABLED=true`가 필요합니다. 키를 브라우저에 입력하거나 Git에 올리지 않습니다. worker는 수집 자료로 미준비 모델을 학습하고 기존 모델은 재사용해 예측을 발행합니다. 준비 전에는 수치를 만들지 않습니다. 별도 과제 시연에는 외부 키와 CSV 업로드가 필요하지 않습니다. 포트 변경은 `GROUNDWATCH_PORT`로 지정합니다. 종료는 `docker compose down`이며 모델·자료가 든 볼륨은 유지합니다.
 
-최초 실행은 의존성을 내려받고 API·화면·영속 학습 worker를 시작합니다. 저장소에 포함한 서울시 공식 관측자료와 고정 대표 관측소 JSON을 자동 검증하고 25개 모델을 학습합니다. 초기 학습 중에는 준비 수를 표시하며 완료 시간은 환경에 따라 다릅니다. 추가 자료는 화면에서 등록하고 학습을 요청할 수 있습니다. 학습·재생은 작업 ID를 반환하고 별도 프로세스에서 실행합니다. Docker 볼륨에 자료·모델·MLflow DB·작업·이벤트·예측 이력을 보존합니다. 초기 게이트를 통과하지 못한 구는 예측 미준비로 표시하며 기존 모델이 있으면 유지합니다.
+## 읽는 순서
 
-기본 화면은 **기존 공식 과거 자료의 기준일 다음 날 예측**입니다. 최신 지하수 자료가 확보되지 않아 현재 날짜 이후의 운영 예측은 아직 제공하지 않습니다. GIMS 활용신청은 제출 후 시스템 오류로 접수·발급 여부가 미확인이며 추가 신청은 보류했습니다. 사용 불가한 현재 API 모드·외부 수집 화면은 노출하지 않습니다. 서버 진단 코드·기존 자료·모델은 보존합니다.
+| 알고 싶은 내용 | 기준 문서 |
+| --- | --- |
+| 누구를 위한 서비스인지, 사용법과 전체 흐름 | [팀 사용·로직 안내](docs/team-guide.md) |
+| 과제 목적·운영 설계·구조·API·실제 화면 | [기획서](proposal.md) |
+| 자료의 출처·기간·단위·합성 생성식 | [데이터 설명](data/README.md) |
+| 감지·재학습·평가·복귀·장애 대응 | [운영 기준](docs/operations.md) |
+| 요청·응답과 날짜·자료 계약 | [API 계약](docs/contracts.md) |
+| 확인된 결과와 원본 증거 | [실행 증거](evidence/README.md) |
+| 실제 남은 확인 사항 | [TODO](TODO.md) |
 
-현재 진입점은 **25개 구별 지하수 예측·품질 감시**입니다. 구마다 대표 관측소 1곳과 독립 LSTM·scaler·모델 버전을 사용합니다. 수위 변화는 싱크홀 확률이 아니며, 모델 품질 알림과 현장 확인을 구분합니다. 자료·모델이 준비되지 않으면 가짜 숫자를 표시하지 않습니다. 과거 재생 기준일과 실제 실행 시각도 구분합니다.
+## 제출 자료
 
-현재 구현·실행 범위와 남은 데이터 조건은 [검증 기록](evidence/README.md), 현재 설계는 [서비스 정리 설계](docs/public-agency-service-review.md), 입력·API 형식은 [공통 계약](docs/contracts.md), 다음 작업은 [TODO](TODO.md)를 확인하세요. 합성 검증 자료는 실제 서울시 관측·성능과 별도 namespace에 저장합니다.
+발표 PDF는 별도 세션에서 관리합니다. 원격 main에 반영된 파일은 [output/source/건우짱.pdf](output/source/건우짱.pdf)이며, 이번 코드·문서 변경에서는 발표 파일을 편집하거나 검수하지 않습니다. 과제 기획의 코드 기준 문서는 [proposal.md](proposal.md)입니다. 실제 제출·발표 완료는 별도로 확인합니다.
 
-출처·정리 범위와 샘플의 한계는 [기본 코드 설명](docs/source-and-scope.md)을 확인하세요.
+## 협업과 문서 관리
 
-기본 접속 포트는 `8100`입니다. 다른 프로그램이 사용 중이면 `.env`에 `GROUNDWATCH_PORT=8101`처럼 지정한 뒤 같은 시작 명령을 사용하세요.
+브랜치·커밋·AI 작업 규칙은 [AGENTS.md](AGENTS.md)를 따릅니다. 개인 작업 → 해당 파드 → dev → main 순서로 통합합니다.
 
-## 기본 코드 검증
+기능 변경은 해당 기준 문서의 기존 내용을 수정합니다. 같은 설명을 여러 파일에 복제하거나 변경 때마다 새 설계 문서를 만들지 않습니다. 과거 검토는 `docs/archive/`, 날짜별 실행 기록은 `evidence/records/`에 보존합니다. 현행 문서에는 과거 상태를 현재처럼 섞어 쓰지 않습니다.
 
-컨테이너가 준비된 뒤 회귀 테스트는 `docker compose exec serving-app python -m unittest discover -s tests -v`로 실행합니다. 이전 HAIC 기반 검증은 [기반 코드 검증](docs/baseline-verification.md), 현재 도메인 검증은 [실행 증거](evidence/README.md)에 구분합니다.
+검증 명령은 `docker compose exec serving-app python -m unittest discover -s tests -v`와 `node tests/replay_ui.test.cjs`입니다. 프론트 검증은 `frontend/`에서 `npm ci`, `npm test`, `npm run build`입니다. 공용 Docker 기동에는 호스트 npm 설치가 필요하지 않습니다. 최근 저장된 실행 결과와 환경 제한은 실행 증거에서 확인합니다.
 
-## 데이터와 모델
+## 실제 API 관측 연결
 
-정규 CSV는 `station_id,district_code,date,groundwater_level,rainfall_mm,level_unit`을 사용합니다. 단위와 관측소 ID는 출처로 확인해야 하며, 대표 25곳은 승인 manifest로 고정합니다. 원본 한글 CSV 변환기 `scripts/convert_groundwater.py`는 명시한 수위·강수 관측소를 연결하고 충돌·결측을 격리합니다. 서울시 공식 관측자료의 표기는 수위 `gl.-m`, 강수량 `mm`이며 원본 값의 부호를 임의로 바꾸지 않습니다.
+기본 React 조회 모드는 `실제 API 관측·예측`입니다. 서버의 외부 worker가 서울시 VTsSec와 기상청 ASOS 서울 108을 호출하고 날짜별로 결합합니다. 수위는 `API 원값`, 강수 빈값은 null로 보존하며 모델에는 학습 구간 강수 중앙값과 결측 표시를 입력합니다. 3개 입력 특성의 모델·scaler·예측·운영 이력을 `api_native_masked_v1`에 분리합니다. 기존 gl.-m 시연 모델에 API 원값을 넣지 않습니다.
 
-학습은 20일 입력→다음 날 수위, 시간순 train/validation/test/replay, train-only scaler를 사용합니다. 최초 모델은 persistence 기준과 비교합니다. 운영은 정답 도착 후 21일 RMSE를 감시하고, 41일 자료로 fine-tuning한 후보를 이후 30일 정답으로 기존 모델과 비교합니다. 통과한 후보만 champion으로 교체하며 실제 응답 버전을 확인합니다. 실패·중단 작업은 자동 반복하지 않고 명시적 재시도로 처리합니다.
+자동 수집은 KST 10시 이후 하루 1회이며 실패 시 1시간 이후 재시도합니다. 60초마다 실행 조건을 확인하고, 한 번의 수집은 여러 페이지 API 요청으로 이루어집니다. 최신 유효 지하수 관측 기준 365일을 최대 120페이지에서 검증해 수집합니다. 화면의 수동 수집은 별도 작업입니다. 원본·결합 자료·해시별 입력 스냅샷은 `runtime/groundwatch/external/feed/`에 보존합니다.
 
-`scripts/create_demo_dataset.py`는 합성 검증 CSV를 명시적으로 생성하는 도구입니다. 서버가 실제 자료 대신 자동 사용하지 않습니다. `scripts/audit_groundwater.py`, `scripts/select_representatives.py`, `scripts/import_official_groundwater.py`는 원본 감사·후보 선정·공식 자료 복구 도구이며, 원본과 실제 모델 파일은 Git에 무조건 추가하지 않습니다.
-
-## 최신 재검수와 제출 준비
-
-[기획·산출물](deliverables.md), [2026-10-07 재검수](docs/archive/review-2026-10-07.md), [화면 설계](docs/archive/interface-design.md)를 확인합니다. 화면은 관측 표·기준일·자료 출처를 먼저 보여주는 업무 기록 형태입니다. /metrics/summary와 /api/v1/monitoring에서 서비스 지표와 구별 모델 감시를 조회합니다. 현재 자료가 오래되면 예측을 숨기고 갱신 필요를 표시합니다. 실행 결과·합성 검증·아직 미확인인 사항은 evidence/README.md로 구분합니다.
-
-## 실제 외부 API 수집
-
-로컬 .env의 SEOUL_OPEN_DATA_KEY와 KMA_ASOS_SERVICE_KEY를 Compose가 서버에 주입합니다. 키는 Git·이미지에서 제외합니다. 운영 화면의 공식 API 수집은 최대31일의 과거 기간을 별도 worker로 수집합니다. 원본·유효·격리 자료를 분리 보존하며 미래 날짜·빈 강수·충돌 자료를 제외합니다. 관측소·단위·강수 매핑·모델 검증 전이므로 기존 CSV와 모델은 유지합니다. 정기 수집은 미적용입니다. 서울시 공식 주소는 HTTP이며 TLS는 확인하지 못했습니다.
-
-## API 전환 반영판
-
-[전면 재설계](docs/api-transition-redesign.md)와 [계약](docs/contracts.md)에 따라 관측 revision DB·품질 기록·불변 snapshot·학습/추론 버전 분리·오늘 예측 경로·정정 평가·승인 매핑 기반 일별 수집을 추가했습니다. 현재 실제 API 원천 의미/매핑이 미검증이므로 live0/25이며 과거25/25는 유지합니다. 키 설정과 수집 성공만으로 운영 예측 완료를 뜻하지 않습니다.
-
-관측 DB는 runtime/groundwatch/external/observations.sqlite3입니다. 기존 SQLite·모델·자료를 보존하며 별도 DB 제품은 추가하지 않았습니다. 백업은 scripts/backup_groundwatch.py, 근거가 확보된 API 매핑 등록은 scripts/register_api_mapping.py입니다. 임의 승인·단위변환·강수0채움은 금지합니다. 오늘 예측은 전일까지 입력→오늘 대상이며, replay as_of의 입력종료일 의미는 유지합니다.
-
-최신 API 전환 기획 PDF는 [output/pdf/groundwatch-api-transition-proposal.pdf](output/pdf/groundwatch-api-transition-proposal.pdf)이며, 10쪽 렌더링·글자 경계를 검수했습니다. 이전 PDF는 과거 재생 검증 기록으로 보존합니다.
-
-## 현재 설명과 문서 위치
-
-팀원은 [원본과 현재 로직 비교](docs/team-logic-guide.md)를 먼저 읽습니다. 화면·표현 정리는 [공공기관 서비스 검토](docs/public-agency-service-review.md)를 기준으로 합니다. 이전 설계·검수 초안은 docs/archive에 보존하며 현재 완료 상태로 해석하지 않습니다. 기본 화면은 현재 API 자료이며 과거 재생은 명시적으로 선택합니다. 운영 도구는 접힌 상세 영역에 있습니다. 사용자 권한은 아직 구현되지 않아 내부 시제품입니다.
-
-## 실시간 자료 공급 시뮬레이션
-
-운영 화면의 ‘새 시뮬레이션 시작’을 누르고25개 모델이 준비되면 ‘하루 자료 공급’으로 진행합니다. 공식 과거 관측을 날짜 순서로 공급하며 표시 시계만 생성일에서 시작합니다. 원관측일과 시연일을 함께 표시하고, 실제 오늘의 예측으로 주장하지 않습니다. 세션 선택·URL의 replay_id로 다시 열 수 있습니다. [설계](docs/supply-simulation-design.md)와 [팀 설명](docs/team-logic-guide.md)을 확인하세요.
-
-최종 시연 구성(2026-10-07): 교수자 시뮬레이션 허용은 사용자 전달로 확인했습니다. 메인에는 작은 시연 환경 표시를 유지하고 시작·하루 공급 제어는 운영 화면에 둡니다. 공급만 재현하며 예측·오차 감시·재학습·후보 평가는 실제 실행합니다. 팀 설명은 [팀 로직 설명](docs/team-logic-guide.md)의 확정 범위를 따릅니다.
+`모델 관리 · 시연`에서 실제 수집·발행 예측 오차·드리프트·재학습·30일 후보 평가·교체/유지·복귀를 확인합니다. 시험 구간 예측은 드리프트 감시에 사용하지 않습니다. 발행 당시 미수신 정답이 이후 수집되어야 진행하며, 공급자 지연을 오늘 관측으로 바꾸지 않습니다. 2026-10-08 검증에서 실제 자료 예측은 25/25곳 준비됐고 최신 지하수 관측일은 2026-08-31입니다. 구별 관측일·예측일과 검증 결과는 [실행 증거](evidence/README.md)를 확인합니다.

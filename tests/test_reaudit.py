@@ -4,7 +4,7 @@ import hashlib
 import json
 import tempfile
 import unittest
-from datetime import timedelta
+from datetime import date, timedelta
 from pathlib import Path
 from fastapi.testclient import TestClient
 from data.groundwater import load_canonical
@@ -85,6 +85,40 @@ class ReauditTests(unittest.TestCase):
         self.assertEqual({p['model_version'] for p in selected['predictions']},{'1','2'})
         self.assertNotEqual(selected['prediction'],99999)
         self.assertEqual(selected['prediction_model_version'],'2')
+
+    def test_latest_comparison_uses_same_date_dataset_and_namespace(self):
+        dataset = upload_fixture(self.service)
+        self.service.manager().train(FIRST,self.service.records(dataset,FIRST),{},100)
+        anchor = str(START+timedelta(days=350))
+        initial = self.service.forecasts(as_of=anchor,dataset_id=dataset)
+        row = next(r for r in initial['forecasts'] if r['district_code']==FIRST)
+        self.assertIsNone(row['latest_comparison']['prediction'])
+        future = row['forecast_date']
+        result = self.service.forecasts(as_of=future,dataset_id=dataset)
+        compared = next(r for r in result['forecasts'] if r['district_code']==FIRST)['latest_comparison']
+        self.assertEqual(compared['date'],future)
+        self.assertEqual(compared['prediction'],row['prediction'])
+        actual = next(r['groundwater_level'] for r in self.service.records(dataset,FIRST) if r['date']==future)
+        self.assertEqual(compared['actual'],actual)
+        self.service.store.forecast('historical',{**row,'source_dataset_id':'other','prediction':999})
+        self.service.store.forecast('other-scope',{**row,'prediction':888})
+        filtered = self.service.forecasts(as_of=future,dataset_id=dataset)
+        self.assertEqual(next(r for r in filtered['forecasts'] if r['district_code']==FIRST)['latest_comparison'],compared)
+        earlier = self.service.forecasts(as_of=anchor,dataset_id=dataset)
+        self.assertEqual(next(r for r in earlier['forecasts'] if r['district_code']==FIRST)['latest_comparison']['date'],anchor)
+
+    def test_replay_history_keeps_unlabelled_next_day_point(self):
+        dataset = upload_fixture(self.service)
+        replay = self.service.create_replay(dataset,str(START+timedelta(days=320)))
+        self.service.execute_one()
+        response = self.service.forecasts(replay_id=replay['id'])
+        forecast = next(r for r in response['forecasts'] if r['district_code']==FIRST)
+        history = self.service.history(FIRST,replay_id=replay['id'])['history']
+        future = [r for r in history if r['date']==forecast['forecast_date']]
+        self.assertEqual(len(future),1)
+        self.assertIsNone(future[0]['groundwater_level'])
+        self.assertIsNone(future[0]['rainfall_mm'])
+        self.assertEqual(future[0]['prediction'],forecast['prediction'])
 
     def test_current_mode_rejects_past_override_and_reports_stale_data(self):
         dataset = upload_fixture(self.service)
@@ -177,6 +211,18 @@ class PipelineViewTests(unittest.TestCase):
                 self.assertEqual(served['stages'][2]['status'],'pending')
                 self.assertEqual(served['stages'][5]['status'],'pending')
                 self.assertEqual(served['defaults']['shift_amount'],.2)
+                self.assertEqual(served['defaults']['shift_start'],str(date.fromisoformat(served['defaults']['start_date'])+timedelta(days=22)))
+                advance=service.advance_job(replay['id'],2)
+                active=client.get(endpoint).json()
+                self.assertTrue(active['advance_active'])
+                self.assertEqual(active['active_jobs'][0]['id'],advance['id'])
+                service.store.progress(advance['id'],{'processed':1,'total':2})
+                self.assertEqual(client.get(endpoint).json()['latest_advance_job']['result']['processed'],1)
+                service.store.finish(advance['id'],error='worker failed')
+                failed=client.get(endpoint).json()
+                self.assertFalse(failed['advance_active'])
+                self.assertEqual(failed['replay_status'],'ready')
+                self.assertEqual(failed['latest_advance_job']['error'],'worker failed')
 
     def test_namespace_jobs_are_filtered_before_limit(self):
         from serving_app.groundwater_store import Store
@@ -205,6 +251,58 @@ class PipelineCycleTests(unittest.TestCase):
             service.store.put('monitor',{'district_code':FIRST,'candidate':'3','candidate_as_of':replay['as_of']},replay['id']+':'+FIRST)
             actual=service.pipeline(FIRST,replay['id'])
             self.assertEqual(actual['source_kind'],'synthetic')
+            self.assertFalse(actual['drift_demo']['applied'])
+            self.assertEqual(actual['drift_demo']['shift_start'],replay['shift_start'])
+            original_rows=service.records(dataset,FIRST)
+            shifted_rows=service.records(dataset,FIRST,replay)
+            self.assertAlmostEqual(shifted_rows[344]['groundwater_level']-original_rows[344]['groundwater_level'],.2)
+            self.assertEqual(shifted_rows[343]['groundwater_level'],original_rows[343]['groundwater_level'])
+            self.assertNotIn('drift_demo',original_rows[344])
             self.assertEqual(actual['stages'][4]['status'],'pending')
             self.assertEqual(actual['stages'][5]['status'],'pending')
             self.assertIn('v3',actual['stages'][4]['detail'])
+            replay=service.store.get('replay',replay['id'])
+            replay['as_of']=str(START+timedelta(days=345))
+            service.store.put('replay',replay,replay['id'])
+            forecast=service.forecasts(replay_id=replay['id'])['forecasts'][0]
+            self.assertEqual(forecast['input_origin'],'synthetic')
+            source=forecast['data_source']
+            self.assertEqual(source['synthetic_from'],replay['shift_start'])
+            self.assertEqual(source['synthetic_through'],replay['as_of'])
+            self.assertEqual(source['observed_through'],str(START+timedelta(days=343)))
+            self.assertEqual(source['original_observed_through'],replay['as_of'])
+
+
+    def test_rejection_detail_identifies_failed_gate_without_claiming_replacement(self):
+        with tempfile.TemporaryDirectory() as folder:
+            managers={}
+            service=GroundwaterService(folder,lambda ns:managers.setdefault(ns,FakeManager()))
+            dataset=upload_fixture(service)
+            replay=service.create_replay(dataset,str(START+timedelta(days=320)))
+            service.execute_one()
+            service.store.event(FIRST,'model','후보 평가: rejected',replay['id'],result={
+                'status':'rejected','candidate_version':'2',
+                'metrics':{'shadow_candidate':{'rmse':1},'shadow_champion':{'rmse':1}},
+                'gates':{'future_improvement':{'passed':False},'historical_guard':{'passed':True}}})
+            pipeline=service.pipeline(FIRST,replay['id'])
+            self.assertEqual(pipeline['stages'][4]['status'],'rejected')
+            self.assertIn('향후 구간 5% 개선 미충족',pipeline['stages'][4]['detail'])
+            self.assertNotIn('110% 조건 미충족',pipeline['stages'][4]['detail'])
+            self.assertEqual(pipeline['stages'][5]['status'],'rejected')
+            self.assertEqual(service.manager(replay['id']).models[FIRST]['model_version'],'1')
+
+
+class MeanLatencyTests(unittest.TestCase):
+    def test_mean_is_distinct_from_p95_and_persists_across_store_reopen(self):
+        from serving_app.groundwater_store import Store
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'metrics.sqlite3'
+            store=Store(path)
+            self.assertIsNone(store.metric_summary()['mean_seconds'])
+            for i,(status,latency) in enumerate([(200,.1),(422,.3),(500,2.0)]):
+                store.request_metric('GET','/measured',status,latency,str(i))
+            measured=Store(path).metric_summary(300)
+            self.assertAlmostEqual(measured['mean_seconds'],.8)
+            self.assertEqual(measured['p95_seconds'],2.0)
+            self.assertAlmostEqual(measured['error_rate'],1/3)
+            self.assertEqual(measured['http_4xx_count'],1)

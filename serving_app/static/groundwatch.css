@@ -24,3 +24,40 @@ details.panel[open]>summary{margin-bottom:16px}
 .supply-panel{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 26px;margin:0 0 24px;background:#eef4ee;border:1px solid #c6d9c9;border-radius:12px}.supply-panel h2{font-size:20px;margin:6px 0}.supply-panel p{margin:7px 0;line-height:1.6}.supply-actions{display:flex;flex-direction:column;gap:10px;min-width:180px}#supply-clock{font-weight:600;color:#24533b}
 
 .simulation-indicator{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:12px 18px;margin-bottom:22px;border-left:3px solid #49785f;background:#eef4ee;font-size:13px}.simulation-indicator small{width:100%;color:#607267}
+
+/* Keep scenario provenance visible without dominating the overview. */
+.provenance-banner{margin-top:10px;padding:7px 11px;border-left-width:2px;background:#f4f3ee;color:#595647;font-size:11px;font-weight:400;line-height:1.5}
+
+/* Compact desktop table: all seven columns fit a 960px presentation window. */
+@media(min-width:900px) and (max-width:1200px){
+ .table-wrap table{table-layout:fixed;font-size:10px;white-space:normal}
+ .table-wrap th,.table-wrap td{padding:10px 5px}
+ .table-wrap th:first-child{width:20%}.table-wrap th:nth-child(2),.table-wrap th:nth-child(3){width:14%}
+ .table-wrap th:nth-child(4){width:18%}.table-wrap th:nth-child(5){width:14%}.table-wrap th:nth-child(6){width:13%}.table-wrap th:last-child{width:7%}
+ .table-wrap td:first-child small{white-space:normal;overflow-wrap:anywhere}
+ .table-wrap .prediction{font-size:13px}.table-wrap .badge{font-size:9px;padding:4px 3px;white-space:normal}
+ .table-wrap .link-button{font-size:10px;padding:3px 0;white-space:nowrap}
+}
+
+#csv-registration .ops-forms{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+.simulation-controls{border-top:1px solid var(--line,#dce2df);border-bottom:1px solid var(--line,#dce2df);padding:16px 0;margin:20px 0}.simulation-controls>summary{font-weight:600;cursor:pointer}.simulation-controls[open]>summary{margin-bottom:16px}.simulation-controls .pipeline-actions{margin-bottom:14px}.panel>summary{font-size:16px;font-weight:600;cursor:pointer}
+
+.pipeline-progress{padding:14px 18px;margin:16px 0;background:#edf4f1;border:1px solid #b7cec3;border-radius:8px;font-weight:600;display:flex;align-items:center;gap:12px}.pipeline-progress[hidden]{display:none}.pipeline-progress.is-busy::before{content:"";width:16px;height:16px;flex:none;border:2px solid #b7cec3;border-top-color:#295d48;border-radius:50%;animation:gw-spin 1s linear infinite}@keyframes gw-spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.pipeline-progress.is-busy::before{animation:none}}
+
+.usage-guide{margin:20px 0;padding:15px 18px;border:1px solid var(--line);border-radius:8px;background:var(--surface);line-height:1.7}.usage-guide summary{font-weight:600;cursor:pointer}.usage-guide p{max-width:850px}.usage-guide ol{padding-left:22px}
+
+.forecast-focus{display:flex;justify-content:space-between;gap:32px;padding:24px 28px;margin:18px 0;background:#fff;border:1px solid var(--line);border-left:5px solid #b55b16;border-radius:8px}.forecast-focus>div{display:grid;gap:10px}.focus-label{font-weight:600;font-size:16px}.focus-value{font-size:38px;line-height:1.2;letter-spacing:-1px;color:#9b4510;font-variant-numeric:tabular-nums}.focus-value small{font-size:16px;letter-spacing:0}.focus-comparison{border-left:1px solid var(--line);padding-left:28px;min-width:270px}.focus-comparison>strong{font-size:21px}.focus-comparison small{color:var(--muted)}.chart-range{display:flex;align-items:center;gap:8px;margin-left:auto}.chart-range select{padding:7px 10px}.number .prediction{font-size:19px;font-weight:700;color:#9b4510}.summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.legend .predicted::before{background:#b55b16}
+
+.summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.detail-evidence{margin:14px 0 20px}.detail-evidence summary{color:var(--muted);cursor:pointer}.detail-evidence .meta-strip{margin-top:10px}
+
+/* Selected scenario stays visible independently of hover and processing state. */
+.scenario-status{border-left:4px solid var(--green);background:#e9f2e8;color:var(--ink);padding:12px 15px;font-size:13px;font-weight:600;line-height:1.7}
+.pipeline-actions button.is-selected{background:var(--green);border:2px solid #153e2e;color:#fff;box-shadow:inset 0 2px 4px #0003;font-weight:700}
+.pipeline-actions button.is-selected:hover{background:#194c39}
+#restart-demo{font-size:11px;background:transparent;color:var(--muted)}
+
+/* Compare only an observation and saved prediction for the same date. */
+.actual-value{font-variant-numeric:tabular-nums;font-weight:700}.actual-value.above,.legend .above{color:#b42332}.actual-value.below,.legend .below{color:#175cb0}.comparison-unit{font-size:11px;color:#5d6661}.legend .above::before{background:#b42332}.legend .below::before{background:#175cb0}.focus-comparison strong small{font-size:12px;font-weight:400;color:#5d6661}.focus-comparison .actual-value{font-size:22px}
+
+.focus-comparison strong>small{display:block;margin-top:5px}.observed-comparison{margin-top:4px}.observed-comparison>.actual-value{font-size:14px}

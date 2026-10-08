@@ -162,9 +162,35 @@ class GroundwaterService:
             value['source_kind'] = ('synthetic' if replay and replay.get('synthetic') else entry.get('source_kind', 'observed')) if entry else None
             if entry:
                 rows = [r for r in self.records(entry['id'], code, replay) if r['date'] <= as_of]
+                provenance = self.dataset(entry['id']).manifest.get('provenance', {})
+                interval = provenance.get('intervals', {}).get(code, {})
+                def modified(r):
+                    return bool(replay and replay['scenario']=='level_shift' and r['date']>=replay['shift_start'])
+                observed = [r['date'] for r in rows if r.get('origin', entry.get('source_kind')) == 'observed' and not modified(r)]
+                synthetic = [r['date'] for r in rows if r.get('origin', entry.get('source_kind')) == 'synthetic' or modified(r)]
+                value['data_source'] = {
+                    'kind': value['source_kind'], 'observed_through': max(observed, default=None),
+                    'input_through': rows[-1]['date'] if rows else None,
+                    'contains_synthetic': bool(synthetic) or bool(replay and replay.get('synthetic')),
+                    'synthetic_from': min(synthetic, default=None),
+                    'synthetic_through': max(synthetic, default=None),
+                    'original_observed_through': interval.get('observed_through') or max(
+                        (r['date'] for r in rows if r.get('origin', entry.get('source_kind'))=='observed'), default=None),
+                    'generated_at': provenance.get('generated_at') or entry.get('generated_at'), 'registered_at': entry.get('created_at'),
+                    'external_api_applied': False}
                 if rows:
                     value.update(observed_date=rows[-1]['date'], unit=rows[-1]['level_unit'],
-                                 freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days)
+                                 freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days,
+                                 input_origin='synthetic' if modified(rows[-1]) else rows[-1].get('origin', entry.get('source_kind', 'observed')))
+                value['latest_comparison'] = None
+                if rows:
+                    observed = rows[-1]
+                    saved = [p for p in self.store.forecasts(namespace, code, source_dataset_id=entry['id'])
+                             if p['forecast_date'] == observed['date']]
+                    chosen = max(saved, key=lambda p: p.get('generated_at') or '') if saved else {}
+                    value['latest_comparison'] = {
+                        'date': observed['date'], 'actual': observed['groundwater_level'],
+                        'prediction': chosen.get('prediction'), 'model_version': chosen.get('model_version')}
                 model = models.get(code)
                 if mode == 'current' and value['freshness_days'] is not None and value['freshness_days'] > 0:
                     value.update(quality_status='STALE_DATA', reason=f"오늘까지 관측 자료가 없습니다. 마지막 관측 후 {value['freshness_days']}일 경과했습니다.")
@@ -207,7 +233,8 @@ class GroundwaterService:
                 value['presentation_observed_date'] = self.simulation_clock(replay, observed)['presentation_as_of'] if observed else None
                 value['presentation_forecast_date'] = clock['presentation_forecast_date']
         return {'forecasts': items, 'as_of': as_of, 'ready_count': sum(x['prediction'] is not None for x in items),
-                'total': 25, 'mode': mode, 'replay_id': replay_id, 'simulation': clock}
+                'total': 25, 'mode': mode, 'replay_id': replay_id, 'simulation': clock,
+                'provenance': self.dataset(entry['id']).manifest.get('provenance', {}) if entry else {}}
 
     def history(self, code, dataset_id=None, replay_id=None):
         replay = self.store.get('replay', replay_id) if replay_id else None
@@ -229,11 +256,21 @@ class GroundwaterService:
             chosen = choices[-1] if choices else {}
             history.append({**row, 'prediction':chosen.get('prediction'),
                             'prediction_model_version':chosen.get('model_version'), 'predictions':choices})
+        # Display the actually stored next-day prediction without manufacturing
+        # its observation or rainfall. Historical replay still reveals one day.
+        if rows:
+            next_date = (date.fromisoformat(rows[-1]['date'])+timedelta(days=1)).isoformat()
+            choices = sorted(by_date.get(next_date, []), key=lambda p:p.get('generated_at') or '')
+            if choices:
+                chosen = choices[-1]
+                history.append({'date':next_date,'groundwater_level':None,'rainfall_mm':None,
+                                'origin':'prediction','prediction':chosen['prediction'],
+                                'prediction_model_version':chosen['model_version'],'predictions':choices})
         clock = self.simulation_clock(replay)
         if clock['enabled']:
             next_date = clock['source_forecast_date']
             choices = sorted(by_date.get(next_date, []), key=lambda p:p.get('generated_at') or '')
-            if choices:
+            if choices and not any(r['date'] == next_date for r in history):
                 chosen = choices[-1]
                 history.append({'date': next_date, 'groundwater_level': None, 'rainfall_mm': None,
                                 'prediction': chosen['prediction'], 'prediction_model_version': chosen['model_version'],
@@ -269,10 +306,13 @@ class GroundwaterService:
                 continuous = len(rows)==20 and rows[-1]['date']==latest and all(
                     date.fromisoformat(rows[i+1]['date'])-date.fromisoformat(rows[i]['date'])==timedelta(days=1) for i in range(19))
                 forecast_count += int(continuous)
-                details.append({'district_code':code,'model_ready':True,'input_ready':continuous})
+                reason = None if continuous else ('input_insufficient' if len(rows)<20 else
+                         'input_end_mismatch' if rows[-1]['date']!=latest else 'input_date_gap')
+                details.append({'district_code':code,'model_ready':True,'input_ready':continuous,
+                                'reason':reason,'input_end_date':rows[-1]['date'] if rows else None})
             except Exception as error:
-                details.append({'district_code':code,'model_ready':False,'reason':str(error)})
-        return {'status':'ready' if count==25 else 'data_or_model_required','ready_count':count,
+                details.append({'district_code':code,'model_ready':False,'input_ready':False,'reason':str(error)})
+        return {'status':'ready' if count==25 and forecast_count==25 else 'data_or_model_required','ready_count':count,
                 'forecast_ready_count':forecast_count,'total':25,'dataset_ready':True,'as_of':latest,'districts':details}
 
     def monitoring(self, replay_id=None):
@@ -307,12 +347,29 @@ class GroundwaterService:
         pending_days=0
         if pending and replay and monitor.get('candidate_as_of'):
             pending_days=sum(r['date']>monitor['candidate_as_of'] and r['date']<=replay['as_of'] for r in self.records(replay['dataset_id'],district_code,replay))
+        evaluation_detail = current_evaluation['message'] if current_evaluation else '새 정답30일 · 개선5% · guard110%'
+        if current_evaluation:
+            scores = current_evaluation['result'].get('metrics', {})
+            candidate_rmse = scores.get('shadow_candidate', {}).get('rmse')
+            champion_rmse = scores.get('shadow_champion', {}).get('rmse')
+            if candidate_rmse is not None and champion_rmse is not None:
+                outcome = '기준 통과' if cycle_promoted else '기준 미충족 · 기존 모델 유지'
+                evaluation_detail = f'새 모델 RMSE {candidate_rmse:.4g} · 기존 {champion_rmse:.4g} · {outcome}'
+                failed_gates = [label for key,label in (
+                    ('future_improvement','향후 구간 5% 개선 미충족'),
+                    ('historical_guard','기존 구간 오차 110% 조건 미충족'))
+                    if current_evaluation['result'].get('gates',{}).get(key,{}).get('passed') is False]
+                if failed_gates:
+                    evaluation_detail += ' · ' + ' · '.join(failed_gates)
+        retrain_detail = '드리프트 감지 후 자동 접수'
+        if fine:
+            retrain_detail = fine['error'] or ('후보 학습 완료 · 이후 정답으로 평가' if fine['status']=='completed' else fine['id'])
         stages=[
             {'key':'data','title':'자료 검증','status':'completed' if entry and entry['status']=='ready' else 'pending','detail':entry['id'][:12] if entry else '자료 등록 필요'},
-            {'key':'monitor','title':'오차 감시','status':'completed' if monitor.get('rmse') is not None else 'pending','detail':f"정답 {len({f['forecast_date'] for f in labelled})}일 · 21일 창 · 임계값 {model.get('threshold','미정')}"},
-            {'key':'drift','title':'품질 경보','status':'completed' if quality else 'pending','detail':quality['message'] if quality else '연속2회 초과 시 감지'},
-            {'key':'retrain','title':'재학습','status':fine['status'] if fine else 'pending','detail':fine['error'] or fine['id'] if fine else '경보 후 자동 접수'},
-            {'key':'evaluate','title':'후보 평가','status':'pending' if pending else current_evaluation['result']['status'] if current_evaluation else 'pending','detail':f"후보 v{pending} · 후속 정답 {pending_days}/30일 대기" if pending else current_evaluation['message'] if current_evaluation else '새 정답30일 · 개선5% · guard110%'},
+            {'key':'monitor','title':'오차 감시','status':'completed' if monitor.get('rmse') is not None else 'pending','detail':f"정답 {len({f['forecast_date'] for f in labelled})}일 · 21일 창 · RMSE {monitor.get('rmse','평가 대기')} · 임계값 {model.get('threshold','미정')}"},
+            {'key':'drift','title':'드리프트 감지','status':'completed' if quality else 'pending','detail':quality['message'] if quality else f"21일 오차 기준 연속 {monitor.get('breaches',0)}/2회 초과 · 정답 21일 확보 후 판정"},
+            {'key':'retrain','title':'자동 재학습','status':fine['status'] if fine else 'pending','detail':retrain_detail},
+            {'key':'evaluate','title':'후보 평가','status':'pending' if pending else current_evaluation['result']['status'] if current_evaluation else 'pending','detail':f"후보 v{pending} · 후속 정답 {pending_days}/30일 대기" if pending else evaluation_detail},
             {'key':'promote','title':'모델 교체','status':'completed' if cycle_promoted else 'rejected' if current_evaluation and current_evaluation['result']['status']=='rejected' else 'pending','detail':f"후보 v{cycle_version} 게이트 통과·교체" if cycle_promoted else f"현재 후보 미교체 · 현재 서빙 v{version or '없음'}"},
             {'key':'serve','title':'현재 모델 서빙','status':'completed' if served else 'pending','detail':f"실제 예측 v{version} · {served[-1]['forecast_date']}" if served else '조회 후 실제 응답 버전 확인'}]
         defaults=None
@@ -322,15 +379,19 @@ class GroundwaterService:
             start=metadata.get('replay_start') or (rows[-90]['date'] if len(rows)>=410 else None)
             if start:
                 defaults={'dataset_id':entry['id'],'start_date':str(date.fromisoformat(start)-timedelta(days=1)),
-                          'end_date':rows[-1]['date'],'shift_start':str(date.fromisoformat(start)+timedelta(days=23)),
+                          'end_date':rows[-1]['date'],'shift_start':str(date.fromisoformat(start)+timedelta(days=21)),
                           'shift_amount':.2}
         return {'namespace':namespace,'district_code':district_code,'replay_id':replay_id,
                 'simulation': self.simulation_clock(replay),
-                'as_of':replay['as_of'] if replay else None,'replay_status':replay['status'] if replay else None,
+                'as_of':replay['as_of'] if replay else (max((r['date'] for r in self.records(entry['id'],district_code)),default=None) if entry else None),'replay_status':replay['status'] if replay else None,
                 'remaining_days':(date.fromisoformat(replay.get('end_date') or defaults['end_date'])-date.fromisoformat(replay['as_of'])).days if replay and defaults else 0,
+                'latest_advance_job':next(({k:j[k] for k in ('id','kind','status','result','error')} for j in jobs if j['kind']=='advance'),None),
+                'active_jobs':[{k:j[k] for k in ('id','kind','status','result','error')} for j in jobs if j['status'] in ('queued','running')],
                 'advance_active':any(j['kind']=='advance' and j['status'] in ('queued','running') for j in jobs),'stages':stages,'defaults':defaults,
                 'log':sorted([{'at':e['created_at'],'kind':e['kind'],'message':e['message'],'status':e['status']} for e in events]+[{'at':j['updated_at'],'kind':j['kind'],'message':j['error'] or j['id'],'status':j['status']} for j in jobs],key=lambda x:x['at'],reverse=True)[:50],
                 'candidate_version':pending,'evaluation':evaluation.get('result') if evaluation else None,
+                'drift_demo':{'shift_start':replay['shift_start'],'shift_amount':replay['shift_amount'],'applied':replay['as_of']>=replay['shift_start'],
+                    'monitoring_note':'정답 21일 → 기준 연속 2회 초과 → 자동 재학습 → 후속 정답 30일 평가'} if replay and replay['scenario']=='level_shift' else None,
                 'source_kind':('synthetic' if replay and replay.get('synthetic') else entry.get('source_kind')) if entry else None,
                 'note':'현재 후보의 평가·교체와 현재 모델 서빙을 구분합니다. 초기 모델도 서빙할 수 있으며, 과거 교체가 현재 후보의 성공을 뜻하지 않습니다. 단계 완료는 현장 안전 확인이 아닙니다.'}
 
@@ -400,6 +461,17 @@ class GroundwaterService:
 
     def run_job(self, job):
         kind, payload = job['kind'], job['payload']
+        if kind in ('monitor_api_feed','retrain_api_feed','rollback_api_feed'):
+            from serving_app.api_feed_ops import ApiFeedOperations
+            operations=ApiFeedOperations(self)
+            if kind == 'monitor_api_feed':
+                from serving_app.api_observation_feed import ApiObservationFeed
+                return operations.cycle(ApiObservationFeed(self.root))
+            return operations.execute_job(job)
+        if kind == 'train_api_feed':
+            from serving_app.api_feed_models import ApiFeedTraining
+            from serving_app.api_observation_feed import ApiObservationFeed
+            return ApiFeedTraining(self.root).execute(payload['feed_hash'], ApiObservationFeed(self.root).stations)
         if kind in ('train_live','predict_live','fine_tune_live'):
             from serving_app.live_observations import LiveObservations
             return LiveObservations(self).execute_job(job)
@@ -476,8 +548,11 @@ class GroundwaterService:
         if kind == 'advance':
             replay = self.store.get('replay', payload['replay_id'])
             target = payload.get('target_date') or (date.fromisoformat(replay['as_of']) + timedelta(days=payload['days'])).isoformat()
+            start = date.fromisoformat(replay['as_of'])
+            total = (date.fromisoformat(target)-start).days
             while replay['as_of'] < target:
                 self.advance_day(replay)
+                self.store.progress(job['id'], {'processed':(date.fromisoformat(replay['as_of'])-start).days, 'total':total, 'as_of':replay['as_of']})
                 # Process training at the triggering replay date, before revealing
                 # further labels. One worker retains serial TensorFlow execution.
                 while followup := self.store.claim('fine_tune'):

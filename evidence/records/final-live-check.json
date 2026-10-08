@@ -1,0 +1,5656 @@
+{
+  "collection_jobs": {
+    "jobs": [
+      {
+        "id": "ce4a00a8bf2d4c13b2d409f968e1ffac",
+        "kind": "refresh_api_feed",
+        "scope": "api-feed-refresh",
+        "payload": {},
+        "status": "completed",
+        "result": {
+          "errors": {},
+          "observed_through": "2026-08-31"
+        },
+        "error": null,
+        "created_at": "2026-10-08T05:33:25.523322+00:00",
+        "updated_at": "2026-10-08T05:34:57.379246+00:00"
+      }
+    ]
+  },
+  "monitor_job": {
+    "id": "127f5a821df74994a3e9e2e1390971e3",
+    "kind": "monitor_api_feed",
+    "scope": "api-feed-operations",
+    "payload": {
+      "namespace": "api_native_masked_v1"
+    },
+    "status": "completed",
+    "result": {
+      "status": "checked",
+      "stations": [
+        {
+          "district_code": "11110",
+          "status": "checked"
+        },
+        {
+          "district_code": "11140",
+          "status": "checked"
+        },
+        {
+          "district_code": "11170",
+          "status": "checked"
+        },
+        {
+          "district_code": "11200",
+          "status": "checked"
+        },
+        {
+          "district_code": "11215",
+          "status": "checked"
+        },
+        {
+          "district_code": "11230",
+          "status": "checked"
+        },
+        {
+          "district_code": "11260",
+          "status": "checked"
+        },
+        {
+          "district_code": "11290",
+          "status": "checked"
+        },
+        {
+          "district_code": "11305",
+          "status": "checked"
+        },
+        {
+          "district_code": "11320",
+          "status": "checked"
+        },
+        {
+          "district_code": "11350",
+          "status": "checked"
+        },
+        {
+          "district_code": "11380",
+          "status": "checked"
+        },
+        {
+          "district_code": "11410",
+          "status": "checked"
+        },
+        {
+          "district_code": "11440",
+          "status": "checked"
+        },
+        {
+          "district_code": "11470",
+          "status": "checked"
+        },
+        {
+          "district_code": "11500",
+          "status": "checked"
+        },
+        {
+          "district_code": "11530",
+          "status": "checked"
+        },
+        {
+          "district_code": "11545",
+          "status": "checked"
+        },
+        {
+          "district_code": "11560",
+          "status": "checked"
+        },
+        {
+          "district_code": "11590",
+          "status": "checked"
+        },
+        {
+          "district_code": "11620",
+          "status": "checked"
+        },
+        {
+          "district_code": "11650",
+          "status": "checked"
+        },
+        {
+          "district_code": "11680",
+          "status": "checked"
+        },
+        {
+          "district_code": "11710",
+          "status": "checked"
+        },
+        {
+          "district_code": "11740",
+          "status": "checked"
+        }
+      ]
+    },
+    "error": null,
+    "created_at": "2026-10-08T05:36:01.128305+00:00",
+    "updated_at": "2026-10-08T05:36:02.415912+00:00"
+  },
+  "overview": {
+    "mode": "api",
+    "source_kind": "observed_api",
+    "as_of": "2026-08-31",
+    "ready_count": 25,
+    "observation_count": 25,
+    "total": 25,
+    "forecasts": [
+      {
+        "district_code": "11110",
+        "district_name": "종로구",
+        "station_id": "SU-JNO-G1-0007",
+        "station_name": "홍익대대학로캠퍼스",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 22.670985736846923,
+        "model_version": "2",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 22.67,
+          "prediction": 22.671019282341003
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "caddcffcbd8facd2b95da7cfe2dbadc812edb2c7ff1125004bf44f96afc7e18a",
+          "status": "ready",
+          "prediction": 22.670985736846923,
+          "model_version": "2",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.335174+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-04-15",
+          "splits": {
+            "train": {
+              "start": "2025-09-21",
+              "end": "2026-04-15",
+              "count": 207
+            },
+            "validation": {
+              "start": "2026-04-16",
+              "end": "2026-06-23",
+              "count": 69
+            },
+            "test": {
+              "start": "2026-06-24",
+              "end": "2026-08-31",
+              "count": 69
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.013553222062337632,
+              "mae": 0.009776518586752736,
+              "count": 69
+            },
+            "validation_persistence": {
+              "rmse": 0.013242443839434504,
+              "mae": 0.009130434782608733,
+              "count": 69
+            },
+            "test": {
+              "rmse": 0.03471781412956173,
+              "mae": 0.020068735869033898,
+              "count": 69
+            },
+            "test_persistence": {
+              "rmse": 0.03436799994602329,
+              "mae": 0.019565217391304162,
+              "count": 69
+            }
+          },
+          "rain_fill_value": 1.25,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "caddcffcbd8facd2b95da7cfe2dbadc812edb2c7ff1125004bf44f96afc7e18a",
+          "inference_snapshot_id": "caddcffcbd8facd2b95da7cfe2dbadc812edb2c7ff1125004bf44f96afc7e18a",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-06-24",
+              "prediction": 23.581071152687073,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-25",
+              "prediction": 23.56109272480011,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-26",
+              "prediction": 23.571087112426756,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-27",
+              "prediction": 23.56110323905945,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-28",
+              "prediction": 23.561128273010254,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-29",
+              "prediction": 23.55115491390228,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-06-30",
+              "prediction": 23.551183285713194,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-01",
+              "prediction": 23.53121069908142,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-02",
+              "prediction": 23.541201248168946,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-03",
+              "prediction": 23.53117314815521,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-04",
+              "prediction": 23.52113453388214,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-05",
+              "prediction": 23.401093235015868,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-06",
+              "prediction": 23.391049280166627,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-07",
+              "prediction": 23.40100811958313,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-08",
+              "prediction": 23.400972905158994,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-09",
+              "prediction": 23.39093696117401,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-10",
+              "prediction": 23.390902080535888,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-11",
+              "prediction": 23.390883889198303,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-12",
+              "prediction": 23.38089317321777,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-13",
+              "prediction": 23.370929160118102,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-14",
+              "prediction": 23.370942344665526,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-15",
+              "prediction": 23.380928888320923,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-16",
+              "prediction": 23.360914912223816,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-17",
+              "prediction": 23.340923800468445,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-18",
+              "prediction": 23.330920400619505,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-19",
+              "prediction": 23.300917210578916,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-20",
+              "prediction": 23.20089539527893,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-21",
+              "prediction": 23.12087553977966,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-22",
+              "prediction": 23.05085841655731,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-23",
+              "prediction": 22.960840668678284,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-24",
+              "prediction": 22.86082486152649,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-25",
+              "prediction": 22.760835590362547,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-26",
+              "prediction": 22.680836596488952,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-27",
+              "prediction": 22.64083100795746,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-28",
+              "prediction": 22.610821976661683,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-29",
+              "prediction": 22.610837998390195,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-30",
+              "prediction": 22.600876488685607,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-07-31",
+              "prediction": 22.580933108329774,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-01",
+              "prediction": 22.570985951423644,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-02",
+              "prediction": 22.57103401660919,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-03",
+              "prediction": 22.5710777425766,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-04",
+              "prediction": 22.561115398406983,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-05",
+              "prediction": 22.571147503852842,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-06",
+              "prediction": 22.58117226600647,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-07",
+              "prediction": 22.571194734573364,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-08",
+              "prediction": 22.57121325969696,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-09",
+              "prediction": 22.601227631568907,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-10",
+              "prediction": 22.601239314079283,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-11",
+              "prediction": 22.611249055862427,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-12",
+              "prediction": 22.61125656604767,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-13",
+              "prediction": 22.621262469291686,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-14",
+              "prediction": 22.641265263557433,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-15",
+              "prediction": 22.651236453056335,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-16",
+              "prediction": 22.681186571121216,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-17",
+              "prediction": 22.68112832546234,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-18",
+              "prediction": 22.701069202423096,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 22.711048736572266,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 22.71105073928833,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 22.711033215522765,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 22.701004281044007,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 22.71096529006958,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 22.710962452888488,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 22.710979809761046,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 22.72097186088562,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 22.710986652374267,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 22.71101635932922,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 22.701013293266296,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 22.681030526161194,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 22.671019282341003,
+              "kind": "held_out_test",
+              "trained_through": "2026-04-15"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.335174+00:00"
+      },
+      {
+        "district_code": "11140",
+        "district_name": "중구",
+        "station_id": "SU-JGS-G1-0008",
+        "station_name": "장충단공원",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 0.17999258041381838,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 0.18,
+          "prediction": 0.17998874843120577
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 363,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 216,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "7714a91e92e25b972f855f21616913c684099bc1aaab82b514cad349cd94b329",
+          "status": "ready",
+          "prediction": 0.17999258041381838,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.401846+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.02204247613481677,
+              "mae": 0.008585304830755505,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.022038926600773594,
+              "mae": 0.008571428571428567,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.021205734297566427,
+              "mae": 0.016427209206989833,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.02121320343559643,
+              "mae": 0.01642857142857143,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "7f0c587752a30e3a6ea6cc94f533a2f0b371f0dd9c0d38661b4fa41bab330fb5",
+          "inference_snapshot_id": "7714a91e92e25b972f855f21616913c684099bc1aaab82b514cad349cd94b329",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 0.2699744200706482,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 0.23997382640838624,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 0.22997256636619567,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 0.1899734538793564,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 0.20997504591941835,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 0.2399766445159912,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 0.23997625112533572,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 0.19997582972049716,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 0.17997798115015032,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 0.1899793940782547,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 0.17998109251260758,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 0.1899839699268341,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 0.18998557746410372,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 0.17998874843120577,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.401846+00:00"
+      },
+      {
+        "district_code": "11170",
+        "district_name": "용산구",
+        "station_id": "SU-YSN-G1-0007",
+        "station_name": "신세기한덕",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 14.932490663528442,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 14.93,
+          "prediction": 14.932562136650086
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 309,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 119,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 190,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "51b003d0b27916fcf974e0e133d4e26f983b5b431d0833405f495ab6b3c01b62",
+          "status": "ready",
+          "prediction": 14.932490663528442,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.486624+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-03-11",
+          "splits": {
+            "train": {
+              "start": "2025-09-21",
+              "end": "2026-03-11",
+              "count": 151
+            },
+            "validation": {
+              "start": "2026-03-12",
+              "end": "2026-04-29",
+              "count": 49
+            },
+            "test": {
+              "start": "2026-04-30",
+              "end": "2026-08-31",
+              "count": 49
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.03957821458534096,
+              "mae": 0.030353468875495886,
+              "count": 49
+            },
+            "validation_persistence": {
+              "rmse": 0.03966698107689959,
+              "mae": 0.0304081632653062,
+              "count": 49
+            },
+            "test": {
+              "rmse": 0.027499843588370775,
+              "mae": 0.019387468902432283,
+              "count": 49
+            },
+            "test_persistence": {
+              "rmse": 0.027479120088101827,
+              "mae": 0.017959183673469294,
+              "count": 49
+            }
+          },
+          "rain_fill_value": 0.9,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "51b003d0b27916fcf974e0e133d4e26f983b5b431d0833405f495ab6b3c01b62",
+          "inference_snapshot_id": "51b003d0b27916fcf974e0e133d4e26f983b5b431d0833405f495ab6b3c01b62",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-04-30",
+              "prediction": 15.302934551239014,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-01",
+              "prediction": 15.30293975830078,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-02",
+              "prediction": 15.282893066406249,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-03",
+              "prediction": 15.302810945510863,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-04",
+              "prediction": 15.382713184356689,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-05",
+              "prediction": 15.332615547180175,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-06",
+              "prediction": 15.362606363296509,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-07",
+              "prediction": 15.362642812728883,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-08",
+              "prediction": 15.342626991271972,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-09",
+              "prediction": 15.342658977508545,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-10",
+              "prediction": 15.372715005874634,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-11",
+              "prediction": 15.362784643173217,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-12",
+              "prediction": 15.342779483795166,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-13",
+              "prediction": 15.442726802825927,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-14",
+              "prediction": 15.402655982971192,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-15",
+              "prediction": 15.422658538818359,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-16",
+              "prediction": 15.412698421478272,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-17",
+              "prediction": 15.472757663726806,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-18",
+              "prediction": 15.512829723358154,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-05-19",
+              "prediction": 15.492899322509766,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-03",
+              "prediction": 15.112738189697266,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-04",
+              "prediction": 15.112819023132325,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-05",
+              "prediction": 15.112886219024658,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-06",
+              "prediction": 15.112937235832215,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-07",
+              "prediction": 15.09298445701599,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-08",
+              "prediction": 15.073031554222107,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-09",
+              "prediction": 15.07307550430298,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-10",
+              "prediction": 15.073112945556641,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-11",
+              "prediction": 15.053143677711487,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-12",
+              "prediction": 15.033168210983277,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-13",
+              "prediction": 15.023188195228578,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-14",
+              "prediction": 15.013196029663085,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-15",
+              "prediction": 15.013147740364074,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-16",
+              "prediction": 15.023049340248107,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-17",
+              "prediction": 15.022921891212464,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-18",
+              "prediction": 15.01277617931366,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 15.032718544006348,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 15.032715196609496,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 15.032667713165283,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 15.012591824531555,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 14.992490148544311,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 14.98247374534607,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 14.972506623268128,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 14.952481937408447,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 14.942508120536804,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 14.92256284236908,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 14.92255521774292,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 14.922585592269897,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 14.932562136650086,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-11"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.486624+00:00"
+      },
+      {
+        "district_code": "11200",
+        "district_name": "성동구",
+        "station_id": "SU-SDG-G1-0003",
+        "station_name": "행당초등학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 7.139848321378231,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 7.14,
+          "prediction": 7.150682194083929
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "e980c187bb7606ee3f9c775cdb74d268a3ee7e9c8da3994ff0dbf5e930865c23",
+          "status": "ready",
+          "prediction": 7.139848321378231,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.549916+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.0100326327909292,
+              "mae": 0.008236421123147153,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.013093073414159506,
+              "mae": 0.011428571428571375,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.018371785179858494,
+              "mae": 0.014919144521866632,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.019272482233188747,
+              "mae": 0.015714285714285823,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "1475b66baa1f3b60a06a6fa5fb455e8e665c8bdad0e8925ec8c1aa8357dfc4e7",
+          "inference_snapshot_id": "e980c187bb7606ee3f9c775cdb74d268a3ee7e9c8da3994ff0dbf5e930865c23",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 7.164086657464504,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 7.1732089325785635,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 7.192913958132267,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 7.202070102393627,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 7.200801118016243,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 7.1892308130860325,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 7.178792463839054,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 7.139095051586628,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 7.118719932436943,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 7.0891839434206485,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 7.090096664279699,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 7.11020217448473,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 7.120831321775913,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 7.150682194083929,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.549916+00:00"
+      },
+      {
+        "district_code": "11215",
+        "district_name": "광진구",
+        "station_id": "SU-GJI-G1-0007",
+        "station_name": "신양중학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 12.419003098011016,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 12.42,
+          "prediction": 12.439238148927688
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "fca392b730daecbc1b149576d9f076dbd82049a334d70672efb40bcbd95dbdbc",
+          "status": "ready",
+          "prediction": 12.419003098011016,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.614737+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.013006564342744874,
+              "mae": 0.010813394933938878,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.013363062095621315,
+              "mae": 0.010714285714285867,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.014104121359641217,
+              "mae": 0.011532463069473056,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.014142135623730918,
+              "mae": 0.011428571428571439,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "8be1bc26aec68ead8a3249109e6a791727eb7a64831db54fc77155edcf42d0b1",
+          "inference_snapshot_id": "fca392b730daecbc1b149576d9f076dbd82049a334d70672efb40bcbd95dbdbc",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 12.40008858680725,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 12.399927080273628,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 12.389961046874523,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 12.399842920303344,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 12.429635906219483,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 12.449307322502136,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 12.459244189858437,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 12.459326320886612,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 12.469184196591376,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 12.47921981036663,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 12.479339997768403,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 12.469253331422806,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 12.449329051375388,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 12.439238148927688,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.614737+00:00"
+      },
+      {
+        "district_code": "11230",
+        "district_name": "동대문구",
+        "station_id": "SU-DDM-G1-0003",
+        "station_name": "군자초등학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 7.6390046073496345,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 7.64,
+          "prediction": 7.638993946239352
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "36768dba247a15af56b199b1db7bb677ae52608a699cc13fb42cdbee10baa837",
+          "status": "ready",
+          "prediction": 7.6390046073496345,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.677072+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.009017691857757781,
+              "mae": 0.006899879557812317,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.008864052604279351,
+              "mae": 0.0064285714285715456,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.006173162363616801,
+              "mae": 0.004286250014556308,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.005976143046671841,
+              "mae": 0.0035714285714284954,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "60e63d1f9c79d0669a01b6a5064f82677a7d4ca3a08cac86b14b8442cae45594",
+          "inference_snapshot_id": "36768dba247a15af56b199b1db7bb677ae52608a699cc13fb42cdbee10baa837",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 7.628969154451043,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 7.618982182780747,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 7.618982629082166,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 7.628989939838648,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 7.6290058007463815,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 7.62902238663286,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 7.639023083411157,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 7.629014140181243,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 7.639012619890273,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 7.639005676656962,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 7.638993495851755,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 7.6389930004253985,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 7.638988919332624,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 7.638993946239352,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.677072+00:00"
+      },
+      {
+        "district_code": "11260",
+        "district_name": "중랑구",
+        "station_id": "SU-JNG-G1-0002",
+        "station_name": "경남아파트",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 7.550187119841576,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 7.55,
+          "prediction": 7.542050826549531
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "fd543507925138d8f9b413b49e0973b5edf533fd39d2fcd0e987a3c9ca6487ec",
+          "status": "ready",
+          "prediction": 7.550187119841576,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.737806+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.022743253285647275,
+              "mae": 0.012724667787551753,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.04044396476254887,
+              "mae": 0.037857142857142936,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.031224351608566014,
+              "mae": 0.02116185009479521,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.032732683535398745,
+              "mae": 0.024285714285714213,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "c68fed70e16021159d63b03cf3bc59a3c99efa0570f29c1e2acb91c349ef1cf9",
+          "inference_snapshot_id": "fd543507925138d8f9b413b49e0973b5edf533fd39d2fcd0e987a3c9ca6487ec",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 7.601225273013116,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 7.608372716903687,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 7.617238940000535,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 7.624747705459595,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 7.631710456609726,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 7.638212107419968,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 7.547576452493668,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 7.498573319911957,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 7.51785481452942,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 7.479052239656449,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 7.4711530059576035,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 7.491216214299202,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 7.512591800093651,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 7.542050826549531,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.737806+00:00"
+      },
+      {
+        "district_code": "11290",
+        "district_name": "성북구",
+        "station_id": "SU-SBK-G1-0002",
+        "station_name": "국세청 우편물 자동화센터(구.동대문세무서)",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 4.811733537316322,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 4.81,
+          "prediction": 4.822210513949394
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "2789a3639ad780415946765eaed4ed405f2f86f2e28b4c0d9f25937ea97f4894",
+          "status": "ready",
+          "prediction": 4.811733537316322,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.798049+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.020977157527472895,
+              "mae": 0.01488227871911864,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.022038926600773577,
+              "mae": 0.015714285714285698,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.02256239378242691,
+              "mae": 0.015740139101233033,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.022990681342044544,
+              "mae": 0.01714285714285735,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "eb05c39eea89fe1151a858ec2a3d810cb3bcc7a25b8f426ade4835ce1c47d5c7",
+          "inference_snapshot_id": "2789a3639ad780415946765eaed4ed405f2f86f2e28b4c0d9f25937ea97f4894",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 4.773048354387283,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 4.782741444706916,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 4.80274110853672,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 4.81241934299469,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 4.821938436031341,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 4.831326062679291,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 4.76133326947689,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 4.7716403222084045,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 4.781570946574211,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 4.761873671412468,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 4.782301998734474,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 4.802266080379486,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 4.812441546916961,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 4.822210513949394,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.798049+00:00"
+      },
+      {
+        "district_code": "11305",
+        "district_name": "강북구",
+        "station_id": "SU-GBK-G1-0005",
+        "station_name": "제일경로당",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 3.717485002875328,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 3.72,
+          "prediction": 3.708446297943592
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "42f6fd8ccbf7b2efdffb4f8e63eead2a56d29e86236827d72e97627cf11a6314",
+          "status": "ready",
+          "prediction": 3.717485002875328,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.857942+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.009081885812125708,
+              "mae": 0.00751880135919371,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.013887301496588296,
+              "mae": 0.012142857142857169,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.010957063907664419,
+              "mae": 0.008963628262281587,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.011338934190276798,
+              "mae": 0.008571428571428548,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "7c4a0717dece2852cd1d5b7a4673f86a5b1fe38e0087019adb8ac3cccab35267",
+          "inference_snapshot_id": "42f6fd8ccbf7b2efdffb4f8e63eead2a56d29e86236827d72e97627cf11a6314",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 3.662001855075359,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 3.6812421861290927,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 3.701051214337349,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 3.7002549642324447,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 3.709201563596725,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 3.7079107049107547,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 3.687724868953228,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 3.6880923146009446,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 3.6877212318778034,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 3.6780734178423877,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 3.6787267106771466,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 3.68855957776308,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 3.6988685986399648,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 3.708446297943592,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.857942+00:00"
+      },
+      {
+        "district_code": "11320",
+        "district_name": "도봉구",
+        "station_id": "SU-DBG-G1-0006",
+        "station_name": "도봉산노인정",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 14.990034610629083,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 14.99,
+          "prediction": 14.971265668272972
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "beb238cb5e39b4a48de5a1a96679d5e502fd399f3f130e4eaa33d7650f0ba74e",
+          "status": "ready",
+          "prediction": 14.990034610629083,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:37.917388+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.012814853050642396,
+              "mae": 0.010376302365746095,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.017320508075688842,
+              "mae": 0.012857142857142836,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.010668025117101139,
+              "mae": 0.008390316665172648,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.012535663410560007,
+              "mae": 0.009999999999999913,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "e753ba3b360fb947dab9a29293c98502d4ac73fb98038afbe3c4c06fbf9fe47a",
+          "inference_snapshot_id": "beb238cb5e39b4a48de5a1a96679d5e502fd399f3f130e4eaa33d7650f0ba74e",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 14.89803342819214,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 14.906999283432961,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 14.926533657312394,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 14.93568479835987,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 14.93449702501297,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 14.952599986195565,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 14.931848087906838,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 14.941872403025627,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 14.951096436977387,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 14.951164539456368,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 14.951720845103264,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 14.961420643925667,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 14.961731573343277,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 14.971265668272972,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.917388+00:00"
+      },
+      {
+        "district_code": "11350",
+        "district_name": "노원구",
+        "station_id": "SU-NWN-G1-0008",
+        "station_name": "롯데캐슬아파트",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-07-31",
+        "forecast_date": "2026-08-01",
+        "prediction": 8.10034979686141,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 8.1,
+          "prediction": 8.080319341272116
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": null,
+        "available_days": 334,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 136,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 0,
+          "missing_rain_days": 198,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-07-31",
+          "input_through": "2026-07-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "25c9a0d411feeef9628b2ebb76615c09cad39fcbeee0a963fc7591c94f683ce7",
+          "status": "ready",
+          "prediction": 8.10034979686141,
+          "model_version": "1",
+          "forecast_date": "2026-08-01",
+          "input_end_date": "2026-07-31",
+          "issued_at": "2026-10-08T05:07:37.973672+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-03-29",
+          "splits": {
+            "train": {
+              "start": "2025-09-21",
+              "end": "2026-03-29",
+              "count": 190
+            },
+            "validation": {
+              "start": "2026-03-30",
+              "end": "2026-05-30",
+              "count": 62
+            },
+            "test": {
+              "start": "2026-05-31",
+              "end": "2026-07-31",
+              "count": 62
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.18074611272837035,
+              "mae": 0.06306554115106969,
+              "count": 62
+            },
+            "validation_persistence": {
+              "rmse": 0.18071096151839594,
+              "mae": 0.06306451612903209,
+              "count": 62
+            },
+            "test": {
+              "rmse": 0.05953643298143789,
+              "mae": 0.03725355837854643,
+              "count": 62
+            },
+            "test_persistence": {
+              "rmse": 0.059527711085651316,
+              "mae": 0.03725806451612895,
+              "count": 62
+            }
+          },
+          "rain_fill_value": 0.9,
+          "imputed_rain_days": 7,
+          "training_snapshot_id": "25c9a0d411feeef9628b2ebb76615c09cad39fcbeee0a963fc7591c94f683ce7",
+          "inference_snapshot_id": "25c9a0d411feeef9628b2ebb76615c09cad39fcbeee0a963fc7591c94f683ce7",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-05-31",
+              "prediction": 8.290307042598725,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-01",
+              "prediction": 8.25033264786005,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-02",
+              "prediction": 8.240357532799244,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-03",
+              "prediction": 8.280379576981067,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-04",
+              "prediction": 8.340396510958671,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-05",
+              "prediction": 8.350380408465861,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-06",
+              "prediction": 8.310380974411965,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-07",
+              "prediction": 8.240358529388905,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-08",
+              "prediction": 8.270328534245492,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-09",
+              "prediction": 8.310328591167927,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-10",
+              "prediction": 8.300310934185982,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-11",
+              "prediction": 8.310288976728916,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-12",
+              "prediction": 8.300295175611973,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-13",
+              "prediction": 8.260314801335335,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-14",
+              "prediction": 8.280337097346782,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-15",
+              "prediction": 8.290329777300357,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-16",
+              "prediction": 8.270341427624226,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-17",
+              "prediction": 8.27035843193531,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-18",
+              "prediction": 8.290347653627396,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-19",
+              "prediction": 8.320353847146034,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-20",
+              "prediction": 8.33033487945795,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-21",
+              "prediction": 8.300290005803108,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-22",
+              "prediction": 8.220286590754986,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-23",
+              "prediction": 8.260275000035763,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-24",
+              "prediction": 8.260285401940346,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-25",
+              "prediction": 8.270310533344745,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-26",
+              "prediction": 8.320307754874229,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-27",
+              "prediction": 8.320324136316776,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-28",
+              "prediction": 8.330345343649388,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-29",
+              "prediction": 8.320365370213985,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-06-30",
+              "prediction": 8.27038502842188,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-01",
+              "prediction": 8.270401845872403,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-02",
+              "prediction": 8.31038533449173,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-03",
+              "prediction": 8.300355780720711,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-04",
+              "prediction": 8.280321961641311,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-05",
+              "prediction": 8.32029118657112,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-06",
+              "prediction": 8.350262624025344,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-07",
+              "prediction": 8.350241259634494,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-08",
+              "prediction": 8.33022525459528,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-09",
+              "prediction": 8.3702069991827,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-10",
+              "prediction": 8.290190877616405,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-11",
+              "prediction": 8.240185807943345,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-12",
+              "prediction": 8.22020350009203,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-13",
+              "prediction": 8.240231152772903,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-14",
+              "prediction": 8.25024258106947,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-15",
+              "prediction": 8.280226911902428,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-16",
+              "prediction": 8.000217699855567,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-17",
+              "prediction": 8.130231946110726,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-18",
+              "prediction": 8.210236108601093,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-19",
+              "prediction": 7.9902100087702275,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-20",
+              "prediction": 8.02020190745592,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-21",
+              "prediction": 8.080195234715939,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-22",
+              "prediction": 8.00018515497446,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-23",
+              "prediction": 7.970182729810476,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-24",
+              "prediction": 8.020184498280287,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-25",
+              "prediction": 8.000210692584515,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-26",
+              "prediction": 8.00022205993533,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-27",
+              "prediction": 8.030226260274649,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-28",
+              "prediction": 8.030226260274649,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-29",
+              "prediction": 8.020250615775584,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-30",
+              "prediction": 8.050283686071634,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            },
+            {
+              "date": "2026-07-31",
+              "prediction": 8.080319341272116,
+              "kind": "held_out_test",
+              "trained_through": "2026-03-29"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:37.973672+00:00"
+      },
+      {
+        "district_code": "11380",
+        "district_name": "은평구",
+        "station_id": "SU-UPG-G1-0003",
+        "station_name": "팀비전센타",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 10.270680568516255,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 10.27,
+          "prediction": 10.790861793756486
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 361,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 146,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 215,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "b0fb8c87b213de9f7651ae029f472e84c3b4aecb0f85e29048942547af770f1a",
+          "status": "ready",
+          "prediction": 10.270680568516255,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.033620+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 2.010243730540752,
+              "mae": 1.3387062058491366,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 2.0101670150938773,
+              "mae": 1.3385714285714283,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.3356566282486275,
+              "mae": 0.280104396045208,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.3355805204631007,
+              "mae": 0.27999999999999975,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "d91d5c9cd07f06a503d7e4e3186ea3f84f55c0281e899e87371c521c6d69d261",
+          "inference_snapshot_id": "b0fb8c87b213de9f7651ae029f472e84c3b4aecb0f85e29048942547af770f1a",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 10.831011077165604,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 10.540903458893299,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 10.490947584211826,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 10.9808601552248,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 10.550699243843555,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 10.650437142848968,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 10.570398438870907,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 10.760487120747566,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 10.130463793277741,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 10.070568876862527,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 10.270745479464532,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 10.090800940394402,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 10.550893392562866,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 10.790861793756486,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.033620+00:00"
+      },
+      {
+        "district_code": "11410",
+        "district_name": "서대문구",
+        "station_id": "SU-SDM-G1-0006",
+        "station_name": "북가좌놀이터",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 4.099858810901642,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 4.1,
+          "prediction": 4.101092290878296
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "5b657242e05cb328247af1b1399a9270ca9e882cb81113e2519c307f648e8746",
+          "status": "ready",
+          "prediction": 4.099858810901642,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.094186+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.010052324553896572,
+              "mae": 0.008537952037794203,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.017928429140015877,
+              "mae": 0.014999999999999998,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.007880043227643694,
+              "mae": 0.005674684068986302,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.009636241116594176,
+              "mae": 0.007857142857142754,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "191c288592c65048d7e837a8c4bcff15150914583868c3467b14565563ab8126",
+          "inference_snapshot_id": "5b657242e05cb328247af1b1399a9270ca9e882cb81113e2519c307f648e8746",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 4.05923556804657,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 4.06781241685152,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 4.0771653735637665,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 4.0858394783735275,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 4.094176194369793,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 4.10211418569088,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 4.0914054653048515,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 4.101484640836715,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 4.100675301253796,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 4.080822049677372,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 4.081481029093266,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 4.091196346879006,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 4.10156898111105,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 4.101092290878296,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.094186+00:00"
+      },
+      {
+        "district_code": "11440",
+        "district_name": "마포구",
+        "station_id": "SU-MPO-G1-0005",
+        "station_name": "양화공원",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 11.566541252136231,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 11.57,
+          "prediction": 11.566526794433594
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "ff43e3093ad4a2390e707596a91058bed1292ac2124a2b18054b05bd5fc81e89",
+          "status": "ready",
+          "prediction": 11.566541252136231,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.155131+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.07127071495734526,
+              "mae": 0.04051549064261601,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.07245688373094732,
+              "mae": 0.039285714285714333,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.018477170806894604,
+              "mae": 0.015951331002371942,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.018322507626258113,
+              "mae": 0.016428571428571587,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "61c1b256654b2d8388e71272a8ffb8ad5a4ba5b8a3aff3a48d589b0e53bc5b5e",
+          "inference_snapshot_id": "ff43e3093ad4a2390e707596a91058bed1292ac2124a2b18054b05bd5fc81e89",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 11.595230007171631,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 11.62549654006958,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 11.655704784393311,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 11.645905685424804,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 11.626110668182374,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 11.616281547546388,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 11.626360054016114,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 11.616384582519531,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 11.596427974700928,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 11.576443576812744,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 11.55645845413208,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 11.576485195159913,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 11.556510543823242,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 11.566526794433594,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.155131+00:00"
+      },
+      {
+        "district_code": "11470",
+        "district_name": "양천구",
+        "station_id": "SU-YGC-G1-0008",
+        "station_name": "파리공원",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 13.688168997764587,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 13.67,
+          "prediction": 13.688293405771255
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 324,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 127,
+          "longest_consecutive_days": 10,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 197,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "d4ab667d8b97ff8da547c50b21a46473bb3daa1aae74f21b8902adf24795d98e",
+          "status": "ready",
+          "prediction": 13.688168997764587,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.251954+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.021914802145401507,
+              "mae": 0.019741562860353286,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.02988071523335967,
+              "mae": 0.02214285714285705,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.01414672249220654,
+              "mae": 0.011625328404562905,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.014392458342578712,
+              "mae": 0.010714285714285994,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "0526099ffed8ba2525f524a588a91b62357ec8a7f6153c3751ac7b3c24ae2af4",
+          "inference_snapshot_id": "d4ab667d8b97ff8da547c50b21a46473bb3daa1aae74f21b8902adf24795d98e",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 13.558586448431015,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 13.568411605358124,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 13.558394377231597,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 13.5783061170578,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 13.578114660978317,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 13.597884615659714,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 13.597856320142746,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 13.607966585159302,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 13.607961356639862,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 13.628043792247771,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 13.628206799030304,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 13.64822879910469,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 13.678311700820922,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 13.688293405771255,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.251954+00:00"
+      },
+      {
+        "district_code": "11500",
+        "district_name": "강서구",
+        "station_id": "SU-GSS-G1-0002",
+        "station_name": "강서구청",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 12.677736112326382,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 12.68,
+          "prediction": 12.68768977165222
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "16e9f712e64e1fd0f1abc63f3e19772763f2a6b631936ed2bf08637c5e7e6831",
+          "status": "ready",
+          "prediction": 12.677736112326382,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.320340+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.009603482040317477,
+              "mae": 0.007907448056752666,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.009999999999999787,
+              "mae": 0.007142857142856991,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.010714185357363888,
+              "mae": 0.009689888155885815,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.011338934190276798,
+              "mae": 0.009999999999999913,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "73d76da6dff7e4723690caa2fe0439df1d5613b52b7c1151bc6e320521319c37",
+          "inference_snapshot_id": "16e9f712e64e1fd0f1abc63f3e19772763f2a6b631936ed2bf08637c5e7e6831",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 12.737481849715113,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 12.747534790039062,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 12.75755040988326,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 12.747584307193755,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 12.73763968244195,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 12.747704800218344,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 12.727725900188087,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 12.717715486437081,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 12.717726206183432,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 12.697715201377868,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 12.687682845145464,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 12.687686997205018,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 12.677670505940913,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 12.68768977165222,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.320340+00:00"
+      },
+      {
+        "district_code": "11530",
+        "district_name": "구로구",
+        "station_id": "SU-GRO-G1-0006",
+        "station_name": "고척삼명아파트",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 4.479370420575142,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 4.48,
+          "prediction": 4.4593842023611066
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 332,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 139,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 193,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "ee429102becb872de52dd274b974a1f0f1bfa55361830aaa8485beb19bf8e1e2",
+          "status": "ready",
+          "prediction": 4.479370420575142,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.388129+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.04396665753649739,
+              "mae": 0.02609846247094026,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.04407785320154731,
+              "mae": 0.0257142857142858,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.03601195298177193,
+              "mae": 0.028233257787568355,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.03595632271043782,
+              "mae": 0.027857142857142896,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "5d3147b736531b1ef837bb83c71256431c47f43ffe5b213507768202d7a1e78b",
+          "inference_snapshot_id": "ee429102becb872de52dd274b974a1f0f1bfa55361830aaa8485beb19bf8e1e2",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 4.4292932623624806,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 4.449294933080673,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 4.479301618933678,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 4.489300250411033,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 4.499299236536026,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 4.499292396903038,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 4.429300608634949,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 4.359315381348133,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 4.35931963711977,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 4.3293397271633145,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 4.33936331063509,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 4.399369893372059,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 4.429385217428208,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 4.4593842023611066,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.388129+00:00"
+      },
+      {
+        "district_code": "11545",
+        "district_name": "금천구",
+        "station_id": "SU-GCN-G1-0002",
+        "station_name": "군인아파트",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 11.455642266981302,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 11.46,
+          "prediction": 11.455559768378734
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "14d0b6c01d203734d3a289355d311429b5f9b2099fb3c82f9abf7d694604bde7",
+          "status": "ready",
+          "prediction": 11.455642266981302,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.452691+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.012513455554406541,
+              "mae": 0.010100913990089515,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.011649647450214537,
+              "mae": 0.009285714285714342,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.010622989414189005,
+              "mae": 0.008681876657730061,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.011649647450214429,
+              "mae": 0.009285714285714342,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "6cea2973a182f29cc506f460ae782aa55fad7f7d35b8d5eb21132d22e3eb4492",
+          "inference_snapshot_id": "14d0b6c01d203734d3a289355d311429b5f9b2099fb3c82f9abf7d694604bde7",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 11.52521120334044,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 11.545308149317279,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 11.55532951787114,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 11.545387504741083,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 11.535489105137529,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 11.53560968287289,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 11.525640358012168,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 11.50560891760513,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 11.505624352730809,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 11.485601033233106,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 11.475542357377707,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 11.475546327866613,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 11.46552699703723,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 11.455559768378734,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.452691+00:00"
+      },
+      {
+        "district_code": "11560",
+        "district_name": "영등포구",
+        "station_id": "SU-YDP-G1-0001",
+        "station_name": "당산공원",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 17.808481053709986,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 17.81,
+          "prediction": 17.8184631985426
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "4d74661e44ba31ec6da24a9ec9e8d1e87476e7f8d52f8446f007a00bcf17b8d0",
+          "status": "ready",
+          "prediction": 17.808481053709986,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.516442+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.01123792969759393,
+              "mae": 0.008952836468815204,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.011952286093343681,
+              "mae": 0.008571428571428135,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.01073906121067051,
+              "mae": 0.009715455046722252,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.0113389341902768,
+              "mae": 0.01000000000000004,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "d3c356926b1288113fc014c25fdd072833e217347bec11f1b9558b88069ba90a",
+          "inference_snapshot_id": "4d74661e44ba31ec6da24a9ec9e8d1e87476e7f8d52f8446f007a00bcf17b8d0",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 17.86775807410479,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 17.85782885372639,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 17.857891648709778,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 17.837959809303285,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 17.828043512701992,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 17.838128833174707,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 17.828203810453417,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 17.828251509070398,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 17.81830704927445,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 17.828347907662394,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 17.818377162218095,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 17.828412888646127,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 17.808437110185626,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 17.8184631985426,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.516442+00:00"
+      },
+      {
+        "district_code": "11590",
+        "district_name": "동작구",
+        "station_id": "SU-DJK-G1-0005",
+        "station_name": "성남중고등학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 13.207203664779664,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 13.2,
+          "prediction": 13.007332401275635
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "3ac011cd57252a468647878ce7bdf490baee67dd79e30218b9ecd5519724e81e",
+          "status": "ready",
+          "prediction": 13.207203664779664,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.577766+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 1.3172234003823944,
+              "mae": 0.900503737793437,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 1.3161632551798865,
+              "mae": 0.902857142857143,
+              "count": 14
+            },
+            "test": {
+              "rmse": 1.6368129222812395,
+              "mae": 1.3814250741473266,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 1.6374980916019417,
+              "mae": 1.3814285714285715,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "078fa84d814e351a8178a1498dd1193be19bc5380f1dd548fb7b2ed2339a8bcb",
+          "inference_snapshot_id": "3ac011cd57252a468647878ce7bdf490baee67dd79e30218b9ecd5519724e81e",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 11.128103390932083,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 12.857897911071777,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 11.327817970514298,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 13.187693748474121,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 12.977492418289184,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 11.097247400581837,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 12.987158799171448,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 13.217195386886598,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 13.00715717792511,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 11.027201532274486,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 13.39732421875,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 10.977324007600545,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 13.407375679016113,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 13.007332401275635,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.577766+00:00"
+      },
+      {
+        "district_code": "11620",
+        "district_name": "관악구",
+        "station_id": "SU-GNK-G1-0008",
+        "station_name": "락성주유소",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 7.717434463500976,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 7.72,
+          "prediction": 7.717401677370071
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "53c49e9c8509116e96a8e0ac10307467eb5f025809c5ae3c84c9a75cdc3b0b13",
+          "status": "ready",
+          "prediction": 7.717434463500976,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.641782+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.00969825201881863,
+              "mae": 0.007974217906594281,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.009258200997725317,
+              "mae": 0.007142857142856991,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.024226628969079702,
+              "mae": 0.019335314780473695,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.02390457218668771,
+              "mae": 0.01857142857142843,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "121bd41db6e434db55dbd0f9fd4cdb727df97271235bd064179ce4747894663e",
+          "inference_snapshot_id": "53c49e9c8509116e96a8e0ac10307467eb5f025809c5ae3c84c9a75cdc3b0b13",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 7.697245466709137,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 7.72729169011116,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 7.75730237364769,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 7.747327061891555,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 7.747372682094574,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 7.757424347400665,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 7.697439872026443,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 7.7274263727664945,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 7.717431104779243,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 7.697422135472298,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 7.707396483421325,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 7.7173962867259975,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 7.697389009296894,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 7.717401677370071,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.641782+00:00"
+      },
+      {
+        "district_code": "11650",
+        "district_name": "서초구",
+        "station_id": "SU-SCO-G1-0010",
+        "station_name": "서울교육대학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 8.14147931754589,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 8.16,
+          "prediction": 8.581098718643188
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "75de41f9989d2438203f1a8e56b3816b345c86e5ae3ea326a901effbd85ac559",
+          "status": "ready",
+          "prediction": 8.14147931754589,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.707990+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.3667181702827884,
+              "mae": 0.22674251069979987,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.3672095548087725,
+              "mae": 0.23285714285714246,
+              "count": 14
+            },
+            "test": {
+              "rmse": 1.093605707050132,
+              "mae": 0.6542364541301504,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 1.093412090659327,
+              "mae": 0.6621428571428573,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "bbde29ed11b0e5316a0dce05122ed772998691def59da7431129be9e4810313a",
+          "inference_snapshot_id": "75de41f9989d2438203f1a8e56b3816b345c86e5ae3ea326a901effbd85ac559",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 7.990511416904628,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 8.060958238393068,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 8.011051863273606,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 7.931336310207843,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 7.901804811954498,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 7.872357705682516,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 7.782514010071754,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 9.112162764072417,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 8.102137835025786,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 7.921970553398132,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 10.551259655952453,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 8.041136404201389,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 7.900997969210147,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 8.581098718643188,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.707990+00:00"
+      },
+      {
+        "district_code": "11680",
+        "district_name": "강남구",
+        "station_id": "SU-GNM-G1-0005",
+        "station_name": "신구초등학교",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 11.368213376849889,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 11.37,
+          "prediction": 11.358180791586637
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "9a85984f49ad6f70f13840bd4abecf9508ecdb523025f5200ae61f762bff9e8c",
+          "status": "ready",
+          "prediction": 11.368213376849889,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.770640+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.016081710150577425,
+              "mae": 0.013847982974922957,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.016256866681058597,
+              "mae": 0.013571428571428536,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.026871961082330087,
+              "mae": 0.017419028250900075,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.026992062325273063,
+              "mae": 0.017142857142857158,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "8f6135a086379433f13f43c626aafb83bac7b3367fdcca7d163409ec98cb4b5c",
+          "inference_snapshot_id": "9a85984f49ad6f70f13840bd4abecf9508ecdb523025f5200ae61f762bff9e8c",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 11.407976717576384,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 11.418015776788815,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 11.488024791032077,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 11.468041288554668,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 11.468069853335619,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 11.448101120889186,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 11.388116181343793,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 11.388116116151213,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 11.38812765263021,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 11.36813497364521,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 11.358134254515171,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 11.368147860914469,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 11.35815873041749,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 11.358180791586637,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.770640+00:00"
+      },
+      {
+        "district_code": "11710",
+        "district_name": "송파구",
+        "station_id": "SU-SPA-G1-0009",
+        "station_name": "부리근린공원",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 12.057426969930528,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 12.06,
+          "prediction": 12.067381311431527
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "fd3856f3d99dae0794622f7615a9ec6482119b97896214223a63fb71bde518f7",
+          "status": "ready",
+          "prediction": 12.057426969930528,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:38.832628+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.009730646609436676,
+              "mae": 0.008327991985050584,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.010350983390135092,
+              "mae": 0.00785714285714269,
+              "count": 14
+            },
+            "test": {
+              "rmse": 0.009623287127901427,
+              "mae": 0.008275299694921832,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 0.009258200997725728,
+              "mae": 0.007142857142857244,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "de0f64cd6bedb70b00fe04e4cfa99b404f1d075b0a6d632de4e435e30fc288ee",
+          "inference_snapshot_id": "fd3856f3d99dae0794622f7615a9ec6482119b97896214223a63fb71bde518f7",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 12.057090057656168,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 12.0571600163728,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 12.04718629926443,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 12.0572316917032,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 12.03730235233903,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 12.047385627627373,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 12.057415003925561,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 12.047406354397534,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 12.047423004209994,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 12.047413401901721,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 12.047381067872047,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 12.057382297739386,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 12.057363364696503,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 12.067381311431527,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:38.832628+00:00"
+      },
+      {
+        "district_code": "11740",
+        "district_name": "강동구",
+        "station_id": "SU-GDG-G1-0019",
+        "station_name": "둔촌지하수",
+        "source_kind": "observed_api",
+        "unit": "API 원값",
+        "level_unit": null,
+        "observed_date": "2026-08-31",
+        "forecast_date": "2026-09-01",
+        "prediction": 12.213615020811558,
+        "model_version": "1",
+        "quality_status": "stale_data",
+        "latest_comparison": {
+          "actual": 12.16,
+          "prediction": 12.909687699377537
+        },
+        "model_evaluation_status": "evaluation_passed",
+        "rainfall_mm": 34.8,
+        "available_days": 365,
+        "reason": "최신 가용 관측 다음 날 예측입니다. 오늘 예측이 아닙니다.",
+        "input_readiness": {
+          "required_days": 20,
+          "complete_days": 147,
+          "longest_consecutive_days": 16,
+          "latest_consecutive_days": 2,
+          "missing_rain_days": 218,
+          "latest_window_complete": false,
+          "model_contract_verified": true
+        },
+        "data_source": {
+          "kind": "observed_api",
+          "observed_through": "2026-08-31",
+          "input_through": "2026-08-31",
+          "collected_at": "2026-10-08T05:33:25.702007+00:00"
+        },
+        "api_model": {
+          "input_hash": "15302ab115e2ce05d81354ab4ba5e9a640232fc4bda2b4902a2e820cf052e217",
+          "status": "ready",
+          "prediction": 12.213615020811558,
+          "model_version": "1",
+          "forecast_date": "2026-09-01",
+          "input_end_date": "2026-08-31",
+          "issued_at": "2026-10-08T05:07:39.291277+00:00",
+          "unit": "API 원값",
+          "trained_through": "2026-08-03",
+          "splits": {
+            "train": {
+              "start": "2026-06-23",
+              "end": "2026-08-03",
+              "count": 42
+            },
+            "validation": {
+              "start": "2026-08-04",
+              "end": "2026-08-17",
+              "count": 14
+            },
+            "test": {
+              "start": "2026-08-18",
+              "end": "2026-08-31",
+              "count": 14
+            }
+          },
+          "metrics": {
+            "validation": {
+              "rmse": 0.41044568737406295,
+              "mae": 0.29095859099711696,
+              "count": 14
+            },
+            "validation_persistence": {
+              "rmse": 0.4287856607410545,
+              "mae": 0.32142857142857145,
+              "count": 14
+            },
+            "test": {
+              "rmse": 1.3202671330303306,
+              "mae": 0.9521007989453422,
+              "count": 14
+            },
+            "test_persistence": {
+              "rmse": 1.313223950001348,
+              "mae": 0.9471428571428575,
+              "count": 14
+            }
+          },
+          "rain_fill_value": 2.4,
+          "imputed_rain_days": 9,
+          "training_snapshot_id": "6f0079ab68629021f0b931a46d6b2f88aebd47fb932b12400ace8c4b1cbc11cd",
+          "inference_snapshot_id": "15302ab115e2ce05d81354ab4ba5e9a640232fc4bda2b4902a2e820cf052e217",
+          "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+          "namespace": "api_native_masked_v1",
+          "backtest": [
+            {
+              "date": "2026-08-18",
+              "prediction": 14.401961342692374,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-19",
+              "prediction": 13.851169295310974,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-20",
+              "prediction": 14.556307725906372,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-21",
+              "prediction": 15.067170041799546,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-22",
+              "prediction": 13.855426906943322,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-23",
+              "prediction": 13.857822621464729,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-24",
+              "prediction": 13.650686016082764,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-25",
+              "prediction": 15.739734889864922,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-26",
+              "prediction": 12.063718114495277,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-27",
+              "prediction": 11.790001424252987,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-28",
+              "prediction": 12.451828123629092,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-29",
+              "prediction": 12.853754954338074,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-30",
+              "prediction": 11.739872800558805,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            },
+            {
+              "date": "2026-08-31",
+              "prediction": 12.909687699377537,
+              "kind": "held_out_test",
+              "trained_through": "2026-08-03"
+            }
+          ]
+        },
+        "issued_at": "2026-10-08T05:07:39.291277+00:00"
+      }
+    ],
+    "collection": {
+      "checked_at": "2026-10-08T05:33:25.702007+00:00",
+      "check_date": "2026-10-08",
+      "errors": {},
+      "water_latest": "2026-08-31",
+      "water_collected_at": "2026-10-08T05:33:25.702007+00:00",
+      "water_pages": 96,
+      "water_received_rows": 91483,
+      "future_rows": 270,
+      "invalid_rows": 3613,
+      "provider_total": 879379,
+      "rain_collected_at": "2026-10-08T05:33:25.702007+00:00",
+      "rain_received_rows": 402,
+      "rain_quarantined": 246,
+      "rain_latest": "2026-10-05",
+      "water_lookback_days": 365
+    },
+    "training": {
+      "feed_hash": "62f37d3ececc7a3c60a06637e9f2971af548789093a506a15504ef01c0a06e85",
+      "started_at": "2026-10-08T05:07:35.745729+00:00",
+      "status": "completed",
+      "completed_at": "2026-10-08T05:07:39.295518+00:00",
+      "ready_count": 25
+    },
+    "note": "API 원값으로 학습한 별도 모델입니다. 강수 결측은 원본에 보존하고 모델에는 학습 구간 중앙값과 결측 표시를 입력합니다. 예측 대상일을 확인하세요."
+  },
+  "jongno_pipeline": {
+    "namespace": "api_native_masked_v1",
+    "district_code": "11110",
+    "stages": [
+      {
+        "key": "data",
+        "title": "실제 API 수집·입력 준비",
+        "status": "completed",
+        "detail": "최신 입력 2026-08-31 · 예측 대상 2026-09-01"
+      },
+      {
+        "key": "monitor",
+        "title": "발행 예측 오차 확인",
+        "status": "pending",
+        "detail": "정답 확보 0건 · 연속21일 창 · 경보 기준 0.020329833093506448"
+      },
+      {
+        "key": "drift",
+        "title": "드리프트 경보",
+        "status": "pending",
+        "detail": "연속 초과 0회 / 2회"
+      },
+      {
+        "key": "retrain",
+        "title": "자동 재학습",
+        "status": "pending",
+        "detail": "경보 후 자동 접수 · 실제41일 자료"
+      },
+      {
+        "key": "evaluate",
+        "title": "새 모델 평가",
+        "status": "pending",
+        "detail": "후보 이후 정답 0/30일 · 개선5% · 기존 오차110% 이내"
+      },
+      {
+        "key": "promote",
+        "title": "모델 교체·기존 유지",
+        "status": "pending",
+        "detail": "현재 모델 v2"
+      },
+      {
+        "key": "serve",
+        "title": "실제 예측 발행",
+        "status": "completed",
+        "detail": "발행 1건 · 관측일·예측일·발행 시각 분리"
+      }
+    ],
+    "monitor": {
+      "district_code": "11110",
+      "version": "2",
+      "breaches": 0,
+      "candidate": null,
+      "last_trigger": null,
+      "last_processed_target_date": "",
+      "rmse": null,
+      "feature_contract_id": "VTsSec-native-ASOS108-train-median-missing-mask-v1",
+      "threshold": 0.020329833093506448,
+      "id": "api_native_masked_v1:11110"
+    },
+    "evaluation": {},
+    "candidate": null,
+    "versions": [
+      {
+        "version": "1",
+        "kind": "initial",
+        "trained_through": "2026-08-03",
+        "evaluation": null,
+        "current": false
+      },
+      {
+        "version": "2",
+        "kind": "initial",
+        "trained_through": "2026-04-15",
+        "evaluation": null,
+        "current": true
+      }
+    ],
+    "jobs": [],
+    "events": [],
+    "can_rollback": false,
+    "source_errors": {},
+    "issued_count": 1,
+    "evaluated_count": 0,
+    "policy": {
+      "window_days": 21,
+      "consecutive_breaches": 2,
+      "retrain_days": 41,
+      "shadow_days": 30,
+      "minimum_improvement": 0.05,
+      "historical_limit": 1.1,
+      "label_policy": "first_received_after_issuance",
+      "forecast_timing": "latest_available_next_day"
+    },
+    "note": "시험 구간 예측은 감시에서 제외합니다. 발행 당시 미수신 정답이 새 API 수집에 들어와야 진행합니다."
+  },
+  "csv_jobs": {
+    "jobs": [
+      {
+        "id": "a2893962921241e9bb43366102e8dfe7",
+        "kind": "validate",
+        "scope": "validate:38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7",
+        "payload": {
+          "dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7",
+          "auto_train": false
+        },
+        "status": "completed",
+        "result": {
+          "dataset_id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7",
+          "report": {
+            "source_sha256": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+            "source_rows": 52591,
+            "accepted_rows": 52591,
+            "invalid_rows": 0,
+            "error_examples": [],
+            "exact_duplicates_removed": 0,
+            "conflicting_groups": 0,
+            "conflict_examples": [],
+            "inconsistent_stations": [],
+            "manifest_approved": true,
+            "districts_with_data": 25
+          }
+        },
+        "error": null,
+        "created_at": "2026-10-08T05:34:16.855083+00:00",
+        "updated_at": "2026-10-08T05:36:01.083053+00:00"
+      }
+    ],
+    "namespace": "historical"
+  },
+  "csv_datasets": {
+    "datasets": [
+      {
+        "id": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7",
+        "status": "ready",
+        "source_kind": "observed",
+        "namespace": "historical",
+        "filename": "groundwater_observations.csv",
+        "created_at": "2026-10-08T05:34:16.854303+00:00",
+        "report": {
+          "source_sha256": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+          "source_rows": 52591,
+          "accepted_rows": 52591,
+          "invalid_rows": 0,
+          "error_examples": [],
+          "exact_duplicates_removed": 0,
+          "conflicting_groups": 0,
+          "conflict_examples": [],
+          "inconsistent_stations": [],
+          "manifest_approved": true,
+          "districts_with_data": 25
+        },
+        "sha256": "38a5ef2d183de0cd6a9b32781fbfebd9a3982c19f5d18c8897bfd16c9d4f35d7",
+        "dataset_version": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870"
+      }
+    ]
+  }
+}

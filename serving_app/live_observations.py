@@ -92,6 +92,32 @@ class LiveObservations:
         return {'mode':'live','target_date':target,'input_end_date':state['input_end_date'],
                 'ready_count':sum(x['prediction'] is not None for x in items),'total':25,'forecasts':items}
 
+    def publication_status(self):
+        """Read-only readiness: never train, activate snapshots or issue predictions."""
+        forecasts = self.forecasts()
+        stations = []
+        for row in forecasts['forecasts']:
+            state = 'mapping_required'
+            if row['mapping_approved']:
+                state = 'input_required'
+                if row['data_status'] == 'READY':
+                    state = 'model_required'
+                    if row['prediction'] is not None:
+                        state = 'published'
+                    else:
+                        try:
+                            _, metadata = self.dataset(row['inference_snapshot_id'])
+                            self.service.manager('observed_api_v1').check_ready(row['district_code'], metadata)
+                            state = 'publish_ready'
+                        except (ValueError, FileNotFoundError, KeyError, RuntimeError, AttributeError):
+                            pass
+            stations.append({'district_code':row['district_code'], 'status':state,
+                             'input_status':row['data_status'], 'issued_at':row.get('issued_at')})
+        counts = {name:sum(s['status']==name for s in stations) for name in
+                  ('mapping_required','input_required','model_required','publish_ready','published')}
+        return {'target_date':forecasts['target_date'], 'input_end_date':forecasts['input_end_date'],
+                'counts':counts, 'stations':stations, 'applied_to_default_forecasts':False}
+
     def history(self, code):
         mapping=self.mapping_for_code(code)
         active=self.repo.active()

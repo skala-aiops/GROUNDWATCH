@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-10-08T09:41:08.838512+09:00",
+  "image": "sha256:964c33b70671b9bff828cab10774604a17f8f9ec02bbbaf3a44b1bda286e16de",
+  "verification": {
+    "full_unittest": {
+      "run": 92,
+      "skipped": 1,
+      "result": "OK",
+      "elapsed_seconds": 27.387
+    },
+    "final_timezone_and_data_regression": {
+      "run": 11,
+      "result": "OK"
+    },
+    "actual_http": "current-extension-http.json",
+    "actual_upload_and_manual_training": "current-extension-upload-http.json",
+    "mean_latency_regression": {
+      "run": 1,
+      "result": "OK"
+    },
+    "actual_metrics": "current-metrics-http.json",
+    "manual_controls_ui": {
+      "main_csv_button": false,
+      "manual_details_open": false,
+      "upload_form_preserved": true,
+      "train_form_preserved": true,
+      "actual_http_html": "verified after final Compose rebuild"
+    }
+  },
+  "source_hashes": {
+    "data/groundwater.py": "95664974ba77f0e1b323b0359ab1c89afbb8aa6c959a5e21d3819714db95ba06",
+    "data/current_extension.py": "9b3f4cd51cbd21774d4f321d1556ae3160823c119228c0a445822827f1002c5c",
+    "data/groundwater_observations.csv": "8a99ad7c8d4da3c9be1fcea8044281fcf538b7fdc29aa376604e9f0334193870",
+    "data/representatives.json": "7b308ad5ce811e634d443824787a1689f74116d65be41ba16b0ab3387df901f2",
+    "scripts/start_container.py": "a50640dc4379a4327f427679b75ce351047df2da274e1455fc4adb0009919ff1",
+    "scripts/verify_current_extension.py": "b23041e108bb0c86013f0bc5b4c739c4451b5637fc037f35d222ef97e70c04e4",
+    "serving_app/groundwater_service.py": "fcc661d04d61f30c8c6d9250f4d47564918bad3b839504b234c95b647574547e",
+    "serving_app/static/groundwatch.js": "34c7ed2cda88c45bb5f8a580fd7d77128c49fc787650db6fe56757898c953c59",
+    "serving_app/static/groundwatch.css": "3cb3af859d440944261dd9c460ad69ad9c7ecc870c6a1cf24dbdf2d923a7dfd8",
+    "serving_app/static/index.html": "a92b46692edf28a6d4b5a737886a8be3d3f9d4eff9e4e65ca36a1b0d3e9dd216",
+    "compose.yaml": "46246faea76247d2bfbe10da70d63ae1e6603d8e23e22cacc3960976b0737079",
+    "serving_app/groundwater_store.py": "51de97e3182e3eb47be1fab65d4718ea2228a683116ed2fec3e820380565ec64"
+  },
+  "limitations": [
+    "Synthetic extension is coursework scenario; no current observed Seoul accuracy claim.",
+    "Daily generation runs at startup; a continuously running instance requires restart for a new day.",
+    "Manual CSV smoke retrained synthetic Jongno to v2; not automatic candidate promotion."
+  ]
+}

@@ -17,10 +17,12 @@ class LiveTests(unittest.TestCase):
             def factory(namespace):
                 return ModelManager(root/'models',namespace=namespace,backend=backends.setdefault(namespace,Backend()))
             service=GroundwaterService(root,manager_factory=factory);live=LiveObservations(service)
+            self.assertEqual(live.publication_status()['counts']['mapping_required'],25)
             mapping={'version':'FIXTURE-v1','station_id':'fixture-well','district_code':'11110','station_name':'TEST ONLY',
                 'seoul_name':'TEST ONLY','weather_station':'108','level_unit':'gl.-m',
                 'preprocessing_version':'strict-v1','approved':True,'evidence':['ISOLATED TEST FIXTURE']}
             live.repo.register_mapping(mapping)
+            self.assertEqual(live.publication_status()['stations'][0]['status'],'input_required')
             end=today()-timedelta(days=1);start=end-timedelta(days=409)
             for source,station in [('seoul','TEST ONLY'),('kma','108')]:
                 records=[{'source':source,'source_station':station,'date':(start+timedelta(days=i)).isoformat(),
@@ -28,16 +30,20 @@ class LiveTests(unittest.TestCase):
                 live.repo.record_collection('fixture',source,station,start.isoformat(),end.isoformat(),
                     {'status':'collected'},records,[],['fixture-hash'])
             snapshot=live.repo.publish_snapshot('fixture-well','FIXTURE-v1',start.isoformat(),end.isoformat())
+            live.repo.activate(snapshot['id'])
+            self.assertEqual(live.publication_status()['stations'][0]['status'],'model_required')
             result=live.execute_job({'kind':'train_live','payload':{'snapshot_id':snapshot['id'],
                 'replay_start':(start+timedelta(days=320)).isoformat()}})
             self.assertEqual(result['status'],'promoted')
             daily=live.repo.publish_snapshot('fixture-well','FIXTURE-v1',(end-timedelta(days=19)).isoformat(),end.isoformat())
             live.repo.activate(daily['id'])
+            self.assertEqual(live.publication_status()['stations'][0]['status'],'publish_ready')
             result=live.execute_job({'kind':'predict_live','payload':{'snapshot_id':daily['id']}})
             self.assertEqual(result['training_snapshot_id'],snapshot['id'])
             self.assertEqual(result['inference_snapshot_id'],daily['id'])
             response=live.forecasts()
             self.assertEqual(response['ready_count'],1)
+            self.assertEqual(live.publication_status()['stations'][0]['status'],'published')
             self.assertEqual(response['forecasts'][0]['model_evaluation_status'],'EVALUATION_PENDING')
             version=response['forecasts'][0]['model_version']
             service.store.put('monitor',{'version':version,'rmse':2,'threshold':1},'observed_api_v1:11110')
@@ -64,6 +70,12 @@ class LiveTests(unittest.TestCase):
                 self.assertFalse(any(r['date']==end.isoformat() for r in history))
                 self.assertEqual(history[-1]['prediction'],result['prediction'])
             live.execute_job({'kind':'predict_live','payload':{'snapshot_id':daily['id']}})
+            from serving_app.external_observations import ExternalObservations
+            with patch.dict('os.environ',{'GROUNDWATCH_COLLECTION_ENABLED':'false'}):
+                status=ExternalObservations(service.root).status(live)
+            self.assertFalse(status['collection']['enabled'])
+            self.assertEqual(status['forecast_integration']['stations'][0]['status'],'published')
+            self.assertIsNotNone(status['collection']['timing']['seoul']['last_failure_at'])
             self.assertEqual(len(live.repo.predictions(today().isoformat())),1)
             self.assertEqual(service.store.list('dataset'),[])
             self.assertEqual(service.manager('historical').list_models(),[])

@@ -125,8 +125,9 @@ class TensorFlowBackend:
                     tf.keras.layers.LSTM(32, return_sequences=True),
                     tf.keras.layers.LSTM(32), tf.keras.layers.Dense(16, activation='relu'),
                     tf.keras.layers.Dense(1)])
-            elif architecture == 'residual_lstm':
-                inputs = tf.keras.layers.Input(shape=(20, 2), name='daily_observations')
+            elif architecture in ('residual_lstm', 'residual_lstm_masked'):
+                features = 3 if architecture == 'residual_lstm_masked' else 2
+                inputs = tf.keras.layers.Input(shape=(20, features), name='daily_observations')
                 hidden = tf.keras.layers.LSTM(32, return_sequences=True)(inputs)
                 hidden = tf.keras.layers.LSTM(32)(hidden)
                 hidden = tf.keras.layers.Dense(16, activation='relu')(hidden)
@@ -135,7 +136,7 @@ class TensorFlowBackend:
                 last_day = tf.keras.layers.Cropping1D(cropping=(19, 0), name='last_observed_day')(inputs)
                 last_pair = tf.keras.layers.Flatten()(last_day)
                 persistence = tf.keras.layers.Dense(1, use_bias=False, trainable=False,
-                    kernel_initializer=tf.keras.initializers.Constant([[1.0], [0.0]]),
+                    kernel_initializer=tf.keras.initializers.Constant([[1.0]] + [[0.0]]*(features-1)),
                     name='last_groundwater_level')(last_pair)
                 outputs = tf.keras.layers.Add(name='next_level')([persistence, delta])
                 model = tf.keras.Model(inputs, outputs, name='groundwater_residual_lstm')
@@ -629,6 +630,13 @@ class ModelManager:
         guard_score = metrics(guard_actual, [self._predict(candidate, bundle, guard[i-20:i]) for i in range(20, len(guard))])
         passed = candidate_score['rmse'] <= champion_score['rmse'] * .95 and guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12
         result = {'status': 'rejected', 'candidate_version': version, 'gate_passed': passed,
+                  'gates': {'future_improvement': {
+                      'passed': candidate_score['rmse'] <= champion_score['rmse'] * .95,
+                      'rmse': candidate_score['rmse'], 'limit': champion_score['rmse'] * .95},
+                      'historical_guard': {
+                          'passed': guard_score['rmse'] <= old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12,
+                          'rmse': guard_score['rmse'],
+                          'limit': old_bundle['metrics']['validation']['rmse'] * 1.10 + 1e-12}},
                   'metrics': {'shadow_candidate': candidate_score, 'shadow_champion': champion_score, 'historical_guard': guard_score},
                   'shadow_start': rows[selected[0]]['date'], 'shadow_end': rows[selected[-1]]['date']}
         state = self._state(district_code)

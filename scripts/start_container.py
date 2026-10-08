@@ -24,6 +24,25 @@ def main():
         except KeyError:
             service.queue_upload(contents, mapping, source.name, auto_train=True)
             print('[GroundWatch] 공식 자료 검증과 최초 25개 구 학습을 작업으로 등록했습니다.', flush=True)
+    # Isolated coursework scenario: preserve official dataset/models and append
+    # explicitly labelled synthetic rows only in a separate namespace.
+    import os
+    if source.exists() and manifest.exists() and os.getenv('GROUNDWATCH_CURRENT_EXTENSION', 'true').lower() == 'true':
+        from data.current_extension import build_extension
+        generated, generated_manifest = build_extension(source, manifest, service.root/'current-extension')
+        content, mapping = generated.read_bytes(), generated_manifest.read_bytes()
+        dataset_id = hashlib.sha256(content+mapping).hexdigest()
+        try:
+            entry = service.store.get('dataset', dataset_id)
+            print(f'[GroundWatch] 과제용 합성 확장 자료: {entry["status"]}', flush=True)
+        except KeyError:
+            service.queue_upload(content, mapping, generated.name, auto_train=True)
+            print('[GroundWatch] 오늘까지 합성 확장 자료를 별도 검증·학습합니다.', flush=True)
+        import json
+        stamp = json.loads((generated.parent/'generation.json').read_text())
+        entry = service.store.get('dataset', dataset_id)
+        entry['generated_at'] = stamp['generated_at']
+        service.store.put('dataset', entry, dataset_id)
     children = [subprocess.Popen([sys.executable, '-m', 'serving_app.groundwater_worker']),
                 subprocess.Popen([sys.executable, '-m', 'serving_app.external_worker']),
                 subprocess.Popen([sys.executable, '-m', 'uvicorn', 'serving_app.main:app',
