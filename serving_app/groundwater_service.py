@@ -164,7 +164,8 @@ class GroundwaterService:
                 rows = [r for r in self.records(entry['id'], code, replay) if r['date'] <= as_of]
                 if rows:
                     value.update(observed_date=rows[-1]['date'], unit=rows[-1]['level_unit'],
-                                 freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days)
+                                 freshness_days=(anchor-date.fromisoformat(rows[-1]['date'])).days,
+                                 input_origin=rows[-1].get('origin', entry.get('source_kind', 'observed')))
                 model = models.get(code)
                 if mode == 'current' and value['freshness_days'] is not None and value['freshness_days'] > 0:
                     value.update(quality_status='STALE_DATA', reason=f"오늘까지 관측 자료가 없습니다. 마지막 관측 후 {value['freshness_days']}일 경과했습니다.")
@@ -207,7 +208,8 @@ class GroundwaterService:
                 value['presentation_observed_date'] = self.simulation_clock(replay, observed)['presentation_as_of'] if observed else None
                 value['presentation_forecast_date'] = clock['presentation_forecast_date']
         return {'forecasts': items, 'as_of': as_of, 'ready_count': sum(x['prediction'] is not None for x in items),
-                'total': 25, 'mode': mode, 'replay_id': replay_id, 'simulation': clock}
+                'total': 25, 'mode': mode, 'replay_id': replay_id, 'simulation': clock,
+                'provenance': self.dataset(entry['id']).manifest.get('provenance', {}) if entry else {}}
 
     def history(self, code, dataset_id=None, replay_id=None):
         replay = self.store.get('replay', replay_id) if replay_id else None
@@ -229,6 +231,16 @@ class GroundwaterService:
             chosen = choices[-1] if choices else {}
             history.append({**row, 'prediction':chosen.get('prediction'),
                             'prediction_model_version':chosen.get('model_version'), 'predictions':choices})
+        # Display the actually stored next-day prediction without manufacturing
+        # its observation or rainfall. Historical replay still reveals one day.
+        if not replay and rows:
+            next_date = (date.fromisoformat(rows[-1]['date'])+timedelta(days=1)).isoformat()
+            choices = sorted(by_date.get(next_date, []), key=lambda p:p.get('generated_at') or '')
+            if choices:
+                chosen = choices[-1]
+                history.append({'date':next_date,'groundwater_level':None,'rainfall_mm':None,
+                                'origin':'prediction','prediction':chosen['prediction'],
+                                'prediction_model_version':chosen['model_version'],'predictions':choices})
         clock = self.simulation_clock(replay)
         if clock['enabled']:
             next_date = clock['source_forecast_date']
@@ -326,7 +338,7 @@ class GroundwaterService:
                           'shift_amount':.2}
         return {'namespace':namespace,'district_code':district_code,'replay_id':replay_id,
                 'simulation': self.simulation_clock(replay),
-                'as_of':replay['as_of'] if replay else None,'replay_status':replay['status'] if replay else None,
+                'as_of':replay['as_of'] if replay else (max((r['date'] for r in self.records(entry['id'],district_code)),default=None) if entry else None),'replay_status':replay['status'] if replay else None,
                 'remaining_days':(date.fromisoformat(replay.get('end_date') or defaults['end_date'])-date.fromisoformat(replay['as_of'])).days if replay and defaults else 0,
                 'advance_active':any(j['kind']=='advance' and j['status'] in ('queued','running') for j in jobs),'stages':stages,'defaults':defaults,
                 'log':sorted([{'at':e['created_at'],'kind':e['kind'],'message':e['message'],'status':e['status']} for e in events]+[{'at':j['updated_at'],'kind':j['kind'],'message':j['error'] or j['id'],'status':j['status']} for j in jobs],key=lambda x:x['at'],reverse=True)[:50],
